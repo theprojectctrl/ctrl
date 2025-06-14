@@ -32,6 +32,58 @@
       <div class="dot dot-3"></div>
     </div>
 
+    <!-- CTRL Formula Section -->
+    <section id="ctrl-formula" class="section bento-section">
+      <div class="content-wrapper">
+        <div class="section-header">
+          <div class="section-tag">Core</div>
+          <h1>The CTRL Formula</h1>
+          <p class="section-description">Our three pillars for building with clarity, intention, and impact</p>
+        </div>
+
+        <div class="bento-grid">
+          <div class="bento-card formula-card">
+            <div class="formula-content">
+              <h3>Purpose + CTRL</h3>
+              <p>Build with clarity, intention, and impact.</p>
+              <ul class="formula-points">
+                <li>Define your core mission: What problem are you solving?</li>
+                <li>Understand the value you bring and why it matters now.</li>
+                <li>Use our tools to set clear goals and measurable milestones.</li>
+                <li>Remember: If it's hard, it's formative. Challenges shape your growth.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bento-card formula-card">
+            <div class="formula-content">
+              <h3>Personalize + CTRL</h3>
+              <p>Make your project uniquely yours — human, creative, and authentic.</p>
+              <ul class="formula-points">
+                <li>Customize templates and workflows to fit your style and values.</li>
+                <li>Embed your personality and voice into every detail.</li>
+                <li>Embrace iteration and feedback loops to keep evolving.</li>
+                <li>Use design and language that make your work feel alive.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bento-card formula-card">
+            <div class="formula-content">
+              <h3>Propel + CTRL</h3>
+              <p>Digitize smartly, connect deeply, and grow sustainably.</p>
+              <ul class="formula-points">
+                <li>Use digital tools to automate tasks and amplify reach.</li>
+                <li>Build secure systems for business stability.</li>
+                <li>Leverage community and networking for growth.</li>
+                <li>Tap into CTRL's Project Hub for visibility.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Featured Toolkits Section -->
     <section class="section bento-section">
       <div class="content-wrapper">
@@ -449,6 +501,88 @@
 
     .pagination-info strong {
       color: var(--primary-color);
+    }
+
+    /* CTRL Formula Styles */
+    .formula-card {
+      background: var(--light-bg);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .formula-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--card-shadow);
+    }
+
+    .formula-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .formula-content h3 {
+      font-size: 1.5rem;
+      color: var(--text-color);
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .formula-content p {
+      font-size: 1.1rem;
+      color: var(--text-color);
+      opacity: 0.8;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .formula-points {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .formula-points li {
+      font-size: 0.95rem;
+      color: var(--text-color);
+      opacity: 0.9;
+      line-height: 1.5;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .formula-points li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .formula-card {
+        padding: 1.5rem;
+      }
+
+      .formula-content h3 {
+        font-size: 1.25rem;
+      }
+
+      .formula-content p {
+        font-size: 1rem;
+      }
+
+      .formula-points li {
+        font-size: 0.9rem;
+      }
     }
   </style>
 

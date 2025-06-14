@@ -543,6 +543,73 @@
     .resource-item.shop-item:hover::after {
       transform: translateX(4px);
     }
+
+    .highlight-step {
+      background: rgba(121, 183, 255, 0.15);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin: 0.75rem 0;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid rgba(121, 183, 255, 0.3);
+      box-shadow: 0 4px 12px rgba(121, 183, 255, 0.15);
+    }
+
+    .highlight-step::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(121, 183, 255, 0.1);
+      border-radius: 12px;
+      z-index: -1;
+      transition: all 0.3s ease;
+    }
+
+    .highlight-step:hover {
+      transform: translateY(-2px);
+      background: rgba(121, 183, 255, 0.2);
+      border-color: rgba(121, 183, 255, 0.5);
+      box-shadow: 0 6px 20px rgba(121, 183, 255, 0.25);
+    }
+
+    .highlight-step:hover::before {
+      background: rgba(121, 183, 255, 0.15);
+    }
+
+    .highlight-step .step-number {
+      background: #79b7ff;
+      color: white;
+      box-shadow: 0 2px 8px rgba(121, 183, 255, 0.3);
+    }
+
+    .highlight-step p {
+      margin: 0;
+      font-weight: 600;
+      color: #1f2937;
+    }
+
+    .highlight-step::after {
+      content: '→';
+      margin-left: auto;
+      font-size: 1.25rem;
+      color: #79b7ff;
+      opacity: 0.8;
+      transition: transform 0.3s ease;
+    }
+
+    .highlight-step:hover::after {
+      transform: translateX(4px);
+      opacity: 1;
+    }
   </style>
 </head>
 <body class="dashboard">
@@ -625,7 +692,7 @@
               <a href="https://ko-fi.com/projectctrl" target="_blank" class="resource-item shop-item" style="text-decoration: none; color: inherit;">
                 <span class="resource-icon">✨</span>
                 <div class="resource-content">
-                  <h4>Premium Resources</h4>
+                  <h4>CTRL Boosted</h4>
                   <p>Custom toolkits & 1:1 support</p>
                 </div>
               </a>
@@ -771,13 +838,13 @@
                 <span class="step-number">2</span>
                 <p>Browse templates and roadmaps</p>
               </div>
-              <div class="step-item">
+              <a href="resources.html#ctrl-formula" class="step-item highlight-step">
                 <span class="step-number">3</span>
-                <p>Connect with other innovators</p>
-              </div>
+                <p>Follow the 3 CTRL pillar formula for business & project development</p>
+              </a>
               <div class="step-item">
                 <span class="step-number">4</span>
-                <p>Share your project</p>
+                <p>Connect with other innovators and share your project</p>
               </div>
             </div>
           </div>
@@ -788,25 +855,29 @@
             <div class="tiers-container">
               <div class="tier-section free-tier">
                 <div class="tier-header">
-                  <h4>Free Tier Users</h4>
+                  <h4>Free Experience</h4>
                   <span class="tier-badge">Available Now</span>
                 </div>
                 <ul class="tier-features">
                   <li>
                     <span class="feature-icon">📌</span>
-                    Permanent listing on the Project Hub
+                    Permanent project listing on the CTRL Hub
                   </li>
                   <li>
                     <span class="feature-icon">📱</span>
-                    1x social media post
+                    Interactive project tile with tags, filters, contact info, and update popups
                   </li>
                   <li>
                     <span class="feature-icon">💭</span>
-                    Feedback from the CTRL team
+                    One social media spotlight post during early-access
                   </li>
                   <li>
                     <span class="feature-icon">📚</span>
-                    Access to free resources
+                    Access to free resources, toolkits, and guides
+                  </li>
+                  <li>
+                    <span class="feature-icon">⭐</span>
+                    Eligibility for the CTRL Picks Badge based on merit or upgrades
                   </li>
                 </ul>
                 <p class="tier-note">CTRL is currently in its early-access stage — your submission helps us build the future.</p>
@@ -814,32 +885,36 @@
 
               <div class="tier-section spotlight-tier">
                 <div class="tier-header">
-                  <h4>Spotlight Tier</h4>
+                  <h4>CTRL Boosted Experience</h4>
                   <span class="tier-badge coming-soon">Coming Soon</span>
                 </div>
                 <ul class="tier-features">
                   <li>
                     <span class="feature-icon">⭐</span>
-                    Pinned section in hub
+                    Everything you need to build, grow, and showcase your project
                   </li>
                   <li>
                     <span class="feature-icon">📢</span>
-                    Monthly social media promotion
+                    Up to 3 custom social media promo posts monthly
                   </li>
                   <li>
                     <span class="feature-icon">🎁</span>
-                    Free toolkit item + discounts
+                    Full Project Review & Custom Roadmap
                   </li>
                   <li>
                     <span class="feature-icon">📋</span>
-                    Full project review
+                    Project Starter & Growth Tracker Kits
                   </li>
                   <li>
                     <span class="feature-icon">🏆</span>
-                    CTRL badge + alumni recognition
+                    MVP Builder & Event Outreach Tools
                   </li>
                 </ul>
                 <p class="tier-note">Launching once we reach 100–500 community submissions.</p>
+                <a href="https://ko-fi.com/projectctrl" target="_blank" class="primary-button" style="margin-top: 1rem; display: inline-block;">
+                  Get CTRL Boosted
+                  <span class="button-icon">→</span>
+                </a>
               </div>
             </div>
           </div>
