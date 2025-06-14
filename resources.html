@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resources - Project CTRL</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="resources">
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="logo">Project CTRL</a>
+      <nav class="main-nav">
+        <a href="index.html">Dashboard</a>
+        <a href="projects.html">Project Hub</a>
+        <div class="dropdown">
+          <a href="resources.html" class="dropdown-trigger active">Resources ▾</a>
+          <div class="dropdown-content">
+            <a href="https://stembystep.github.io/sbs/" target="_blank">STEM by Step</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="resources-container">
+    <div class="background-elements">
+      <div class="curved-line"></div>
+      <div class="dot dot-1"></div>
+      <div class="dot dot-2"></div>
+      <div class="dot dot-3"></div>
+    </div>
+
+    <!-- Featured Toolkits Section -->
+    <section class="section bento-section">
+      <div class="content-wrapper">
+        <div class="section-header">
+          <div class="section-tag">Featured</div>
+          <h1>Featured Toolkits</h1>
+          <p class="section-description">Essential tools and resources to supercharge your projects</p>
+        </div>
+
+        <div class="bento-grid">
+          <div class="bento-card" data-resource="project-launcher">
+            <div class="placeholder-box">
+              <div class="placeholder-icon">⚡</div>
+              <div class="placeholder-content">
+                <h3>Project Launcher</h3>
+                <p>Quick-start templates & guides</p>
+                <div class="card-tag">Click to explore</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bento-card" data-resource="workflow-builder">
+            <div class="placeholder-box">
+              <div class="placeholder-icon">⚙️</div>
+              <div class="placeholder-content">
+                <h3>Workflow Builder</h3>
+                <p>Custom formulas for smarter workflows</p>
+                <div class="card-tag">Click to explore</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roadmaps & Templates Section -->
+    <section class="section bento-section">
+      <div class="content-wrapper">
+        <div class="section-header">
+          <div class="section-tag">Resources</div>
+          <h2>Roadmaps & Templates</h2>
+          <p class="section-description">Structured guides and templates to keep your projects on track.</p>
+        </div>
+
+        <div class="bento-grid">
+          <div class="bento-card" data-resource="development-roadmap">
+            <div class="placeholder-box">
+              <div class="placeholder-icon">🔍</div>
+              <div class="placeholder-content">
+                <h3>Development Roadmap</h3>
+                <p>Step-by-step project guides</p>
+                <div class="card-tag">Click to explore</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bento-card" data-resource="project-templates">
+            <div class="placeholder-box">
+              <div class="placeholder-icon">📄</div>
+              <div class="placeholder-content">
+                <h3>Project Templates</h3>
+                <p>Ready-to-use frameworks</p>
+                <div class="card-tag">Click to explore</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Learning Resources Section -->
+    <section class="section bento-section">
+      <div class="content-wrapper">
+        <div class="section-header">
+          <div class="section-tag">Learning</div>
+          <h2>Learning Resources</h2>
+          <p class="section-description">Educational content to help you grow and succeed.</p>
+        </div>
+
+        <div class="bento-grid">
+          <div class="bento-card" data-resource="developer-guides">
+            <div class="placeholder-box">
+              <div class="placeholder-icon">⭐</div>
+              <div class="placeholder-content">
+                <h3>Developer Guides</h3>
+                <p>In-depth tutorials & docs</p>
+                <div class="card-tag">Click to explore</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bento-card" data-resource="best-practices">
+            <div class="placeholder-box">
+              <div class="placeholder-icon">💫</div>
+              <div class="placeholder-content">
+                <h3>Best Practices</h3>
+                <p>Tips & industry standards</p>
+                <div class="card-tag">Click to explore</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Resources Popup -->
+  <div class="resources-popup">
+    <div class="resources-popup-content">
+      <div class="resources-popup-header">
+        <h2>Resources</h2>
+        <button class="close-popup">×</button>
+      </div>
+
+      <div class="resources-filter">
+        <button class="filter-tag active" data-filter="all">All Industries</button>
+        <button class="filter-tag" data-filter="technology">Technology</button>
+        <button class="filter-tag" data-filter="education">Education</button>
+        <button class="filter-tag" data-filter="health">Health</button>
+        <button class="filter-tag" data-filter="environment">Environment</button>
+        <button class="filter-tag" data-filter="social-impact">Social Impact</button>
+        <button class="filter-tag" data-filter="art-design">Art & Design</button>
+        <button class="filter-tag" data-filter="food-culture">Food & Culture</button>
+        <button class="filter-tag" data-filter="wellness-beauty">Wellness & Beauty</button>
+      </div>
+
+      <div class="resources-grid-popup">
+        <!-- Resources will be dynamically populated -->
+      </div>
+
+      <div class="pagination-controls">
+        <button class="pagination-arrow prev-page" disabled>←</button>
+        <div class="pagination-info">
+          Page <strong>1</strong> of <strong>1</strong>
+        </div>
+        <button class="pagination-arrow next-page" disabled>→</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <p>© 2025 Project CTRL | Built by and for the people without a roadmap</p>
+    </div>
+  </footer>
+
+  <style>
+    :root {
+      --primary-color: #79b7ff;
+      --primary-light: #e5f0ff;
+      --text-color: #1f2937;
+      --light-bg: #f9fafb;
+      --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    }
+
+    .resources-container {
+      padding-top: 2rem;
+    }
+
+    .background-elements {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .curved-line {
+      position: absolute;
+      top: 20%;
+      right: -5%;
+      width: 60%;
+      height: 2px;
+      background: var(--primary-color);
+      opacity: 0.2;
+      transform: rotate(-5deg);
+    }
+
+    .curved-line::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: var(--primary-color);
+      opacity: 0.1;
+      border-radius: 50%;
+    }
+
+    .dot {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary-color);
+      opacity: 0.2;
+    }
+
+    .dot-1 { top: 15%; left: 10%; }
+    .dot-2 { top: 45%; right: 15%; }
+    .dot-3 { bottom: 20%; left: 20%; }
+
+    .section {
+      padding: 40px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--primary-color);
+      background: var(--primary-light);
+      padding: 4px 12px;
+      border-radius: 16px;
+      margin-bottom: 16px;
+    }
+
+    .section h1, .section h2 {
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .section-description {
+      font-size: 16px;
+      color: #6b7280;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .bento-section .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .placeholder-box {
+      background: var(--primary-light);
+      border-radius: 12px;
+      padding: 24px;
+      height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: left;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .placeholder-box:hover {
+      transform: translateY(-5px);
+      background: rgba(121, 183, 255, 0.15);
+    }
+
+    .placeholder-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .placeholder-content h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-color);
+    }
+
+    .placeholder-content p {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 12px;
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--primary-color);
+      background: white;
+      padding: 4px 12px;
+      border-radius: 12px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    @media (max-width: 768px) {
+      .bento-section .bento-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section h1,
+      .section h2 {
+        font-size: 28px;
+      }
+
+      .placeholder-box {
+        height: 160px;
+      }
+
+      .curved-line,
+      .dot {
+        display: none;
+      }
+    }
+
+    .category-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 12px;
+      background: var(--primary-light);
+      color: var(--primary-color);
+      margin-top: 0.5rem;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 3rem;
+      color: var(--secondary-color);
+    }
+
+    .no-results p:first-child {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .no-results p:last-child {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .resources-filter {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .filter-tag {
+      white-space: nowrap;
+    }
+
+    .resource-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.75rem 0;
+    }
+
+    .resource-tag {
+      padding: 0.35rem 0.75rem;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: var(--primary-light);
+      color: var(--accent-color);
+    }
+
+    .price-tag {
+      background: rgba(0, 200, 83, 0.1);
+      color: var(--success-color);
+    }
+
+    .pagination-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .pagination-arrow {
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 50%;
+      background: var(--background-color);
+      color: var(--secondary-color);
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pagination-arrow:not(:disabled):hover {
+      background: var(--accent-color);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .pagination-arrow:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .pagination-info {
+      font-size: 0.9rem;
+      color: var(--secondary-color);
+    }
+
+    .pagination-info strong {
+      color: var(--primary-color);
+    }
+  </style>
+
+  <script>
+    // Resource data
+    const resources = {
+      'project-launcher': {
+        title: 'Project Launcher',
+        description: 'Quick-start templates & guides to launch your project',
+        items: {
+          'all': [
+            {
+              icon: '🚀',
+              title: 'Coming Soon',
+              description: 'Project launcher templates are on the way! Check back soon for ready-to-use project starter kits.',
+              category: 'Technology',
+              price: '$2.99',
+              link: '#'
+            },
+            {
+              icon: '📋',
+              title: 'Coming Soon',
+              description: 'Quick-start guides are on the way! Check back soon for step-by-step project launch instructions.',
+              category: 'Education',
+              link: '#'
+            }
+          ]
+        }
+      },
+      'workflow-builder': {
+        title: 'Workflow Builder',
+        description: 'Industry-specific workflow templates and processes',
+        items: {
+          'all': [
+            {
+              icon: '⚙️',
+              title: 'Coming Soon',
+              description: 'Workflow templates are on the way! Check back soon for customizable process frameworks.',
+              category: 'Health',
+              price: '$2.99',
+              link: '#'
+            },
+            {
+              icon: '📈',
+              title: 'Coming Soon',
+              description: 'Process guides are on the way! Check back soon for workflow optimization tools.',
+              category: 'Environment',
+              link: '#'
+            }
+          ]
+        }
+      },
+      'development-roadmap': {
+        title: 'Development Roadmap',
+        description: 'Industry-specific development guides and milestones',
+        items: {
+          'all': [
+            {
+              icon: '🎯',
+              title: 'Coming Soon',
+              description: 'Development milestones are on the way! Check back soon for project planning frameworks.',
+              category: 'Social Impact',
+              price: '$2.99',
+              link: '#'
+            },
+            {
+              icon: '🗺️',
+              title: 'Coming Soon',
+              description: 'Strategic roadmaps are on the way! Check back soon for long-term planning guides.',
+              category: 'Art & Design',
+              link: '#'
+            }
+          ]
+        }
+      },
+      'project-templates': {
+        title: 'Project Templates',
+        description: 'Ready-to-use templates for your industry',
+        items: {
+          'all': [
+            {
+              icon: '📄',
+              title: 'Coming Soon',
+              description: 'Document templates are on the way! Check back soon for standardized project forms.',
+              category: 'Food & Culture',
+              price: '$2.99',
+              link: '#'
+            },
+            {
+              icon: '📁',
+              title: 'Coming Soon',
+              description: 'Project frameworks are on the way! Check back soon for complete project structures.',
+              category: 'Wellness & Beauty',
+              link: '#'
+            }
+          ]
+        }
+      },
+      'developer-guides': {
+        title: 'Developer Guides',
+        description: 'Technical guides for different industries',
+        items: {
+          'all': [
+            {
+              icon: '💻',
+              title: 'Coming Soon',
+              description: 'Technical documentation is on the way! Check back soon for detailed developer guides.',
+              category: 'Technology',
+              price: '$2.99',
+              link: '#'
+            },
+            {
+              icon: '🔧',
+              title: 'Coming Soon',
+              description: 'Code tutorials are on the way! Check back soon for hands-on development resources.',
+              category: 'Education',
+              link: '#'
+            }
+          ]
+        }
+      },
+      'best-practices': {
+        title: 'Best Practices',
+        description: 'Industry-specific standards and guidelines',
+        items: {
+          'all': [
+            {
+              icon: '✨',
+              title: 'Coming Soon',
+              description: 'Industry standards are on the way! Check back soon for best practice guidelines.',
+              category: 'Health',
+              price: '$2.99',
+              link: '#'
+            },
+            {
+              icon: '📊',
+              title: 'Coming Soon',
+              description: 'Quality benchmarks are on the way! Check back soon for performance metrics.',
+              category: 'Environment',
+              link: '#'
+            }
+          ]
+        }
+      }
+    };
+
+    // Initialize popup functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const popup = document.querySelector('.resources-popup');
+      const closeBtn = document.querySelector('.close-popup');
+      const filterTags = document.querySelectorAll('.filter-tag');
+      const resourcesGrid = document.querySelector('.resources-grid-popup');
+      const bentoCards = document.querySelectorAll('.bento-card[data-resource]');
+      const prevPageBtn = document.querySelector('.prev-page');
+      const nextPageBtn = document.querySelector('.next-page');
+      const paginationInfo = document.querySelector('.pagination-info');
+
+      // Close popup
+      closeBtn.addEventListener('click', () => {
+        popup.classList.remove('active');
+      });
+
+      // Close popup when clicking outside
+      popup.addEventListener('click', (e) => {
+        if (e.target === popup) {
+          popup.classList.remove('active');
+        }
+      });
+
+      // Filter functionality
+      filterTags.forEach(tag => {
+        tag.addEventListener('click', () => {
+          // Update active state
+          filterTags.forEach(t => t.classList.remove('active'));
+          tag.classList.add('active');
+
+          // Get current resource type
+          const currentResourceType = popup.dataset.currentResource;
+          const resourceData = resources[currentResourceType];
+
+          // Display the resources
+          displayResource(resourceData);
+        });
+      });
+
+      // Function to display the resources
+      function displayResource(resourceData) {
+        resourcesGrid.innerHTML = '';
+        const items = resourceData.items.all;
+        const ITEMS_PER_PAGE = 6; // Set maximum items per page
+        
+        items.forEach(item => {
+          const resourceItem = document.createElement('div');
+          resourceItem.className = 'resource-item-popup';
+          
+          resourceItem.innerHTML = `
+            <div class="resource-header">
+              <span class="resource-icon-popup">${item.icon}</span>
+              <div class="resource-title">
+                <h4>${item.title}</h4>
+                <div class="resource-tags">
+                  <span class="resource-tag">${item.category}</span>
+                  ${item.price ? `<span class="resource-tag price-tag">${item.price}</span>` : ''}
+                </div>
+              </div>
+            </div>
+            <p class="resource-description">${item.description}</p>
+            <a href="${item.link}" class="resource-link">View Resource →</a>
+          `;
+          
+          resourcesGrid.appendChild(resourceItem);
+        });
+
+        // Show pagination controls but keep them disabled for now
+        prevPageBtn.style.display = '';
+        nextPageBtn.style.display = '';
+        paginationInfo.style.display = '';
+
+        // Update pagination info
+        const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
+        paginationInfo.innerHTML = `Page <strong>1</strong> of <strong>${totalPages}</strong>`;
+
+        // Disable both buttons since we only have 2 items
+        prevPageBtn.disabled = true;
+        nextPageBtn.disabled = true;
+      }
+
+      // Open popup when clicking bento cards
+      bentoCards.forEach(card => {
+        card.addEventListener('click', () => {
+          const resourceType = card.dataset.resource;
+          const resourceData = resources[resourceType];
+          
+          // Store current resource type
+          popup.dataset.currentResource = resourceType;
+
+          // Update popup title and description
+          document.querySelector('.resources-popup-header h2').textContent = resourceData.title;
+          
+          // Show the resources
+          displayResource(resourceData);
+          
+          // Show popup
+          popup.classList.add('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html> 
