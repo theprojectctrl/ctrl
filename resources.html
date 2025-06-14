@@ -587,150 +587,22 @@
   </style>
 
   <script>
-    // Resource data
-    const resources = {
-      'project-launcher': {
-        title: 'Project Launcher',
-        description: 'Quick-start templates & guides to launch your project',
-        items: {
-          'all': [
-            {
-              icon: '🚀',
-              title: 'Coming Soon',
-              description: 'Project launcher templates are on the way! Check back soon for ready-to-use project starter kits.',
-              category: 'Technology',
-              price: '$2.99',
-              link: '#'
-            },
-            {
-              icon: '📋',
-              title: 'Coming Soon',
-              description: 'Quick-start guides are on the way! Check back soon for step-by-step project launch instructions.',
-              category: 'Education',
-              link: '#'
-            }
-          ]
-        }
-      },
-      'workflow-builder': {
-        title: 'Workflow Builder',
-        description: 'Industry-specific workflow templates and processes',
-        items: {
-          'all': [
-            {
-              icon: '⚙️',
-              title: 'Coming Soon',
-              description: 'Workflow templates are on the way! Check back soon for customizable process frameworks.',
-              category: 'Health',
-              price: '$2.99',
-              link: '#'
-            },
-            {
-              icon: '📈',
-              title: 'Coming Soon',
-              description: 'Process guides are on the way! Check back soon for workflow optimization tools.',
-              category: 'Environment',
-              link: '#'
-            }
-          ]
-        }
-      },
-      'development-roadmap': {
-        title: 'Development Roadmap',
-        description: 'Industry-specific development guides and milestones',
-        items: {
-          'all': [
-            {
-              icon: '🎯',
-              title: 'Coming Soon',
-              description: 'Development milestones are on the way! Check back soon for project planning frameworks.',
-              category: 'Social Impact',
-              price: '$2.99',
-              link: '#'
-            },
-            {
-              icon: '🗺️',
-              title: 'Coming Soon',
-              description: 'Strategic roadmaps are on the way! Check back soon for long-term planning guides.',
-              category: 'Art & Design',
-              link: '#'
-            }
-          ]
-        }
-      },
-      'project-templates': {
-        title: 'Project Templates',
-        description: 'Ready-to-use templates for your industry',
-        items: {
-          'all': [
-            {
-              icon: '📄',
-              title: 'Coming Soon',
-              description: 'Document templates are on the way! Check back soon for standardized project forms.',
-              category: 'Food & Culture',
-              price: '$2.99',
-              link: '#'
-            },
-            {
-              icon: '📁',
-              title: 'Coming Soon',
-              description: 'Project frameworks are on the way! Check back soon for complete project structures.',
-              category: 'Wellness & Beauty',
-              link: '#'
-            }
-          ]
-        }
-      },
-      'developer-guides': {
-        title: 'Developer Guides',
-        description: 'Technical guides for different industries',
-        items: {
-          'all': [
-            {
-              icon: '💻',
-              title: 'Coming Soon',
-              description: 'Technical documentation is on the way! Check back soon for detailed developer guides.',
-              category: 'Technology',
-              price: '$2.99',
-              link: '#'
-            },
-            {
-              icon: '🔧',
-              title: 'Coming Soon',
-              description: 'Code tutorials are on the way! Check back soon for hands-on development resources.',
-              category: 'Education',
-              link: '#'
-            }
-          ]
-        }
-      },
-      'best-practices': {
-        title: 'Best Practices',
-        description: 'Industry-specific standards and guidelines',
-        items: {
-          'all': [
-            {
-              icon: '✨',
-              title: 'Coming Soon',
-              description: 'Industry standards are on the way! Check back soon for best practice guidelines.',
-              category: 'Health',
-              price: '$2.99',
-              link: '#'
-            },
-            {
-              icon: '📊',
-              title: 'Coming Soon',
-              description: 'Quality benchmarks are on the way! Check back soon for performance metrics.',
-              category: 'Environment',
-              link: '#'
-            }
-          ]
-        }
+    // Load resources from JSON file
+    let resourcesData = null;
+
+    async function loadResources() {
+      try {
+        const response = await fetch('resources.json');
+        resourcesData = await response.json();
+        return resourcesData;
+      } catch (error) {
+        console.error('Error loading resources:', error);
+        return null;
       }
-    };
+    }
 
     // Initialize popup functionality
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
       const popup = document.querySelector('.resources-popup');
       const closeBtn = document.querySelector('.close-popup');
       const filterTags = document.querySelectorAll('.filter-tag');
@@ -739,6 +611,9 @@
       const prevPageBtn = document.querySelector('.prev-page');
       const nextPageBtn = document.querySelector('.next-page');
       const paginationInfo = document.querySelector('.pagination-info');
+
+      // Load resources data
+      await loadResources();
 
       // Close popup
       closeBtn.addEventListener('click', () => {
@@ -752,6 +627,11 @@
         }
       });
 
+      let currentPage = 1;
+      const ITEMS_PER_PAGE = 6;
+      let currentFilter = 'all';
+      let currentResourceType = null;
+
       // Filter functionality
       filterTags.forEach(tag => {
         tag.addEventListener('click', () => {
@@ -759,22 +639,39 @@
           filterTags.forEach(t => t.classList.remove('active'));
           tag.classList.add('active');
 
-          // Get current resource type
-          const currentResourceType = popup.dataset.currentResource;
-          const resourceData = resources[currentResourceType];
+          // Update current filter
+          currentFilter = tag.dataset.filter;
+          currentPage = 1;
 
           // Display the resources
-          displayResource(resourceData);
+          displayResource(currentResourceType);
         });
       });
 
       // Function to display the resources
-      function displayResource(resourceData) {
+      function displayResource(resourceType) {
+        if (!resourcesData || !resourceType) return;
+
+        currentResourceType = resourceType;
+        const resourceData = resourcesData.resources[resourceType];
         resourcesGrid.innerHTML = '';
-        const items = resourceData.items.all;
-        const ITEMS_PER_PAGE = 6; // Set maximum items per page
-        
-        items.forEach(item => {
+
+        // Filter items based on current filter
+        let filteredItems = resourceData.items;
+        if (currentFilter !== 'all') {
+          filteredItems = resourceData.items.filter(item => 
+            item.categories.includes(currentFilter)
+          );
+        }
+
+        // Calculate pagination
+        const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
+        const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+        const endIndex = startIndex + ITEMS_PER_PAGE;
+        const itemsToShow = filteredItems.slice(startIndex, endIndex);
+
+        // Display items
+        itemsToShow.forEach(item => {
           const resourceItem = document.createElement('div');
           resourceItem.className = 'resource-item-popup';
           
@@ -784,46 +681,71 @@
               <div class="resource-title">
                 <h4>${item.title}</h4>
                 <div class="resource-tags">
-                  <span class="resource-tag">${item.category}</span>
-                  ${item.price ? `<span class="resource-tag price-tag">${item.price}</span>` : ''}
+                  ${item.categories.map(cat => `<span class="resource-tag">${cat}</span>`).join('')}
+                  ${item.price ? `<span class="resource-tag price-tag">$${item.price}</span>` : ''}
                 </div>
               </div>
             </div>
             <p class="resource-description">${item.description}</p>
-            <a href="${item.link}" class="resource-link">View Resource →</a>
+            <a href="${item.viewResourceLink || item.link}" class="resource-link" target="_blank">View Resource →</a>
           `;
           
           resourcesGrid.appendChild(resourceItem);
         });
 
-        // Show pagination controls but keep them disabled for now
-        prevPageBtn.style.display = '';
-        nextPageBtn.style.display = '';
-        paginationInfo.style.display = '';
+        // Update pagination controls
+        prevPageBtn.disabled = currentPage === 1;
+        nextPageBtn.disabled = currentPage === totalPages;
+        paginationInfo.innerHTML = `Page <strong>${currentPage}</strong> of <strong>${totalPages}</strong>`;
 
-        // Update pagination info
-        const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
-        paginationInfo.innerHTML = `Page <strong>1</strong> of <strong>${totalPages}</strong>`;
-
-        // Disable both buttons since we only have 2 items
-        prevPageBtn.disabled = true;
-        nextPageBtn.disabled = true;
+        // Show/hide pagination controls
+        const showPagination = totalPages > 1;
+        prevPageBtn.style.display = showPagination ? '' : 'none';
+        nextPageBtn.style.display = showPagination ? '' : 'none';
+        paginationInfo.style.display = showPagination ? '' : 'none';
       }
+
+      // Pagination controls
+      prevPageBtn.addEventListener('click', () => {
+        if (currentPage > 1) {
+          currentPage--;
+          displayResource(currentResourceType);
+        }
+      });
+
+      nextPageBtn.addEventListener('click', () => {
+        const totalPages = Math.ceil(
+          (currentFilter === 'all' 
+            ? resourcesData.resources[currentResourceType].items.length 
+            : resourcesData.resources[currentResourceType].items.filter(item => 
+                item.categories.includes(currentFilter)
+              ).length
+          ) / ITEMS_PER_PAGE
+        );
+        
+        if (currentPage < totalPages) {
+          currentPage++;
+          displayResource(currentResourceType);
+        }
+      });
 
       // Open popup when clicking bento cards
       bentoCards.forEach(card => {
         card.addEventListener('click', () => {
           const resourceType = card.dataset.resource;
-          const resourceData = resources[resourceType];
           
-          // Store current resource type
-          popup.dataset.currentResource = resourceType;
-
           // Update popup title and description
-          document.querySelector('.resources-popup-header h2').textContent = resourceData.title;
+          document.querySelector('.resources-popup-header h2').textContent = resourcesData.resources[resourceType].title;
+          
+          // Reset to first page and all filter
+          currentPage = 1;
+          currentFilter = 'all';
+          filterTags.forEach(tag => {
+            tag.classList.toggle('active', tag.dataset.filter === 'all');
+          });
           
           // Show the resources
-          displayResource(resourceData);
+          displayResource(resourceType);
           
           // Show popup
           popup.classList.add('active');
