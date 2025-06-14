@@ -191,7 +191,8 @@ class ProjectsPage {
 
   getSelectedFilters() {
     const filters = {
-      category: new Set()
+      category: new Set(),
+      type: new Set()
     };
 
     this.filterOptions.forEach(option => {
@@ -221,10 +222,10 @@ class ProjectsPage {
     // Remove any existing popup
     document.querySelectorAll('.popup-overlay.filter-popup').forEach(el => el.remove());
 
-    // Check if CTRL Picks filter is selected
-    const ctrlPicksSelected = selectedFilters.ctrlpicks && selectedFilters.ctrlpicks.has('CTRL Picks');
     const hasCategoryFilters = selectedFilters.category && selectedFilters.category.size > 0;
-    if (!ctrlPicksSelected && !hasCategoryFilters) {
+    const hasTypeFilters = selectedFilters.type && selectedFilters.type.size > 0;
+
+    if (!hasCategoryFilters && !hasTypeFilters) {
       this.showAllProjects();
       return;
     }
@@ -256,14 +257,21 @@ class ProjectsPage {
 
     // Filtering logic
     let matchingCards = allCards;
-    if (ctrlPicksSelected) {
-      matchingCards = matchingCards.filter(card => card.querySelector('.ctrl-pick-badge'));
-    }
+    
     if (hasCategoryFilters) {
       matchingCards = matchingCards.filter(element => {
         const tags = Array.from(element.querySelectorAll('.tag-category'));
         return Array.from(selectedFilters.category).some(selectedCategory =>
           tags.some(tag => tag.textContent.trim() === selectedCategory.trim())
+        );
+      });
+    }
+
+    if (hasTypeFilters) {
+      matchingCards = matchingCards.filter(element => {
+        const tags = Array.from(element.querySelectorAll('.tag-type'));
+        return Array.from(selectedFilters.type).some(selectedType =>
+          tags.some(tag => tag.textContent.trim() === selectedType.trim())
         );
       });
     }
@@ -575,7 +583,6 @@ document.addEventListener('DOMContentLoaded', () => {
       allProjects = data;
       filteredProjects = data;
       renderProjects(filteredProjects);
-      setupFilters();
     });
 
   // Render projects
@@ -647,174 +654,6 @@ document.addEventListener('DOMContentLoaded', () => {
       card.addEventListener('click', () => showPopup(project));
       grid.appendChild(card);
     });
-  }
-
-  // Filtering logic
-  function setupFilters() {
-    const filterInputs = document.querySelectorAll('.filter-option input');
-    filterInputs.forEach(input => {
-      input.addEventListener('change', () => {
-        let typeFilters = [];
-        let categoryFilters = [];
-        filterInputs.forEach(i => {
-          if (i.checked) {
-            if (i.name === 'category') categoryFilters.push(i.value);
-            if (i.name === 'type') typeFilters.push(i.value);
-          }
-        });
-        const anyFilters = typeFilters.length > 0 || categoryFilters.length > 0;
-        filteredProjects = allProjects.filter(project => {
-          const typeMatch = !typeFilters.length || typeFilters.includes(project.type);
-          const categoryMatch = !categoryFilters.length || categoryFilters.includes(project.category);
-          return typeMatch && categoryMatch;
-        });
-        if (anyFilters) {
-          if (filteredProjects.length > 0) {
-            showMultipleProjectsPopup(filteredProjects);
-          } else {
-            showNoResultsPopup();
-          }
-        } else {
-          renderProjects(allProjects);
-        }
-      });
-    });
-
-    // Add event listener for clear filters button
-    const clearBtn = document.querySelector('.clear-filters');
-    if (clearBtn) {
-      clearBtn.addEventListener('click', () => {
-        // Uncheck all filter checkboxes
-        filterInputs.forEach(input => {
-          input.checked = false;
-        });
-        // Reset filter count
-        const filterCount = document.querySelector('.filter-count');
-        if (filterCount) {
-          filterCount.textContent = '';
-        }
-        // Remove has-filters class from filter toggle
-        const filterToggle = document.querySelector('.filter-toggle');
-        if (filterToggle) {
-          filterToggle.classList.remove('has-filters');
-        }
-        // Hide filter panel
-        const filterPanel = document.querySelector('.filter-panel');
-        if (filterPanel) {
-          filterPanel.style.display = 'none';
-        }
-        // Show all projects
-        renderProjects(allProjects);
-        // Remove any filter popups
-        document.querySelectorAll('.popup-overlay.filter-popup').forEach(el => el.remove());
-      });
-    }
-  }
-
-  // Show multiple projects in a popup overlay (mini-card style)
-  function showMultipleProjectsPopup(projects) {
-    console.log('Popup called with projects:', projects);
-    document.querySelectorAll('.popup-overlay.filter-popup').forEach(el => el.remove());
-    const div = document.createElement('div');
-    div.className = 'popup-overlay filter-popup';
-    div.innerHTML = `
-      <div class="project-popup" style="max-width:900px;overflow:auto;max-height:90vh;">
-        <button class="close-button" style="font-size:2.5rem;line-height:2rem;width:2.5rem;height:2.5rem;top:1rem;right:1rem;position:absolute;z-index:10;background:none;border:none;cursor:pointer;">×</button>
-        <div style="padding:1rem 1rem 0 1rem;text-align:center;">
-          <h2>Matching Projects</h2>
-        </div>
-        <div class="popup-projects-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;padding:1.5rem;"></div>
-      </div>
-    `;
-    document.body.prepend(div);
-    const gridEl = div.querySelector('.popup-projects-grid');
-    projects.forEach(project => {
-      const card = template.content.cloneNode(true).querySelector('.project-card');
-      if (project.ctrlPick) {
-        const badge = document.createElement('div');
-        badge.className = 'ctrl-pick-badge';
-        badge.innerHTML = '<span class="star-icon">⭐</span> CTRL Picks';
-        card.prepend(badge);
-      }
-      card.querySelector('.project-title').textContent = project.title;
-      const tags = card.querySelector('.project-tags');
-      tags.innerHTML = '';
-      if (project.type) tags.innerHTML += `<span class="tag tag-type">${project.type}</span>`;
-      if (project.stage) tags.innerHTML += `<span class="tag tag-stage">${project.stage}</span>`;
-      if (project.category) tags.innerHTML += `<span class="tag tag-category">${project.category}</span>`;
-      if (project.modality) tags.innerHTML += `<span class="tag tag-modality">${project.modality}</span>`;
-      if (project.team) tags.innerHTML += `<span class="tag tag-team">${project.team}</span>`;
-      if (project.marketReach) tags.innerHTML += `<span class="tag tag-market">${project.marketReach}</span>`;
-      if (project.duration) tags.innerHTML += `<span class="tag tag-duration">${project.duration}</span>`;
-      if (project.status && Array.isArray(project.status)) {
-        project.status.forEach(st => {
-          if (st) tags.innerHTML += `<span class="tag tag-status">${st}</span>`;
-        });
-      }
-      card.querySelector('.project-description').textContent = project.description || '';
-      card.addEventListener('click', () => showPopup(project));
-      card.classList.add('popup-mini-card');
-      gridEl.appendChild(card);
-    });
-    // Robust close button
-    const closeBtn = div.querySelector('.close-button');
-    if (closeBtn) {
-      closeBtn.onclick = () => div.remove();
-    } else {
-      // Fallback: close on overlay click
-      div.onclick = (e) => {
-        if (e.target === div) div.remove();
-      };
-    }
-  }
-
-  // Show no results popup
-  function showNoResultsPopup() {
-    document.querySelectorAll('.popup-overlay.filter-popup').forEach(el => el.remove());
-    const div = document.createElement('div');
-    div.className = 'popup-overlay filter-popup';
-    div.innerHTML = `
-      <div class="project-popup">
-        <button class="close-button">×</button>
-        <div style="padding:2rem;text-align:center;">
-          <h2>No projects found in the selected category.</h2>
-          <button class="secondary-button clear-filters">
-            Clear Filters <span class="button-icon">×</span>
-          </button>
-        </div>
-      </div>
-    `;
-    document.body.prepend(div);
-    
-    const closePopup = () => {
-      div.remove();
-    };
-    
-    // Add click handler for overlay background
-    div.onclick = (e) => {
-      if (e.target === div) {
-        closePopup();
-      }
-    };
-    
-    // Add click handler for close button
-    const closeBtn = div.querySelector('.close-button');
-    if (closeBtn) {
-      closeBtn.onclick = (e) => {
-        e.stopPropagation(); // Prevent event from bubbling to overlay
-        closePopup();
-      };
-    }
-    
-    // Add click handler for clear filters button
-    const clearBtn = div.querySelector('.clear-filters');
-    if (clearBtn) {
-      clearBtn.onclick = () => {
-        document.querySelectorAll('.filter-option input').forEach(i => i.checked = false);
-        renderProjects(allProjects);
-        closePopup();
-      };
-    }
   }
 
   // Popup logic
