@@ -128,19 +128,38 @@
 
 /* Projects Grid Styles */
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
+  column-count: 2;
+  column-gap: 1.5rem;
   margin-top: 2rem;
 }
 
-.project-card {
+@media (min-width: 900px) {
+  .projects-grid {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 600px) {
+  .projects-grid {
+    column-count: 1;
+  }
+}
+
+.project-card,
+.event-tile {
+  display: block;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  break-inside: avoid;
   background: white;
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   cursor: pointer;
+  height: auto;
+  min-height: 0;
+  max-height: none;
 }
 
 .project-card:hover {
@@ -552,5 +571,147 @@
 /* Ensure only one popup is visible at a time */
 .project-tile-popup:not(.active) {
   display: none;
+}
+
+/* Event Tile Styles */
+.event-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(121, 183, 255, 0.15);
+}
+
+.event-tile-date {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.event-tile-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: inherit;
+}
+
+.event-tile-desc {
+  font-size: 0.9rem;
+  color: inherit;
+  opacity: 0.8;
+  margin: 0;
+}
+
+.event-tile-category {
+  display: inline-block;
+  background: rgba(121, 183, 255, 0.1);
+  color: #79b7ff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.event-tile {
+  border: 2px solid #79b7ff;
+  background: #f6f8fc;
+  position: relative;
+}
+
+.event-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: #79b7ff;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.3rem 1rem 0.3rem 0.7rem;
+  border-radius: 100px;
+  box-shadow: 0 2px 8px rgba(121,183,255,0.10);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 2;
+  letter-spacing: 1px;
+}
+
+.event-badge-icon {
+  font-size: 1.1rem;
+  margin-right: 0.3rem;
+}
+
+.event-tile-date {
+  margin-top: 2.2rem;
+}
+
+.promo-ig-card {
+  background: #fff;
+  border: 2px solid #79b7ff;
+  box-shadow: 0 4px 16px rgba(121, 183, 255, 0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  transition: box-shadow 0.3s cubic-bezier(0.4,0,0.2,1), border 0.3s cubic-bezier(0.4,0,0.2,1), transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  padding: 2rem 1.5rem;
+  will-change: transform, box-shadow, border;
+}
+
+.promo-ig-card:hover {
+  box-shadow: 0 8px 24px rgba(121, 183, 255, 0.18);
+  border-color: #5a9eff;
+  transform: translateY(-4px);
+}
+
+.ig-bento-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+}
+
+.ig-icon-wrapper {
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ig-icon {
+  width: 60px;
+  height: 60px;
+  display: block;
+}
+
+.ig-bento-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.2px;
+}
+
+.ig-bento-desc {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 0.7rem;
+}
+
+.ig-bento-handle {
+  color: #79b7ff;
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+}
+
+.ig-bento-cta {
+  color: #888;
+  font-size: 0.97rem;
+  margin-top: 0.2rem;
 }
 

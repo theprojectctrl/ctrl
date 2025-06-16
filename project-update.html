@@ -44,6 +44,25 @@
                 </select>
               </div>
 
+              <div class="form-group event-fields" style="display: none;">
+                <label for="event-date" class="required-field">Event Date</label>
+                <input type="date" id="event-date" name="event-date" required>
+              </div>
+
+              <div class="form-group event-fields" style="display: none;">
+                <label for="event-category" class="required-field">Event Category</label>
+                <select id="event-category" name="event-category" required>
+                  <option value="">Select category...</option>
+                  <option value="Volunteering & Service">Volunteering & Service</option>
+                  <option value="Internships & Jobs">Internships & Jobs</option>
+                  <option value="Workshops & Skill Building">Workshops & Skill Building</option>
+                  <option value="Creative Showcases & Competitions">Creative Showcases & Competitions</option>
+                  <option value="Networking & Panels">Networking & Panels</option>
+                  <option value="CTRL Events & Collabs">CTRL Events & Collabs</option>
+                  <option value="Project Launches & Demos">Project Launches & Demos</option>
+                </select>
+              </div>
+
               <div class="form-group">
                 <label for="title" class="required-field">Project/Event Name</label>
                 <input type="text" id="title" name="title" required placeholder="Enter the name of your project or event">
@@ -135,6 +154,29 @@
   </footer>
 
   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const updateType = document.getElementById('update-type');
+      const eventFields = document.querySelectorAll('.event-fields');
+      const eventDate = document.getElementById('event-date');
+      const eventCategory = document.getElementById('event-category');
+
+      // Show/hide event fields based on type selection
+      updateType.addEventListener('change', () => {
+        const isEvent = updateType.value === 'event';
+        eventFields.forEach(field => {
+          field.style.display = isEvent ? 'block' : 'none';
+        });
+        
+        // Update required attributes
+        eventDate.required = isEvent;
+        eventCategory.required = isEvent;
+      });
+
+      // Set minimum date to today for event date
+      const today = new Date().toISOString().split('T')[0];
+      eventDate.min = today;
+    });
+
     document.getElementById('project-status').addEventListener('change', function(e) {
       const projectNameGroup = document.getElementById('project-name-group');
       if (e.target.value === 'existing') {

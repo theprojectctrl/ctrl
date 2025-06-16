@@ -101,31 +101,33 @@
         <div class="impact-metrics">
           <div class="metric-card">
             <div class="metric-icon">📊</div>
-            <div class="metric-value" data-target="4">4</div>
+            <div class="metric-value" data-target="2">2</div>
             <div class="metric-label">Total Projects</div>
           </div>
           <div class="metric-card">
             <div class="metric-icon">📑</div>
-            <div class="metric-value" data-target="2">2</div>
+            <div class="metric-value" data-target="3">3</div>
             <div class="metric-label">Featured Projects</div>
           </div>
         </div>
 
         <div class="bento-grid categories-grid">
-          <div class="bento-card events-card">
-            <h3>Ongoing Events</h3>
-            <a href="https://www.instagram.com/projectctrl.co/" target="_blank" class="calendar-link">
-              <div class="calendar-icon">
-                <div class="calendar-top">
-                  <span>2024</span>
-                </div>
-                <div class="calendar-bottom">
-                  <span class="day">📅</span>
-                </div>
+          <a href="https://www.instagram.com/projectctrl.co/" class="bento-card promo-ig-card" target="_blank">
+            <div class="ig-bento-content">
+              <div class="ig-icon-wrapper">
+                <svg class="ig-icon" viewBox="0 0 64 64" width="64" height="64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="8" y="8" width="48" height="48" rx="14" fill="#f6f8fc" stroke="#79b7ff" stroke-width="3"/>
+                  <circle cx="32" cy="32" r="14" fill="#fff" stroke="#79b7ff" stroke-width="2"/>
+                  <circle cx="32" cy="32" r="9" fill="#79b7ff"/>
+                  <circle cx="44" cy="20" r="3" fill="#79b7ff"/>
+                </svg>
               </div>
-              <p class="calendar-text">Click to see current events on our Instagram</p>
-            </a>
-          </div>
+              <h3 class="ig-bento-title">Follow Us on Instagram</h3>
+              <p class="ig-bento-desc">See our latest events, project updates, and community highlights!</p>
+              <div class="ig-bento-handle">@projectctrl.co</div>
+              <div class="ig-bento-cta">Click anywhere on this card to visit our Instagram</div>
+            </div>
+          </a>
 
           <div class="bento-card">
             <h3>Share Updates & Events</h3>
@@ -156,6 +158,17 @@
         </div>
       </div>
     </section>
+
+    <!-- Event Tile Template -->
+    <template id="event-tile-template">
+      <div class="event-tile">
+        <div class="event-badge"><span class="event-badge-icon">📅</span> EVENT</div>
+        <div class="event-tile-date"></div>
+        <h3 class="event-tile-title"></h3>
+        <div class="event-tile-category"></div>
+        <p class="event-tile-desc"></p>
+      </div>
+    </template>
 
     <!-- Project Popup Template -->
     <template id="project-popup-template">
