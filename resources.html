@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Share Your Product - Project CTRL</title>
+  <title>Resources - Project CTRL</title>
   <link rel="stylesheet" href="css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="submit-page">
+<body class="resources">
   <header class="main-header">
     <div class="header-container">
       <a href="index.html" class="logo">Project CTRL</a>
@@ -15,7 +15,7 @@
         <a href="index.html">Dashboard</a>
         <a href="projects.html">Project Hub</a>
         <div class="dropdown">
-          <a href="resources.html" class="dropdown-trigger">Resources ▾</a>
+          <a href="resources.html" class="dropdown-trigger active">Resources ▾</a>
           <div class="dropdown-content">
             <a href="https://stembystep.github.io/sbs/" target="_blank">STEM by Step</a>
           </div>
@@ -31,147 +31,205 @@
     </div>
   </header>
 
-  <main class="submit-section">
-    <div class="content-wrapper">
-      <div class="section-header">
-        <div class="section-tag">Share</div>
-        <h1>Share Your Product</h1>
-        <p class="section-description">Let us help showcase your product to our community</p>
-      </div>
+  <main class="resources-container">
+    <div class="background-elements">
+      <div class="curved-line"></div>
+      <div class="dot dot-1"></div>
+      <div class="dot dot-2"></div>
+      <div class="dot dot-3"></div>
+    </div>
 
-      <div class="bento-grid">
-        <div class="form-card">
-          <div class="tip-banner">
-            <span class="tip-icon">💡</span>
-            <p>Share your product with our community and get featured in our Project Hub. We'll help promote your product through our social media channels.</p>
+    <!-- CTRL Formula Section -->
+    <section id="ctrl-formula" class="section bento-section">
+      <div class="content-wrapper">
+        <div class="section-header">
+          <div class="section-tag">Core</div>
+          <h1>The CTRL Formula</h1>
+          <p class="section-description">Our three pillars for building with clarity, intention, and impact</p>
+        </div>
+
+        <div class="bento-grid">
+          <div class="bento-card formula-card">
+            <div class="formula-content">
+              <h3>Purpose + CTRL</h3>
+              <p>Build with clarity, intention, and impact.</p>
+              <ul class="formula-points">
+                <li>Define your core mission: What problem are you solving?</li>
+                <li>Understand the value you bring and why it matters now.</li>
+                <li>Use our tools to set clear goals and measurable milestones.</li>
+                <li>Remember: If it's hard, it's formative. Challenges shape your growth.</li>
+              </ul>
+            </div>
           </div>
 
-          <form id="product-form" action="https://formspree.io/f/mnnvvlod" method="POST" enctype="multipart/form-data">
-            <div class="form-grid">
-              <div class="form-group">
-                <label for="business-name">Business Name *</label>
-                <input type="text" id="business-name" name="business-name" required>
-              </div>
-
-              <div class="form-group">
-                <label for="business-email">Business Email *</label>
-                <input type="email" id="business-email" name="business-email" required>
-              </div>
-
-              <div class="form-group">
-                <label for="business-website">Business Website</label>
-                <input type="url" id="business-website" name="business-website">
-              </div>
-
-              <div class="form-group">
-                <label for="business-phone">Business Phone</label>
-                <input type="tel" id="business-phone" name="business-phone">
-              </div>
-
-              <div class="form-group full-width">
-                <label for="product-name">Product Name *</label>
-                <input type="text" id="product-name" name="product-name" required>
-              </div>
-
-              <div class="form-group full-width">
-                <label for="product-description">Product Description *</label>
-                <textarea id="product-description" name="product-description" required></textarea>
-              </div>
-
-              <div class="form-group full-width">
-                <label for="product-category">Product Category *</label>
-                <select id="product-category" name="product-category" required>
-                  <option value="">Select a category</option>
-                  <option value="technology">Technology</option>
-                  <option value="fashion">Fashion</option>
-                  <option value="home">Home & Living</option>
-                  <option value="beauty">Beauty & Wellness</option>
-                  <option value="food">Food & Beverage</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-
-              <div class="form-group full-width">
-                <label>Product Images (up to 3)</label>
-                <div class="image-upload-container">
-                  <div class="image-upload-box">
-                    <input type="file" id="image1" name="image1" accept="image/*">
-                    <label for="image1" class="upload-label">
-                      <span class="upload-icon">📷</span>
-                      <span class="upload-text">Upload Image 1</span>
-                    </label>
-                  </div>
-                  <div class="image-upload-box">
-                    <input type="file" id="image2" name="image2" accept="image/*">
-                    <label for="image2" class="upload-label">
-                      <span class="upload-icon">📷</span>
-                      <span class="upload-text">Upload Image 2</span>
-                    </label>
-                  </div>
-                  <div class="image-upload-box">
-                    <input type="file" id="image3" name="image3" accept="image/*">
-                    <label for="image3" class="upload-label">
-                      <span class="upload-icon">📷</span>
-                      <span class="upload-text">Upload Image 3</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-group full-width">
-                <label for="price-range">Price Range</label>
-                <select id="price-range" name="price-range">
-                  <option value="">Select price range</option>
-                  <option value="under-25">Under $25</option>
-                  <option value="25-50">$25 - $50</option>
-                  <option value="50-100">$50 - $100</option>
-                  <option value="100-200">$100 - $200</option>
-                  <option value="200-plus">$200+</option>
-                </select>
-              </div>
-
-              <div class="form-group full-width">
-                <label for="additional-info">Additional Information</label>
-                <textarea id="additional-info" name="additional-info" placeholder="Any other details about your product that you'd like to share..."></textarea>
-              </div>
+          <div class="bento-card formula-card">
+            <div class="formula-content">
+              <h3>Personalize + CTRL</h3>
+              <p>Make your project uniquely yours — human, creative, and authentic.</p>
+              <ul class="formula-points">
+                <li>Customize templates and workflows to fit your style and values.</li>
+                <li>Embed your personality and voice into every detail.</li>
+                <li>Embrace iteration and feedback loops to keep evolving.</li>
+                <li>Use design and language that make your work feel alive.</li>
+              </ul>
             </div>
+          </div>
 
-            <button type="submit" class="submit-button">
-              Submit Product
-              <span class="button-icon">→</span>
-            </button>
-          </form>
-        </div>
-
-        <div class="info-card">
-          <h3>Why Share Your Product?</h3>
-          <ul class="info-list">
-            <li>
-              <span class="info-icon">🎯</span>
-              <div class="info-content">
-                <h4>Reach Our Community</h4>
-                <p>Get your product in front of our engaged community of innovators and entrepreneurs.</p>
-              </div>
-            </li>
-            <li>
-              <span class="info-icon">📱</span>
-              <div class="info-content">
-                <h4>Social Media Promotion</h4>
-                <p>Selected products will be featured on our social media channels.</p>
-              </div>
-            </li>
-            <li>
-              <span class="info-icon">💡</span>
-              <div class="info-content">
-                <h4>Feedback & Support</h4>
-                <p>Receive valuable feedback and support from our community.</p>
-              </div>
-            </li>
-          </ul>
+          <div class="bento-card formula-card">
+            <div class="formula-content">
+              <h3>Propel + CTRL</h3>
+              <p>Digitize smartly, connect deeply, and grow sustainably.</p>
+              <ul class="formula-points">
+                <li>Use digital tools to automate tasks and amplify reach.</li>
+                <li>Build secure systems for business stability.</li>
+                <li>Leverage community and networking for growth.</li>
+                <li>Tap into CTRL's Project Hub for visibility.</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <!-- Featured Toolkits Section -->
+    <section class="section bento-section">
+      <div class="content-wrapper">
+        <div class="section-header">
+          <div class="section-tag">Featured</div>
+          <h1>Featured Toolkits</h1>
+          <p class="section-description">Essential tools and resources to supercharge your projects</p>
+        </div>
+
+        <div class="bento-grid">
+          <div class="bento-card" data-resource="project-launcher">
+            <div class="placeholder-box">
+              <div class="placeholder-icon">⚡</div>
+              <div class="placeholder-content">
+                <h3>Project Launcher</h3>
+                <p>Quick-start templates & guides</p>
+                <div class="card-tag">Click to explore</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bento-card" data-resource="workflow-builder">
+            <div class="placeholder-box">
+              <div class="placeholder-icon">⚙️</div>
+              <div class="placeholder-content">
+                <h3>Workflow Builder</h3>
+                <p>Custom formulas for smarter workflows</p>
+                <div class="card-tag">Click to explore</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roadmaps & Templates Section -->
+    <section class="section bento-section">
+      <div class="content-wrapper">
+        <div class="section-header">
+          <div class="section-tag">Resources</div>
+          <h2>Roadmaps & Templates</h2>
+          <p class="section-description">Structured guides and templates to keep your projects on track.</p>
+        </div>
+
+        <div class="bento-grid">
+          <div class="bento-card" data-resource="development-roadmap">
+            <div class="placeholder-box">
+              <div class="placeholder-icon">🔍</div>
+              <div class="placeholder-content">
+                <h3>Development Roadmap</h3>
+                <p>Step-by-step project guides</p>
+                <div class="card-tag">Click to explore</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bento-card" data-resource="project-templates">
+            <div class="placeholder-box">
+              <div class="placeholder-icon">📄</div>
+              <div class="placeholder-content">
+                <h3>Project Templates</h3>
+                <p>Ready-to-use frameworks</p>
+                <div class="card-tag">Click to explore</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Learning Resources Section -->
+    <section class="section bento-section">
+      <div class="content-wrapper">
+        <div class="section-header">
+          <div class="section-tag">Learning</div>
+          <h2>Learning Resources</h2>
+          <p class="section-description">Educational content to help you grow and succeed.</p>
+        </div>
+
+        <div class="bento-grid">
+          <div class="bento-card" data-resource="developer-guides">
+            <div class="placeholder-box">
+              <div class="placeholder-icon">⭐</div>
+              <div class="placeholder-content">
+                <h3>Developer Guides</h3>
+                <p>In-depth tutorials & docs</p>
+                <div class="card-tag">Click to explore</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bento-card" data-resource="best-practices">
+            <div class="placeholder-box">
+              <div class="placeholder-icon">💫</div>
+              <div class="placeholder-content">
+                <h3>Best Practices</h3>
+                <p>Tips & industry standards</p>
+                <div class="card-tag">Click to explore</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <!-- Resources Popup -->
+  <div class="resources-popup">
+    <div class="resources-popup-content">
+      <div class="resources-popup-header">
+        <h2>Resources</h2>
+        <button class="close-popup">×</button>
+      </div>
+
+      <div class="resources-filter">
+        <button class="filter-tag active" data-filter="all">All Industries</button>
+        <button class="filter-tag" data-filter="technology">Technology</button>
+        <button class="filter-tag" data-filter="education">Education</button>
+        <button class="filter-tag" data-filter="health">Health</button>
+        <button class="filter-tag" data-filter="environment">Environment</button>
+        <button class="filter-tag" data-filter="social-impact">Social Impact</button>
+        <button class="filter-tag" data-filter="art-design">Art & Design</button>
+        <button class="filter-tag" data-filter="food-culture">Food & Culture</button>
+        <button class="filter-tag" data-filter="wellness-beauty">Wellness & Beauty</button>
+      </div>
+
+      <div class="resources-grid-popup">
+        <!-- Resources will be dynamically populated -->
+      </div>
+
+      <div class="pagination-controls">
+        <button class="pagination-arrow prev-page" disabled>←</button>
+        <div class="pagination-info">
+          Page <strong>1</strong> of <strong>1</strong>
+        </div>
+        <button class="pagination-arrow next-page" disabled>→</button>
+      </div>
+    </div>
+  </div>
 
   <footer class="main-footer">
     <div class="footer-content">
@@ -179,50 +237,526 @@
     </div>
   </footer>
 
+  <style>
+    :root {
+      --primary-color: #79b7ff;
+      --primary-light: #e5f0ff;
+      --text-color: #1f2937;
+      --light-bg: #f9fafb;
+      --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    }
+
+    .resources-container {
+      padding-top: 2rem;
+    }
+
+    .background-elements {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .curved-line {
+      position: absolute;
+      top: 20%;
+      right: -5%;
+      width: 60%;
+      height: 2px;
+      background: var(--primary-color);
+      opacity: 0.2;
+      transform: rotate(-5deg);
+    }
+
+    .curved-line::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: var(--primary-color);
+      opacity: 0.1;
+      border-radius: 50%;
+    }
+
+    .dot {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary-color);
+      opacity: 0.2;
+    }
+
+    .dot-1 { top: 15%; left: 10%; }
+    .dot-2 { top: 45%; right: 15%; }
+    .dot-3 { bottom: 20%; left: 20%; }
+
+    .section {
+      padding: 40px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--primary-color);
+      background: var(--primary-light);
+      padding: 4px 12px;
+      border-radius: 16px;
+      margin-bottom: 16px;
+    }
+
+    .section h1, .section h2 {
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .section-description {
+      font-size: 16px;
+      color: #6b7280;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .bento-section .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .placeholder-box {
+      background: var(--primary-light);
+      border-radius: 12px;
+      padding: 24px;
+      height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: left;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .placeholder-box:hover {
+      transform: translateY(-5px);
+      background: rgba(121, 183, 255, 0.15);
+    }
+
+    .placeholder-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .placeholder-content h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-color);
+    }
+
+    .placeholder-content p {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 12px;
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--primary-color);
+      background: white;
+      padding: 4px 12px;
+      border-radius: 12px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    @media (max-width: 768px) {
+      .bento-section .bento-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section h1,
+      .section h2 {
+        font-size: 28px;
+      }
+
+      .placeholder-box {
+        height: 160px;
+      }
+
+      .curved-line,
+      .dot {
+        display: none;
+      }
+    }
+
+    .category-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 12px;
+      background: var(--primary-light);
+      color: var(--primary-color);
+      margin-top: 0.5rem;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 3rem;
+      color: var(--secondary-color);
+    }
+
+    .no-results p:first-child {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .no-results p:last-child {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .resources-filter {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .filter-tag {
+      white-space: nowrap;
+    }
+
+    .resource-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.75rem 0;
+    }
+
+    .resource-tag {
+      padding: 0.35rem 0.75rem;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: var(--primary-light);
+      color: var(--accent-color);
+    }
+
+    .price-tag {
+      background: rgba(0, 200, 83, 0.1);
+      color: var(--success-color);
+    }
+
+    .pagination-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .pagination-arrow {
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 50%;
+      background: var(--background-color);
+      color: var(--secondary-color);
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pagination-arrow:not(:disabled):hover {
+      background: var(--accent-color);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .pagination-arrow:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .pagination-info {
+      font-size: 0.9rem;
+      color: var(--secondary-color);
+    }
+
+    .pagination-info strong {
+      color: var(--primary-color);
+    }
+
+    /* CTRL Formula Styles */
+    .formula-card {
+      background: var(--light-bg);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .formula-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--card-shadow);
+    }
+
+    .formula-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .formula-content h3 {
+      font-size: 1.5rem;
+      color: var(--text-color);
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .formula-content p {
+      font-size: 1.1rem;
+      color: var(--text-color);
+      opacity: 0.8;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .formula-points {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .formula-points li {
+      font-size: 0.95rem;
+      color: var(--text-color);
+      opacity: 0.9;
+      line-height: 1.5;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .formula-points li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .formula-card {
+        padding: 1.5rem;
+      }
+
+      .formula-content h3 {
+        font-size: 1.25rem;
+      }
+
+      .formula-content p {
+        font-size: 1rem;
+      }
+
+      .formula-points li {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+
   <script>
-    document.getElementById('product-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const form = this;
-      const submitButton = form.querySelector('.submit-button');
-      const originalButtonText = submitButton.innerHTML;
-      
-      // Disable button and show loading state
-      submitButton.disabled = true;
-      submitButton.innerHTML = 'Submitting... <span class="button-icon">↻</span>';
-      
-      fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: {
-          'Accept': 'application/json'
+    // Load resources from JSON file
+    let resourcesData = null;
+
+    async function loadResources() {
+      try {
+        const response = await fetch('resources.json');
+        resourcesData = await response.json();
+        return resourcesData;
+      } catch (error) {
+        console.error('Error loading resources:', error);
+        return null;
+      }
+    }
+
+    // Initialize popup functionality
+    document.addEventListener('DOMContentLoaded', async () => {
+      const popup = document.querySelector('.resources-popup');
+      const closeBtn = document.querySelector('.close-popup');
+      const filterTags = document.querySelectorAll('.filter-tag');
+      const resourcesGrid = document.querySelector('.resources-grid-popup');
+      const bentoCards = document.querySelectorAll('.bento-card[data-resource]');
+      const prevPageBtn = document.querySelector('.prev-page');
+      const nextPageBtn = document.querySelector('.next-page');
+      const paginationInfo = document.querySelector('.pagination-info');
+
+      // Load resources data
+      await loadResources();
+
+      // Close popup
+      closeBtn.addEventListener('click', () => {
+        popup.classList.remove('active');
+      });
+
+      // Close popup when clicking outside
+      popup.addEventListener('click', (e) => {
+        if (e.target === popup) {
+          popup.classList.remove('active');
         }
-      })
-      .then(response => {
-        if (response.ok) {
-          // Show success message
-          const successMessage = document.createElement('div');
-          successMessage.className = 'success-message';
-          successMessage.innerHTML = `
-            <div class="success-content">
-              <span class="success-icon">✅</span>
-              <h3>Product Submitted Successfully!</h3>
-              <p>Thank you for sharing your product with our community. We'll review it and get back to you soon.</p>
+      });
+
+      let currentPage = 1;
+      const ITEMS_PER_PAGE = 6;
+      let currentFilter = 'all';
+      let currentResourceType = null;
+
+      // Filter functionality
+      filterTags.forEach(tag => {
+        tag.addEventListener('click', () => {
+          // Update active state
+          filterTags.forEach(t => t.classList.remove('active'));
+          tag.classList.add('active');
+
+          // Update current filter
+          currentFilter = tag.dataset.filter;
+          currentPage = 1;
+
+          // Display the resources
+          displayResource(currentResourceType);
+        });
+      });
+
+      // Function to display the resources
+      function displayResource(resourceType) {
+        if (!resourcesData || !resourceType) return;
+
+        currentResourceType = resourceType;
+        const resourceData = resourcesData.resources[resourceType];
+        resourcesGrid.innerHTML = '';
+
+        // Filter items based on current filter
+        let filteredItems = resourceData.items;
+        if (currentFilter !== 'all') {
+          filteredItems = resourceData.items.filter(item => 
+            item.categories.includes(currentFilter)
+          );
+        }
+
+        // Calculate pagination
+        const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
+        const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+        const endIndex = startIndex + ITEMS_PER_PAGE;
+        const itemsToShow = filteredItems.slice(startIndex, endIndex);
+
+        // Display items
+        itemsToShow.forEach(item => {
+          const resourceItem = document.createElement('div');
+          resourceItem.className = 'resource-item-popup';
+          
+          resourceItem.innerHTML = `
+            <div class="resource-header">
+              <span class="resource-icon-popup">${item.icon}</span>
+              <div class="resource-title">
+                <h4>${item.title}</h4>
+                <div class="resource-tags">
+                  ${item.categories.map(cat => `<span class="resource-tag">${cat}</span>`).join('')}
+                  ${item.price ? `<span class="resource-tag price-tag">$${item.price}</span>` : ''}
+                </div>
+              </div>
             </div>
+            <p class="resource-description">${item.description}</p>
+            <a href="${item.viewResourceLink || item.link}" class="resource-link" target="_blank">View Resource →</a>
           `;
           
-          form.innerHTML = '';
-          form.appendChild(successMessage);
-        } else {
-          throw new Error('Form submission failed');
+          resourcesGrid.appendChild(resourceItem);
+        });
+
+        // Update pagination controls
+        prevPageBtn.disabled = currentPage === 1;
+        nextPageBtn.disabled = currentPage === totalPages;
+        paginationInfo.innerHTML = `Page <strong>${currentPage}</strong> of <strong>${totalPages}</strong>`;
+
+        // Show/hide pagination controls
+        const showPagination = totalPages > 1;
+        prevPageBtn.style.display = showPagination ? '' : 'none';
+        nextPageBtn.style.display = showPagination ? '' : 'none';
+        paginationInfo.style.display = showPagination ? '' : 'none';
+      }
+
+      // Pagination controls
+      prevPageBtn.addEventListener('click', () => {
+        if (currentPage > 1) {
+          currentPage--;
+          displayResource(currentResourceType);
         }
-      })
-      .catch(error => {
-        alert('Oops! There was a problem submitting your form. Please try again.');
-        console.error('Error:', error);
-        // Re-enable button and restore original text
-        submitButton.disabled = false;
-        submitButton.innerHTML = originalButtonText;
+      });
+
+      nextPageBtn.addEventListener('click', () => {
+        const totalPages = Math.ceil(
+          (currentFilter === 'all' 
+            ? resourcesData.resources[currentResourceType].items.length 
+            : resourcesData.resources[currentResourceType].items.filter(item => 
+                item.categories.includes(currentFilter)
+              ).length
+          ) / ITEMS_PER_PAGE
+        );
+        
+        if (currentPage < totalPages) {
+          currentPage++;
+          displayResource(currentResourceType);
+        }
+      });
+
+      // Open popup when clicking bento cards
+      bentoCards.forEach(card => {
+        card.addEventListener('click', () => {
+          const resourceType = card.dataset.resource;
+          
+          // Update popup title and description
+          document.querySelector('.resources-popup-header h2').textContent = resourcesData.resources[resourceType].title;
+          
+          // Reset to first page and all filter
+          currentPage = 1;
+          currentFilter = 'all';
+          filterTags.forEach(tag => {
+            tag.classList.toggle('active', tag.dataset.filter === 'all');
+          });
+          
+          // Show the resources
+          displayResource(resourceType);
+          
+          // Show popup
+          popup.classList.add('active');
+        });
       });
     });
   </script>
