@@ -1,6 +1,22 @@
 [
-  {
-    "title": "STEM by Step",
+  {"title": "cherielle",
+  "type": "Non-Profit",
+  "category": "Technology",
+  "stage": "Launched",
+  "modality": "Social Media",
+  "team": "Large (16+)",
+  "marketReach": "Global",
+  "status": ["Hiring", "Open Positions"],
+  "duration": "Ongoing",
+  "description": "cherielle is a 501(c)(3) youth-led nonprofit that strives to 1) bridge the gender gap, 2) empower girls in computer science, and 3) foster a connected, impactful community. Not only do we post about tech, but we offer CS tutoring in several languages & AP CSA prep. We also provide lots of other resources for opportunities and initiatives!",
+  "leadName": "Qwyen L",
+  "leadRole": "Founder",
+  "leadEmail": "cherielle.code@gmail.com",
+  "preferredContact": "Email",
+  "ctrlPick": false
+  },
+  
+  { "title": "STEM by Step",
     "type": "Non-Profit",
     "category": "Education",
     "stage": "Launched",
@@ -19,19 +35,6 @@
     "website": "https://stembystep.github.io/sbs/",
     "activityLog": ["Just launched our website!"]
   },
-{"title": "Project Title Goes Here",
-  "type": "Side Hustle",
-  "category": "Food / Culture",
-  "stage": "Mobile App",
-  "team": "Solo",
-  "description": "Project description goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
-  "leadName": "Michael Brown",
-  "leadRole": "Founder",
-  "leadEmail": "michael@example.com",
-  "leadPhone": "555-0126",
-  "preferredContact": "Phone",
-  "ctrlPick": false
-},
 
   {
     "title": "Hearts of Tomorrow",
@@ -46,34 +49,6 @@
     "leadPhone": "555-0124",
     "preferredContact": "Both",
     "ctrlPick": true
-  },
-  {
-    "title": "Local Business Directory",
-    "type": "Business",
-    "category": "Technology",
-    "stage": "In Development",
-    "team": "Solo",
-    "description": "A digital platform connecting local businesses with their community through an interactive directory and promotional tools.",
-    "leadName": "Alex Johnson",
-    "leadRole": "Project Manager",
-    "leadEmail": "alex@example.com",
-    "leadPhone": "",
-    "preferredContact": "Email",
-    "ctrlPick": false
-  },
-  {
-    "title": "Project Title Goes Here",
-    "type": "Freelance",
-    "category": "Wellness / Beauty",
-    "stage": "Seasonal",
-    "team": "",
-    "description": "Project description goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
-    "leadName": "Sarah Chen",
-    "leadRole": "Project Lead",
-    "leadEmail": "sarah@example.com",
-    "leadPhone": "555-0125",
-    "preferredContact": "Email",
-    "ctrlPick": false
   },
   {
     "title": "TikTok Account",
