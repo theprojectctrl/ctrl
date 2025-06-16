@@ -384,6 +384,27 @@ class ProjectsPage {
     tags.forEach(tag => popupTags.appendChild(tag));
     
     this.setupContactInfo(popup, leadEmail, leadPhone);
+
+    const activityList = popup.querySelector('.activity-list');
+    const emptyState = activityList.querySelector('.empty-state');
+    let activityLog = [];
+    if (card.dataset.activityLog) {
+      try {
+        activityLog = JSON.parse(card.dataset.activityLog);
+      } catch (e) {}
+    }
+    if (activityLog && activityLog.length > 0) {
+      const activityItemsContainer = document.createElement('div');
+      activityItemsContainer.className = 'activity-items';
+      activityLog.forEach(activity => {
+        const activityItem = document.createElement('div');
+        activityItem.className = 'activity-item';
+        activityItem.textContent = activity;
+        activityItemsContainer.appendChild(activityItem);
+      });
+      activityList.insertBefore(activityItemsContainer, emptyState);
+      emptyState.remove();
+    }
   }
 
   setupContactInfo(popup, email, phone) {
@@ -654,6 +675,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.dataset.description = project.description || '';
         card.dataset.ctrlPick = project.ctrlPick ? 'true' : '';
         card.dataset.website = project.website || '';
+        card.dataset.activityLog = project.activityLog ? JSON.stringify(project.activityLog) : '';
         card.addEventListener('click', () => showPopup(project));
         grid.appendChild(card);
       }
@@ -735,7 +757,6 @@ document.addEventListener('DOMContentLoaded', () => {
       // Create a container for activity items
       const activityItemsContainer = document.createElement('div');
       activityItemsContainer.className = 'activity-items';
-      
       // Add activity items
       project.activityLog.forEach(activity => {
         const activityItem = document.createElement('div');
@@ -743,9 +764,10 @@ document.addEventListener('DOMContentLoaded', () => {
         activityItem.textContent = activity;
         activityItemsContainer.appendChild(activityItem);
       });
-      
       // Insert activity items before the empty state
       activityList.insertBefore(activityItemsContainer, emptyState);
+      // Remove the empty state entirely if there are activity items
+      emptyState.remove();
     }
 
     document.body.appendChild(popup);

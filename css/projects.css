@@ -715,3 +715,29 @@
   margin-top: 0.2rem;
 }
 
+.activity-log-scroll {
+  min-height: 80px;
+  max-height: 260px;
+  overflow-y: auto;
+  width: 100%;
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.activity-items {
+  display: block;
+  width: 100%;
+}
+
+.activity-item {
+  background: #eaf2fb;
+  color: #234;
+  border-radius: 6px;
+  padding: 0.7em 1em;
+  margin-bottom: 0.5em;
+  font-size: 1em;
+  line-height: 1.5;
+  box-shadow: 0 1px 4px rgba(121,183,255,0.07);
+}
+

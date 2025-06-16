@@ -14,7 +14,10 @@
     "leadRole": "Founder",
     "leadEmail": "cherielle.code@gmail.com",
     "preferredContact": "Email",
-    "ctrlPick": false
+    "ctrlPick": false,
+    "activityLog": [
+
+    ]
   },
   {
     "title": "STEM by Step",
@@ -34,7 +37,9 @@
     "preferredContact": "Email",
     "ctrlPick": true,
     "website": "https://stembystep.github.io/sbs/",
-    "activityLog": ["Just launched our website!"]
+    "activityLog": [
+      "We just released our website! Check it out in our IG bio <3"
+    ]
   },
   {
     "title": "Hearts of Tomorrow",
