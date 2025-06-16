@@ -631,12 +631,13 @@ document.addEventListener('DOMContentLoaded', () => {
   async function renderProjects(projects) {
     grid.innerHTML = '';
     
-    // Separate events and regular projects
+    // Separate events, products and regular projects
     const events = projects.filter(p => p.isEvent);
-    const regularProjects = projects.filter(p => !p.isEvent);
+    const products = projects.filter(p => p.isProduct);
+    const regularProjects = projects.filter(p => !p.isEvent && !p.isProduct);
     
-    // Interleave events and projects
-    const maxLen = Math.max(events.length, regularProjects.length);
+    // Interleave events, products and projects
+    const maxLen = Math.max(events.length, products.length, regularProjects.length);
     const eventTemplate = document.getElementById('event-tile-template');
     for (let i = 0; i < maxLen; i++) {
       if (i < regularProjects.length) {
@@ -694,6 +695,28 @@ document.addEventListener('DOMContentLoaded', () => {
         card.addEventListener('click', () => projectsPage.handleCardClick(card));
         grid.appendChild(card);
       }
+      if (i < products.length) {
+        const product = products[i];
+        const card = document.createElement('div');
+        card.className = 'project-card product-card';
+        card.innerHTML = `
+          <div class="project-header">
+            <div class="business-name">${product.businessName}</div>
+            <h3 class="project-title">${product.title}</h3>
+            <div class="project-tags">
+              <span class="tag tag-type">${product.type}</span>
+              <span class="tag tag-category">${product.category}</span>
+              <span class="tag tag-price">${product.productPrice}</span>
+            </div>
+          </div>
+          <p class="project-description">${product.description}</p>
+          <a href="${product.website}" class="view-product-button" target="_blank">
+            View Product
+            <span class="button-icon">→</span>
+          </a>
+        `;
+        grid.appendChild(card);
+      }
       if (i < events.length) {
         const event = events[i];
         const tile = eventTemplate.content.cloneNode(true).querySelector('.event-tile');
@@ -714,10 +737,10 @@ document.addEventListener('DOMContentLoaded', () => {
         grid.appendChild(tile);
       }
     }
-    // If no projects or events at all
-    if (events.length === 0 && regularProjects.length === 0) {
+    // If no projects, products or events at all
+    if (events.length === 0 && products.length === 0 && regularProjects.length === 0) {
       const msg = document.createElement('div');
-      msg.textContent = 'No projects or events found.';
+      msg.textContent = 'No projects, products or events found.';
       msg.style.color = '#888';
       msg.style.margin = '2rem 0';
       grid.appendChild(msg);

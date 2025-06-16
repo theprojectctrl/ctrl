@@ -70,6 +70,23 @@
     "ctrlPick": false
   },
   {
+    "title": "ProjectFlow Pro",
+    "type": "Product",
+    "category": "Technology",
+    "stage": "Launched",
+    "team": "Small (2-5)",
+    "description": "A powerful project management tool designed to streamline your workflow and boost team productivity.",
+    "leadName": "Sarah Chen",
+    "leadRole": "Product Manager",
+    "leadEmail": "sarah@example.com",
+    "preferredContact": "Email",
+    "ctrlPick": true,
+    "website": "https://example.com/product",
+    "isProduct": true,
+    "productPrice": "$49/month",
+    "businessName": "TechFlow Solutions"
+  },
+  {
     "title": "Placeholder Event 1",
     "description": "This is a sample event for demonstration purposes.",
     "date": "2024-12-01",
