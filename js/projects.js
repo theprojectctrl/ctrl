@@ -31,6 +31,8 @@ class ProjectsPage {
     this.communityCurrentPageSpan = document.querySelector('.community-section .current-page');
     this.communityTotalPagesSpan = document.querySelector('.community-section .total-pages');
     
+    this.allProjects = [];
+    
     this.init();
   }
 
@@ -219,67 +221,29 @@ class ProjectsPage {
   }
 
   async filterProjects(selectedFilters) {
-    // Remove any existing popup
-    document.querySelectorAll('.popup-overlay.filter-popup').forEach(el => el.remove());
-
     const hasCategoryFilters = selectedFilters.category && selectedFilters.category.size > 0;
     const hasTypeFilters = selectedFilters.type && selectedFilters.type.size > 0;
 
     if (!hasCategoryFilters && !hasTypeFilters) {
-      this.showAllProjects();
+      renderProjects(this.allProjects);
       return;
     }
 
-    // Gather all project cards from the current page
-    let allCards = Array.from(this.projectCards);
-
-    // Determine the other page to fetch
-    let otherPage = '';
-    if (window.location.pathname.includes('projects.html')) {
-      otherPage = 'projects-page-2.html';
-    } else if (window.location.pathname.includes('projects-page-2.html')) {
-      otherPage = 'projects.html';
-    }
-
-    // Fetch and parse project cards from the other page
-    if (otherPage) {
-      try {
-        const response = await fetch(otherPage);
-        const text = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(text, 'text/html');
-        const otherCards = Array.from(doc.querySelectorAll('.project-card'));
-        allCards = allCards.concat(otherCards);
-      } catch (e) {
-        // If fetch fails, just use current page's cards
-      }
-    }
-
-    // Filtering logic
-    let matchingCards = allCards;
-    
+    let filtered = this.allProjects;
     if (hasCategoryFilters) {
-      matchingCards = matchingCards.filter(element => {
-        const tags = Array.from(element.querySelectorAll('.tag-category'));
-        return Array.from(selectedFilters.category).some(selectedCategory =>
-          tags.some(tag => tag.textContent.trim() === selectedCategory.trim())
-        );
-      });
+      filtered = filtered.filter(project =>
+        Array.from(selectedFilters.category).includes(project.category)
+      );
     }
-
     if (hasTypeFilters) {
-      matchingCards = matchingCards.filter(element => {
-        const tags = Array.from(element.querySelectorAll('.tag-type'));
-        return Array.from(selectedFilters.type).some(selectedType =>
-          tags.some(tag => tag.textContent.trim() === selectedType.trim())
-        );
-      });
+      filtered = filtered.filter(project =>
+        Array.from(selectedFilters.type).includes(project.type)
+      );
     }
-
-    if (matchingCards.length > 0) {
-      this.showMultipleProjectsPopup(matchingCards);
+    if (filtered.length === 1) {
+      window.showPopup(filtered[0]);
     } else {
-      this.showNoResultsPopup();
+      renderProjects(filtered);
     }
   }
 
@@ -603,6 +567,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(data => {
       allProjects = data;
       filteredProjects = data;
+      projectsPage.allProjects = data;
       renderProjects(filteredProjects);
     });
 
@@ -794,4 +759,6 @@ document.addEventListener('DOMContentLoaded', () => {
       };
     }
   }
+
+  window.showPopup = showPopup;
 }); 
