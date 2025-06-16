@@ -585,75 +585,106 @@ document.addEventListener('DOMContentLoaded', () => {
       renderProjects(filteredProjects);
     });
 
+  // Helper to format event date
+  function formatEventDate(dateStr) {
+    const d = new Date(dateStr);
+    return d.toLocaleString('default', { month: 'short', day: 'numeric' });
+  }
+
   // Render projects
-  function renderProjects(projects) {
+  async function renderProjects(projects) {
     grid.innerHTML = '';
-    projects.forEach(project => {
-      const card = template.content.cloneNode(true).querySelector('.project-card');
-      // Badge
-      if (project.ctrlPick) {
-        const badge = document.createElement('div');
-        badge.className = 'ctrl-pick-badge';
-        badge.innerHTML = '<span class="star-icon">⭐</span> CTRL Picks';
-        card.prepend(badge);
-      }
-      // Header
-      card.querySelector('.project-title').textContent = project.title;
-      // Tags
-      const tags = card.querySelector('.project-tags');
-      tags.innerHTML = '';
-      
-      // Always add category tag first
-      if (project.category) {
-        tags.innerHTML += `<span class="tag tag-category">${project.category}</span>`;
-      }
-      
-      // Add other tags in a specific order with color rotation
-      const otherTags = [
-        { value: project.type, class: 'tag-type' },
-        { value: project.stage, class: 'tag-stage' },
-        { value: project.modality, class: 'tag-modality' },
-        { value: project.team, class: 'tag-team' },
-        { value: project.marketReach, class: 'tag-market' },
-        { value: project.duration, class: 'tag-duration' }
-      ].filter(tag => tag.value);
-
-      // Add status tags if they exist
-      if (project.status && Array.isArray(project.status)) {
-        project.status.forEach(st => {
-          if (st) otherTags.push({ value: st, class: 'tag-status' });
+    
+    // Separate events and regular projects
+    const events = projects.filter(p => p.isEvent);
+    const regularProjects = projects.filter(p => !p.isEvent);
+    
+    // Interleave events and projects
+    const maxLen = Math.max(events.length, regularProjects.length);
+    const eventTemplate = document.getElementById('event-tile-template');
+    for (let i = 0; i < maxLen; i++) {
+      if (i < regularProjects.length) {
+        const project = regularProjects[i];
+        const card = template.content.cloneNode(true).querySelector('.project-card');
+        // Add CTRL Picks badge if applicable
+        if (project.ctrlPick) {
+          const badge = document.createElement('div');
+          badge.className = 'ctrl-pick-badge';
+          badge.innerHTML = '<span class="star-icon">⭐</span> CTRL Picks';
+          card.prepend(badge);
+        }
+        card.querySelector('.project-title').textContent = project.title;
+        const tags = card.querySelector('.project-tags');
+        tags.innerHTML = '';
+        if (project.category) {
+          tags.innerHTML += `<span class="tag tag-category">${project.category}</span>`;
+        }
+        const otherTags = [
+          { value: project.type, class: 'tag-type' },
+          { value: project.stage, class: 'tag-stage' },
+          { value: project.modality, class: 'tag-modality' },
+          { value: project.team, class: 'tag-team' },
+          { value: project.marketReach, class: 'tag-market' },
+          { value: project.duration, class: 'tag-duration' }
+        ].filter(tag => tag.value);
+        if (project.status && Array.isArray(project.status)) {
+          project.status.forEach(st => {
+            if (st) otherTags.push({ value: st, class: 'tag-status' });
+          });
+        }
+        otherTags.forEach((tag, index) => {
+          const colorClass = `tag-color-${(index % 8) + 1}`;
+          tags.innerHTML += `<span class="tag ${tag.class} ${colorClass}">${tag.value}</span>`;
         });
+        card.querySelector('.project-description').textContent = project.description || '';
+        card.dataset.leadName = project.leadName || '';
+        card.dataset.leadRole = project.leadRole || '';
+        card.dataset.leadEmail = project.leadEmail || '';
+        card.dataset.leadPhone = project.leadPhone || '';
+        card.dataset.preferredContact = project.preferredContact || '';
+        card.dataset.title = project.title || '';
+        card.dataset.type = project.type || '';
+        card.dataset.category = project.category || '';
+        card.dataset.stage = project.stage || '';
+        card.dataset.team = project.team || '';
+        card.dataset.modality = project.modality || '';
+        card.dataset.marketReach = project.marketReach || '';
+        card.dataset.duration = project.duration || '';
+        card.dataset.status = project.status ? project.status.join(',') : '';
+        card.dataset.description = project.description || '';
+        card.dataset.ctrlPick = project.ctrlPick ? 'true' : '';
+        card.dataset.website = project.website || '';
+        card.addEventListener('click', () => showPopup(project));
+        grid.appendChild(card);
       }
-
-      // Add other tags with color rotation
-      otherTags.forEach((tag, index) => {
-        const colorClass = `tag-color-${(index % 8) + 1}`; // 8 different colors
-        tags.innerHTML += `<span class="tag ${tag.class} ${colorClass}">${tag.value}</span>`;
-      });
-
-      card.querySelector('.project-description').textContent = project.description || '';
-      // Data attributes for popup
-      card.dataset.leadName = project.leadName || '';
-      card.dataset.leadRole = project.leadRole || '';
-      card.dataset.leadEmail = project.leadEmail || '';
-      card.dataset.leadPhone = project.leadPhone || '';
-      card.dataset.preferredContact = project.preferredContact || '';
-      card.dataset.title = project.title || '';
-      card.dataset.type = project.type || '';
-      card.dataset.category = project.category || '';
-      card.dataset.stage = project.stage || '';
-      card.dataset.team = project.team || '';
-      card.dataset.modality = project.modality || '';
-      card.dataset.marketReach = project.marketReach || '';
-      card.dataset.duration = project.duration || '';
-      card.dataset.status = project.status ? project.status.join(',') : '';
-      card.dataset.description = project.description || '';
-      card.dataset.ctrlPick = project.ctrlPick ? 'true' : '';
-      card.dataset.website = project.website || '';
-      // Popup click
-      card.addEventListener('click', () => showPopup(project));
-      grid.appendChild(card);
-    });
+      if (i < events.length) {
+        const event = events[i];
+        const tile = eventTemplate.content.cloneNode(true).querySelector('.event-tile');
+        tile.querySelector('.event-tile-date').textContent = formatEventDate(event.date);
+        tile.querySelector('.event-tile-title').textContent = event.title;
+        tile.querySelector('.event-tile-desc').textContent = event.description;
+        if (event.category) {
+          tile.querySelector('.event-tile-category').textContent = event.category;
+        } else {
+          tile.querySelector('.event-tile-category').style.display = 'none';
+        }
+        tile.style.background = event.color || '#f6f8fc';
+        tile.style.color = event.textColor || '#333';
+        tile.style.cursor = 'pointer';
+        if (event.link) {
+          tile.onclick = () => window.open(event.link, '_blank');
+        }
+        grid.appendChild(tile);
+      }
+    }
+    // If no projects or events at all
+    if (events.length === 0 && regularProjects.length === 0) {
+      const msg = document.createElement('div');
+      msg.textContent = 'No projects or events found.';
+      msg.style.color = '#888';
+      msg.style.margin = '2rem 0';
+      grid.appendChild(msg);
+    }
   }
 
   // Popup logic
