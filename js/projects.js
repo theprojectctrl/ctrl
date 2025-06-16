@@ -242,6 +242,8 @@ class ProjectsPage {
     }
     if (filtered.length === 1) {
       window.showPopup(filtered[0]);
+    } else if (filtered.length > 1) {
+      this.showMultipleProjectsPopupFromData(filtered);
     } else {
       renderProjects(filtered);
     }
@@ -551,6 +553,54 @@ class ProjectsPage {
     // Remove any filter popups
     document.querySelectorAll('.popup-overlay.filter-popup').forEach(el => el.remove());
   }
+
+  showMultipleProjectsPopupFromData(projects) {
+    // Remove any existing filter popups
+    document.querySelectorAll('.popup-overlay.filter-popup').forEach(el => el.remove());
+    // Create popup overlay
+    const div = document.createElement('div');
+    div.className = 'popup-overlay filter-popup';
+    div.innerHTML = `
+      <div class="project-popup" style="max-width:900px;overflow:auto;max-height:90vh;">
+        <button class="close-button" style="font-size:2.5rem;line-height:2rem;width:2.5rem;height:2.5rem;top:1rem;right:1rem;position:absolute;z-index:10;background:none;border:none;cursor:pointer;">×</button>
+        <div style="padding:1rem 1rem 0 1rem;text-align:center;">
+          <h2>Matching Projects</h2>
+        </div>
+        <div class="popup-projects-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;padding:1.5rem;"></div>
+      </div>
+    `;
+    document.body.prepend(div);
+    // Render each matching project as a mini card in the popup
+    const grid = div.querySelector('.popup-projects-grid');
+    projects.forEach(project => {
+      const card = document.createElement('div');
+      card.className = 'project-card popup-mini-card';
+      card.innerHTML = `
+        <div class="project-header">
+          <h3 class="project-title">${project.title}</h3>
+          <div class="project-tags">
+            <span class="tag tag-type">${project.type || ''}</span>
+            <span class="tag tag-category">${project.category || ''}</span>
+            <span class="tag tag-stage">${project.stage || ''}</span>
+            <span class="tag tag-team">${project.team || ''}</span>
+          </div>
+        </div>
+        <p class="project-description">${project.description || ''}</p>
+      `;
+      card.onclick = () => window.showPopup(project);
+      grid.appendChild(card);
+    });
+    // Robust close button
+    const closeBtn = div.querySelector('.close-button');
+    if (closeBtn) {
+      closeBtn.onclick = () => div.remove();
+    } else {
+      // Fallback: close on overlay click
+      div.onclick = (e) => {
+        if (e.target === div) div.remove();
+      };
+    }
+  }
 }
 
 // Initialize the page when DOM is loaded
@@ -761,4 +811,5 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   window.showPopup = showPopup;
+  window.projectsPage = projectsPage;
 }); 
