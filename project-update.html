@@ -97,14 +97,35 @@
                 <input type="email" id="contact-email" name="contact-email" required>
               </div>
 
+              <div class="form-group full-width">
+                <label>Additional Links (optional)</label>
+                <span style="font-size:0.92em;color:#888;">Add up to 3 links (Instagram, website, or any relevant link to your project/event).</span>
+                <input type="url" name="link-1" placeholder="https:// (e.g. Instagram, website, etc.)">
+                <input type="url" name="link-2" placeholder="https:// (optional)">
+                <input type="url" name="link-3" placeholder="https:// (optional)">
+              </div>
+
+              <div class="form-group full-width">
+                <label>Upload Logo or Images (optional)</label>
+                <span style="font-size:0.92em;color:#888;">You may upload up to 3 images (JPG, PNG, GIF, SVG). Max 5MB each.</span>
+                <input type="file" name="images" accept="image/*" multiple style="margin-top:0.5rem;" max="3">
+              </div>
+
               <div class="form-group">
                 <label for="website" class="required-field">Website/Social Media</label>
                 <input type="url" id="website" name="website" required placeholder="https://">
               </div>
 
               <div class="form-group full-width">
-                <label for="additional-contact" class="required-field">Additional Contact Information</label>
-                <textarea id="additional-contact" name="additional-contact" required placeholder="List any additional contact methods or details that should be displayed with your post (e.g., phone, social media handles, office hours)"></textarea>
+                <label><input type="checkbox" name="show-contact-name" required> Show my contact name on my project/event tile</label>
+              </div>
+              <div class="form-group full-width">
+                <label><input type="checkbox" name="share-on-instagram" required> I want my project/event shared on the Project CTRL Instagram</label>
+              </div>
+
+              <div class="form-group full-width">
+                <label for="additional-contact" class="required-field">Additional Info for Instagram Caption or Post (optional)</label>
+                <textarea id="additional-contact" name="additional-contact" required placeholder="Any other info you want in an Instagram caption or post that isn't in your project description."></textarea>
               </div>
             </div>
 
