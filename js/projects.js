@@ -676,7 +676,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.dataset.ctrlPick = project.ctrlPick ? 'true' : '';
         card.dataset.website = project.website || '';
         card.dataset.activityLog = project.activityLog ? JSON.stringify(project.activityLog) : '';
-        card.addEventListener('click', () => showPopup(project));
+        card.addEventListener('click', () => projectsPage.handleCardClick(card));
         grid.appendChild(card);
       }
       if (i < events.length) {
