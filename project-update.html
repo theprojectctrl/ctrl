@@ -45,8 +45,12 @@
               </div>
 
               <div class="form-group event-fields" style="display: none;">
-                <label for="event-date" class="required-field">Event Date</label>
-                <input type="date" id="event-date" name="event-date" required>
+                <label for="event-date-type">Event Date</label>
+                <select id="event-date-type" name="event-date-type">
+                  <option value="ongoing" selected>Ongoing</option>
+                  <option value="specific">Specific Date</option>
+                </select>
+                <input type="date" id="event-date" name="event-date" style="display:none;margin-top:0.5rem;">
               </div>
 
               <div class="form-group event-fields" style="display: none;">
@@ -173,6 +177,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       const updateType = document.getElementById('update-type');
       const eventFields = document.querySelectorAll('.event-fields');
+      const eventDateType = document.getElementById('event-date-type');
       const eventDate = document.getElementById('event-date');
       const eventCategory = document.getElementById('event-category');
 
@@ -182,10 +187,18 @@
         eventFields.forEach(field => {
           field.style.display = isEvent ? 'block' : 'none';
         });
-        
         // Update required attributes
-        eventDate.required = isEvent;
+        eventDate.required = false;
         eventCategory.required = isEvent;
+      });
+
+      // Show/hide date picker based on dropdown
+      eventDateType.addEventListener('change', () => {
+        if (eventDateType.value === 'specific') {
+          eventDate.style.display = 'block';
+        } else {
+          eventDate.style.display = 'none';
+        }
       });
 
       // Set minimum date to today for event date
