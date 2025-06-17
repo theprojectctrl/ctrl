@@ -1,5 +1,25 @@
 [
   {
+    "title": "Health Youth Unity",
+    "type": "Non-Profit",
+    "category": "Health",
+
+    "modality": "Website",
+    "team": "Medium (6-15)",
+    "marketReach": "National",
+    "status": ["Ongoing Event"],
+
+    "description": "Every child deserves a chance to smile, to play, and to dream –– even in the face of cancer. This non-profit aims to raise funds to support pediatric cancer patients and their families through care packages, hospital visits, emotional support programs, and financial assistance.",
+    "leadName": "Health Youth Unity",
+    "leadRole": "Founder",
+    "leadEmail": "HealthYouthUnity@gmail.com",
+    "preferredContact": "Email",
+    "ctrlPick": false,
+    "activityLog": ["Instagram: https://www.instagram.com/healthyouthunity/"
+
+    ]
+  },
+  {
     "title": "cherielle",
     "type": "Non-Profit",
     "category": "Technology",
