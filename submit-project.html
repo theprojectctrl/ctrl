@@ -233,6 +233,16 @@
       border: 1px dashed rgba(121, 183, 255, 0.2);
     }
 
+    .form-help-notice {
+      margin: 1rem 0;
+      padding: 1.5rem;
+      background: rgba(255, 193, 7, 0.05);
+      border-radius: 12px;
+      display: flex;
+      gap: 1rem;
+      border: 1px dashed rgba(255, 193, 7, 0.2);
+    }
+
     .notice-icon {
       font-size: 1.5rem;
       flex-shrink: 0;
@@ -262,6 +272,14 @@
     .notice-content a:hover {
       color: #5a9eff;
       text-decoration: underline;
+    }
+
+    .form-help-notice .notice-content a {
+      color: #ff9800;
+    }
+
+    .form-help-notice .notice-content a:hover {
+      color: #f57c00;
     }
 
     @media (max-width: 768px) {
@@ -485,6 +503,14 @@
             </div>
           </div>
 
+          <div class="form-help-notice">
+            <div class="notice-icon">💡</div>
+            <div class="notice-content">
+              <h4>Having trouble submitting?</h4>
+              <p>If you encounter any issues with the form, you can also submit your project directly via email to <a href="mailto:contact.projectctrl@gmail.com">contact.projectctrl@gmail.com</a>. Just include all the information from this form in your email.</p>
+            </div>
+          </div>
+
           <button type="submit" class="submit-button">
             Submit Project
             <span class="button-icon">→</span>
@@ -500,40 +526,13 @@
     </div>
   </footer>
 
+  <script src="js/form-handler.js"></script>
   <script>
-    document.getElementById('submit-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const form = this;
-      const submitButton = form.querySelector('.submit-button');
-      const originalButtonText = submitButton.innerHTML;
-      
-      // Disable button and show loading state
-      submitButton.disabled = true;
-      submitButton.innerHTML = 'Submitting... <span class="button-icon">↻</span>';
-      
-      fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: {
-          'Accept': 'application/json'
-        }
-      })
-      .then(response => {
-        if (response.ok) {
-          // Redirect to project hub with success message
-          window.location.href = 'projects.html?status=success&type=project';
-        } else {
-          throw new Error('Form submission failed');
-        }
-      })
-      .catch(error => {
-        alert('Oops! There was a problem submitting your form. Please try again.');
-        console.error('Error:', error);
-        // Re-enable button and restore original text
-        submitButton.disabled = false;
-        submitButton.innerHTML = originalButtonText;
-      });
+    // Initialize the form handler with automatic fallback
+    new FormHandler('submit-form', {
+      formspreeEndpoint: 'https://formspree.io/f/movwvvvj',
+      successRedirect: 'projects.html?status=success&type=project',
+      successMessage: 'Project submitted successfully! Redirecting to Project Hub...'
     });
   </script>
 </body>
