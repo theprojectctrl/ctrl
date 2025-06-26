@@ -6,13 +6,13 @@
       "items": [
         {
           "id": "pl-001",
-          "icon": "🚀",
-          "title": "Project Starter Kit",
-          "description": "Complete toolkit for launching your project with confidence",
-          "categories": ["technology", "education", "social-impact"],
-          "price": 2.99,
-          "link": "#",
-          "viewResourceLink": "https://example.com/starter-kit",
+          "icon": "💻",
+          "title": "Work/Data Tracker Notion Template",
+          "description": "Track outreach emails, post ideas, creator analytics, project tasks, important dates, and the latest updates between team members. View functions guide on our Instagram.",
+          "categories": ["technology"],
+          "price": 0,
+          "link": "https://www.notion.com/templates/work-data-tracker",
+          "viewResourceLink": "https://www.notion.com/templates/work-data-tracker",
           "status": "coming-soon"
         },
         {
