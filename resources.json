@@ -2,7 +2,7 @@
   "resources": {
     "project-launcher": {
       "title": "Project Launcher",
-      "description": "Quick-start templates & guides to launch your project",
+      "description": "Quick-start templates & guides to launch your project. E.g., Notion, Google Sheets, PDFs, etc.",
       "items": [
         {
           "id": "pl-001",
