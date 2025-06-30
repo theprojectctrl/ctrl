@@ -2,18 +2,19 @@
   "resources": {
     "project-launcher": {
       "title": "Project Launcher",
-      "description": "Quick-start templates & guides to launch your project. E.g., Notion, Google Sheets, PDFs, etc.",
+      "description": "Quick-start templates & guides to launch your project",
       "items": [
         {
           "id": "pl-001",
-          "icon": "💻",
-          "title": "Work/Data Tracker Notion Template",
-          "description": "Track outreach emails, post ideas, creator analytics, project tasks, important dates, and the latest updates between team members. View functions guide on our Instagram.",
-          "categories": ["technology"],
-          "price": 0,
-          "link": "https://www.notion.com/templates/work-data-tracker",
-          "viewResourceLink": "https://www.notion.com/templates/work-data-tracker",
-          "status": "coming-soon"
+          "icon": "🚀",
+          "title": "Project Starter Kit",
+          "description": "Complete toolkit for launching your project with confidence",
+          "categories": ["technology", "education", "social-impact"],
+          "price": 2.99,
+          "link": "#",
+          "viewResourceLink": "https://example.com/starter-kit",
+          "status": "coming-soon",
+          "tags": ["toolkits", "startup-building"]
         },
         {
           "id": "pl-002",
@@ -24,7 +25,8 @@
           "price": 0,
           "link": "#",
           "viewResourceLink": "https://example.com/quick-start",
-          "status": "coming-soon"
+          "status": "coming-soon",
+          "tags": ["toolkits", "templates", "startup-building", "free"]
         }
       ]
     },
@@ -41,7 +43,8 @@
           "price": 2.99,
           "link": "#",
           "viewResourceLink": "https://example.com/process-framework",
-          "status": "coming-soon"
+          "status": "coming-soon",
+          "tags": ["toolkits", "templates", "productivity"]
         },
         {
           "id": "wb-002",
@@ -52,7 +55,8 @@
           "price": 0,
           "link": "#",
           "viewResourceLink": "https://example.com/optimization",
-          "status": "coming-soon"
+          "status": "coming-soon",
+          "tags": ["toolkits", "productivity", "free"]
         }
       ]
     },
@@ -69,7 +73,8 @@
           "price": 2.99,
           "link": "#",
           "viewResourceLink": "https://example.com/planning-framework",
-          "status": "coming-soon"
+          "status": "coming-soon",
+          "tags": ["roadmaps", "toolkits", "startup-building"]
         },
         {
           "id": "dr-002",
@@ -80,7 +85,8 @@
           "price": 0,
           "link": "#",
           "viewResourceLink": "https://example.com/strategic-roadmap",
-          "status": "coming-soon"
+          "status": "coming-soon",
+          "tags": ["roadmaps", "productivity", "free"]
         }
       ]
     },
@@ -97,7 +103,8 @@
           "price": 2.99,
           "link": "#",
           "viewResourceLink": "https://example.com/document-templates",
-          "status": "coming-soon"
+          "status": "coming-soon",
+          "tags": ["templates", "student-focused"]
         },
         {
           "id": "pt-002",
@@ -108,7 +115,8 @@
           "price": 0,
           "link": "#",
           "viewResourceLink": "https://example.com/project-framework",
-          "status": "coming-soon"
+          "status": "coming-soon",
+          "tags": ["templates", "toolkits", "free"]
         }
       ]
     },
@@ -125,7 +133,8 @@
           "price": 2.99,
           "link": "#",
           "viewResourceLink": "https://example.com/tech-docs",
-          "status": "coming-soon"
+          "status": "coming-soon",
+          "tags": ["self-development", "student-focused"]
         },
         {
           "id": "dg-002",
@@ -136,7 +145,8 @@
           "price": 0,
           "link": "#",
           "viewResourceLink": "https://example.com/code-tutorials",
-          "status": "coming-soon"
+          "status": "coming-soon",
+          "tags": ["self-development", "student-focused", "free"]
         }
       ]
     },
@@ -153,7 +163,8 @@
           "price": 2.99,
           "link": "#",
           "viewResourceLink": "https://example.com/industry-standards",
-          "status": "coming-soon"
+          "status": "coming-soon",
+          "tags": ["CTRL philosophy", "mentorship"]
         },
         {
           "id": "bp-002",
@@ -164,7 +175,8 @@
           "price": 0,
           "link": "#",
           "viewResourceLink": "https://example.com/quality-benchmarks",
-          "status": "coming-soon"
+          "status": "coming-soon",
+          "tags": ["CTRL philosophy", "productivity", "free"]
         }
       ]
     }
