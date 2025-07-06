@@ -1,4 +1,85 @@
 [
+
+  {
+    "title": "Beyond the Quill",
+    "type": "Non-Profit",
+    "category": "Art / Design",
+    "description": "we are a literary magazine that aims to establish a haven for writers, artists, and photographers. we want to display your talents in the best way possible. we publish editions, hold contests, and more interesting opportunities for all creatives!",
+   "leadName": "Beyond the Quill",  
+  "leadRole": "Founder",
+    "leadEmail": "beyondthequill0@gmail.com",
+    "preferredContact": "Email",
+    "ctrlPick": false,
+    "activityLog": [
+      { "label": "Instagram", "url": "https://instagram.com/beyond_the_quill" },
+      { "label": "Website", "url": "https://beyondthequill.carrd.co/" },
+      { "label": "Magazine", "url": "https://www.chillsubs.com/magazine/beyond-the-quill" }
+  
+    ],
+    "subtitle": "Non-Profit"
+  },
+
+  {
+    "title": "The Seed Project",
+    "description": "The Seed Project is an initiative from Van Mohatsav which India celebrates from 1-7 July. This first week of July, we plant trees and care for them. The Environmental Club has started this event where we plant beneficial trees to the ecosystem. The winners will be decided on who plants the most beneficial trees, they will get a free digital certificate and volunteer hours.This event will go on from 6 July to 26 July. For more info, visit our Instagram page!",
+    "date": "2025-07-06",
+    "category": "Environment",
+    "eventCategory": "Volunteering & Service",
+    "color": "#e8f5e8",
+    "textColor": "#2e7d32",
+    "link": "https://www.instagram.com/",
+    "isEvent": true,
+    "subtitle": "Event",
+    "eventDetails": {
+      "startDate": "2025-07-06",
+      "endDate": "2025-07-26",
+      "location": "India",
+      "organizer": "The Environmental Club",
+      "prizes": ["Free digital certificate", "Volunteer hours"],
+      "contactInfo": "Visit our Instagram page for more information"
+    },
+    "activityLog": [
+      { "label": "Instagram Page", "url": "https://www.instagram.com/" },
+      { "label": "Registration Form", "url": "#" },
+      { "label": "Event Guidelines", "url": "#" }
+    ]
+  },
+  
+{
+    "title": "Lavender Liberty",
+    "type": "Non-Profit",
+    "category": "Social Impact",
+    "description": "Lavender Liberty is a youth-led digital newspaper and creative platform rooted in social justice, radical storytelling, and political resistance. It amplifies the voices of young people—especially those from marginalized communities—through essays, journalism, poetry, and collaborative projects. Centered on truth-telling and transformation, Lavender Liberty challenges systems of power with sharp words, bold visuals, and unapologetic vision. More than a publication, it’s a movement blooming at the intersection of protest, identity, and reimagined futures.",
+   "leadName": "Lavender Liberty",  
+  "leadRole": "Founder",
+    "leadEmail": "thelavenderliberty@gmail.com",
+    "preferredContact": "Email",
+    "ctrlPick": false,
+    "activityLog": [
+      { "label": "Instagram", "url": "https://www.instagram.com/thelavenderliberty/" },
+      { "label": "Website", "url": "https://sindarose.wixsite.com/lavender-liberty" },
+      { "label": "Volunteer Application Form", "url": "https://forms.gle/zXwsMiHJhYXc7dRY7" }
+  
+    ],
+    "subtitle": "Non-Profit"
+  },
+  {
+    "title": "Pavlov's Daughters",
+    "type": "Non-Profit",
+    "category": "Education",
+    "description": "Introducing Pavlov’s Daughters — a literary magazine for the disobedient, the dissected, and the done-being-diagnosed. Our mission: Radically increase the representation of women in neuroscience and psychology- not just as subjects of study, but as the scientists, thinkers, and creators. We publish work that bites back: neuro-feminist essays, rage-fueled poetry, experimental prose and zines with teeth. And right now, positions are open for graphic design interns where you design posts related to neuroscience and psychology in exchange for volunteer letters and even letters of recommendation from staff!! Follow us, share us, submit your brain to the chaos. We don’t wait for the bell. We rewire it.",
+   "leadName": "Pavlov's Daughters",  
+  "leadRole": "Founder",
+    "leadEmail": "pavlovsdaughters.zine@gmail.com",
+    "preferredContact": "Email",
+    "ctrlPick": false,
+    "activityLog": [
+      { "label": "Instagram", "url": "https://www.instagram.com/pavlovsdaughter.s_lit?utm_source=ig_web_button_share_sheet&igsh=MWt0OTY2Y2d6bzRtNQ==" }
+  
+    ],
+    "subtitle": "Non-Profit"
+  },
+  
   {
     "title": "Gradient Colours",
     "subtitle": "Service Offering",
