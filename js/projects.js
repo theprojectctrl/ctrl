@@ -379,9 +379,12 @@ class ProjectsPage {
     
     // Handle services section for service offerings
     const servicesSection = popup.querySelector('.services-section');
+    const eventDetailsSection = popup.querySelector('.event-details-section');
     const activityLogSection = popup.querySelector('.activity-log');
+    
     if (card.dataset.isService === 'true' && card.dataset.services) {
       servicesSection.style.display = 'block';
+      eventDetailsSection.style.display = 'none';
       activityLogSection.style.display = 'none';
       
       // Populate services list (up to 3)
@@ -405,8 +408,48 @@ class ProjectsPage {
       if (card.dataset.serviceNote) {
         popup.querySelector('.service-note').textContent = card.dataset.serviceNote;
       }
+    } else if (card.dataset.isEvent === 'true' && card.dataset.eventDetails) {
+      servicesSection.style.display = 'none';
+      eventDetailsSection.style.display = 'block';
+      activityLogSection.style.display = 'none';
+      
+      // Populate event details
+      const eventDetailsContent = popup.querySelector('.event-details-content');
+      let eventDetails = {};
+      try {
+        eventDetails = JSON.parse(card.dataset.eventDetails);
+      } catch (e) {}
+      
+      let eventDetailsHTML = '';
+      
+      if (eventDetails.startDate && eventDetails.endDate) {
+        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>📅 Duration:</strong> ${eventDetails.startDate} to ${eventDetails.endDate}</div>`;
+      }
+      
+      if (eventDetails.location) {
+        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>📍 Location:</strong> ${eventDetails.location}</div>`;
+      }
+      
+      if (eventDetails.organizer) {
+        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>👥 Organizer:</strong> ${eventDetails.organizer}</div>`;
+      }
+      
+      if (eventDetails.requirements) {
+        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>🎯 Requirements:</strong> ${eventDetails.requirements}</div>`;
+      }
+      
+      if (eventDetails.prizes && eventDetails.prizes.length > 0) {
+        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>🏆 Prizes:</strong> ${eventDetails.prizes.join(', ')}</div>`;
+      }
+      
+      if (eventDetails.contactInfo) {
+        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>📞 Contact:</strong> ${eventDetails.contactInfo}</div>`;
+      }
+      
+      eventDetailsContent.innerHTML = eventDetailsHTML;
     } else {
       servicesSection.style.display = 'none';
+      eventDetailsSection.style.display = 'none';
       activityLogSection.style.display = 'block';
     }
     
@@ -777,7 +820,8 @@ document.addEventListener('DOMContentLoaded', () => {
           tags.innerHTML += `<span class="tag ${tag.class} ${colorClass}">${tag.value}</span>`;
         });
         if (project.category) {
-          tags.innerHTML += `<span class="tag tag-category">${project.category}</span>`;
+          const categoryClass = project.category.toLowerCase().replace(/\s+/g, '-');
+          tags.innerHTML += `<span class="tag tag-category ${categoryClass}">${project.category}</span>`;
         }
         card.querySelector('.project-description').textContent = project.description || '';
         card.dataset.leadName = project.leadName || '';
@@ -830,7 +874,8 @@ document.addEventListener('DOMContentLoaded', () => {
           tags.innerHTML += `<span class="tag ${tag.class} ${colorClass}">${tag.value}</span>`;
         });
         if (service.category) {
-          tags.innerHTML += `<span class="tag tag-category">${service.category}</span>`;
+          const categoryClass = service.category.toLowerCase().replace(/\s+/g, '-');
+          tags.innerHTML += `<span class="tag tag-category ${categoryClass}">${service.category}</span>`;
         }
         card.querySelector('.project-description').textContent = service.description || '';
         
@@ -880,9 +925,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const tags = card.querySelector('.project-tags');
         tags.innerHTML = '';
         if (event.category) {
-          tags.innerHTML += `<span class="tag tag-category">${event.category}</span>`;
+          const categoryClass = event.category.toLowerCase().replace(/\s+/g, '-');
+          tags.innerHTML += `<span class="tag tag-category ${categoryClass}">${event.category}</span>`;
         }
         card.querySelector('.project-description').textContent = event.description || '';
+        
+        // Add event data to dataset
+        card.dataset.title = event.title || '';
+        card.dataset.category = event.category || '';
+        card.dataset.description = event.description || '';
+        card.dataset.isEvent = 'true';
+        card.dataset.eventDetails = event.eventDetails ? JSON.stringify(event.eventDetails) : '';
+        card.dataset.activityLog = event.activityLog ? JSON.stringify(event.activityLog) : '';
+        card.dataset.link = event.link || '';
+        
         card.addEventListener('click', () => projectsPage.handleCardClick(card));
         grid.appendChild(card);
       }
@@ -908,7 +964,10 @@ document.addEventListener('DOMContentLoaded', () => {
     tags.innerHTML = '';
     if (project.type) tags.innerHTML += `<span class="tag tag-type">${project.type}</span>`;
     if (project.stage) tags.innerHTML += `<span class="tag tag-stage">${project.stage}</span>`;
-    if (project.category) tags.innerHTML += `<span class="tag tag-category">${project.category}</span>`;
+    if (project.category) {
+      const categoryClass = project.category.toLowerCase().replace(/\s+/g, '-');
+      tags.innerHTML += `<span class="tag tag-category ${categoryClass}">${project.category}</span>`;
+    }
     if (project.modality) tags.innerHTML += `<span class="tag tag-modality">${project.modality}</span>`;
     if (project.team) tags.innerHTML += `<span class="tag tag-team">${project.team}</span>`;
     if (project.marketReach) tags.innerHTML += `<span class="tag tag-market">${project.marketReach}</span>`;
@@ -919,10 +978,48 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
     
-    // Handle services section for service offerings
+    // Handle different content sections
     const servicesSection = popup.querySelector('.services-section');
-    if (project.isService && project.services) {
+    const eventDetailsSection = popup.querySelector('.event-details-section');
+    const activityLogSection = popup.querySelector('.activity-log');
+    
+    if (project.isEvent && project.eventDetails) {
+      eventDetailsSection.style.display = 'block';
+      servicesSection.style.display = 'none';
+      activityLogSection.style.display = 'none';
+      
+      const eventDetailsContent = popup.querySelector('.event-details-content');
+      let eventDetailsHTML = '';
+      
+      if (project.eventDetails.startDate && project.eventDetails.endDate) {
+        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>📅 Duration:</strong> ${project.eventDetails.startDate} to ${project.eventDetails.endDate}</div>`;
+      }
+      
+      if (project.eventDetails.location) {
+        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>📍 Location:</strong> ${project.eventDetails.location}</div>`;
+      }
+      
+      if (project.eventDetails.organizer) {
+        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>👥 Organizer:</strong> ${project.eventDetails.organizer}</div>`;
+      }
+      
+      if (project.eventDetails.requirements) {
+        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>🎯 Requirements:</strong> ${project.eventDetails.requirements}</div>`;
+      }
+      
+      if (project.eventDetails.prizes && project.eventDetails.prizes.length > 0) {
+        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>🏆 Prizes:</strong> ${project.eventDetails.prizes.join(', ')}</div>`;
+      }
+      
+      if (project.eventDetails.contactInfo) {
+        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>📞 Contact:</strong> ${project.eventDetails.contactInfo}</div>`;
+      }
+      
+      eventDetailsContent.innerHTML = eventDetailsHTML;
+    } else if (project.isService && project.services) {
+      eventDetailsSection.style.display = 'none';
       servicesSection.style.display = 'block';
+      activityLogSection.style.display = 'none';
       
       // Populate services list (up to 3)
       const servicesList = popup.querySelector('.services-list');
@@ -940,6 +1037,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (project.serviceNote) {
         popup.querySelector('.service-note').textContent = project.serviceNote;
       }
+    } else {
+      eventDetailsSection.style.display = 'none';
+      servicesSection.style.display = 'none';
+      activityLogSection.style.display = 'block';
     }
     
     // Add website button if present, right after tags
