@@ -479,6 +479,17 @@ class ProjectsPage {
       activityList.insertBefore(activityItemsContainer, emptyState);
       emptyState.remove();
     }
+
+    const popupNotes = popup.querySelector('.project-notes, .notes-disclaimer');
+    if (popupNotes) {
+      const notes = card.dataset.notes || '';
+      if (notes) {
+        popupNotes.textContent = notes;
+        popupNotes.style.display = '';
+      } else {
+        popupNotes.style.display = 'none';
+      }
+    }
   }
 
   setupContactInfo(popup, email, phone) {
@@ -824,6 +835,16 @@ document.addEventListener('DOMContentLoaded', () => {
           tags.innerHTML += `<span class="tag tag-category ${categoryClass}">${project.category}</span>`;
         }
         card.querySelector('.project-description').textContent = project.description || '';
+        const notes = project.notes || '';
+        const notesElem = card.querySelector('.project-notes');
+        if (notesElem) {
+          if (notes) {
+            notesElem.textContent = notes;
+            notesElem.style.display = '';
+          } else {
+            notesElem.style.display = 'none';
+          }
+        }
         card.dataset.leadName = project.leadName || '';
         card.dataset.leadRole = project.leadRole || '';
         card.dataset.leadEmail = project.leadEmail || '';
@@ -1084,6 +1105,17 @@ document.addEventListener('DOMContentLoaded', () => {
       activityList.insertBefore(activityItemsContainer, emptyState);
       // Remove the empty state entirely if there are activity items
       emptyState.remove();
+    }
+
+    const popupNotes = popup.querySelector('.project-notes, .notes-disclaimer');
+    if (popupNotes) {
+      const notes = project.notes || '';
+      if (notes) {
+        popupNotes.textContent = notes;
+        popupNotes.style.display = '';
+      } else {
+        popupNotes.style.display = 'none';
+      }
     }
 
     document.body.appendChild(popup);
