@@ -148,6 +148,25 @@
         </div>
       </div>
     </section>
+
+    <!-- Resource Suggestion Form Section -->
+    <section class="section">
+      <div class="content-wrapper">
+        <div class="bento-card form-card" style="max-width:600px;margin:2rem auto 0 auto;">
+          <h3 style="margin-bottom:0.5rem;">Suggest a Resource</h3>
+          <p class="section-description" style="margin-bottom:1.5rem;">Request or suggest a resource you'd like to see added to CTRL. We review all submissions and add the best ones to our hub!</p>
+          <form action="https://usebasin.com/f/85f14c1689bd" method="POST" style="display:flex;flex-direction:column;gap:1rem;">
+            <div class="form-group full-width">
+              <label for="resource-suggestion">What resource do you want to see? <span style="color:var(--accent-color);">*</span></label>
+              <textarea id="resource-suggestion" name="resource-suggestion" required placeholder="Describe the resource, tool, or topic you want CTRL to add. Include links if possible."></textarea>
+            </div>
+            <button type="submit" class="submit-button" style="align-self:flex-start;">Submit Suggestion</button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- End Resource Suggestion Form Section -->
+
   </main>
 
   <footer class="main-footer">
@@ -157,5 +176,32 @@
   </footer>
 
   <script src="js/resources.js"></script>
+  <script>
+    // Intercept the resource suggestion form submission
+    document.addEventListener('DOMContentLoaded', function() {
+      var form = document.querySelector('form[action="https://usebasin.com/f/85f14c1689bd"]');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          var formData = new FormData(form);
+          fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          })
+          .then(function(response) {
+            if (response.ok) {
+              form.innerHTML = '<div style="padding:2rem 0;text-align:center;"><h3 style="color:var(--accent-color);margin-bottom:0.5rem;">Thank you!</h3><p>Your suggestion has been received. We appreciate your input!</p></div>';
+            } else {
+              form.innerHTML = '<div style="padding:2rem 0;text-align:center;"><h3 style="color:var(--error-color);margin-bottom:0.5rem;">Oops!</h3><p>There was a problem submitting your suggestion. Please try again later.</p></div>';
+            }
+          })
+          .catch(function() {
+            form.innerHTML = '<div style="padding:2rem 0;text-align:center;"><h3 style="color:var(--error-color);margin-bottom:0.5rem;">Oops!</h3><p>There was a problem submitting your suggestion. Please try again later.</p></div>';
+          });
+        });
+      }
+    });
+  </script>
 </body>
 </html> 
