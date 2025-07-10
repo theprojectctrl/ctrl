@@ -907,3 +907,21 @@
   transform: translateX(4px);
 }
 
+.bento-card, .feature-card, .mission-card, .founder-card, .project-card, .event-tile, .service-tile, .promo-ig-card, .promo-product-card, .resource-item, .story-item, .help-item, .metric-item, .category-item, .step-item, .community-item, .form-card, .info-card, .metric-card {
+    background: #ecf5ff !important;
+    color: #232323 !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.primary-button, .secondary-button, .updates-button, .pagination-button, .view-product-button, .connect-button, .search-button, .close-button, .slider-button, .load-more-button, .submit-button {
+    background: #f3e0c5 !important;
+    color: #232323 !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.bento-card *, .feature-card *, .mission-card *, .founder-card *, .project-card *, .event-tile *, .service-tile *, .promo-ig-card *, .promo-product-card *, .resource-item *, .story-item *, .help-item *, .metric-item *, .category-item *, .step-item *, .community-item *, .form-card *, .info-card *, .metric-card * {
+    color: #232323 !important;
+}
+

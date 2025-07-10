@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Submit Project - Project CTRL</title>
+  <title>Submit Project - CTRL Initiative</title>
   <link rel="stylesheet" href="css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -316,16 +316,26 @@
 <body class="submit-page">
   <header class="main-header">
     <div class="header-container">
-      <a href="index.html" class="logo">Project CTRL</a>
+      <a href="index.html" class="logo">CTRL Initiative</a>
       <nav class="main-nav">
         <a href="index.html">Dashboard</a>
-        <a href="projects.html">Project Hub</a>
+        <a href="ctrl-cohort.html">CTRL Cohort</a>
+        <a href="launch.html">Launch</a>
+        <a href="thrive.html">Thrive</a>
+        <a href="projects.html">CTRL Spotlight</a>
         <div class="dropdown">
           <a href="resources.html" class="dropdown-trigger">Resources ▾</a>
           <div class="dropdown-content">
             <a href="https://stembystep.github.io/sbs/" target="_blank">STEM by Step</a>
           </div>
         </div>
+        <a href="https://www.instagram.com/projectctrl.co/" target="_blank" class="social-nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17" cy="7" r="1" fill="currentColor"/>
+          </svg>
+        </a>
       </nav>
     </div>
   </header>
@@ -448,7 +458,7 @@
 
   <footer class="main-footer">
     <div class="footer-content">
-      <p>© 2025 Project CTRL | Built by and for the people without a roadmap</p>
+      <p>2025 CTRL Initiative | Built by and for the people without a roadmap</p>
     </div>
   </footer>
 
@@ -458,7 +468,7 @@
     new FormHandler('project-form', {
       formspreeEndpoint: 'https://usebasin.com/f/264e81003939',
       successRedirect: 'projects.html?status=success&type=project',
-      successMessage: 'Project submitted successfully! Redirecting to Project Hub...'
+      successMessage: 'Project submitted successfully! Redirecting to Spotlight...'
     });
   </script>
 </body>

@@ -184,9 +184,10 @@
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  min-height: 280px;
   box-shadow: 0 4px 20px rgba(121, 183, 255, 0.15);
   transition: all 0.3s ease;
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
 }
 
 .project-card:hover, .event-tile:hover, .service-tile:hover {
@@ -836,7 +837,6 @@
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  min-height: 280px;
   box-shadow: 0 4px 20px rgba(121, 183, 255, 0.15);
   transition: all 0.3s ease;
 }
@@ -937,5 +937,21 @@
   margin-top: 0.2em;
   margin-bottom: 0.5em;
   letter-spacing: 0.01em;
+}
+
+.bento-card, .feature-card, .mission-card, .founder-card, .project-card, .event-tile, .service-tile, .promo-ig-card, .promo-product-card, .resource-item, .story-item, .help-item, .metric-item, .category-item, .step-item, .community-item, .form-card, .info-card, .metric-card {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.primary-button, .secondary-button, .updates-button, .pagination-button, .view-product-button, .connect-button, .search-button, .close-button, .slider-button, .load-more-button, .submit-button {
+    background: #f3e0c5 !important;
+    color: #232323 !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.bento-card *, .feature-card *, .mission-card *, .founder-card *, .project-card *, .event-tile *, .service-tile *, .promo-ig-card *, .promo-product-card *, .resource-item *, .story-item *, .help-item *, .metric-item *, .category-item *, .step-item *, .community-item *, .form-card *, .info-card *, .metric-card * {
+    /* color: #232323 !important; */
 }
 

@@ -630,7 +630,7 @@ class ProjectsPage {
     if (this.communityPrevButton) {
       this.communityPrevButton.disabled = this.currentProjectsPage === 1;
       if (this.currentProjectsPage === 2) {
-        this.communityPrevButton.innerHTML = '<span class="button-icon">←</span> Back to Project Hub';
+        this.communityPrevButton.innerHTML = '<span class="button-icon">←</span> Back to CTRL Spotlight';
       } else {
         this.communityPrevButton.innerHTML = '<span class="button-icon">←</span> Previous';
       }
