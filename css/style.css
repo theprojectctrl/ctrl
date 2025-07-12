@@ -1622,11 +1622,11 @@
   .project-card {
     background: var(--card-background);
     border-radius: var(--border-radius);
-    padding: 1.5rem;
+    padding: 0.85rem 1rem;
     transition: var(--transition);
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.5rem;
   }
   
   .project-card:hover {
@@ -1635,14 +1635,11 @@
   }
   
   .project-header {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
   
   .project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin: 1rem 0;
+    margin: 0.5rem 0;
   }
   
   .tag {
@@ -2115,6 +2112,9 @@
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(4px);
     z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   @media (max-width: 768px) {
@@ -3085,4 +3085,77 @@
   
   /* CTRL Spotlight Specific Styles */
   /* Additional styles for CTRL Spotlight can be added here */
+  
+  /* Chatbox for Browse Tab */
+  #browse-testimony-box {
+    position: relative !important;
+    left: unset !important;
+    transform: none !important;
+    bottom: 0 !important;
+    margin: 2rem auto 0 auto !important;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 900px) {
+    #browse-testimony-box {
+      max-width: 99vw;
+      padding: 1rem 0.5rem 1rem 0.5rem;
+      margin: 2rem auto 0 auto !important;
+      width: 99vw;
+    }
+  }
+
+  @media (max-width: 600px) {
+    #browse-testimony-box {
+      width: 99vw;
+      min-width: 0;
+      padding: 0.75rem 0.25rem 0.75rem 0.25rem;
+      margin: 1rem auto 0 auto !important;
+    }
+  }
+  
+  /* Center all browse tab content within the modal popup, not the viewport */
+  #browse-tab .tab-content-inner {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 0;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  #browse-tab .cta-buttons,
+  #browse-tab .search-container,
+  #browse-tab #browse-results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  #browse-tab .cta-buttons {
+    flex-direction: row;
+    gap: 1.5rem;
+    margin: 2.5rem 0 2rem 0;
+  }
+
+  #browse-tab .search-container {
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+  }
+
+  #browse-tab #browse-results {
+    max-width: 900px;
+    margin: 0 auto 2rem auto;
+  }
   

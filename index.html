@@ -3,14 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project CTRL - Your Innovation Journey Starts Here</title>
+  <title>CTRL Initiative - Your Innovation Journey Starts Here</title>
   <link rel="stylesheet" href="css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <link rel="manifest" href="site.webmanifest">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-REKT5H0GXW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-REKT5H0GXW');
+  </script>
+  <link rel="stylesheet" href="css/projects.css" />
   <style>
     .cta-buttons {
       display: flex;
@@ -615,481 +618,1088 @@
       transform: translateX(4px);
       opacity: 1;
     }
+
+    .dashboard-modal {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: #f8fafd;
+      border-radius: 32px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.16);
+      width: 90vw;
+      height: 90vh;
+      max-width: 1200px;
+      max-height: 900px;
+      padding: 2rem 2rem 0 2rem;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      overflow: hidden;
+    }
+    /* Add this new class for popup overlays inside dashboard-modal */
+    .dashboard-modal .popup-overlay {
+      position: absolute !important;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(49,95,144,0.10);
+      z-index: 2000;
+    }
+    .browse-top-row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      margin: 4rem auto 2rem auto;
+      max-width: 600px;
+      width: 100%;
+    }
+    .browse-top-row .search-container,
+    .browse-top-row #browse-testimony-box {
+      width: 100%;
+      max-width: 600px;
+    }
   </style>
 </head>
 <body class="dashboard">
+  <!-- Dashboard Modal Popup -->
+  <div class="dashboard-modal" id="dashboardModal">
+    <button class="close-btn" id="closeDashboardModal">&times;</button>
+    <!-- Modal Header: Website Name + IG Icon -->
+    <div class="dashboard-modal-header" style="display:flex;align-items:center;gap:1.25rem;position:absolute;left:2rem;top:1.5rem;z-index:10;background:rgba(255,255,255,0.95);border-radius:16px;padding:0.5rem 1.5rem 0.5rem 1.25rem;box-shadow:0 2px 8px rgba(121,183,255,0.08);min-width:220px;">
+      <span class="modal-site-name" style="font-size:1.35rem;font-weight:800;color:#315F90;letter-spacing:0.01em;">CTRL Initiative</span>
+      <a href="https://www.instagram.com/ctrlinitiative/" target="_blank" style="display:inline-block;line-height:0;">
+        <svg class="nav-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="5" stroke="#79b7ff" stroke-width="2"/>
+          <circle cx="12" cy="12" r="5" stroke="#79b7ff" stroke-width="2"/>
+          <circle cx="17" cy="7" r="1" fill="#79b7ff"/>
+        </svg>
+      </a>
+    </div>
+    <div class="dashboard-content">
+      <!-- CTRL Tab -->
+      <div class="tab-content active" id="ctrl-tab">
+        <div class="tab-content-inner" style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:100%;width:100%;overflow:auto;">
+          <!-- Single metric box at top -->
+          <div class="ctrl-hero-metrics" style="width:100%;max-width:900px;margin:3.5rem auto 2.5rem auto;text-align:center;">
+            <h1 style="font-size:2.5rem;font-weight:800;color:#315F90;margin-bottom:0.5rem;">Digitize and scale your small business with confidence </h1>
+            <p style="font-size:1.15rem;color:#315F90;margin-bottom:1.5rem;">Helping local businesses, startups, and community initiatives thrive in the digital age. Transform guesswork into guided success with CTRL's hybrid approach.</p>
+            <div class="metric-box" style="background:#fff;border-radius:16px;box-shadow:0 2px 8px rgba(121,183,255,0.08);padding:1.5rem 2.5rem;font-size:2rem;font-weight:700;color:#79b7ff;min-width:180px;display:inline-block;margin-top:1.5rem;">30k+ businesses growing</div>
+          </div>
+          <h2 style="margin:2.5rem 0 1.5rem 0;text-align:center;font-size:2rem;font-weight:700;">CTRL Users</h2>
+          <div class="projects-grid ctrl-projects-grid" style="width:100%;max-width:1100px;margin:0 auto 2rem auto;"></div>
+        </div>
+      </div>
+      <!-- CTRL Cohort Tab -->
+      <div class="tab-content" id="ctrl-cohort-tab">
+        <div class="tab-content-inner" style="height:100%;width:100%;overflow:auto;">
+          <section class="hero-section">
+            <div class="content-wrapper">
+              <h1>CTRL Cohort: Empower Your Community</h1>
+              <p class="hero-subtitle">A guided program for students to launch real-world projects or help local businesses using CTRL's toolkits and platform.</p>
+            </div>
+          </section>
+          <section class="dashboard-grid">
+            <div class="content-wrapper">
+              <div class="bento-grid">
+                <div class="bento-card">
+                  <h3>What is CTRL Cohort?</h3>
+                  <p>CTRL Cohort is a hands-on program for students and aspiring changemakers to make a real impact in their community. Join a guided journey to start your own project or help a local business grow using our proven toolkits and resources.</p>
+                </div>
+                <div class="bento-card">
+                  <h3>How It Works</h3>
+                  <ul>
+                    <li>Apply to join the next CTRL Cohort (open to students and community members)</li>
+                    <li>Get matched with a local business or start your own project</li>
+                    <li>Access exclusive toolkits, mentorship, and step-by-step guidance</li>
+                    <li>Collaborate, learn, and make a measurable impact</li>
+                    <li>Showcase your work in the CTRL Spotlight</li>
+                  </ul>
+                </div>
+                <div class="bento-card">
+                  <h3>Why Join?</h3>
+                  <ul>
+                    <li>Real-world experience and leadership skills</li>
+                    <li>Direct community impact</li>
+                    <li>Use CTRL's launcher toolkits</li>
+                    <li>Portfolio and resume building</li>
+                    <li>Opportunities for recognition and awards</li>
+                  </ul>
+                </div>
+                
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <!-- Launch Tab -->
+      <div class="tab-content" id="launch-tab">
+        <div class="tab-content-inner" style="height:100%;width:100%;overflow:auto;">
+          <section class="hero-section">
+            <div class="content-wrapper">
+              <h1>Launch: Start Your Business Journey</h1>
+              <p class="hero-subtitle">Everything you need to go from idea to launch. Get resources, roadmaps, and expert advice to start your business with confidence.</p>
+            </div>
+          </section>
+          <section class="dashboard-grid">
+            <div class="content-wrapper">
+              <div class="bento-grid">
+                <div class="bento-card">
+                  <h3>Step-by-Step Roadmaps</h3>
+                  <p>Follow proven guides to take your idea from concept to reality. Our roadmaps break down every stage of launching a business, so you never feel lost.</p>
+                </div>
+                <div class="bento-card">
+                  <h3>Essential Resources</h3>
+                  <ul>
+                    <li>Business plan templates</li>
+                    <li>Branding and marketing guides</li>
+                    <li>Legal and registration checklists</li>
+                    <li>Financial planning tools</li>
+                  </ul>
+                </div>
+                <div class="bento-card">
+                  <h3>Grants & Funding</h3>
+                  <p>Explore up-to-date information on grants, funding opportunities, and how to apply. We help you find the right support to get started.</p>
+                </div>
+                <div class="bento-card">
+                  <h3>Business Modalities</h3>
+                  <p>Learn about different business models and modalities to choose the best path for your goals, whether you're starting a side hustle, nonprofit, or full-scale company.</p>
+                </div>
+                
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <!-- Thrive Tab -->
+      <div class="tab-content" id="thrive-tab">
+        <div class="tab-content-inner" style="height:100%;width:100%;overflow:auto;">
+          <section class="hero-section">
+            <div class="content-wrapper">
+              <h1>Thrive: Grow and Scale Your Business</h1>
+              <p class="hero-subtitle">Take your business to the next level. Access advanced resources, learn high-quality business skills, and grow your online presence with CTRL.</p>
+            </div>
+          </section>
+          <section class="dashboard-grid">
+            <div class="content-wrapper">
+              <div class="bento-grid">
+                <div class="bento-card">
+                  <h3>Scale Up</h3>
+                  <p>Ready to grow? Get strategies and tools to expand your business, reach new customers, and increase your impact.</p>
+                </div>
+                <div class="bento-card">
+                  <h3>Grow Your Online Platform</h3>
+                  <ul>
+                    <li>Website and e-commerce guidance</li>
+                    <li>Social media and digital marketing</li>
+                    <li>Brand building and storytelling</li>
+                  </ul>
+                </div>
+                <div class="bento-card">
+                  <h3>Advanced Business Skills</h3>
+                  <ul>
+                    <li>Leadership and team building</li>
+                    <li>Financial management and scaling</li>
+                    <li>Operations and process optimization</li>
+                  </ul>
+                </div>
+                
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <!-- Resources Tab -->
+      <div class="tab-content" id="resources-tab">
+        <div class="tab-content-inner" style="height:100%;width:100%;overflow:auto;">
+          <main class="resources-container">
+            <div class="background-elements">
+              <div class="curved-line"></div>
+              <div class="dot dot-1"></div>
+              <div class="dot dot-2"></div>
+              <div class="dot dot-3"></div>
+            </div>
+            <!-- CTRL Formula Section -->
+            <section id="ctrl-formula" class="section bento-section">
+              <div class="content-wrapper">
+                <div class="section-header">
+                  <div class="section-tag">Core</div>
+                  <h1>The CTRL Formula</h1>
+                  <p class="section-description">Our three pillars for building with clarity, intention, and impact</p>
+                </div>
+                <div class="bento-grid">
+                  <div class="bento-card formula-card">
+                    <div class="formula-content">
+                      <h3>Purpose + CTRL</h3>
+                      <p>Build with clarity, intention, and impact.</p>
+                      <ul class="formula-points">
+                        <li>Define your core mission: What problem are you solving?</li>
+                        <li>Understand the value you bring and why it matters now.</li>
+                        <li>Use our tools to set clear goals and measurable milestones.</li>
+                        <li>Remember: If it's hard, it's formative. Challenges shape your growth.</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="bento-card formula-card">
+                    <div class="formula-content">
+                      <h3>Personalize + CTRL</h3>
+                      <p>Make your work uniquely yours — human, creative, and authentic.</p>
+                      <ul class="formula-points">
+                        <li>Customize templates and workflows to fit your style and values.</li>
+                        <li>Embed your personality and voice into every detail.</li>
+                        <li>Embrace iteration and feedback loops to keep evolving.</li>
+                        <li>Use design and language that make your work feel alive.</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="bento-card formula-card">
+                    <div class="formula-content">
+                      <h3>Propel + CTRL</h3>
+                      <p>Digitize smartly, connect deeply, and grow sustainably.</p>
+                      <ul class="formula-points">
+                        <li>Use digital tools to automate tasks and amplify reach.</li>
+                        <li>Build secure systems for business stability.</li>
+                        <li>Leverage community and networking for growth.</li>
+                        <li>Tap into CTRL's Spotlights for visibility.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- Resources Hub Section -->
+            <section class="section resources-hub-section">
+              <div class="content-wrapper">
+                <div class="section-header">
+                  <div class="section-tag">Resources</div>
+                  <h1>Resources Hub</h1>
+                  <p class="section-description">Essential tools and resources to supercharge your work</p>
+                </div>
+                <!-- Search Bar -->
+                <div class="search-container">
+                  <div class="search-bar">
+                    <input type="text" id="resources-search" placeholder="Search resources by name, description, or category..." />
+                    <button class="search-button">
+                      <span class="button-icon">🔍</span>
+                    </button>
+                  </div>
+                  <div class="search-info">
+                    <span class="search-results-count">Showing all resources</span>
+                    <span class="search-shortcut">Press Ctrl+F to search</span>
+                  </div>
+                </div>
+                <!-- Filter Tags -->
+                <div class="resources-filter">
+                  <button class="filter-tag active" data-filter="all">All</button>
+                  <button class="filter-tag" data-filter="templates">Templates</button>
+                  <button class="filter-tag" data-filter="roadmaps">Roadmaps</button>
+                  <button class="filter-tag" data-filter="toolkits">Toolkits</button>
+                  <button class="filter-tag" data-filter="productivity">Productivity</button>
+                  <button class="filter-tag" data-filter="self-development">Self-development</button>
+                  <button class="filter-tag" data-filter="student-focused">Student-focused</button>
+                  <button class="filter-tag" data-filter="startup-building">Startup-building</button>
+                  <button class="filter-tag" data-filter="CTRL philosophy">CTRL Philosophy</button>
+                  <button class="filter-tag" data-filter="mentorship">Mentorship</button>
+                  <button class="filter-tag" data-filter="free">Free</button>
+                </div>
+                <!-- Resources Grid -->
+                <div class="resources-grid" id="resources-grid">
+                  <!-- Resources will be dynamically populated -->
+                </div>
+                <!-- No Results Message -->
+                <div class="no-results-message" id="no-results" style="display: none;">
+                  <div class="no-results-content">
+                    <span class="no-results-icon">🔍</span>
+                    <h3>No resources found</h3>
+                    <p>Try adjusting your search terms or filters to find what you're looking for.</p>
+                    <button class="clear-filters-btn" onclick="clearAllFilters()">
+                      Clear All Filters
+                      <span class="button-icon">×</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- Resource Suggestion Form Section -->
+            <section class="section">
+              <div class="content-wrapper">
+                <div class="bento-card form-card" style="max-width:600px;margin:2rem auto 0 auto;">
+                  <h3 style="margin-bottom:0.5rem;">Suggest a Resource</h3>
+                  <p class="section-description" style="margin-bottom:1.5rem;">Request or suggest a resource you'd like to see added to CTRL. We review all submissions and add the best ones to our hub!</p>
+                  <form action="https://usebasin.com/f/85f14c1689bd" method="POST" style="display:flex;flex-direction:column;gap:1rem;">
+                    <div class="form-group full-width">
+                      <label for="resource-suggestion">What resource do you want to see? <span style="color:var(--accent-color);">*</span></label>
+                      <textarea id="resource-suggestion" name="resource-suggestion" required placeholder="Describe the resource, tool, or topic you want CTRL to add. Include links if possible."></textarea>
+                    </div>
+                    <button type="submit" class="submit-button" style="align-self:flex-start;">Submit Suggestion</button>
+                  </form>
+                </div>
+              </div>
+            </section>
+            <!-- End Resource Suggestion Form Section -->
+          </main>
+        </div>
+      </div>
+      <!-- Browse Tab (formerly Spotlight) -->
+      <div class="tab-content" id="browse-tab">
+        <div class="tab-content-inner" style="height:100%;width:100%;overflow:auto;display:block;">
+          <!-- Top Row: Search + Testimony/Feedback -->
+          <div class="browse-top-row">
+            <div class="search-container">
+              <div class="search-bar">
+                <input type="text" id="browse-search" placeholder="Search projects or resources by name..." />
+                <button class="search-button"><span class="button-icon">🔍</span></button>
+              </div>
+            </div>
+            <div id="browse-results" style="max-width:900px;margin:0 auto 2rem auto;"></div>
+            <div id="browse-testimony-box">
+              <h3 style="margin-bottom:0.5rem;color:#315F90;font-size:1.15rem;font-weight:700;">Submit a testimony or share feedback/suggestions for website features</h3>
+              <form id="browse-testimony-form" class="chatbox-form" action="https://usebasin.com/f/099b28b0d112" method="POST" style="display:flex;align-items:flex-end;gap:0.5rem;">
+                <textarea id="browse-testimony-entry" name="testimonial-entry" required placeholder="Type your message..." style="flex:1;resize:none;border-radius:24px 24px 24px 24px;padding:0.75rem 1.25rem;font-size:1rem;min-height:44px;max-height:90px;border:1.5px solid #bcdcff;outline:none;box-shadow:none;"></textarea>
+                <button type="submit" class="chatbox-send-btn" style="background:#79b7ff;border:none;border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s;"><span style="font-size:1.5rem;color:white;transform:rotate(-45deg);display:inline-block;">&#8593;</span></button>
+              </form>
+              <div id="browse-testimony-success" style="display:none;padding:1rem 0 0 0;color:#00c853;font-weight:600;">Thank you for your feedback!</div>
+            </div>
+          </div>
+          <!-- Browse Results directly below search/testimony row -->
+          <div id="browse-results" style="max-width:900px;margin:0 auto 2rem auto;"></div>
+          <!-- Impact Form below results -->
+          <div class="bento-card form-card" style="max-width:600px;margin:0 auto 2rem auto;">
+            <div class="section-header">
+              <div class="section-tag">CTRL Impact</div>
+              <h2>Share How CTRL Helped Your Business or Startup</h2>
+              <p class="section-description">If your business, startup, or project has benefited from CTRL resources, toolkits, or support, share your story here! This helps us highlight real-world impact and inspire others.</p>
+            </div>
+            <form id="impact-form" action="https://usebasin.com/f/264e81003939" method="POST" style="display:flex;flex-direction:column;gap:1.25rem;">
+              <div class="form-group">
+                <label for="work-title" class="required-field">Title of Your Work</label>
+                <input type="text" id="work-title" name="work-title" required placeholder="e.g. My Startup Name" />
+              </div>
+              <div class="form-group">
+                <label for="work-category" class="required-field">Category</label>
+                <select id="work-category" name="work-category" required>
+                  <option value="">Select category...</option>
+                  <option value="Technology">Technology</option>
+                  <option value="Education">Education</option>
+                  <option value="Health">Health</option>
+                  <option value="Environment">Environment</option>
+                  <option value="Social Impact">Social Impact</option>
+                  <option value="Art / Design">Art / Design</option>
+                  <option value="Food / Culture">Food / Culture</option>
+                  <option value="Wellness / Beauty">Wellness / Beauty</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="work-type" class="required-field">Type</label>
+                <select id="work-type" name="work-type" required>
+                  <option value="">Select type...</option>
+                  <option value="Startup">Startup</option>
+                  <option value="Non-Profit">Non-Profit</option>
+                  <option value="Business">Business</option>
+                  <option value="Community">Community Initiative</option>
+                  <option value="Freelance">Freelance</option>
+                  <option value="Side Hustle">Side Hustle</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="work-description" class="required-field">Description <span style="font-weight:400;font-size:0.95em;">(max 100 words)</span></label>
+                <textarea id="work-description" name="work-description" required maxlength="800" placeholder="Describe your work and how CTRL helped you (max 100 words)..." style="min-height:80px;max-height:180px;"></textarea>
+                <div id="desc-word-count" style="font-size:0.92em;color:#888;margin-top:0.2em;">0/100 words</div>
+              </div>
+              <button type="submit" class="submit-button" style="align-self:flex-start;">Submit Impact <span class="button-icon">→</span></button>
+            </form>
+            <script>
+              document.addEventListener('DOMContentLoaded', function() {
+                var desc = document.getElementById('work-description');
+                var counter = document.getElementById('desc-word-count');
+                desc.addEventListener('input', function() {
+                  var words = desc.value.trim().split(/\s+/).filter(Boolean);
+                  counter.textContent = words.length + '/100 words';
+                  if (words.length > 100) {
+                    counter.style.color = '#ff4c61';
+                  } else {
+                    counter.style.color = '#888';
+                  }
+                  if (words.length > 100) {
+                    desc.value = words.slice(0, 100).join(' ');
+                  }
+                });
+              });
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dashboard-tabs">
+      <button data-tab="ctrl-tab" class="tab-btn active">CTRL</button>
+      <button data-tab="ctrl-cohort-tab" class="tab-btn">CTRL Cohort</button>
+      <button data-tab="launch-tab" class="tab-btn">Launch</button>
+      <button data-tab="thrive-tab" class="tab-btn">Thrive</button>
+      <button data-tab="resources-tab" class="tab-btn">Resources</button>
+      <button data-tab="browse-tab" class="tab-btn">Share</button>
+    </div>
+  </div>
+  <script>
+    // Dashboard Modal Tab Logic
+    document.addEventListener('DOMContentLoaded', function() {
+      const tabBtns = document.querySelectorAll('.dashboard-modal .tab-btn');
+      const tabContents = document.querySelectorAll('.dashboard-modal .tab-content');
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          tabBtns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          tabContents.forEach(tc => tc.classList.remove('active'));
+          document.getElementById(this.dataset.tab).classList.add('active');
+        });
+      });
+      document.getElementById('closeDashboardModal').onclick = function() {
+        document.getElementById('dashboardModal').style.display = 'none';
+      };
+    });
+
+    // Render project tiles in CTRL tab
+    document.addEventListener('DOMContentLoaded', function() {
+      fetch('projects.json')
+        .then(res => res.json())
+        .then(projects => {
+          const grid = document.querySelector('.ctrl-projects-grid');
+          const template = document.getElementById('project-card-template');
+          if (!grid || !template) return;
+          grid.innerHTML = '';
+          // Add Hearts of Tomorrow placeholder first
+          const hotCard = template.content.cloneNode(true).querySelector('.project-card');
+          hotCard.querySelector('.project-title').textContent = 'Hearts of Tomorrow';
+          let subtitle = hotCard.querySelector('.project-type-subtitle');
+          if (!subtitle) {
+            subtitle = document.createElement('div');
+            subtitle.className = 'project-type-subtitle';
+            hotCard.querySelector('.project-title').after(subtitle);
+          }
+          subtitle.textContent = '';
+          const tags = hotCard.querySelector('.project-tags');
+          tags.innerHTML = '';
+          hotCard.querySelector('.project-description').textContent = '';
+          hotCard.classList.add('hearts-of-tomorrow');
+          hotCard.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const modal = document.querySelector('.dashboard-modal');
+            const overlayParent = modal || document.body;
+            overlayParent.querySelectorAll('.popup-overlay').forEach(el => el.remove());
+            const popupOverlay = document.createElement('div');
+            popupOverlay.className = 'popup-overlay';
+            const popupBox = document.createElement('div');
+            popupBox.style.background = '#fff';
+            popupBox.style.borderRadius = '18px';
+            popupBox.style.boxShadow = '0 4px 32px rgba(121,183,255,0.18)';
+            popupBox.style.padding = '2rem 2.5rem';
+            popupBox.style.maxWidth = '420px';
+            popupBox.style.width = '90vw';
+            popupBox.style.textAlign = 'center';
+            popupBox.style.position = 'relative';
+            // Close button
+            const closeBtn = document.createElement('button');
+            closeBtn.textContent = '×';
+            closeBtn.style.position = 'absolute';
+            closeBtn.style.top = '1rem';
+            closeBtn.style.right = '1.25rem';
+            closeBtn.style.background = 'none';
+            closeBtn.style.border = 'none';
+            closeBtn.style.fontSize = '2rem';
+            closeBtn.style.cursor = 'pointer';
+            closeBtn.setAttribute('aria-label', 'Close');
+            closeBtn.onclick = function() { popupOverlay.remove(); };
+            // Title
+            const title = document.createElement('h2');
+            title.textContent = 'Hearts of Tomorrow';
+            title.style.fontWeight = '700';
+            title.style.fontSize = '1.35rem';
+            title.style.marginBottom = '1.25rem';
+            title.style.marginTop = '0.25rem';
+            // Tags (type and category)
+            const tagsBox = document.createElement('div');
+            tagsBox.style.display = 'flex';
+            tagsBox.style.justifyContent = 'center';
+            tagsBox.style.gap = '0.5rem';
+            tagsBox.style.marginBottom = '1rem';
+            tagsBox.innerHTML = `<span class="tag tag-type">Non-Profit</span><span class="tag tag-category">Health</span>`;
+            // Description box
+            const descBox = document.createElement('div');
+            descBox.style.background = '#f3f8ff';
+            descBox.style.borderRadius = '12px';
+            descBox.style.padding = '1.25rem 1rem';
+            descBox.style.margin = '0 auto';
+            descBox.style.fontSize = '1rem';
+            descBox.style.color = '#315F90';
+            descBox.style.lineHeight = '1.6';
+            descBox.style.boxShadow = '0 2px 8px rgba(121,183,255,0.08)';
+            descBox.textContent = 'Striving to prevent CVD & accommodate those afflicted with practical, affordable technologies and approaches. We offer tools, projects, and programs to aid those in need. Chapter applications on the way & we are currently recruiting team members, view on IG if interested!';
+            // Add elements
+            popupBox.appendChild(closeBtn);
+            popupBox.appendChild(title);
+            popupBox.appendChild(tagsBox);
+            popupBox.appendChild(descBox);
+            popupOverlay.appendChild(popupBox);
+            overlayParent.appendChild(popupOverlay);
+            popupOverlay.onclick = function(ev) { if (ev.target === popupOverlay) popupOverlay.remove(); };
+          });
+          grid.appendChild(hotCard);
+          // Render the rest of the projects
+          projects.forEach(project => {
+            const card = template.content.cloneNode(true).querySelector('.project-card');
+            card.querySelector('.project-title').textContent = project.title;
+            // Remove subtitle and tags from tile
+            let subtitle = card.querySelector('.project-type-subtitle');
+            if (subtitle) subtitle.textContent = '';
+            const tags = card.querySelector('.project-tags');
+            tags.innerHTML = '';
+            // Remove description from tile
+            card.querySelector('.project-description').textContent = '';
+            // Minimal popup for all projects
+            card.addEventListener('click', function(e) {
+              e.stopPropagation();
+              const modal = document.querySelector('.dashboard-modal');
+              const overlayParent = modal || document.body;
+              overlayParent.querySelectorAll('.popup-overlay').forEach(el => el.remove());
+              const popupOverlay = document.createElement('div');
+              popupOverlay.className = 'popup-overlay';
+              const popupBox = document.createElement('div');
+              popupBox.style.background = '#fff';
+              popupBox.style.borderRadius = '18px';
+              popupBox.style.boxShadow = '0 4px 32px rgba(121,183,255,0.18)';
+              popupBox.style.padding = '2rem 2.5rem';
+              popupBox.style.maxWidth = '420px';
+              popupBox.style.width = '90vw';
+              popupBox.style.textAlign = 'center';
+              popupBox.style.position = 'relative';
+              // Close button
+              const closeBtn = document.createElement('button');
+              closeBtn.textContent = '×';
+              closeBtn.style.position = 'absolute';
+              closeBtn.style.top = '1rem';
+              closeBtn.style.right = '1.25rem';
+              closeBtn.style.background = 'none';
+              closeBtn.style.border = 'none';
+              closeBtn.style.fontSize = '2rem';
+              closeBtn.style.cursor = 'pointer';
+              closeBtn.setAttribute('aria-label', 'Close');
+              closeBtn.onclick = function() { popupOverlay.remove(); };
+              // Title
+              const title = document.createElement('h2');
+              title.textContent = project.title;
+              title.style.fontWeight = '700';
+              title.style.fontSize = '1.35rem';
+              title.style.marginBottom = '1.25rem';
+              title.style.marginTop = '0.25rem';
+              // Tags (type and category)
+              const tagsBox = document.createElement('div');
+              tagsBox.style.display = 'flex';
+              tagsBox.style.justifyContent = 'center';
+              tagsBox.style.gap = '0.5rem';
+              tagsBox.style.marginBottom = '1rem';
+              let tagsHTML = '';
+              if (project.type) tagsHTML += `<span class=\"tag tag-type\">${project.type}</span>`;
+              if (project.category) tagsHTML += `<span class=\"tag tag-category\">${project.category}</span>`;
+              tagsBox.innerHTML = tagsHTML;
+              // Description box
+              const descBox = document.createElement('div');
+              descBox.style.background = '#f3f8ff';
+              descBox.style.borderRadius = '12px';
+              descBox.style.padding = '1.25rem 1rem';
+              descBox.style.margin = '0 auto';
+              descBox.style.fontSize = '1rem';
+              descBox.style.color = '#315F90';
+              descBox.style.lineHeight = '1.6';
+              descBox.style.boxShadow = '0 2px 8px rgba(121,183,255,0.08)';
+              descBox.textContent = project.description || project.customPopupDescription || '';
+              // Add elements
+              popupBox.appendChild(closeBtn);
+              popupBox.appendChild(title);
+              popupBox.appendChild(tagsBox);
+              popupBox.appendChild(descBox);
+              popupOverlay.appendChild(popupBox);
+              overlayParent.appendChild(popupOverlay);
+              popupOverlay.onclick = function(ev) { if (ev.target === popupOverlay) popupOverlay.remove(); };
+            });
+            grid.appendChild(card);
+          });
+        });
+    });
+
+    // Resource popup logic for dashboard modal
+    document.addEventListener('DOMContentLoaded', function() {
+      const modal = document.querySelector('.dashboard-modal');
+      // Delegate click for resource cards in resources tab
+      modal.addEventListener('click', function(e) {
+        const card = e.target.closest('.resource-card');
+        if (card && modal.contains(card)) {
+          e.preventDefault();
+          // Get resource data from card
+          const title = card.querySelector('.resource-title').textContent;
+          const description = card.querySelector('.resource-description').textContent;
+          const icon = card.querySelector('.resource-icon').innerHTML;
+          const tags = Array.from(card.querySelectorAll('.resource-tag')).map(tag => tag.textContent);
+          const linkElem = card.querySelector('.resource-link');
+          const link = linkElem ? linkElem.getAttribute('href') : '#';
+          // Remove any existing resource popups in modal
+          modal.querySelectorAll('.resource-popup-overlay').forEach(el => el.remove());
+          // Clone template
+          const template = document.getElementById('resource-popup-template');
+          const popup = template.content.cloneNode(true);
+          popup.querySelector('.resource-icon-popup').innerHTML = icon;
+          popup.querySelector('.resource-title-popup').textContent = title;
+          popup.querySelector('.resource-description-popup').textContent = description;
+          const tagsContainer = popup.querySelector('.resource-tags-popup');
+          tagsContainer.innerHTML = '';
+          tags.forEach(tag => {
+            const span = document.createElement('span');
+            span.className = 'resource-tag';
+            span.textContent = tag;
+            tagsContainer.appendChild(span);
+          });
+          const linkBtn = popup.querySelector('.resource-link-popup');
+          linkBtn.href = link;
+          linkBtn.onclick = function(ev) { ev.stopPropagation(); };
+          // Close logic
+          popup.querySelector('.close-button').onclick = function() {
+            popup.querySelector('.popup-overlay').remove();
+            if (popup.remove) popup.remove();
+          };
+          // Also close on overlay click
+          popup.querySelector('.popup-overlay').onclick = function(ev) {
+            if (ev.target === this) this.remove();
+          };
+          // Append to modal
+          modal.appendChild(popup);
+        }
+      });
+      // Prevent default navigation for resource links in grid
+      modal.addEventListener('click', function(e) {
+        const link = e.target.closest('.resource-link');
+        if (link && modal.contains(link)) {
+          e.preventDefault();
+        }
+      });
+    });
+
+    // Browse tab unified search logic
+    document.addEventListener('DOMContentLoaded', function() {
+      const browseInput = document.getElementById('browse-search');
+      const browseResults = document.getElementById('browse-results');
+      let allProjects = [];
+      let allResources = [];
+      // Fetch both datasets
+      fetch('projects.json').then(res => res.json()).then(data => { allProjects = data; });
+      fetch('resources.json').then(res => res.json()).then(data => { allResources = data; });
+      function renderBrowseResults(query) {
+        browseResults.innerHTML = '';
+        if (!query) return;
+        const q = query.toLowerCase();
+        // Filter projects
+        const matchingProjects = allProjects.filter(p =>
+          (p.title && p.title.toLowerCase().includes(q)) ||
+          (p.description && p.description.toLowerCase().includes(q))
+        );
+        // Filter resources
+        const matchingResources = allResources.filter(r =>
+          (r.title && r.title.toLowerCase().includes(q)) ||
+          (r.description && r.description.toLowerCase().includes(q))
+        );
+        // Render projects
+        if (matchingProjects.length) {
+          const projHeader = document.createElement('h3');
+          projHeader.textContent = 'Projects';
+          projHeader.style.margin = '2rem 0 1rem 0';
+          browseResults.appendChild(projHeader);
+          matchingProjects.forEach(project => {
+            // Use the same card as in CTRL tab
+            const template = document.getElementById('project-card-template');
+            const card = template.content.cloneNode(true).querySelector('.project-card');
+            card.querySelector('.project-title').textContent = project.title;
+            let subtitle = card.querySelector('.project-type-subtitle');
+            if (!subtitle) {
+              subtitle = document.createElement('div');
+              subtitle.className = 'project-type-subtitle';
+              card.querySelector('.project-title').after(subtitle);
+            }
+            subtitle.textContent = project.subtitle || project.type || '';
+            const tags = card.querySelector('.project-tags');
+            tags.innerHTML = '';
+            if (project.type) tags.innerHTML += `<span class=\"tag tag-type\">${project.type}</span>`;
+            if (project.category) tags.innerHTML += `<span class=\"tag tag-category\">${project.category}</span>`;
+            card.querySelector('.project-description').textContent = project.description || '';
+            card.dataset.leadName = project.leadName || '';
+            card.dataset.leadRole = project.leadRole || '';
+            card.dataset.leadEmail = project.leadEmail || '';
+            card.dataset.leadPhone = project.leadPhone || '';
+            card.dataset.preferredContact = project.preferredContact || '';
+            card.dataset.title = project.title || '';
+            card.dataset.type = project.type || '';
+            card.dataset.category = project.category || '';
+            card.dataset.stage = project.stage || '';
+            card.dataset.team = project.team || '';
+            card.dataset.modality = project.modality || '';
+            card.dataset.marketReach = project.marketReach || '';
+            card.dataset.duration = project.duration || '';
+            card.dataset.status = project.status ? project.status.join(',') : '';
+            card.dataset.description = project.description || '';
+            card.dataset.ctrlPick = project.ctrlPick ? 'true' : '';
+            card.dataset.website = project.website || '';
+            card.dataset.activityLog = project.activityLog ? JSON.stringify(project.activityLog) : '';
+            card.dataset.isService = project.isService ? 'true' : '';
+            card.dataset.services = project.services ? JSON.stringify(project.services) : '';
+            card.dataset.serviceDetails = project.serviceDetails || '';
+            card.dataset.serviceNote = project.serviceNote || '';
+            card.dataset.isEvent = project.isEvent ? 'true' : '';
+            card.dataset.eventDetails = project.eventDetails ? JSON.stringify(project.eventDetails) : '';
+            card.dataset.link = project.link || '';
+            card.addEventListener('click', function(e) {
+              e.stopPropagation();
+              const modal = document.querySelector('.dashboard-modal');
+              const overlayParent = modal || document.body;
+              overlayParent.querySelectorAll('.popup-overlay').forEach(el => el.remove());
+              const popupOverlay = document.createElement('div');
+              popupOverlay.className = 'popup-overlay';
+              const popupBox = document.createElement('div');
+              popupBox.style.background = '#fff';
+              popupBox.style.borderRadius = '18px';
+              popupBox.style.boxShadow = '0 4px 32px rgba(121,183,255,0.18)';
+              popupBox.style.padding = '2rem 2.5rem';
+              popupBox.style.maxWidth = '420px';
+              popupBox.style.width = '90vw';
+              popupBox.style.textAlign = 'center';
+              popupBox.style.position = 'relative';
+              // Close button
+              const closeBtn = document.createElement('button');
+              closeBtn.textContent = '×';
+              closeBtn.style.position = 'absolute';
+              closeBtn.style.top = '1rem';
+              closeBtn.style.right = '1.25rem';
+              closeBtn.style.background = 'none';
+              closeBtn.style.border = 'none';
+              closeBtn.style.fontSize = '2rem';
+              closeBtn.style.cursor = 'pointer';
+              closeBtn.setAttribute('aria-label', 'Close');
+              closeBtn.onclick = function() { popupOverlay.remove(); };
+              // Title
+              const title = document.createElement('h2');
+              title.textContent = project.title;
+              title.style.fontWeight = '700';
+              title.style.fontSize = '1.35rem';
+              title.style.marginBottom = '1.25rem';
+              title.style.marginTop = '0.25rem';
+              // Tags (type and category)
+              const tagsBox = document.createElement('div');
+              tagsBox.style.display = 'flex';
+              tagsBox.style.justifyContent = 'center';
+              tagsBox.style.gap = '0.5rem';
+              tagsBox.style.marginBottom = '1rem';
+              let tagsHTML = '';
+              if (project.type) tagsHTML += `<span class=\"tag tag-type\">${project.type}</span>`;
+              if (project.category) tagsHTML += `<span class=\"tag tag-category\">${project.category}</span>`;
+              tagsBox.innerHTML = tagsHTML;
+              // Description box
+              const descBox = document.createElement('div');
+              descBox.style.background = '#f3f8ff';
+              descBox.style.borderRadius = '12px';
+              descBox.style.padding = '1.25rem 1rem';
+              descBox.style.margin = '0 auto';
+              descBox.style.fontSize = '1rem';
+              descBox.style.color = '#315F90';
+              descBox.style.lineHeight = '1.6';
+              descBox.style.boxShadow = '0 2px 8px rgba(121,183,255,0.08)';
+              descBox.textContent = project.description || project.customPopupDescription || '';
+              // Add elements
+              popupBox.appendChild(closeBtn);
+              popupBox.appendChild(title);
+              popupBox.appendChild(tagsBox);
+              popupBox.appendChild(descBox);
+              popupOverlay.appendChild(popupBox);
+              overlayParent.appendChild(popupOverlay);
+              popupOverlay.onclick = function(ev) { if (ev.target === popupOverlay) popupOverlay.remove(); };
+            });
+            browseResults.appendChild(card);
+          });
+        }
+        // Render resources
+        if (matchingResources.length) {
+          const resHeader = document.createElement('h3');
+          resHeader.textContent = 'Resources';
+          resHeader.style.margin = '2rem 0 1rem 0';
+          browseResults.appendChild(resHeader);
+          matchingResources.forEach(resource => {
+            // Use the same card as in resources tab
+            const card = document.createElement('div');
+            card.className = 'resource-card';
+            card.innerHTML = `
+              <div class="resource-header">
+                <div class="resource-icon">${resource.icon}</div>
+                <div class="resource-meta">
+                  <div class="resource-category">&nbsp;</div>
+                  <div class="resource-price ${resource.price > 0 ? 'price-paid' : 'price-free'}">${resource.price > 0 ? '$'+resource.price : 'Free'}</div>
+                </div>
+              </div>
+              <div class="resource-content">
+                <h3 class="resource-title">${resource.title}</h3>
+                <p class="resource-description">${resource.description}</p>
+                <div class="resource-tags">
+                  ${(resource.tags||[]).map(tag => `<span class='resource-tag'>${tag}</span>`).join('')}
+                </div>
+              </div>
+              <div class="resource-footer">
+                <a href="${resource.viewResourceLink || resource.link}" class="resource-link" target="_blank" rel="noopener noreferrer">View Resource <span class="link-icon">→</span></a>
+              </div>
+            `;
+            card.addEventListener('click', function(e) {
+              e.preventDefault();
+              // Open resource popup in modal
+              const modal = document.querySelector('.dashboard-modal');
+              modal.querySelectorAll('.resource-popup-overlay').forEach(el => el.remove());
+              const template = document.getElementById('resource-popup-template');
+              const popup = template.content.cloneNode(true);
+              popup.querySelector('.resource-icon-popup').innerHTML = resource.icon;
+              popup.querySelector('.resource-title-popup').textContent = resource.title;
+              popup.querySelector('.resource-description-popup').textContent = resource.description;
+              const tagsContainer = popup.querySelector('.resource-tags-popup');
+              tagsContainer.innerHTML = '';
+              (resource.tags||[]).forEach(tag => {
+                const span = document.createElement('span');
+                span.className = 'resource-tag';
+                span.textContent = tag;
+                tagsContainer.appendChild(span);
+              });
+              const linkBtn = popup.querySelector('.resource-link-popup');
+              linkBtn.href = resource.viewResourceLink || resource.link;
+              linkBtn.onclick = function(ev) { ev.stopPropagation(); };
+              popup.querySelector('.close-button').onclick = function() {
+                popup.querySelector('.popup-overlay').remove();
+                if (popup.remove) popup.remove();
+              };
+              popup.querySelector('.popup-overlay').onclick = function(ev) {
+                if (ev.target === this) this.remove();
+              };
+              modal.appendChild(popup);
+            });
+            browseResults.appendChild(card);
+          });
+        }
+        if (!matchingProjects.length && !matchingResources.length) {
+          const none = document.createElement('div');
+          none.textContent = 'No results found.';
+          none.style.color = '#888';
+          none.style.margin = '2rem 0';
+          browseResults.appendChild(none);
+        }
+      }
+      browseInput.addEventListener('input', function() {
+        renderBrowseResults(this.value);
+      });
+      // Also search on search button click
+      browseInput.parentElement.querySelector('.search-button').addEventListener('click', function() {
+        renderBrowseResults(browseInput.value);
+      });
+    });
+  </script>
+  <style>
+    .dashboard-modal {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: #f8fafd;
+      border-radius: 32px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.16);
+      width: 90vw;
+      height: 90vh;
+      max-width: 1200px;
+      max-height: 900px;
+      padding: 2rem 2rem 0 2rem;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      overflow: hidden;
+    }
+    .close-btn {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      background: none; border: none;
+      font-size: 2.5rem; cursor: pointer;
+    }
+    .dashboard-content {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-y: auto;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .dashboard-tabs {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-top: 0;
+      border-top: 1px solid #e3eaf5;
+      padding: 0.5rem 0 0.5rem 0;
+      background: #f8fafd;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 0 0 32px 32px;
+      z-index: 2;
+    }
+    .tab-btn {
+      flex: 1;
+      background: none;
+      border: none;
+      padding: 1.25rem 0 1rem 0;
+      font-size: 1.25rem;
+      cursor: pointer;
+      border-radius: 14px 14px 0 0;
+      transition: background 0.2s;
+    }
+    .tab-btn.active {
+      background: #fff;
+      font-weight: bold;
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.06);
+    }
+    .tab-content {
+      display: none;
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    .tab-content.active {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    .tab-content-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (max-width: 900px) {
+      .dashboard-modal {
+        width: 98vw;
+        height: 98vh;
+        max-width: 98vw;
+        max-height: 98vh;
+        padding: 1rem 0.2rem 0 0.2rem;
+      }
+      .dashboard-tabs .tab-btn {
+        font-size: 1rem;
+        padding: 0.8rem 0.2rem;
+      }
+    }
+  </style>
   <header class="main-header">
     <div class="header-container">
       <a href="index.html" class="logo">CTRL Initiative</a>
-      <nav class="main-nav">
-        <a href="index.html" class="active">Dashboard</a>
-        <a href="projects.html">CTRL Spotlight</a>
-        <div class="dropdown">
-          <a href="resources.html" class="dropdown-trigger">Resources ▾</a>
-          <div class="dropdown-content">
-            <a href="https://stembystep.github.io/sbs/" target="_blank">STEM by Step</a>
-          </div>
-        </div>
-        <a href="https://www.instagram.com/projectctrl.co/" target="_blank" class="social-nav-link">
-          <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
-            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
-            <circle cx="17" cy="7" r="1" fill="currentColor"/>
-          </svg>
-        </a>
-      </nav>
     </div>
   </header>
-
-  <main class="dashboard-container">
-    <section class="hero-section">
-      <div class="content-wrapper">
-        <h1>Digitize and scale your<br>small business with confidence</h1>
-        <p class="hero-subtitle">A proven formula to help local businesses, startups, and community initiatives thrive in the digital age. Transform guesswork into guided success.</p>
-        
-        <div class="impact-metrics">
-          <div class="metric-card">
-            <div class="metric-icon">👥</div>
-            <div class="metric-value" data-target="40">0</div>
-            <div class="metric-label">Local Businesses Growing</div>
-          </div>
-          <div class="metric-card">
-            <div class="metric-icon">📑</div>
-            <div class="metric-value" data-target="0">0</div>
-            <div class="metric-label">Free Business Tools</div>
-          </div>
-        </div>
-
-        <div class="cta-buttons">
-          <a href="projects.html" class="primary-button">
-            Explore Project Hub
-            <span class="button-icon">→</span>
-          </a>
-          <a href="submit-project.html" class="secondary-button">
-            Submit Project
-            <span class="button-icon">+</span>
-          </a>
+  <script src="js/projects.js"></script>
+  <script src="js/resources.js"></script>
+  <!-- Project Card Template for CTRL Tab (restored) -->
+  <template id="project-card-template">
+    <div class="project-card" loading="lazy">
+      <!-- CTRL Picks badge will be injected if needed -->
+      <div class="project-header">
+        <h3 class="project-title"></h3>
+        <div class="project-tags">
+          <span class="tag tag-type"></span>
+          <span class="tag tag-category"></span>
+          <span class="tag tag-stage"></span>
+          <span class="tag tag-team"></span>
         </div>
       </div>
-    </section>
-
-    <section class="dashboard-grid">
-      <div class="content-wrapper">
-        <div class="bento-grid">
-          <!-- Resources Card -->
-          <div class="bento-card resources-card">
-            <h3>Essential Resources</h3>
-            <div class="resources-grid">
-              <div class="resource-item">
-                <span class="resource-icon">📋</span>
-                <div class="resource-content">
-                  <h4>Project Roadmaps</h4>
-                  <p>Step-by-step guides for your journey</p>
-                </div>
-              </div>
-              <div class="resource-item">
-                <span class="resource-icon">📑</span>
-                <div class="resource-content">
-                  <h4>Templates</h4>
-                  <p>Ready-to-use planning tools</p>
-                </div>
-              </div>
-              <div class="resource-item">
-                <span class="resource-icon">👤</span>
-                <div class="resource-content">
-                  <h4>Mentorship</h4>
-                  <p>Connect with experienced guides</p>
-                </div>
-              </div>
-              <a href="https://ko-fi.com/projectctrl" target="_blank" class="resource-item shop-item" style="text-decoration: none; color: inherit;">
-                <span class="resource-icon">✨</span>
-                <div class="resource-content">
-                  <h4>CTRL Boosted</h4>
-                  <p>Custom toolkits & 1:1 support</p>
-                </div>
-              </a>
-            </div>
+      <p class="project-description"></p>
+      <div class="project-notes notes-disclaimer" style="display:none;"></div>
+    </div>
+  </template>
+  <!-- Project Popup Template for CTRL Tab (restored) -->
+  <template id="project-popup-template">
+    <div class="popup-overlay">
+      <div class="project-popup">
+        <button class="close-button">×</button>
+        <div class="project-popup-header">
+          <h2>Project Title Goes Here</h2>
+          <div class="project-tags">
+            <span class="tag tag-type">Business</span>
+            <span class="tag tag-category">Technology</span>
+            <span class="tag tag-modality">Website</span>
           </div>
-
-          <!-- Community Highlights -->
-          <div class="bento-card community-card">
-            <h3>Featured Projects</h3>
-            <div class="featured-projects">
-              <div class="featured-project active" data-project-id="1">
-                <div class="project-header">
-                  <h4>STEM by Step</h4>
-                  <div class="project-tags">
-                    <span class="tag tag-type">Non-Profit</span>
-                    <span class="tag tag-category">Education</span>
+        </div>
+        <div class="team-visualization">
+          <div class="team-members" style="margin-bottom:0.5rem;">
+            <div class="team-member" style="font-size:0.92rem;">
+              <div class="member-avatar">
+                <span class="member-icon">👤</span>
+              </div>
+              <h4 class="member-name" style="font-size:1rem;font-weight:500;margin-bottom:0.1rem;">Project Lead Name</h4>
+              <p class="member-role" style="font-size:0.92rem;color:#888;margin-bottom:0.2rem;">Project Role</p>
+              <div class="team-info">
+                <div class="contact-details" style="font-size:0.9rem;color:#888;">
+                  <div class="contact-method">
+                    <span class="contact-icon">📧</span>
+                    <span class="contact-value">email@example.com</span>
+                  </div>
+                  <div class="contact-method">
+                    <span class="contact-icon">📱</span>
+                    <span class="contact-value">Phone number</span>
                   </div>
                 </div>
-                <p class="project-description">A free STEM education platform providing hands-on learning experiences for underserved communities.</p>
-              </div>
-              <div class="featured-project" data-project-id="2">
-                <div class="project-header">
-                  <h4>Hearts of Tomorrow</h4>
-                  <div class="project-tags">
-                    <span class="tag tag-type">Non-Profit</span>
-                    <span class="tag tag-category">Social Impact</span>
-                  </div>
-                </div>
-                <p class="project-description">Empowering youth through mentorship and leadership development opportunities.</p>
-              </div>
-              <div class="featured-project" data-project-id="3">
-                <div class="project-header">
-                  <h4>Local Business Directory</h4>
-                  <div class="project-tags">
-                    <span class="tag tag-type">Business</span>
-                    <span class="tag tag-category">Technology</span>
-                  </div>
-                </div>
-                <p class="project-description">A digital platform connecting local businesses with their community.</p>
               </div>
             </div>
           </div>
-
-          <!-- Featured Categories -->
-          <div class="bento-card categories-card">
-            <h3>Who We Help</h3>
-            <div class="categories-grid">
-              <div class="category-item">
-                <span class="category-icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="3" width="18" height="18" rx="2" stroke="#79b7ff" stroke-width="2"/>
-                    <line x1="8" y1="12" x2="16" y2="12" stroke="#79b7ff" stroke-width="2"/>
-                    <line x1="12" y1="8" x2="12" y2="16" stroke="#79b7ff" stroke-width="2"/>
-                  </svg>
-                </span>
-                <span class="category-name">Digital Startups</span>
-                <span class="category-desc">Tech platforms & apps</span>
-              </div>
-              <div class="category-item">
-                <span class="category-icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="9" stroke="#79b7ff" stroke-width="2"/>
-                    <path d="M12 7v10M7 12h10" stroke="#79b7ff" stroke-width="2"/>
-                  </svg>
-                </span>
-                <span class="category-name">Local Businesses</span>
-                <span class="category-desc">Shops & services</span>
-              </div>
-              <div class="category-item">
-                <span class="category-icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <polygon points="12,2 22,18 2,18" stroke="#79b7ff" stroke-width="2" fill="none"/>
-                  </svg>
-                </span>
-                <span class="category-name">Social Impact</span>
-                <span class="category-desc">Non-profits & causes</span>
-              </div>
-              <div class="category-item">
-                <span class="category-icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="4" y="4" width="7" height="7" stroke="#79b7ff" stroke-width="2"/>
-                    <rect x="13" y="4" width="7" height="7" stroke="#79b7ff" stroke-width="2"/>
-                    <rect x="4" y="13" width="7" height="7" stroke="#79b7ff" stroke-width="2"/>
-                    <rect x="13" y="13" width="7" height="7" stroke="#79b7ff" stroke-width="2"/>
-                  </svg>
-                </span>
-                <span class="category-name">Creative Projects</span>
-                <span class="category-desc">Artists & makers</span>
-              </div>
-              <div class="category-item">
-                <span class="category-icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 3L3 9l9 6l9-6l-9-6z" stroke="#79b7ff" stroke-width="2" fill="none"/>
-                    <path d="M3 14l9 6l9-6" stroke="#79b7ff" stroke-width="2"/>
-                  </svg>
-                </span>
-                <span class="category-name">Side Hustles</span>
-                <span class="category-desc">Part-time ventures</span>
-              </div>
-              <div class="category-item">
-                <span class="category-icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M5 5h14v14H5z" stroke="#79b7ff" stroke-width="2"/>
-                    <path d="M12 5v14M5 12h14" stroke="#79b7ff" stroke-width="2"/>
-                  </svg>
-                </span>
-                <span class="category-name">Community Initiatives</span>
-                <span class="category-desc">Local impact projects</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Success Stories -->
-          <div class="bento-card stories-card">
-            <h3>Share Your Testimonials</h3>
-            <div class="contact-info">
-              <div class="contact-item">
-                <span class="contact-icon">📧</span>
-                <div class="contact-content">
-                  <h4>Email</h4>
-                  <a href="mailto:contact.projectctrl@gmail.com">contact.projectctrl@gmail.com</a>
-                </div>
-              </div>
-              <div class="contact-item">
-                <span class="contact-icon">📱</span>
-                <div class="contact-content">
-                  <h4>Instagram</h4>
-                  <a href="https://instagram.com/projectctrl.co" target="_blank">@projectctrl.co</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Get Started Card -->
-          <div class="bento-card get-started-card">
-            <h3>Ready to Start?</h3>
-            <div class="steps-list">
-              <div class="step-item">
-                <span class="step-number">1</span>
-                <p>Get ideas by browsing Project Hub</p>
-              </div>
-              <div class="step-item">
-                <span class="step-number">2</span>
-                <p>Browse templates and roadmaps</p>
-              </div>
-              <a href="resources.html#ctrl-formula" class="step-item highlight-step">
-                <span class="step-number">3</span>
-                <p>Follow the 3 CTRL pillar formula for business & project development</p>
-              </a>
-              <div class="step-item">
-                <span class="step-number">4</span>
-                <p>Connect with other innovators and share your project</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- How It Works Card -->
-          <div class="bento-card how-it-works-card">
-            <h3>How It Works</h3>
-            <div class="tiers-container">
-              <div class="tier-section free-tier">
-                <div class="tier-header">
-                  <h4>Free Experience</h4>
-                  <span class="tier-badge">Available Now</span>
-                </div>
-                <ul class="tier-features">
-                  <li>
-                    <span class="feature-icon">📌</span>
-                    Permanent project listing on the CTRL Hub
-                  </li>
-                  <li>
-                    <span class="feature-icon">📱</span>
-                    Interactive project tile with tags, filters, contact info, and update popups
-                  </li>
-                  <li>
-                    <span class="feature-icon">💭</span>
-                    One social media spotlight post during early-access
-                  </li>
-                  <li>
-                    <span class="feature-icon">📚</span>
-                    Access to free resources, toolkits, and guides
-                  </li>
-                  <li>
-                    <span class="feature-icon">⭐</span>
-                    Eligibility for the CTRL Picks Badge based on merit or upgrades
-                  </li>
-                </ul>
-                <p class="tier-note">CTRL is currently in its early-access stage — your submission helps us build the future.</p>
-              </div>
-
-              <div class="tier-section spotlight-tier">
-                <div class="tier-header">
-                  <h4>CTRL Boosted Experience</h4>
-                  <span class="tier-badge coming-soon">Coming Soon</span>
-                </div>
-                <ul class="tier-features">
-                  <li>
-                    <span class="feature-icon">⭐</span>
-                    Everything you need to build, grow, and showcase your project
-                  </li>
-                  <li>
-                    <span class="feature-icon">📢</span>
-                    Up to 3 custom social media promo posts monthly
-                  </li>
-                  <li>
-                    <span class="feature-icon">🎁</span>
-                    Full Project Review & Custom Roadmap
-                  </li>
-                  <li>
-                    <span class="feature-icon">📋</span>
-                    Project Starter & Growth Tracker Kits
-                  </li>
-                  <li>
-                    <span class="feature-icon">🏆</span>
-                    MVP Builder & Event Outreach Tools
-                  </li>
-                </ul>
-                <p class="tier-note">Launching once we reach 100–500 community submissions.</p>
-                <a href="https://ko-fi.com/projectctrl" target="_blank" class="primary-button" style="margin-top: 1rem; display: inline-block;">
-                  Get CTRL Boosted
-                  <span class="button-icon">→</span>
+          <div class="activity-log" style="flex:1;min-height:120px;">
+            <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Activity Log</h3>
+            <div class="activity-list activity-log-scroll" style="min-height:80px;max-height:260px;overflow:auto;">
+              <!-- Activity items will be dynamically added here -->
+              <div class="empty-state">
+                <p>Share new updates!</p>
+                <a href="project-update.html" class="secondary-button">
+                  Add Update
+                  <span class="button-icon">+</span>
                 </a>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="about-section">
-      <div class="content-wrapper">
-        <div class="bento-grid">
-          <div class="bento-card mission-card">
-            <div class="feature-icon">📋</div>
-            <h3>Our Mission</h3>
-            <p class="mission-tagline">Regain control. Empower agency. Simplify life.</p>
-            <p class="mission-description">Built for the caretakers, the strivers, the kids without a map. Project CTRL helps you take control of your time, your ideas, and your next move.</p>
-            <div class="mission-points">
-              <div class="mission-point">
-                <span class="point-icon">📊</span>
-                <p>Through our formulaic approach, we provide structured pathways to upgrade and scale growing businesses and projects.</p>
+          <!-- Services Section (only shown for service offerings) -->
+          <div class="services-section" style="display: none; flex:1;min-height:120px;">
+            <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Services Offered</h3>
+            <div class="services-list" style="margin-bottom:1rem;">
+              <!-- Services will be dynamically added here -->
+            </div>
+            <div class="service-details" style="background: rgba(121, 183, 255, 0.05); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+              <h4 style="font-size:1rem;margin-bottom:0.5rem;">Service Details & Timelines</h4>
+              <div class="service-details-content" style="font-size:0.9rem;line-height:1.5;white-space:pre-line;max-height:200px;overflow-y:auto;">
+                <!-- Service details will be dynamically added here -->
               </div>
-              <div class="mission-point">
-                <span class="point-icon">📑</span>
-                <p>Access templates, roadmaps, and guides to bring your ideas to life.</p>
-              </div>
-              <div class="mission-point">
-                <span class="point-icon">👥</span>
-                <p>Join our growing community and get your project seen by the right people.</p>
+            </div>
+            <div class="service-note" style="font-size:0.85rem;color:#888;font-style:italic;">
+              <!-- Service note will be dynamically added here -->
+            </div>
+          </div>
+          <!-- Event Details Section (only shown for events) -->
+          <div class="event-details-section" style="display: none; flex:1;min-height:120px;">
+            <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Event Details</h3>
+            <div class="event-info" style="background: rgba(0, 200, 83, 0.05); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+              <div class="event-details-content" style="font-size:0.9rem;line-height:1.6;">
+                <!-- Event details will be dynamically added here -->
               </div>
             </div>
           </div>
-
-          <div class="bento-card founder-card">
-            <div class="feature-icon">👤</div>
-            <h3>Our Story</h3>
-            <p>Founded by Genavive Ramirez, Project CTRL emerged from a personal mission to streamline success for small businesses and innovators. After helping her mother's business and launching two successful initiatives (STEM by Step and Hearts of Tomorrow), she developed a formula to replace guesswork with guided pathways — giving entrepreneurs and creators their time back while maximizing impact.</p>
-            <div class="founder-social">
-              <a href="https://www.linkedin.com/in/genavive-r-a033b4315/" target="_blank" class="social-link">
-                <span class="social-icon">📋</span>
-                Connect on LinkedIn
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">🗒</div>
-            <h3>Clear Direction</h3>
-            <p>Step-by-step roadmaps and guidance for your unique journey.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">🌐</div>
-            <h3>Community Support</h3>
-            <p>Connect with mentors and fellow innovators who understand your path.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">📂</div>
-            <h3>Growth Tools</h3>
-            <p>Free templates and resources to help you plan, track, and succeed.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">🌟</div>
-            <h3>Recognition</h3>
-            <p>Get featured and celebrate your milestones with our supportive community.</p>
-          </div>
         </div>
       </div>
-    </section>
-  </main>
-
-  <footer class="main-footer">
-    <div class="footer-content">
-      <p>© 2025 Project CTRL | Built by and for the people without a roadmap</p>
     </div>
-  </footer>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const counters = document.querySelectorAll('.metric-value');
-      
-      const animateCounter = (counter, target) => {
-        let current = 0;
-        const duration = 2000; // 2 seconds
-        const step = (target / duration) * 16; // 16ms is roughly one frame at 60fps
-        
-        counter.classList.add('animate-count');
-        
-        const updateCounter = () => {
-          current += step;
-          if (current < target) {
-            counter.textContent = Math.round(current);
-            requestAnimationFrame(updateCounter);
-          } else {
-            counter.textContent = target;
-          }
-        };
-        
-        updateCounter();
-      };
-
-      const observerCallback = (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const counter = entry.target;
-            const target = parseInt(counter.dataset.target);
-            animateCounter(counter, target);
-            observer.unobserve(counter);
-          }
-        });
-      };
-
-      const observer = new IntersectionObserver(observerCallback, {
-        threshold: 0.5
-      });
-
-      counters.forEach(counter => observer.observe(counter));
-    });
-
-    // Featured Projects Rotation
-    document.addEventListener('DOMContentLoaded', () => {
-      const featuredProjects = document.querySelectorAll('.featured-project');
-      let currentProject = 0;
-      let rotationInterval;
-
-      function showProject(index) {
-        featuredProjects.forEach(project => project.classList.remove('active'));
-        featuredProjects[index].classList.add('active');
-      }
-
-      function nextProject() {
-        currentProject = (currentProject + 1) % featuredProjects.length;
-        showProject(currentProject);
-      }
-
-      function startRotation() {
-        if (rotationInterval) clearInterval(rotationInterval);
-        rotationInterval = setInterval(nextProject, 7000);
-      }
-
-      // Initialize rotation
-      showProject(0);
-      startRotation();
-
-      // Add click handlers to featured projects
-      featuredProjects.forEach(project => {
-        project.addEventListener('click', () => {
-          const projectId = project.dataset.projectId;
-          window.location.href = `projects.html#featured-${projectId}`;
-        });
-
-        // Pause rotation on hover
-        project.addEventListener('mouseenter', () => {
-          clearInterval(rotationInterval);
-        });
-
-        project.addEventListener('mouseleave', () => {
-          startRotation();
-        });
-      });
-    });
-  </script>
+  </template>
 </body>
 </html>

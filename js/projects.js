@@ -117,14 +117,6 @@ class ProjectsPage {
     window.addEventListener('resize', () => {
       this.updateSlidesPerPage();
     });
-
-    // Event delegation for project cards
-    document.addEventListener('click', (e) => {
-      const card = e.target.closest('.slide, .project-card');
-      if (card) {
-        this.handleCardClick(card);
-      }
-    });
   }
 
   setupIntersectionObserver() {
@@ -269,7 +261,7 @@ class ProjectsPage {
       );
     }
     if (filtered.length === 1) {
-      window.showPopup(filtered[0]);
+      showPopup(filtered[0]);
     } else if (filtered.length > 1) {
       this.showMultipleProjectsPopupFromData(filtered);
     } else {
@@ -341,201 +333,6 @@ class ProjectsPage {
     this.projectCards.forEach(card => card.style.display = 'block');
     // Remove any filter popups
     document.querySelectorAll('.popup-overlay.filter-popup').forEach(el => el.remove());
-  }
-
-  handleCardClick(card) {
-    if (this.autoSlideInterval) {
-      this.stopAutoSlide();
-    }
-    
-    // Remove any existing popups first
-    document.querySelectorAll('.popup-overlay').forEach(el => el.remove());
-    
-    const template = document.querySelector('#project-popup-template');
-    const popup = template.content.cloneNode(true);
-    
-    this.populatePopupContent(popup, card);
-    document.body.appendChild(popup);
-    
-    this.setupPopupClose(popup, card);
-  }
-
-  populatePopupContent(popup, card) {
-    const title = card.querySelector('h3').textContent;
-    const tags = Array.from(card.querySelectorAll('.project-tags .tag')).map(tag => tag.cloneNode(true));
-    
-    const leadName = card.dataset.leadName || 'Project Lead Name';
-    const leadRole = card.dataset.leadRole || 'Project Role';
-    const leadEmail = card.dataset.leadEmail || '';
-    const leadPhone = card.dataset.leadPhone || '';
-    
-    popup.querySelector('h2').textContent = title;
-    popup.querySelector('.member-name').textContent = leadName;
-    popup.querySelector('.member-role').textContent = leadRole;
-    
-    const popupTags = popup.querySelector('.project-tags');
-    popupTags.innerHTML = '';
-    tags.forEach(tag => popupTags.appendChild(tag));
-    
-    // Handle services section for service offerings
-    const servicesSection = popup.querySelector('.services-section');
-    const eventDetailsSection = popup.querySelector('.event-details-section');
-    const activityLogSection = popup.querySelector('.activity-log');
-    
-    if (card.dataset.isService === 'true' && card.dataset.services) {
-      servicesSection.style.display = 'block';
-      eventDetailsSection.style.display = 'none';
-      activityLogSection.style.display = 'none';
-      
-      // Populate services list (up to 3)
-      const servicesList = popup.querySelector('.services-list');
-      let services = [];
-      try {
-        services = JSON.parse(card.dataset.services);
-      } catch (e) {}
-      
-      const servicesToShow = services.slice(0, 3);
-      servicesList.innerHTML = servicesToShow.map(service => 
-        `<div style="display:inline-block;background:rgba(121,183,255,0.1);color:#79b7ff;padding:0.25rem 0.75rem;border-radius:100px;font-size:0.85rem;margin:0.25rem 0.25rem 0.25rem 0;font-weight:500;">• ${service}</div>`
-      ).join('');
-      
-      // Add service details if available
-      if (card.dataset.serviceDetails) {
-        popup.querySelector('.service-details-content').textContent = card.dataset.serviceDetails;
-      }
-      
-      // Add service note if available
-      if (card.dataset.serviceNote) {
-        popup.querySelector('.service-note').textContent = card.dataset.serviceNote;
-      }
-    } else if (card.dataset.isEvent === 'true' && card.dataset.eventDetails) {
-      servicesSection.style.display = 'none';
-      eventDetailsSection.style.display = 'block';
-      activityLogSection.style.display = 'none';
-      
-      // Populate event details
-      const eventDetailsContent = popup.querySelector('.event-details-content');
-      let eventDetails = {};
-      try {
-        eventDetails = JSON.parse(card.dataset.eventDetails);
-      } catch (e) {}
-      
-      let eventDetailsHTML = '';
-      
-      if (eventDetails.startDate && eventDetails.endDate) {
-        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>📅 Duration:</strong> ${eventDetails.startDate} to ${eventDetails.endDate}</div>`;
-      }
-      
-      if (eventDetails.location) {
-        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>📍 Location:</strong> ${eventDetails.location}</div>`;
-      }
-      
-      if (eventDetails.organizer) {
-        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>👥 Organizer:</strong> ${eventDetails.organizer}</div>`;
-      }
-      
-      if (eventDetails.requirements) {
-        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>🎯 Requirements:</strong> ${eventDetails.requirements}</div>`;
-      }
-      
-      if (eventDetails.prizes && eventDetails.prizes.length > 0) {
-        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>🏆 Prizes:</strong> ${eventDetails.prizes.join(', ')}</div>`;
-      }
-      
-      if (eventDetails.contactInfo) {
-        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>📞 Contact:</strong> ${eventDetails.contactInfo}</div>`;
-      }
-      
-      eventDetailsContent.innerHTML = eventDetailsHTML;
-    } else {
-      servicesSection.style.display = 'none';
-      eventDetailsSection.style.display = 'none';
-      activityLogSection.style.display = 'block';
-    }
-    
-    this.setupContactInfo(popup, leadEmail, leadPhone);
-
-    const activityList = popup.querySelector('.activity-list');
-    const emptyState = activityList.querySelector('.empty-state');
-    let activityLog = [];
-    if (card.dataset.activityLog) {
-      try {
-        activityLog = JSON.parse(card.dataset.activityLog);
-      } catch (e) {}
-    }
-    if (activityLog && activityLog.length > 0) {
-      const activityItemsContainer = document.createElement('div');
-      activityItemsContainer.className = 'activity-items';
-      activityLog.forEach(activity => {
-        const activityItem = document.createElement('div');
-        activityItem.className = 'activity-item';
-        if (activity && typeof activity === 'object' && activity.label && activity.url) {
-          activityItem.innerHTML = `<a href="${activity.url}" target="_blank" rel="noopener noreferrer" class="primary-button" style="margin: 0.25rem 0; display: inline-block;">${activity.label}</a>`;
-        } else {
-          activityItem.textContent = activity;
-        }
-        activityItemsContainer.appendChild(activityItem);
-      });
-      activityList.insertBefore(activityItemsContainer, emptyState);
-      emptyState.remove();
-    }
-
-    const popupNotes = popup.querySelector('.project-notes, .notes-disclaimer');
-    if (popupNotes) {
-      const notes = card.dataset.notes || '';
-      if (notes) {
-        popupNotes.textContent = notes;
-        popupNotes.style.display = '';
-      } else {
-        popupNotes.style.display = 'none';
-      }
-    }
-  }
-
-  setupContactInfo(popup, email, phone) {
-    const contactDetails = popup.querySelector('.contact-details');
-    const emailElement = contactDetails.querySelector('.contact-method:first-child .contact-value');
-    const phoneElement = contactDetails.querySelector('.contact-method:last-child .contact-value');
-    
-    emailElement.textContent = email;
-    phoneElement.textContent = phone;
-    
-    if (!email && !phone) {
-      phoneElement.parentElement.style.display = 'none';
-      emailElement.parentElement.style.display = 'none';
-    } else {
-      if (!email) emailElement.parentElement.style.display = 'none';
-      if (!phone) phoneElement.parentElement.style.display = 'none';
-    }
-  }
-
-  setupPopupClose(popup, card) {
-    const overlay = document.querySelector('.popup-overlay');
-    const closeButton = overlay.querySelector('.close-button');
-    
-    if (overlay) {
-      const closePopup = () => {
-        overlay.remove();
-        if (card.classList.contains('slide')) {
-          this.startAutoSlide();
-        }
-      };
-      
-      // Add click handler for overlay background
-      overlay.onclick = (e) => {
-        if (e.target === overlay) {
-          closePopup();
-        }
-      };
-      
-      // Add click handler for close button
-      if (closeButton) {
-        closeButton.onclick = (e) => {
-          e.stopPropagation(); // Prevent event from bubbling to overlay
-          closePopup();
-        };
-      }
-    }
   }
 
   checkSuccessMessage() {
@@ -744,7 +541,7 @@ class ProjectsPage {
         </div>
         <p class="project-description">${project.description || ''}</p>
       `;
-      card.onclick = () => window.showPopup(project);
+      card.onclick = () => showPopup(project);
       grid.appendChild(card);
     });
     // Robust close button
@@ -806,45 +603,10 @@ document.addEventListener('DOMContentLoaded', () => {
           card.prepend(badge);
         }
         card.querySelector('.project-title').textContent = project.title;
-        // Add subtitle for type (use subtitle field from data)
-        let subtitle = card.querySelector('.project-type-subtitle');
-        if (!subtitle) {
-          subtitle = document.createElement('div');
-          subtitle.className = 'project-type-subtitle';
-          card.querySelector('.project-title').after(subtitle);
-        }
-        subtitle.textContent = project.subtitle || 'Project';
         const tags = card.querySelector('.project-tags');
         tags.innerHTML = '';
-        // Only show up to 2 tags from allowed types
-        const allowedTypes = ["Service", "Business", "Startup", "Passion Project", "Nonprofit", "Website"];
-        let typeTags = [];
-        if (project.type && allowedTypes.includes(project.type)) {
-          typeTags.push({ value: project.type, class: 'tag-type' });
-        }
-        if (project.extraType && allowedTypes.includes(project.extraType) && project.extraType !== project.type) {
-          typeTags.push({ value: project.extraType, class: 'tag-type' });
-        }
-        typeTags = typeTags.slice(0, 2);
-        typeTags.forEach((tag, index) => {
-          const colorClass = `tag-color-${(index % 8) + 1}`;
-          tags.innerHTML += `<span class="tag ${tag.class} ${colorClass}">${tag.value}</span>`;
-        });
-        if (project.category) {
-          const categoryClass = project.category.toLowerCase().replace(/\s+/g, '-');
-          tags.innerHTML += `<span class="tag tag-category ${categoryClass}">${project.category}</span>`;
-        }
-        card.querySelector('.project-description').textContent = project.description || '';
-        const notes = project.notes || '';
-        const notesElem = card.querySelector('.project-notes');
-        if (notesElem) {
-          if (notes) {
-            notesElem.textContent = notes;
-            notesElem.style.display = '';
-          } else {
-            notesElem.style.display = 'none';
-          }
-        }
+        if (project.type) tags.innerHTML += `<span class="tag tag-type">${project.type}</span>`;
+        if (project.category) tags.innerHTML += `<span class="tag tag-category">${project.category}</span>`;
         card.dataset.leadName = project.leadName || '';
         card.dataset.leadRole = project.leadRole || '';
         card.dataset.leadEmail = project.leadEmail || '';
@@ -862,50 +624,17 @@ document.addEventListener('DOMContentLoaded', () => {
         card.dataset.description = project.description || '';
         card.dataset.ctrlPick = project.ctrlPick ? 'true' : '';
         card.dataset.website = project.website || '';
-        card.dataset.activityLog = project.activityLog ? JSON.stringify(project.activityLog) : '';
-        card.addEventListener('click', () => projectsPage.handleCardClick(card));
+        card.addEventListener('click', () => showPopup(project));
         grid.appendChild(card);
       }
       if (i < services.length) {
         const service = services[i];
         const card = template.content.cloneNode(true).querySelector('.project-card');
         card.querySelector('.project-title').textContent = service.title;
-        // Add subtitle for type (use subtitle field from data)
-        let subtitle = card.querySelector('.project-type-subtitle');
-        if (!subtitle) {
-          subtitle = document.createElement('div');
-          subtitle.className = 'project-type-subtitle';
-          card.querySelector('.project-title').after(subtitle);
-        }
-        subtitle.textContent = service.subtitle || 'Service Offering';
         const tags = card.querySelector('.project-tags');
         tags.innerHTML = '';
-        // Only show up to 2 tags from allowed types
-        const allowedTypes = ["Service", "Business", "Startup", "Passion Project", "Nonprofit", "Website"];
-        let typeTags = [];
-        if (service.type && allowedTypes.includes(service.type)) {
-          typeTags.push({ value: service.type, class: 'tag-type' });
-        }
-        if (service.extraType && allowedTypes.includes(service.extraType) && service.extraType !== service.type) {
-          typeTags.push({ value: service.extraType, class: 'tag-type' });
-        }
-        typeTags = typeTags.slice(0, 2);
-        typeTags.forEach((tag, index) => {
-          const colorClass = `tag-color-${(index % 8) + 1}`;
-          tags.innerHTML += `<span class="tag ${tag.class} ${colorClass}">${tag.value}</span>`;
-        });
-        if (service.category) {
-          const categoryClass = service.category.toLowerCase().replace(/\s+/g, '-');
-          tags.innerHTML += `<span class="tag tag-category ${categoryClass}">${service.category}</span>`;
-        }
-        card.querySelector('.project-description').textContent = service.description || '';
-        
-        // Add click note for services
-        const clickNote = document.createElement('div');
-        clickNote.style.cssText = 'font-size:0.85rem;color:#79b7ff;margin-top:0.5rem;font-weight:500;';
-        clickNote.innerHTML = '💡 Click to view services & timelines';
-        card.appendChild(clickNote);
-        
+        if (service.type) tags.innerHTML += `<span class="tag tag-type">${service.type}</span>`;
+        if (service.category) tags.innerHTML += `<span class="tag tag-category">${service.category}</span>`;
         card.dataset.leadName = service.leadName || '';
         card.dataset.leadRole = service.leadRole || '';
         card.dataset.leadEmail = service.leadEmail || '';
@@ -928,30 +657,16 @@ document.addEventListener('DOMContentLoaded', () => {
         card.dataset.services = service.services ? JSON.stringify(service.services) : '';
         card.dataset.serviceDetails = service.serviceDetails || '';
         card.dataset.serviceNote = service.serviceNote || '';
-        card.addEventListener('click', () => projectsPage.handleCardClick(card));
+        card.addEventListener('click', () => showPopup(service));
         grid.appendChild(card);
       }
       if (i < events.length) {
         const event = events[i];
         const card = template.content.cloneNode(true).querySelector('.project-card');
         card.querySelector('.project-title').textContent = event.title;
-        // Add subtitle for type (use subtitle field from data)
-        let subtitle = card.querySelector('.project-type-subtitle');
-        if (!subtitle) {
-          subtitle = document.createElement('div');
-          subtitle.className = 'project-type-subtitle';
-          card.querySelector('.project-title').after(subtitle);
-        }
-        subtitle.textContent = event.subtitle || 'Event';
         const tags = card.querySelector('.project-tags');
         tags.innerHTML = '';
-        if (event.category) {
-          const categoryClass = event.category.toLowerCase().replace(/\s+/g, '-');
-          tags.innerHTML += `<span class="tag tag-category ${categoryClass}">${event.category}</span>`;
-        }
-        card.querySelector('.project-description').textContent = event.description || '';
-        
-        // Add event data to dataset
+        if (event.category) tags.innerHTML += `<span class="tag tag-category">${event.category}</span>`;
         card.dataset.title = event.title || '';
         card.dataset.category = event.category || '';
         card.dataset.description = event.description || '';
@@ -959,8 +674,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.dataset.eventDetails = event.eventDetails ? JSON.stringify(event.eventDetails) : '';
         card.dataset.activityLog = event.activityLog ? JSON.stringify(event.activityLog) : '';
         card.dataset.link = event.link || '';
-        
-        card.addEventListener('click', () => projectsPage.handleCardClick(card));
+        card.addEventListener('click', () => showPopup(event));
         grid.appendChild(card);
       }
     }
@@ -975,172 +689,79 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Popup logic
   function showPopup(project) {
-    // Remove any existing popups first
+    // Remove any existing popups
     document.querySelectorAll('.popup-overlay').forEach(el => el.remove());
-    
-    const template = document.getElementById('project-popup-template');
-    const popup = template.content.cloneNode(true);
-    popup.querySelector('h2').textContent = project.title;
-    const tags = popup.querySelector('.project-tags');
-    tags.innerHTML = '';
-    if (project.type) tags.innerHTML += `<span class="tag tag-type">${project.type}</span>`;
-    if (project.stage) tags.innerHTML += `<span class="tag tag-stage">${project.stage}</span>`;
-    if (project.category) {
-      const categoryClass = project.category.toLowerCase().replace(/\s+/g, '-');
-      tags.innerHTML += `<span class="tag tag-category ${categoryClass}">${project.category}</span>`;
-    }
-    if (project.modality) tags.innerHTML += `<span class="tag tag-modality">${project.modality}</span>`;
-    if (project.team) tags.innerHTML += `<span class="tag tag-team">${project.team}</span>`;
-    if (project.marketReach) tags.innerHTML += `<span class="tag tag-market">${project.marketReach}</span>`;
-    if (project.duration) tags.innerHTML += `<span class="tag tag-duration">${project.duration}</span>`;
-    if (project.status && Array.isArray(project.status)) {
-      project.status.forEach(st => {
-        tags.innerHTML += `<span class="tag tag-status">${st}</span>`;
-      });
-    }
-    
-    // Handle different content sections
-    const servicesSection = popup.querySelector('.services-section');
-    const eventDetailsSection = popup.querySelector('.event-details-section');
-    const activityLogSection = popup.querySelector('.activity-log');
-    
-    if (project.isEvent && project.eventDetails) {
-      eventDetailsSection.style.display = 'block';
-      servicesSection.style.display = 'none';
-      activityLogSection.style.display = 'none';
-      
-      const eventDetailsContent = popup.querySelector('.event-details-content');
-      let eventDetailsHTML = '';
-      
-      if (project.eventDetails.startDate && project.eventDetails.endDate) {
-        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>📅 Duration:</strong> ${project.eventDetails.startDate} to ${project.eventDetails.endDate}</div>`;
-      }
-      
-      if (project.eventDetails.location) {
-        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>📍 Location:</strong> ${project.eventDetails.location}</div>`;
-      }
-      
-      if (project.eventDetails.organizer) {
-        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>👥 Organizer:</strong> ${project.eventDetails.organizer}</div>`;
-      }
-      
-      if (project.eventDetails.requirements) {
-        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>🎯 Requirements:</strong> ${project.eventDetails.requirements}</div>`;
-      }
-      
-      if (project.eventDetails.prizes && project.eventDetails.prizes.length > 0) {
-        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>🏆 Prizes:</strong> ${project.eventDetails.prizes.join(', ')}</div>`;
-      }
-      
-      if (project.eventDetails.contactInfo) {
-        eventDetailsHTML += `<div style="margin-bottom:0.75rem;"><strong>📞 Contact:</strong> ${project.eventDetails.contactInfo}</div>`;
-      }
-      
-      eventDetailsContent.innerHTML = eventDetailsHTML;
-    } else if (project.isService && project.services) {
-      eventDetailsSection.style.display = 'none';
-      servicesSection.style.display = 'block';
-      activityLogSection.style.display = 'none';
-      
-      // Populate services list (up to 3)
-      const servicesList = popup.querySelector('.services-list');
-      const servicesToShow = project.services.slice(0, 3);
-      servicesList.innerHTML = servicesToShow.map(service => 
-        `<div style="display:inline-block;background:rgba(121,183,255,0.1);color:#79b7ff;padding:0.25rem 0.75rem;border-radius:100px;font-size:0.85rem;margin:0.25rem 0.25rem 0.25rem 0;font-weight:500;">• ${service}</div>`
-      ).join('');
-      
-      // Add service details if available
-      if (project.serviceDetails) {
-        popup.querySelector('.service-details-content').textContent = project.serviceDetails;
-      }
-      
-      // Add service note if available
-      if (project.serviceNote) {
-        popup.querySelector('.service-note').textContent = project.serviceNote;
-      }
-    } else {
-      eventDetailsSection.style.display = 'none';
-      servicesSection.style.display = 'none';
-      activityLogSection.style.display = 'block';
-    }
-    
-    // Add website button if present, right after tags
-    if (project.website) {
-      const btn = document.createElement('a');
-      btn.href = project.website;
-      btn.target = '_blank';
-      btn.className = 'primary-button';
-      btn.style.margin = '1rem 0 0 0';
-      btn.innerHTML = 'Visit Project Website →';
-      tags.parentNode.insertBefore(btn, tags.nextSibling);
-    }
-    popup.querySelector('.member-name').textContent = project.leadName;
-    popup.querySelector('.member-role').textContent = project.leadRole;
-    const contactDetails = popup.querySelector('.contact-details');
-    contactDetails.querySelector('.contact-method:first-child .contact-value').textContent = project.leadEmail;
-    contactDetails.querySelector('.contact-method:last-child .contact-value').textContent = project.leadPhone;
-    if (!project.leadEmail) contactDetails.querySelector('.contact-method:first-child').style.display = 'none';
-    if (!project.leadPhone) contactDetails.querySelector('.contact-method:last-child').style.display = 'none';
 
-    // Update activity log section
-    const activityList = popup.querySelector('.activity-list');
-    const emptyState = activityList.querySelector('.empty-state');
-    
-    if (project.activityLog && project.activityLog.length > 0) {
-      // Create a container for activity items
-      const activityItemsContainer = document.createElement('div');
-      activityItemsContainer.className = 'activity-items';
-      // Add activity items
-      project.activityLog.forEach(activity => {
-        const activityItem = document.createElement('div');
-        activityItem.className = 'activity-item';
-        if (activity && typeof activity === 'object' && activity.label && activity.url) {
-          activityItem.innerHTML = `<a href="${activity.url}" target="_blank" rel="noopener noreferrer" class="primary-button" style="margin: 0.25rem 0; display: inline-block;">${activity.label}</a>`;
-        } else {
-          activityItem.textContent = activity;
-        }
-        activityItemsContainer.appendChild(activityItem);
-      });
-      // Insert activity items before the empty state
-      activityList.insertBefore(activityItemsContainer, emptyState);
-      // Remove the empty state entirely if there are activity items
-      emptyState.remove();
-    }
+    // Create overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'popup-overlay custom-popup-overlay';
+    overlay.style.position = 'fixed';
+    overlay.style.top = 0;
+    overlay.style.left = 0;
+    overlay.style.width = '100vw';
+    overlay.style.height = '100vh';
+    overlay.style.background = 'rgba(0,0,0,0.5)';
+    overlay.style.display = 'flex';
+    overlay.style.alignItems = 'center';
+    overlay.style.justifyContent = 'center';
+    overlay.style.zIndex = 10000;
 
-    const popupNotes = popup.querySelector('.project-notes, .notes-disclaimer');
-    if (popupNotes) {
-      const notes = project.notes || '';
-      if (notes) {
-        popupNotes.textContent = notes;
-        popupNotes.style.display = '';
-      } else {
-        popupNotes.style.display = 'none';
-      }
-    }
+    // Create popup box
+    const popup = document.createElement('div');
+    popup.className = 'project-popup custom-popup-box';
+    popup.style.background = '#fff';
+    popup.style.borderRadius = '16px';
+    popup.style.boxShadow = '0 8px 32px rgba(0,0,0,0.18)';
+    popup.style.padding = '2rem 2.5rem';
+    popup.style.maxWidth = '500px';
+    popup.style.width = '90vw';
+    popup.style.position = 'relative';
+    popup.style.display = 'flex';
+    popup.style.flexDirection = 'column';
+    popup.style.justifyContent = 'center';
+    popup.style.alignItems = 'center';
+    popup.style.margin = '0'; // Ensure no margin pushes it down
 
-    document.body.appendChild(popup);
-    
-    const overlay = document.querySelector('.popup-overlay');
-    const closeButton = overlay.querySelector('.close-button');
-    
-    const closePopup = () => {
+    // X button
+    const closeButton = document.createElement('button');
+    closeButton.className = 'close-button';
+    closeButton.innerHTML = '&times;';
+    closeButton.style.position = 'absolute';
+    closeButton.style.top = '1rem';
+    closeButton.style.right = '1rem';
+    closeButton.style.fontSize = '2rem';
+    closeButton.style.background = 'none';
+    closeButton.style.border = 'none';
+    closeButton.style.cursor = 'pointer';
+    closeButton.style.lineHeight = '1';
+    closeButton.style.color = '#333';
+    closeButton.setAttribute('aria-label', 'Close');
+
+    closeButton.onclick = (e) => {
+      e.stopPropagation();
       overlay.remove();
     };
-    
-    // Add click handler for overlay background
+
+    // Description text
+    const desc = document.createElement('div');
+    desc.className = 'popup-description-only';
+    desc.textContent = project.description;
+    desc.style.fontSize = '1.1rem';
+    desc.style.color = '#222';
+    desc.style.textAlign = 'left';
+    desc.style.margin = '1.5rem 0 0 0';
+    desc.style.width = '100%';
+
+    popup.appendChild(closeButton);
+    popup.appendChild(desc);
+    overlay.appendChild(popup);
+
+    // Clicking the overlay closes the popup
     overlay.onclick = (e) => {
-      if (e.target === overlay) {
-        closePopup();
-      }
+      if (e.target === overlay) overlay.remove();
     };
-    
-    // Add click handler for close button
-    if (closeButton) {
-      closeButton.onclick = (e) => {
-        e.stopPropagation(); // Prevent event from bubbling to overlay
-        closePopup();
-      };
-    }
+
+    document.body.appendChild(overlay);
   }
 
   window.showPopup = showPopup;
