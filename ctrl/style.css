@@ -147,7 +147,7 @@
   
   .hero-section {
     text-align: center;
-    padding: 6rem 0 4rem;
+    padding: 4rem 1.5rem 3rem;
     background: linear-gradient(45deg, rgba(0, 102, 255, 0.05), rgba(0, 102, 255, 0.02));
   }
   
@@ -169,7 +169,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
-    margin-top: 3rem;
+    margin-top: 1.5rem;
   }
   
   .bento-card, .feature-card, .mission-card, .founder-card, .project-card, .event-tile, .service-tile, .promo-ig-card, .promo-product-card, .resource-item, .story-item, .help-item, .metric-item, .category-item, .step-item, .community-item, .form-card, .info-card, .metric-card {
@@ -180,9 +180,9 @@
 }
 
 .primary-button, .secondary-button, .updates-button, .pagination-button, .view-product-button, .connect-button, .search-button, .close-button, .slider-button, .load-more-button, .submit-button {
-    background: #f3e0c5 !important;
+    background: rgba(64, 224, 208, 0.15) !important;
     color: #232323 !important;
-    border: none !important;
+    border: 2px dotted rgba(64, 224, 208, 0.6) !important;
     box-shadow: none !important;
 }
 
@@ -713,8 +713,8 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: var(--accent-color);
-    border: 2px solid var(--card-background);
+    background: rgba(64, 224, 208, 0.15);
+    border: 2px dotted rgba(64, 224, 208, 0.6);
   }
   
   .timeline-content h4 {
@@ -1000,8 +1000,9 @@
   .step-number {
     width: 32px;
     height: 32px;
-    background: var(--accent-color);
-    color: white;
+    background: rgba(64, 224, 208, 0.15);
+    color: var(--dusty-black);
+    border: 2px dotted rgba(64, 224, 208, 0.6);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1801,7 +1802,8 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--accent-color);
+    background: rgba(64, 224, 208, 0.15);
+    border: 1px dotted rgba(64, 224, 208, 0.6);
   }
   
   .inspiration-message {

@@ -1,3 +1,26 @@
+body, main, section, header, footer {
+  background: #fffcfc !important;
+  color: #232323 !important;
+}
+
+.bento-card, .feature-card, .mission-card, .founder-card, .project-card, .event-tile, .service-tile, .promo-ig-card, .promo-product-card, .resource-item, .story-item, .help-item, .metric-item, .category-item, .step-item, .community-item, .form-card, .info-card, .metric-card {
+    background: #ecf5ff !important;
+    color: #232323 !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.primary-button, .secondary-button, .updates-button, .pagination-button, .view-product-button, .connect-button, .search-button, .close-button, .slider-button, .load-more-button, .submit-button {
+    background: rgba(64, 224, 208, 0.15) !important;
+    color: #232323 !important;
+    border: 2px dotted rgba(64, 224, 208, 0.6) !important;
+    box-shadow: none !important;
+}
+
+.bento-card *, .feature-card *, .mission-card *, .founder-card *, .project-card *, .event-tile *, .service-tile *, .promo-ig-card *, .promo-product-card *, .resource-item *, .story-item *, .help-item *, .metric-item *, .category-item *, .step-item *, .community-item *, .form-card *, .info-card *, .metric-card * {
+    color: #232323 !important;
+}
+
 body {
   margin: 0;
   font-family: Helvetica, sans-serif;

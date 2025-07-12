@@ -24,25 +24,29 @@
 }
 
 .cta-buttons .primary-button {
-  background: #79b7ff;
-  color: white;
+  background: rgba(64, 224, 208, 0.15);
+  color: var(--dusty-black);
+  border: 2px dotted rgba(64, 224, 208, 0.6);
   box-shadow: 0 4px 20px rgba(121, 183, 255, 0.2);
 }
 
 .cta-buttons .secondary-button {
-  background: #EEF4FF;
-  color: #79b7ff;
+  background: rgba(64, 224, 208, 0.15);
+  color: var(--dusty-black);
+  border: 2px dotted rgba(64, 224, 208, 0.6);
 }
 
 .cta-buttons .primary-button:hover {
-  background: #5a9eff;
+  background: rgba(64, 224, 208, 0.2);
   transform: translateY(-2px);
   box-shadow: 0 6px 24px rgba(121, 183, 255, 0.3);
+  border-color: rgba(64, 224, 208, 0.8);
 }
 
 .cta-buttons .secondary-button:hover {
-  background: #dce7ff;
+  background: rgba(64, 224, 208, 0.2);
   transform: translateY(-2px);
+  border-color: rgba(64, 224, 208, 0.8);
 }
 
 .button-icon {
@@ -899,8 +903,8 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: #79b7ff;
-  color: white;
+  background: rgba(64, 224, 208, 0.15);
+  color: var(--dusty-black);
   padding: 1rem 2rem;
   border-radius: 100px;
   text-decoration: none;
@@ -908,17 +912,18 @@
   font-size: 1rem;
   transition: all 0.3s ease;
   margin-top: auto;
-  border: none;
+  border: 2px dotted rgba(64, 224, 208, 0.6);
   cursor: pointer;
   width: 100%;
 }
 
 .view-product-button:hover {
-  background: #5a9eff;
+  background: rgba(64, 224, 208, 0.2);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(121, 183, 255, 0.2);
   text-decoration: none;
-  color: white;
+  color: var(--dusty-black);
+  border-color: rgba(64, 224, 208, 0.8);
 }
 
 .view-product-button .button-icon {
@@ -945,9 +950,9 @@
 }
 
 .primary-button, .secondary-button, .updates-button, .pagination-button, .view-product-button, .connect-button, .search-button, .close-button, .slider-button, .load-more-button, .submit-button {
-    background: #f3e0c5 !important;
+    background: rgba(64, 224, 208, 0.15) !important;
     color: #232323 !important;
-    border: none !important;
+    border: 2px dotted rgba(64, 224, 208, 0.6) !important;
     box-shadow: none !important;
 }
 

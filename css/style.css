@@ -26,11 +26,11 @@
     --peach: #ecf5ff;
     --cream: #fffcfc;
     --green-light: #E1E5C7;
-    --tan: #C7976F;
-    --shadow: 0 4px 24px rgba(143, 158, 206, 0.10);
-    --soft-blue: #A7C7FF;
-    --bento-main: #ecf5ff;
-    --button-color: #f3e0c5;
+      --tan: rgba(64, 224, 208, 0.15);
+  --shadow: 0 4px 24px rgba(143, 158, 206, 0.10);
+  --soft-blue: #A7C7FF;
+  --bento-main: #ecf5ff;
+  --button-color: rgba(64, 224, 208, 0.15);
   }
   
   * {
@@ -178,13 +178,19 @@
     background: var(--blue-light);
     border-radius: 32px;
     box-shadow: var(--shadow);
-    margin-bottom: 2.5rem;
+    margin-bottom: 1rem;
     min-height: 400px;
     overflow: hidden;
   }
+  
+  /* More fitted hero section for launch, ctrl-cohort, and thrive pages */
+  .dashboard .hero-section {
+    padding: 2rem 0 1.5rem 0;
+    min-height: 250px;
+  }
   .hero-section .hero-left, .hero-section .hero-right {
     flex: 1 1 0;
-    padding: 2.5rem 3rem;
+    padding: 2.5rem 1.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -231,6 +237,11 @@
     font-weight: 600;
     background: var(--button-color);
     color: var(--dusty-black);
+    border: 2px dotted rgba(64, 224, 208, 0.6);
+    padding: 12px 24px;
+    text-decoration: none;
+    display: inline-block;
+    transition: var(--transition);
   }
   .primary-button {
     box-shadow: var(--shadow);
@@ -238,10 +249,12 @@
   .secondary-button {
     background: var(--peach);
     color: var(--dusty-black);
+    border: 2px dotted rgba(64, 224, 208, 0.6);
   }
   .primary-button:hover, .secondary-button:hover {
     filter: brightness(0.95);
     box-shadow: 0 6px 24px rgba(143, 158, 206, 0.18);
+    border-color: rgba(64, 224, 208, 0.8);
   }
   
   body, .dashboard-container, .content-wrapper {
@@ -255,6 +268,75 @@
     padding-bottom: 2.5rem;
   }
   
+  /* Reduced padding for hero content on launch, ctrl-cohort, and thrive pages */
+  .dashboard .hero-section .content-wrapper {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  /* CTRL Cohort, Launch, and Thrive Pages - All Text Colors to Dusty Black */
+  .dashboard h1,
+  .dashboard h2,
+  .dashboard h3,
+  .dashboard h4,
+  .dashboard h5,
+  .dashboard h6,
+  .dashboard p,
+  .dashboard li,
+  .dashboard span,
+  .dashboard div,
+  .dashboard a:not(.primary-button):not(.secondary-button),
+  .dashboard .hero-subtitle,
+  .dashboard .bento-card h3,
+  .dashboard .bento-card p,
+  .dashboard .bento-card li,
+  .dashboard .bento-card ul,
+  .dashboard .bento-card ol,
+  .dashboard .content-wrapper h1,
+  .dashboard .content-wrapper h2,
+  .dashboard .content-wrapper h3,
+  .dashboard .content-wrapper p,
+  .dashboard .content-wrapper li,
+  .dashboard .content-wrapper span,
+  .dashboard .content-wrapper div,
+  .dashboard .hero-section h1,
+  .dashboard .hero-section .hero-subtitle,
+  .dashboard .hero-section p,
+  .dashboard .hero-section span,
+  .dashboard .hero-section div,
+  .dashboard .bento-card *,
+  .dashboard .dashboard-grid *,
+  .dashboard .dashboard-container * {
+    color: var(--dusty-black) !important;
+  }
+  
+  /* Ensure buttons maintain their styling */
+  .dashboard .primary-button,
+  .dashboard .secondary-button {
+    color: var(--dusty-black) !important;
+  }
+  
+  /* Ensure navigation links maintain their styling */
+  .dashboard .main-nav a,
+  .dashboard .main-nav .dropdown-trigger {
+    color: var(--dusty-black) !important;
+  }
+  
+  .dashboard .main-nav a:hover,
+  .dashboard .main-nav a.active,
+  .dashboard .main-nav .dropdown-trigger:hover {
+    color: var(--soft-blue) !important;
+  }
+  
+  /* Ensure dropdown content maintains styling */
+  .dashboard .dropdown-content a {
+    color: var(--dusty-black) !important;
+  }
+  
+  .dashboard .dropdown-content a:hover {
+    color: var(--dusty-black) !important;
+  }
+  
   @media (max-width: 900px) {
     .hero-section {
       flex-direction: column;
@@ -264,6 +346,17 @@
     .hero-section .hero-left, .hero-section .hero-right {
       border-radius: 0;
       padding: 2rem 1rem;
+    }
+    
+    /* More fitted hero section on mobile for launch, ctrl-cohort, and thrive pages */
+    .dashboard .hero-section {
+      padding: 1.5rem 0 1rem 0;
+      min-height: 200px;
+    }
+    
+    .dashboard .hero-section .hero-left, 
+    .dashboard .hero-section .hero-right {
+      padding: 1.5rem 1rem;
     }
   }
   
@@ -278,7 +371,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
-    margin-top: 3rem;
+    margin-top: 1.5rem;
   }
   
   .bento-card {
@@ -566,6 +659,17 @@
     .hero-section h1 {
       font-size: 2.5rem;
     }
+    
+    /* Adjusted text sizing for fitted hero sections */
+    .dashboard .hero-section h1 {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .dashboard .hero-section .hero-subtitle {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
   
     .about-section .bento-grid {
       grid-template-columns: 1fr;
@@ -820,8 +924,8 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: var(--accent-color);
-    border: 2px solid var(--card-background);
+    background: rgba(64, 224, 208, 0.15);
+    border: 2px dotted rgba(64, 224, 208, 0.6);
   }
   
   .timeline-content h4 {
@@ -863,9 +967,9 @@
   }
   
   .search-button {
-    background: var(--accent-color);
-    color: white;
-    border: none;
+    background: var(--button-color);
+    color: var(--dusty-black);
+    border: 2px dotted rgba(64, 224, 208, 0.6);
     padding: 0 1.5rem;
     border-radius: var(--border-radius);
     cursor: pointer;
@@ -874,6 +978,7 @@
   
   .search-button:hover {
     opacity: 0.9;
+    border-color: rgba(64, 224, 208, 0.8);
   }
   
   /* Responsive Adjustments */
@@ -1107,8 +1212,9 @@
   .step-number {
     width: 32px;
     height: 32px;
-    background: var(--accent-color);
-    color: white;
+    background: rgba(64, 224, 208, 0.15);
+    color: var(--dusty-black);
+    border: 2px dotted rgba(64, 224, 208, 0.6);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1333,6 +1439,7 @@
     font-size: 1rem;
     transition: var(--transition);
     text-decoration: none;
+    border: 2px dotted rgba(64, 224, 208, 0.6);
   }
   
   .primary-button {
@@ -1349,11 +1456,13 @@
   .primary-button:hover {
     background: var(--iguana);
     color: #fff;
+    border-color: rgba(64, 224, 208, 0.8);
   }
   
   .secondary-button:hover {
     background: var(--charlock);
     color: var(--iguana);
+    border-color: rgba(64, 224, 208, 0.8);
   }
   
   .button-icon {
@@ -1462,9 +1571,9 @@
   }
   
   .load-more-button {
-    background: var(--card-background);
-    border: 2px solid var(--accent-color);
-    color: var(--accent-color);
+    background: var(--button-color);
+    border: 2px dotted rgba(64, 224, 208, 0.6);
+    color: var(--dusty-black);
     padding: 1rem 2rem;
     border-radius: var(--border-radius);
     font-weight: 600;
@@ -1476,9 +1585,10 @@
   }
   
   .load-more-button:hover {
-    background: var(--accent-color);
-    color: white;
+    background: var(--button-color);
+    color: var(--dusty-black);
     transform: translateY(-2px);
+    border-color: rgba(64, 224, 208, 0.8);
   }
   
   .load-more-button .spinner {
@@ -1659,9 +1769,9 @@
   }
   
   .submit-button {
-    background: var(--accent-color);
-    color: white;
-    border: none;
+    background: var(--button-color);
+    color: var(--dusty-black);
+    border: 2px dotted rgba(64, 224, 208, 0.6);
     padding: 1rem 2rem;
     border-radius: var(--border-radius);
     font-size: 1rem;
@@ -1676,6 +1786,7 @@
   
   .submit-button:hover {
     box-shadow: 0 4px 12px rgba(121, 183, 255, 0.2);
+    border-color: rgba(64, 224, 208, 0.8);
   }
   
   .info-card {
@@ -1909,7 +2020,8 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--accent-color);
+    background: rgba(64, 224, 208, 0.15);
+    border: 1px dotted rgba(64, 224, 208, 0.6);
   }
   
   .inspiration-message {
@@ -1936,9 +2048,9 @@
   }
   
   .connect-button {
-    background: var(--accent-color);
-    color: white;
-    border: none;
+    background: var(--button-color);
+    color: var(--dusty-black);
+    border: 2px dotted rgba(64, 224, 208, 0.6);
     padding: 0.75rem 1.5rem;
     border-radius: var(--border-radius);
     font-size: 0.9rem;
@@ -1953,6 +2065,7 @@
   .connect-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(121, 183, 255, 0.2);
+    border-color: rgba(64, 224, 208, 0.8);
   }
   
   /* Project Flow Visualization */
@@ -2971,5 +3084,5 @@
   }
   
   /* CTRL Spotlight Specific Styles */
-  // ... existing code ...
+  /* Additional styles for CTRL Spotlight can be added here */
   

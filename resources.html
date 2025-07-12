@@ -6,6 +6,11 @@
   <title>Resources - CTRL Initiative</title>
   <link rel="stylesheet" href="css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
 </head>
 <body class="resources">
   <header class="main-header">
@@ -13,9 +18,6 @@
       <a href="index.html" class="logo">CTRL Initiative</a>
       <nav class="main-nav">
         <a href="index.html">Dashboard</a>
-        <a href="ctrl-cohort.html">CTRL Cohort</a>
-        <a href="launch.html">Launch</a>
-        <a href="thrive.html">Thrive</a>
         <a href="projects.html">CTRL Spotlight</a>
         <div class="dropdown">
           <a href="resources.html" class="dropdown-trigger active">Resources ▾</a>
@@ -68,7 +70,7 @@
           <div class="bento-card formula-card">
             <div class="formula-content">
               <h3>Personalize + CTRL</h3>
-              <p>Make your work uniquely yours — human, creative, and authentic.</p>
+              <p>Make your project uniquely yours — human, creative, and authentic.</p>
               <ul class="formula-points">
                 <li>Customize templates and workflows to fit your style and values.</li>
                 <li>Embed your personality and voice into every detail.</li>
@@ -86,7 +88,7 @@
                 <li>Use digital tools to automate tasks and amplify reach.</li>
                 <li>Build secure systems for business stability.</li>
                 <li>Leverage community and networking for growth.</li>
-                <li>Tap into CTRL's Spotlights for visibility.</li>
+                <li>Tap into CTRL Spotlight for visibility.</li>
               </ul>
             </div>
           </div>
@@ -100,7 +102,7 @@
         <div class="section-header">
           <div class="section-tag">Resources</div>
           <h1>Resources Hub</h1>
-          <p class="section-description">Essential tools and resources to supercharge your work</p>
+          <p class="section-description">Essential tools and resources to supercharge your projects</p>
         </div>
 
         <!-- Search Bar -->
@@ -151,60 +153,14 @@
         </div>
       </div>
     </section>
-
-    <!-- Resource Suggestion Form Section -->
-    <section class="section">
-      <div class="content-wrapper">
-        <div class="bento-card form-card" style="max-width:600px;margin:2rem auto 0 auto;">
-          <h3 style="margin-bottom:0.5rem;">Suggest a Resource</h3>
-          <p class="section-description" style="margin-bottom:1.5rem;">Request or suggest a resource you'd like to see added to CTRL. We review all submissions and add the best ones to our hub!</p>
-          <form action="https://usebasin.com/f/85f14c1689bd" method="POST" style="display:flex;flex-direction:column;gap:1rem;">
-            <div class="form-group full-width">
-              <label for="resource-suggestion">What resource do you want to see? <span style="color:var(--accent-color);">*</span></label>
-              <textarea id="resource-suggestion" name="resource-suggestion" required placeholder="Describe the resource, tool, or topic you want CTRL to add. Include links if possible."></textarea>
-            </div>
-            <button type="submit" class="submit-button" style="align-self:flex-start;">Submit Suggestion</button>
-          </form>
-        </div>
-      </div>
-    </section>
-    <!-- End Resource Suggestion Form Section -->
-
   </main>
 
   <footer class="main-footer">
     <div class="footer-content">
-      <p>2025 CTRL Initiative | Built by and for the people without a roadmap</p>
+      <p>© 2025 Project CTRL | Built by and for the people without a roadmap</p>
     </div>
   </footer>
 
   <script src="js/resources.js"></script>
-  <script>
-    // Intercept the resource suggestion form submission
-    document.addEventListener('DOMContentLoaded', function() {
-      var form = document.querySelector('form[action="https://usebasin.com/f/85f14c1689bd"]');
-      if (form) {
-        form.addEventListener('submit', function(e) {
-          e.preventDefault();
-          var formData = new FormData(form);
-          fetch(form.action, {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-          })
-          .then(function(response) {
-            if (response.ok) {
-              form.innerHTML = '<div style="padding:2rem 0;text-align:center;"><h3 style="color:var(--accent-color);margin-bottom:0.5rem;">Thank you!</h3><p>Your suggestion has been received. We appreciate your input!</p></div>';
-            } else {
-              form.innerHTML = '<div style="padding:2rem 0;text-align:center;"><h3 style="color:var(--error-color);margin-bottom:0.5rem;">Oops!</h3><p>There was a problem submitting your suggestion. Please try again later.</p></div>';
-            }
-          })
-          .catch(function() {
-            form.innerHTML = '<div style="padding:2rem 0;text-align:center;"><h3 style="color:var(--error-color);margin-bottom:0.5rem;">Oops!</h3><p>There was a problem submitting your suggestion. Please try again later.</p></div>';
-          });
-        });
-      }
-    });
-  </script>
 </body>
 </html> 

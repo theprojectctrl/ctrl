@@ -6,6 +6,11 @@
   <title>Submit Project - CTRL Initiative</title>
   <link rel="stylesheet" href="css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
   <style>
     .submit-section {
       padding: 2rem 0;
@@ -319,9 +324,6 @@
       <a href="index.html" class="logo">CTRL Initiative</a>
       <nav class="main-nav">
         <a href="index.html">Dashboard</a>
-        <a href="ctrl-cohort.html">CTRL Cohort</a>
-        <a href="launch.html">Launch</a>
-        <a href="thrive.html">Thrive</a>
         <a href="projects.html">CTRL Spotlight</a>
         <div class="dropdown">
           <a href="resources.html" class="dropdown-trigger">Resources ▾</a>
@@ -329,13 +331,6 @@
             <a href="https://stembystep.github.io/sbs/" target="_blank">STEM by Step</a>
           </div>
         </div>
-        <a href="https://www.instagram.com/projectctrl.co/" target="_blank" class="social-nav-link">
-          <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
-            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
-            <circle cx="17" cy="7" r="1" fill="currentColor"/>
-          </svg>
-        </a>
       </nav>
     </div>
   </header>
@@ -343,23 +338,18 @@
   <main class="submit-section">
     <div class="content-wrapper">
       <div class="form-card">
-        <div class="section-header">
-          <div class="section-tag">Submit</div>
-          <h1>Submit Your Project or Startup</h1>
-          <p class="section-description">Use this form to showcase your startup, product, or project to the CTRL community. This is for sharing your work, business, nonprofit, or any project you want to get discovered and connect with collaborators. <br><span style="color:#888;font-size:0.95em;">Guide: For example, you can submit apps, nonprofits, businesses, or any work you want to showcase as a project. If you want to offer your skills/services to help other projects, use the <a href='share-product.html' style='color:#79b7ff;'>Service Offering</a> form instead.</span></p>
-        </div>
-
         <div class="tip-banner">
           <span class="tip-icon">💡</span>
-          <p>Share your project with our community! Fill out the form below to get started.</p>
+          <p>Share your work with our community! Fill out the form below to get started.</p>
         </div>
 
-        <form id="project-form" action="https://usebasin.com/f/264e81003939" method="POST" enctype="multipart/form-data">
+        <form id="submit-form" action="https://formspree.io/f/movwvvvj" method="POST">
           <div class="form-grid">
             <div class="form-group">
-              <label for="contact-email">Contact Email *</label>
-              <input type="email" id="contact-email" name="contact-email" required>
+              <label for="project-name" class="required-field">Project Name</label>
+              <input type="text" id="project-name" name="project-name" required>
             </div>
+
             <div class="form-group">
               <label for="project-type" class="required-field">Project Type</label>
               <select id="project-type" name="project-type" required>
@@ -372,10 +362,7 @@
                 <option value="Side Hustle">Side Hustle</option>
               </select>
             </div>
-            <div class="form-group">
-              <label for="project-name" class="required-field">Project Name</label>
-              <input type="text" id="project-name" name="project-name" required>
-            </div>
+
             <div class="form-group">
               <label for="category" class="required-field">Category</label>
               <select id="category" name="category" required>
@@ -390,44 +377,126 @@
                 <option value="Wellness / Beauty">Wellness / Beauty</option>
               </select>
             </div>
+
+            <div class="form-group">
+              <label for="project-stage" class="required-field">Project Stage</label>
+              <select id="project-stage" name="project-stage" required>
+                <option value="">Select stage...</option>
+                <option value="Idea Phase">Idea Phase</option>
+                <option value="In Development">In Development</option>
+                <option value="Launched">Launched</option>
+                <option value="Scaling">Scaling</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="modality" class="required-field">Project Modality</label>
+              <select id="modality" name="modality" required>
+                <option value="">Select modality...</option>
+                <option value="Website">Website</option>
+                <option value="Mobile App">Mobile App</option>
+                <option value="DIY Hardware">DIY Hardware</option>
+                <option value="Social Media">Social Media</option>
+                <option value="E-commerce">E-commerce</option>
+                <option value="In-person / Offline">In-person / Offline</option>
+                <option value="Hybrid">Hybrid</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
             <div class="form-group full-width">
               <label for="description" class="required-field">Project Description</label>
-              <textarea id="description" name="description" required placeholder="Tell us about your project, its goals, and impact..." maxlength="1200"></textarea>
-              <div id="desc-char-count" style="font-size:0.92em;color:#888;margin-top:0.2em;">0/600 characters</div>
+              <textarea id="description" name="description" required placeholder="Tell us about your work, its goals, and impact..."></textarea>
             </div>
-            <script>
-              function countAlphaChars(str) {
-                return (str.match(/[A-Za-z0-9]/g) || []).length;
-              }
-              document.addEventListener('DOMContentLoaded', function() {
-                const desc = document.getElementById('description');
-                const counter = document.getElementById('desc-char-count');
-                desc.addEventListener('input', function() {
-                  const count = countAlphaChars(desc.value);
-                  counter.textContent = `${count}/600 characters`;
-                  if (count > 600) {
-                    counter.style.color = '#ff4c61';
-                  } else {
-                    counter.style.color = '#888';
-                  }
-                });
-              });
-            </script>
+
             <div class="form-group full-width">
               <label>Additional Links (optional)</label>
-              <span style="font-size:0.92em;color:#888;">Add up to 3 links (Instagram, website, or any relevant link to your project/event).</span>
+              <span style="font-size:0.92em;color:#888;">Add up to 3 links (Instagram, website, or any relevant link to your work/event).</span>
               <input type="url" name="link-1" placeholder="https:// (e.g. Instagram, website, etc.)">
               <input type="url" name="link-2" placeholder="https:// (optional)">
               <input type="url" name="link-3" placeholder="https:// (optional)">
             </div>
+
             <div class="form-group full-width">
               <label>Upload Logo or Images (optional)</label>
               <span style="font-size:0.92em;color:#888;">You may upload up to 3 images (JPG, PNG, GIF, SVG). Max 5MB each.</span>
               <input type="file" name="images" accept="image/*" multiple style="margin-top:0.5rem;" max="3">
             </div>
+
+            <div class="form-group full-width visibility-boost-message">
+              <div class="boost-banner">
+                <span class="boost-icon">🚀</span>
+                <p>The following fields are optional, but filling them out can boost your work's visibility in CTRL Spotlight!</p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="team-size">Team Size</label>
+              <select id="team-size" name="team-size">
+                <option value="">Select team size...</option>
+                <option value="Solo">Solo</option>
+                <option value="Small (2-5)">Small (2-5)</option>
+                <option value="Medium (6-15)">Medium (6-15)</option>
+                <option value="Large (16+)">Large (16+)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="market-reach">Market Reach</label>
+              <select id="market-reach" name="market-reach">
+                <option value="">Select reach...</option>
+                <option value="Local">Local</option>
+                <option value="Regional">Regional</option>
+                <option value="National">National</option>
+                <option value="Global">Global</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Team & Event Status</label>
+              <div class="checkbox-group">
+                <label class="checkbox-option">
+                  <input type="checkbox" name="status[]" value="Hiring">
+                  <span class="status-tag hiring">🎯 Hiring</span>
+                </label>
+                <label class="checkbox-option">
+                  <input type="checkbox" name="status[]" value="Open Positions">
+                  <span class="status-tag positions">👥 Open Positions</span>
+                </label>
+                <label class="checkbox-option">
+                  <input type="checkbox" name="status[]" value="Ongoing Event">
+                  <span class="status-tag event">📅 Ongoing Event</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="duration">Work Duration</label>
+              <select id="duration" name="duration">
+                <option value="">Select duration...</option>
+                <option value="One-time">One-time</option>
+                <option value="Seasonal">Seasonal</option>
+                <option value="Ongoing">Ongoing</option>
+              </select>
+            </div>
+
             <div class="form-group full-width">
-              <label for="additional-info">Additional Info or Questions (optional)</label>
-              <textarea id="additional-info" name="additional-info" placeholder="Any other info or questions..."></textarea>
+              <label for="contact-info" class="required-field">Contact Info</label>
+              <input type="text" id="contact-info" name="contact-info" required placeholder="Add your email, phone, or a handle you want to be contacted through">
+            </div>
+            <div class="form-group full-width">
+              <label><input type="checkbox" name="show-contact-info"> Show my contact info on my work/event tile & Instagram</label>
+            </div>
+            <div class="form-group full-width">
+              <label>Share my work/event on the CTRL Initiative Instagram?</label>
+              <div style="display:flex;gap:1.5rem;align-items:center;">
+                <label><input type="radio" name="share-on-instagram" value="yes"> Yes</label>
+                <label><input type="radio" name="share-on-instagram" value="no"> No</label>
+              </div>
+            </div>
+            <div class="form-group full-width">
+              <label for="additional-contact">Additional Info for Instagram Caption or Post (optional)</label>
+              <textarea id="additional-contact" name="additional-contact" placeholder="Any other info you want in an Instagram caption or post that isn't in your project description."></textarea>
             </div>
           </div>
 
@@ -435,7 +504,7 @@
             <div class="notice-icon">📱</div>
             <div class="notice-content">
               <h4>Social Media Notice</h4>
-              <p>Your project will be featured on our Instagram (<a href="https://www.instagram.com/projectctrl.co/" target="_blank">@projectctrl</a>) to highlight your work and connect you with more supporters. Keep an eye out for your mentions on Instagram to see your post! If you'd prefer not to be featured or want it removed, just reply to this email within 5 days (<a href="mailto:contact.projectctrl@gmail.com">contact.projectctrl@gmail.com</a>).</p>
+              <p>If you opt for your project to be shared on our Instagram (by checking the box above), your project will be featured on our Instagram (<a href="https://www.instagram.com/projectctrl.co/" target="_blank">@projectctrl</a>) to highlight your work and connect you with more supporters. Keep an eye out for your mentions on Instagram to see your post! If you'd prefer not to be featured or want it removed, just reply to this email within 5 days (<a href="mailto:contact.projectctrl@gmail.com">contact.projectctrl@gmail.com</a>).</p>
             </div>
           </div>
 
@@ -465,10 +534,10 @@
   <script src="js/form-handler.js"></script>
   <script>
     // Initialize the form handler with automatic fallback
-    new FormHandler('project-form', {
-      formspreeEndpoint: 'https://usebasin.com/f/264e81003939',
+    new FormHandler('submit-form', {
+      formspreeEndpoint: 'https://formspree.io/f/movwvvvj',
       successRedirect: 'projects.html?status=success&type=project',
-      successMessage: 'Project submitted successfully! Redirecting to Spotlight...'
+      successMessage: 'Work submitted successfully! Redirecting to Spotlight...'
     });
   </script>
 </body>
