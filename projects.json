@@ -1,9 +1,16 @@
 [
   {
-    "title": "Hearts of Tomorrow",
-    "category": "Health",
+    "title": "TheOceanProject",
+    "category": "Environment",
     "type": "Non-Profit",
-    "description": "Striving to prevent CVD & accommodate those afflicted with practical, affordable technologies and approaches. We offer tools, projects, and programs to aid those in need. Chapter applications on the way & we are currently recruiting team members, view on IG if interested!"
+    "description": "The Ocean Project is a youth-led nonprofit organization committed to protecting and restoring our planet’s oceans through education, advocacy, and hands-on community action. Founded by Jia, an environment activist recognizing the urgent need for ocean conservation, we aim to empower young people to take meaningful steps toward a more sustainable future."
+  },
+
+  {
+    "title": "Project Light Shade",
+    "category": "Health",
+    "type": "Community",
+    "description": "Project LightShade is a student-led initiative dedicated to advocating for sun safety equity, skincare awareness, and overall wellness specifically for melanin-rich skin. We strive to educate communities about the unique needs of darker skin tones when it comes to sun protection and skin health, promoting inclusive skincare practices and wellness resources. Our mission is to empower individuals with knowledge and tools to protect and celebrate their skin under the sun."
   },
   {
     "title": "Nurses of the Future",
