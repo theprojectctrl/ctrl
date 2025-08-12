@@ -2021,6 +2021,59 @@
     cursor: pointer;
     transition: all 0.2s ease;
   }
+
+  .qr-offer-section {
+  background: #f8f8f8;
+  padding: 2rem 0;
+}
+
+.qr-offer-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 2rem;
+}
+
+.qr-offer-text {
+  flex: 1;
+}
+
+.qr-offer-text h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.qr-offer-text p {
+  font-size: 1.125rem;
+  color: #444;
+  line-height: 1.5;
+}
+
+.qr-offer-image {
+  flex: 0 0 auto;
+}
+
+.qr-offer-image img {
+  width: 200px;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+@media (max-width: 768px) {
+  .qr-offer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .qr-offer-image img {
+    width: 180px;
+  }
+}
+
   
   .popup-mini-card:hover {
     transform: translateY(-2px);
