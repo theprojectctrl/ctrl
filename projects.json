@@ -1,16 +1,9 @@
 [
   {
-    "title": "TheOceanProject",
-    "category": "Environment",
-    "type": "Non-Profit",
-    "description": "The Ocean Project is a youth-led nonprofit organization committed to protecting and restoring our planet’s oceans through education, advocacy, and hands-on community action. Founded by Jia, an environment activist recognizing the urgent need for ocean conservation, we aim to empower young people to take meaningful steps toward a more sustainable future."
-  },
-
-  {
-    "title": "Project Light Shade",
+    "title": "Hearts of Tomorrow",
     "category": "Health",
-    "type": "Community",
-    "description": "Project LightShade is a student-led initiative dedicated to advocating for sun safety equity, skincare awareness, and overall wellness specifically for melanin-rich skin. We strive to educate communities about the unique needs of darker skin tones when it comes to sun protection and skin health, promoting inclusive skincare practices and wellness resources. Our mission is to empower individuals with knowledge and tools to protect and celebrate their skin under the sun."
+    "type": "Non-Profit",
+    "description": "Striving to prevent CVD & accommodate those afflicted with practical, affordable technologies and approaches. We offer tools, projects, and programs to aid those in need. Chapter applications on the way & we are currently recruiting team members, view on IG if interested!"
   },
   {
     "title": "Nurses of the Future",
@@ -30,7 +23,6 @@
     "type": "Non-Profit",
     "description": "The Warm Words Project shares daily comics of Mira & Luma to comfort emotionally struggling teens, especially those who grow up without their parents. Rooted in empathy, our goal is to create a safe, gentle space through storytelling. In our early phase, we focus on publishing daily comics, animations, launching a small merch line, and forming a volunteer team. Future plans include starting school-based chapters, donating to SOS Children's Villages, partnering with youth-focused NGOs, and publishing a print comic anthology. We grow slowly but meaningfully, prioritizing emotional depth and real connection. One warm word at a time, we hope to bring light, healing, and hope to young hearts who need it most."
   },
-  
   {
     "title": "Beyond the Quill",
     "category": "Art / Design",
@@ -102,6 +94,7 @@
     "category": "Health",
     "type": "Non-Profit",
     "description": "Every child deserves a chance to smile, to play, and to dream –– even in the face of cancer. This non-profit aims to raise funds to support pediatric cancer patients and their families through care packages, hospital visits, emotional support programs, and financial assistance."
+    
   },
   {
     "title": "cherielle",
@@ -114,5 +107,6 @@
     "category": "Education",
     "type": "Non-Profit",
     "description": "A free STEM education platform providing hands-on learning experiences and project-based curriculum for underserved communities."
+
   }
 ] 

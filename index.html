@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CTRL Initiative - Your Innovation Journey Starts Here</title>
+  <title>CTRL - Your Innovation Journey Starts Here</title>
   <link rel="stylesheet" href="css/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-REKT5H0GXW"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -13,339 +13,207 @@
     gtag('js', new Date());
     gtag('config', 'G-REKT5H0GXW');
   </script>
-  <link rel="stylesheet" href="css/projects.css" />
   <style>
-    .cta-buttons {
-      display: flex;
-      gap: 1.5rem;
-      justify-content: center;
-      margin: 2rem 0;
+    /* Collabz-inspired minimal design */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #000;
+      background: #fff;
+      margin: 0;
+      padding: 0;
     }
 
-    .cta-buttons .primary-button,
-    .cta-buttons .secondary-button {
-      font-size: 1.125rem;
+    .main-header {
+      background: #fff;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 1.5rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .main-nav a {
+      color: #666;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: #000;
+    }
+
+    .social-nav-link {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .dashboard-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-section {
+      padding: 0;
+      text-align: center;
+      margin: auto 0;
+      background: transparent;
+    }
+
+    .hero-section h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.1;
+      margin: 0 0 1.5rem 0;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: #666;
+      margin: 0 0 3rem 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 3rem 0;
+    }
+
+    .primary-button,
+    .secondary-button {
+      font-size: 1rem;
       font-weight: 600;
       padding: 1rem 2rem;
-      border-radius: 100px;
+      border-radius: 50px;
       border: none;
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.5rem;
       cursor: pointer;
       text-decoration: none;
-      transition: all 0.3s ease;
-      min-width: 200px;
+      transition: all 0.2s ease;
+      min-width: 160px;
       justify-content: center;
     }
 
-    .cta-buttons .primary-button {
-      background: #79b7ff;
+    .primary-button {
+      background: #000;
       color: white;
-      box-shadow: 0 4px 20px rgba(121, 183, 255, 0.2);
     }
 
-    .cta-buttons .secondary-button {
-      background: #EEF4FF;
-      color: #79b7ff;
+    .primary-button:hover {
+      background: #333;
+      transform: translateY(-1px);
     }
 
-    .cta-buttons .primary-button:hover {
-      background: #5a9eff;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba(121, 183, 255, 0.3);
+    .secondary-button {
+      background: #f0f8ff;
+      color: #000;
+      border: 1px solid #e6f3ff;
     }
 
-    .cta-buttons .secondary-button:hover {
-      background: #dce7ff;
-      transform: translateY(-2px);
+    .secondary-button:hover {
+      background: #e6f3ff;
+      transform: translateY(-1px);
     }
 
     .button-icon {
-      font-size: 1.25rem;
-      transition: transform 0.3s ease;
-    }
-
-    .primary-button:hover .button-icon {
-      transform: translateX(4px);
-    }
-
-    .secondary-button:hover .button-icon {
-      transform: rotate(90deg);
-    }
-
-    @media (max-width: 768px) {
-      .cta-buttons {
-        flex-direction: column;
-        padding: 0 1rem;
-      }
-
-      .cta-buttons .primary-button,
-      .cta-buttons .secondary-button {
-        width: 100%;
-      }
-    }
-
-    /* Featured Projects in Bento Card */
-    .community-card {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .featured-projects {
-      position: relative;
-      width: 100%;
-      min-height: 150px; /* Minimum height to prevent collapse */
-      height: calc(100% - 40px); /* Account for heading */
-    }
-
-    .featured-project {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      cursor: pointer;
-      padding: 0.5rem;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .featured-project.active {
-      opacity: 1;
-    }
-
-    .featured-project .project-header {
-      margin-bottom: 0.75rem;
-    }
-
-    .featured-project h4 {
-      font-size: clamp(1rem, 2vw, 1.1rem);
-      margin: 0 0 0.5rem 0;
-      color: #333;
-      font-weight: 600;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .featured-project .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .featured-project .tag {
-      font-size: clamp(0.65rem, 1.5vw, 0.75rem);
-      padding: 0.25rem 0.75rem;
-      border-radius: 100px;
-      background: #EEF4FF;
-      color: #79b7ff;
-      white-space: nowrap;
-    }
-
-    .featured-project .project-description {
-      font-size: clamp(0.75rem, 1.5vw, 0.875rem);
-      line-height: 1.5;
-      color: #555;
-      margin: 0;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      flex-grow: 1;
-    }
-
-    .featured-project:hover {
-      background: rgba(121, 183, 255, 0.05);
-      border-radius: 8px;
-    }
-
-    .featured-project:hover .tag {
-      background: #79b7ff;
-      color: white;
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .featured-projects {
-        min-height: 120px;
-      }
-
-      .featured-project {
-        padding: 0.25rem;
-      }
-
-      .featured-project .project-header {
-        margin-bottom: 0.5rem;
-      }
-
-      .featured-project .project-tags {
-        gap: 0.25rem;
-        margin-bottom: 0.25rem;
-      }
-
-      .featured-project .tag {
-        padding: 0.15rem 0.5rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .featured-projects {
-        min-height: 100px;
-      }
-
-      .featured-project .project-description {
-        -webkit-line-clamp: 1;
-      }
-    }
-
-    /* How It Works Card Styles */
-    .how-it-works-card {
-      grid-column: span 2;
-    }
-
-    .tiers-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-top: 1rem;
-    }
-
-    .tier-section {
-      background: rgba(121, 183, 255, 0.03);
-      border-radius: 12px;
-      padding: 1.25rem;
-      transition: all 0.3s ease;
-    }
-
-    .tier-section:hover {
-      background: rgba(121, 183, 255, 0.08);
-      transform: translateY(-2px);
-    }
-
-    .tier-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-    }
-
-    .tier-header h4 {
       font-size: 1.1rem;
-      color: #333;
-      margin: 0;
-      font-weight: 600;
     }
 
-    .tier-badge {
-      font-size: 0.75rem;
-      padding: 0.25rem 0.75rem;
-      border-radius: 100px;
-      background: #79b7ff;
-      color: white;
-      font-weight: 500;
+    .dashboard-grid {
+      padding: 4rem 0;
     }
 
-    .tier-badge.coming-soon {
-      background: #FFB17A;
+    .bento-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
     }
 
-    .tier-features {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
+    .bento-card {
+      background: #fff;
+      border: 1px solid #f0f0f0;
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.2s ease;
     }
 
-    .tier-features li {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 0.875rem;
-      color: #555;
+    .bento-card:hover {
+      border-color: #e6f3ff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(230, 243, 255, 0.3);
     }
 
-    .feature-icon {
-      font-size: 1rem;
-      width: 24px;
-      height: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: white;
-      border-radius: 6px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    .bento-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+      color: #000;
     }
 
-    .tier-note {
-      margin: 1rem 0 0;
-      font-size: 0.8125rem;
-      color: #666;
-      font-style: italic;
-      line-height: 1.5;
-    }
-
-    /* Mobile Responsive Adjustments */
-    @media (max-width: 768px) {
-      .how-it-works-card {
-        grid-column: span 1;
-      }
-
-      .tiers-container {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-
-      .tier-section {
-        padding: 1rem;
-      }
-
-      .tier-header h4 {
-        font-size: 1rem;
-      }
-
-      .tier-features li {
-        font-size: 0.8125rem;
-      }
-
-      .feature-icon {
-        width: 20px;
-        height: 20px;
-        font-size: 0.875rem;
-      }
-    }
-
-    /* Update category styles */
     .categories-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1rem;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
     }
 
     .category-item {
-      background: rgba(121, 183, 255, 0.03);
-      border-radius: 12px;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      background: #f8f8f8;
+      border-radius: 8px;
+      padding: 1.5rem;
       text-align: center;
-      gap: 0.5rem;
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
       cursor: pointer;
+      border: 1px solid transparent;
     }
 
     .category-item:hover {
-      background: rgba(121, 183, 255, 0.08);
-      transform: translateY(-2px);
+      background: #f0f8ff;
+      border-color: #e6f3ff;
+      transform: translateY(-1px);
     }
 
     .category-icon {
@@ -354,1352 +222,394 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(121, 183, 255, 0.1);
-      margin-bottom: 0.5rem;
-    }
-
-    .category-icon svg {
-      transition: transform 0.3s ease;
-    }
-
-    .category-item:hover .category-icon svg {
-      transform: scale(1.1);
+      background: #fff;
+      border-radius: 8px;
+      margin: 0 auto 1rem auto;
+      box-shadow: 0 2px 8px rgba(230, 243, 255, 0.3);
     }
 
     .category-name {
       font-weight: 600;
-      color: #333;
-      font-size: 0.9rem;
+      color: #000;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
     }
 
     .category-desc {
-      font-size: 0.8rem;
+      font-size: 0.875rem;
       color: #666;
-      margin-top: -0.25rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: #f8f8f8;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+    }
+
+    .contact-item:hover {
+      background: #f0f8ff;
+    }
+
+    .contact-icon {
+      font-size: 1.25rem;
+      width: 24px;
+      text-align: center;
+    }
+
+    .contact-content h4 {
+      margin: 0 0 0.25rem 0;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #666;
+    }
+
+    .contact-content a {
+      color: #000;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-content a:hover {
+      text-decoration: underline;
+    }
+
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: #f8f8f8;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+    }
+
+    .step-item:hover {
+      background: #f0f8ff;
+    }
+
+    .step-number {
+      background: #000;
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .step-item p {
+      margin: 0;
+      font-weight: 500;
+      color: #000;
+    }
+
+    .highlight-step {
+      background: #f0f8ff;
+      border: 1px solid #e6f3ff;
+    }
+
+    .highlight-step:hover {
+      background: #e6f3ff;
+    }
+
+    .about-section {
+      padding: 4rem 0;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    .main-footer {
+      background: #f8f8f8;
+      padding: 2rem 0;
+      text-align: center;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-content p {
+      color: #666;
+      margin: 0;
     }
 
     @media (max-width: 768px) {
+      .header-container {
+        padding: 0 1rem;
+      }
+
+      .dashboard-container {
+        padding: 0 1rem;
+        min-height: 80vh;
+      }
+
+      .hero-section {
+        padding: 2rem 0;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .primary-button,
+      .secondary-button {
+        width: 100%;
+        max-width: 300px;
+      }
+
       .categories-grid {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .category-item {
-        padding: 0.75rem;
-      }
-
-      .category-icon {
-        width: 40px;
-        height: 40px;
-      }
-
-      .category-name {
-        font-size: 0.85rem;
-      }
-
-      .category-desc {
-        font-size: 0.75rem;
+      .bento-card {
+        padding: 1.5rem;
       }
     }
 
-    /* Updated Bento Grid Layout */
-    .bento-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-
-    /* Adjust specific bento card sizes */
-    .resources-card {
-      grid-column: span 2;
-      max-height: 280px;
-      overflow: hidden;
-    }
-
-    .community-card {
-      grid-column: span 2;
-      max-height: 280px;
-      overflow: hidden;
-    }
-
-    .categories-card {
-      grid-column: span 4;
-    }
-
-    .stories-card,
-    .get-started-card {
-      grid-column: span 2;
-    }
-
-    .how-it-works-card {
-      grid-column: span 4;
-    }
-
-    /* Adjust resource items for smaller container */
-    .resources-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.75rem;
-    }
-
-    .resource-item {
-      padding: 0.75rem;
-    }
-
-    .resource-icon {
-      font-size: 1.25rem;
-      width: 36px;
-      height: 36px;
-    }
-
-    .resource-content h4 {
-      font-size: 0.9rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .resource-content p {
-      font-size: 0.8rem;
-    }
-
-    /* Adjust featured projects for smaller container */
-    .featured-projects {
-      min-height: 120px;
-    }
-
-    .featured-project {
-      padding: 0.75rem;
-    }
-
-    .featured-project h4 {
-      font-size: 1rem;
-    }
-
-    .featured-project .project-tags {
-      gap: 0.375rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .featured-project .tag {
-      font-size: 0.7rem;
-      padding: 0.2rem 0.5rem;
-    }
-
-    .featured-project .project-description {
-      font-size: 0.8rem;
-      -webkit-line-clamp: 2;
-    }
-
-    /* Mobile Responsive Adjustments */
-    @media (max-width: 1024px) {
-      .bento-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .categories-card,
-      .how-it-works-card {
-        grid-column: span 2;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .bento-grid {
+    @media (max-width: 480px) {
+      .categories-grid {
         grid-template-columns: 1fr;
+      }
+
+      .main-nav {
         gap: 1rem;
       }
-
-      .resources-card,
-      .community-card,
-      .categories-card,
-      .stories-card,
-      .get-started-card,
-      .how-it-works-card {
-        grid-column: span 1;
-        max-height: none;
-      }
-    }
-
-    /* Add styles for shop resource item */
-    .resource-item.shop-item {
-      background: rgba(121, 183, 255, 0.05);
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      position: relative;
-      cursor: pointer;
-    }
-
-    .resource-item.shop-item:hover {
-      background: rgba(121, 183, 255, 0.1);
-      transform: translateY(-2px);
-    }
-
-    .resource-item.shop-item .resource-content {
-      padding-right: 24px;
-    }
-
-    .resource-item.shop-item::after {
-      content: "→";
-      position: absolute;
-      right: 12px;
-      bottom: 12px;
-      font-size: 1.1rem;
-      color: #79b7ff;
-      transition: transform 0.3s ease;
-    }
-
-    .resource-item.shop-item:hover::after {
-      transform: translateX(4px);
-    }
-
-    .highlight-step {
-      background: rgba(121, 183, 255, 0.15);
-      border-radius: 12px;
-      padding: 1.25rem;
-      margin: 0.75rem 0;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      position: relative;
-      overflow: hidden;
-      border: 2px solid rgba(121, 183, 255, 0.3);
-      box-shadow: 0 4px 12px rgba(121, 183, 255, 0.15);
-    }
-
-    .highlight-step::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(121, 183, 255, 0.1);
-      border-radius: 12px;
-      z-index: -1;
-      transition: all 0.3s ease;
-    }
-
-    .highlight-step:hover {
-      transform: translateY(-2px);
-      background: rgba(121, 183, 255, 0.2);
-      border-color: rgba(121, 183, 255, 0.5);
-      box-shadow: 0 6px 20px rgba(121, 183, 255, 0.25);
-    }
-
-    .highlight-step:hover::before {
-      background: rgba(121, 183, 255, 0.15);
-    }
-
-    .highlight-step .step-number {
-      background: #79b7ff;
-      color: white;
-      box-shadow: 0 2px 8px rgba(121, 183, 255, 0.3);
-    }
-
-    .highlight-step p {
-      margin: 0;
-      font-weight: 600;
-      color: #1f2937;
-    }
-
-    .highlight-step::after {
-      content: '→';
-      margin-left: auto;
-      font-size: 1.25rem;
-      color: #79b7ff;
-      opacity: 0.8;
-      transition: transform 0.3s ease;
-    }
-
-    .highlight-step:hover::after {
-      transform: translateX(4px);
-      opacity: 1;
-    }
-
-    .dashboard-modal {
-      position: fixed;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      background: #f8fafd;
-      border-radius: 32px;
-      box-shadow: 0 12px 48px rgba(0,0,0,0.16);
-      width: 90vw;
-      height: 90vh;
-      max-width: 1200px;
-      max-height: 900px;
-      padding: 2rem 2rem 0 2rem;
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      overflow: hidden;
-    }
-    /* Add this new class for popup overlays inside dashboard-modal */
-    .dashboard-modal .popup-overlay {
-      position: absolute !important;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(49,95,144,0.10);
-      z-index: 2000;
-    }
-    .browse-top-row {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2rem;
-      margin: 4rem auto 2rem auto;
-      max-width: 600px;
-      width: 100%;
-    }
-    .browse-top-row .search-container,
-    .browse-top-row #browse-testimony-box {
-      width: 100%;
-      max-width: 600px;
     }
   </style>
 </head>
 <body class="dashboard">
-  <!-- Dashboard Modal Popup -->
-  <div class="dashboard-modal" id="dashboardModal">
-    <button class="close-btn" id="closeDashboardModal">&times;</button>
-    <!-- Modal Header: Website Name + IG Icon -->
-    <div class="dashboard-modal-header" style="display:flex;align-items:center;gap:1.25rem;position:absolute;left:2rem;top:1.5rem;z-index:10;background:rgba(255,255,255,0.95);border-radius:16px;padding:0.5rem 1.5rem 0.5rem 1.25rem;box-shadow:0 2px 8px rgba(121,183,255,0.08);min-width:220px;">
-      <span class="modal-site-name" style="font-size:1.35rem;font-weight:800;color:#315F90;letter-spacing:0.01em;">CTRL Initiative</span>
-      <a href="https://www.instagram.com/ctrlinitiative/" target="_blank" style="display:inline-block;line-height:0;">
-        <svg class="nav-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2" y="2" width="20" height="20" rx="5" stroke="#79b7ff" stroke-width="2"/>
-          <circle cx="12" cy="12" r="5" stroke="#79b7ff" stroke-width="2"/>
-          <circle cx="17" cy="7" r="1" fill="#79b7ff"/>
-        </svg>
-      </a>
-    </div>
-    <div class="dashboard-content">
-      <!-- CTRL Tab -->
-      <div class="tab-content active" id="ctrl-tab">
-        <div class="tab-content-inner" style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:100%;width:100%;overflow:auto;">
-          <!-- Single metric box at top -->
-          <div class="ctrl-hero-metrics" style="width:100%;max-width:900px;margin:3.5rem auto 2.5rem auto;text-align:center;">
-            <h1 style="font-size:2.5rem;font-weight:800;color:#315F90;margin-bottom:0.5rem;">Digitize and scale your small business with confidence </h1>
-            <p style="font-size:1.15rem;color:#315F90;margin-bottom:1.5rem;">Helping local businesses, startups, and community initiatives thrive in the digital age. Transform guesswork into guided success with CTRL's hybrid approach.</p>
-            <div class="metric-box" style="background:#fff;border-radius:16px;box-shadow:0 2px 8px rgba(121,183,255,0.08);padding:1.5rem 2.5rem;font-size:2rem;font-weight:700;color:#79b7ff;min-width:180px;display:inline-block;margin-top:1.5rem;">30k+ businesses growing</div>
-          </div>
-          <h2 style="margin:2.5rem 0 1.5rem 0;text-align:center;font-size:2rem;font-weight:700;">CTRL Users</h2>
-          <div class="projects-grid ctrl-projects-grid" style="width:100%;max-width:1100px;margin:0 auto 2rem auto;"></div>
-        </div>
-      </div>
-      <!-- CTRL Cohort Tab -->
-      <div class="tab-content" id="ctrl-cohort-tab">
-        <div class="tab-content-inner" style="height:100%;width:100%;overflow:auto;">
-          <section class="hero-section">
-            <div class="content-wrapper">
-              <h1>CTRL Cohort: Empower Your Community</h1>
-              <p class="hero-subtitle">A guided program for students to launch real-world projects or help local businesses using CTRL's toolkits and platform.</p>
-            </div>
-          </section>
-          <section class="dashboard-grid">
-            <div class="content-wrapper">
-              <div class="bento-grid">
-                <div class="bento-card">
-                  <h3>What is CTRL Cohort?</h3>
-                  <p>CTRL Cohort is a hands-on program for students and aspiring changemakers to make a real impact in their community. Join a guided journey to start your own project or help a local business grow using our proven toolkits and resources.</p>
-                </div>
-                <div class="bento-card">
-                  <h3>How It Works</h3>
-                  <ul>
-                    <li>Apply to join the next CTRL Cohort (open to students and community members)</li>
-                    <li>Get matched with a local business or start your own project</li>
-                    <li>Access exclusive toolkits, mentorship, and step-by-step guidance</li>
-                    <li>Collaborate, learn, and make a measurable impact</li>
-                    <li>Showcase your work in the CTRL Spotlight</li>
-                  </ul>
-                </div>
-                <div class="bento-card">
-                  <h3>Why Join?</h3>
-                  <ul>
-                    <li>Real-world experience and leadership skills</li>
-                    <li>Direct community impact</li>
-                    <li>Use CTRL's launcher toolkits</li>
-                    <li>Portfolio and resume building</li>
-                    <li>Opportunities for recognition and awards</li>
-                  </ul>
-                </div>
-                
-              </div>
-            </div>
-          </section>
-        </div>
-      </div>
-      <!-- Launch Tab -->
-      <div class="tab-content" id="launch-tab">
-        <div class="tab-content-inner" style="height:100%;width:100%;overflow:auto;">
-          <section class="hero-section">
-            <div class="content-wrapper">
-              <h1>Launch: Start Your Business Journey</h1>
-              <p class="hero-subtitle">Everything you need to go from idea to launch. Get resources, roadmaps, and expert advice to start your business with confidence.</p>
-            </div>
-          </section>
-          <section class="dashboard-grid">
-            <div class="content-wrapper">
-              <div class="bento-grid">
-                <div class="bento-card">
-                  <h3>Step-by-Step Roadmaps</h3>
-                  <p>Follow proven guides to take your idea from concept to reality. Our roadmaps break down every stage of launching a business, so you never feel lost.</p>
-                </div>
-                <div class="bento-card">
-                  <h3>Essential Resources</h3>
-                  <ul>
-                    <li>Business plan templates</li>
-                    <li>Branding and marketing guides</li>
-                    <li>Legal and registration checklists</li>
-                    <li>Financial planning tools</li>
-                  </ul>
-                </div>
-                <div class="bento-card">
-                  <h3>Grants & Funding</h3>
-                  <p>Explore up-to-date information on grants, funding opportunities, and how to apply. We help you find the right support to get started.</p>
-                </div>
-                <div class="bento-card">
-                  <h3>Business Modalities</h3>
-                  <p>Learn about different business models and modalities to choose the best path for your goals, whether you're starting a side hustle, nonprofit, or full-scale company.</p>
-                </div>
-                
-              </div>
-            </div>
-          </section>
-        </div>
-      </div>
-      <!-- Thrive Tab -->
-      <div class="tab-content" id="thrive-tab">
-        <div class="tab-content-inner" style="height:100%;width:100%;overflow:auto;">
-          <section class="hero-section">
-            <div class="content-wrapper">
-              <h1>Thrive: Grow and Scale Your Business</h1>
-              <p class="hero-subtitle">Take your business to the next level. Access advanced resources, learn high-quality business skills, and grow your online presence with CTRL.</p>
-            </div>
-          </section>
-          <section class="dashboard-grid">
-            <div class="content-wrapper">
-              <div class="bento-grid">
-                <div class="bento-card">
-                  <h3>Scale Up</h3>
-                  <p>Ready to grow? Get strategies and tools to expand your business, reach new customers, and increase your impact.</p>
-                </div>
-                <div class="bento-card">
-                  <h3>Grow Your Online Platform</h3>
-                  <ul>
-                    <li>Website and e-commerce guidance</li>
-                    <li>Social media and digital marketing</li>
-                    <li>Brand building and storytelling</li>
-                  </ul>
-                </div>
-                <div class="bento-card">
-                  <h3>Advanced Business Skills</h3>
-                  <ul>
-                    <li>Leadership and team building</li>
-                    <li>Financial management and scaling</li>
-                    <li>Operations and process optimization</li>
-                  </ul>
-                </div>
-                
-              </div>
-            </div>
-          </section>
-        </div>
-      </div>
-      <!-- Resources Tab -->
-      <div class="tab-content" id="resources-tab">
-        <div class="tab-content-inner" style="height:100%;width:100%;overflow:auto;">
-          <main class="resources-container">
-            <div class="background-elements">
-              <div class="curved-line"></div>
-              <div class="dot dot-1"></div>
-              <div class="dot dot-2"></div>
-              <div class="dot dot-3"></div>
-            </div>
-            <!-- CTRL Formula Section -->
-            <section id="ctrl-formula" class="section bento-section">
-              <div class="content-wrapper">
-                <div class="section-header">
-                  <div class="section-tag">Core</div>
-                  <h1>The CTRL Formula</h1>
-                  <p class="section-description">Our three pillars for building with clarity, intention, and impact</p>
-                </div>
-                <div class="bento-grid">
-                  <div class="bento-card formula-card">
-                    <div class="formula-content">
-                      <h3>Purpose + CTRL</h3>
-                      <p>Build with clarity, intention, and impact.</p>
-                      <ul class="formula-points">
-                        <li>Define your core mission: What problem are you solving?</li>
-                        <li>Understand the value you bring and why it matters now.</li>
-                        <li>Use our tools to set clear goals and measurable milestones.</li>
-                        <li>Remember: If it's hard, it's formative. Challenges shape your growth.</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="bento-card formula-card">
-                    <div class="formula-content">
-                      <h3>Personalize + CTRL</h3>
-                      <p>Make your work uniquely yours — human, creative, and authentic.</p>
-                      <ul class="formula-points">
-                        <li>Customize templates and workflows to fit your style and values.</li>
-                        <li>Embed your personality and voice into every detail.</li>
-                        <li>Embrace iteration and feedback loops to keep evolving.</li>
-                        <li>Use design and language that make your work feel alive.</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="bento-card formula-card">
-                    <div class="formula-content">
-                      <h3>Propel + CTRL</h3>
-                      <p>Digitize smartly, connect deeply, and grow sustainably.</p>
-                      <ul class="formula-points">
-                        <li>Use digital tools to automate tasks and amplify reach.</li>
-                        <li>Build secure systems for business stability.</li>
-                        <li>Leverage community and networking for growth.</li>
-                        <li>Tap into CTRL's Spotlights for visibility.</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <!-- Resources Hub Section -->
-            <section class="section resources-hub-section">
-              <div class="content-wrapper">
-                <div class="section-header">
-                  <div class="section-tag">Resources</div>
-                  <h1>Resources Hub</h1>
-                  <p class="section-description">Essential tools and resources to supercharge your work</p>
-                </div>
-                <!-- Search Bar -->
-                <div class="search-container">
-                  <div class="search-bar">
-                    <input type="text" id="resources-search" placeholder="Search resources by name, description, or category..." />
-                    <button class="search-button">
-                      <span class="button-icon">🔍</span>
-                    </button>
-                  </div>
-                  <div class="search-info">
-                    <span class="search-results-count">Showing all resources</span>
-                    <span class="search-shortcut">Press Ctrl+F to search</span>
-                  </div>
-                </div>
-                <!-- Filter Tags -->
-                <div class="resources-filter">
-                  <button class="filter-tag active" data-filter="all">All</button>
-                  <button class="filter-tag" data-filter="templates">Templates</button>
-                  <button class="filter-tag" data-filter="roadmaps">Roadmaps</button>
-                  <button class="filter-tag" data-filter="toolkits">Toolkits</button>
-                  <button class="filter-tag" data-filter="productivity">Productivity</button>
-                  <button class="filter-tag" data-filter="self-development">Self-development</button>
-                  <button class="filter-tag" data-filter="student-focused">Student-focused</button>
-                  <button class="filter-tag" data-filter="startup-building">Startup-building</button>
-                  <button class="filter-tag" data-filter="CTRL philosophy">CTRL Philosophy</button>
-                  <button class="filter-tag" data-filter="mentorship">Mentorship</button>
-                  <button class="filter-tag" data-filter="free">Free</button>
-                </div>
-                <!-- Resources Grid -->
-                <div class="resources-grid" id="resources-grid">
-                  <!-- Resources will be dynamically populated -->
-                </div>
-                <!-- No Results Message -->
-                <div class="no-results-message" id="no-results" style="display: none;">
-                  <div class="no-results-content">
-                    <span class="no-results-icon">🔍</span>
-                    <h3>No resources found</h3>
-                    <p>Try adjusting your search terms or filters to find what you're looking for.</p>
-                    <button class="clear-filters-btn" onclick="clearAllFilters()">
-                      Clear All Filters
-                      <span class="button-icon">×</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <!-- Resource Suggestion Form Section -->
-            <section class="section">
-              <div class="content-wrapper">
-                <div class="bento-card form-card" style="max-width:600px;margin:2rem auto 0 auto;">
-                  <h3 style="margin-bottom:0.5rem;">Suggest a Resource</h3>
-                  <p class="section-description" style="margin-bottom:1.5rem;">Request or suggest a resource you'd like to see added to CTRL. We review all submissions and add the best ones to our hub!</p>
-                  <form action="https://usebasin.com/f/85f14c1689bd" method="POST" style="display:flex;flex-direction:column;gap:1rem;">
-                    <div class="form-group full-width">
-                      <label for="resource-suggestion">What resource do you want to see? <span style="color:var(--accent-color);">*</span></label>
-                      <textarea id="resource-suggestion" name="resource-suggestion" required placeholder="Describe the resource, tool, or topic you want CTRL to add. Include links if possible."></textarea>
-                    </div>
-                    <button type="submit" class="submit-button" style="align-self:flex-start;">Submit Suggestion</button>
-                  </form>
-                </div>
-              </div>
-            </section>
-            <!-- End Resource Suggestion Form Section -->
-          </main>
-        </div>
-      </div>
-      <!-- Browse Tab (formerly Spotlight) -->
-      <div class="tab-content" id="browse-tab">
-        <div class="tab-content-inner" style="height:100%;width:100%;overflow:auto;display:block;">
-          <!-- Top Row: Search + Testimony/Feedback -->
-          <div class="browse-top-row">
-            <div class="search-container">
-              <div class="search-bar">
-                <input type="text" id="browse-search" placeholder="Search projects or resources by name..." />
-                <button class="search-button"><span class="button-icon">🔍</span></button>
-              </div>
-            </div>
-            <div id="browse-results" style="max-width:900px;margin:0 auto 2rem auto;"></div>
-            <div id="browse-testimony-box">
-              <h3 style="margin-bottom:0.5rem;color:#315F90;font-size:1.15rem;font-weight:700;">Submit a testimony or share feedback/suggestions for website features</h3>
-              <form id="browse-testimony-form" class="chatbox-form" action="https://usebasin.com/f/099b28b0d112" method="POST" style="display:flex;align-items:flex-end;gap:0.5rem;">
-                <textarea id="browse-testimony-entry" name="testimonial-entry" required placeholder="Type your message..." style="flex:1;resize:none;border-radius:24px 24px 24px 24px;padding:0.75rem 1.25rem;font-size:1rem;min-height:44px;max-height:90px;border:1.5px solid #bcdcff;outline:none;box-shadow:none;"></textarea>
-                <button type="submit" class="chatbox-send-btn" style="background:#79b7ff;border:none;border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s;"><span style="font-size:1.5rem;color:white;transform:rotate(-45deg);display:inline-block;">&#8593;</span></button>
-              </form>
-              <div id="browse-testimony-success" style="display:none;padding:1rem 0 0 0;color:#00c853;font-weight:600;">Thank you for your feedback!</div>
-            </div>
-          </div>
-          <!-- Browse Results directly below search/testimony row -->
-          <div id="browse-results" style="max-width:900px;margin:0 auto 2rem auto;"></div>
-          <!-- Impact Form below results -->
-          <div class="bento-card form-card" style="max-width:600px;margin:0 auto 2rem auto;">
-            <div class="section-header">
-              <div class="section-tag">CTRL Impact</div>
-              <h2>Share How CTRL Helped Your Business or Startup</h2>
-              <p class="section-description">If your business, startup, or project has benefited from CTRL resources, toolkits, or support, share your story here! This helps us highlight real-world impact and inspire others.</p>
-            </div>
-            <form id="impact-form" action="https://usebasin.com/f/264e81003939" method="POST" style="display:flex;flex-direction:column;gap:1.25rem;">
-              <div class="form-group">
-                <label for="work-title" class="required-field">Title of Your Work</label>
-                <input type="text" id="work-title" name="work-title" required placeholder="e.g. My Startup Name" />
-              </div>
-              <div class="form-group">
-                <label for="work-category" class="required-field">Category</label>
-                <select id="work-category" name="work-category" required>
-                  <option value="">Select category...</option>
-                  <option value="Technology">Technology</option>
-                  <option value="Education">Education</option>
-                  <option value="Health">Health</option>
-                  <option value="Environment">Environment</option>
-                  <option value="Social Impact">Social Impact</option>
-                  <option value="Art / Design">Art / Design</option>
-                  <option value="Food / Culture">Food / Culture</option>
-                  <option value="Wellness / Beauty">Wellness / Beauty</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="work-type" class="required-field">Type</label>
-                <select id="work-type" name="work-type" required>
-                  <option value="">Select type...</option>
-                  <option value="Startup">Startup</option>
-                  <option value="Non-Profit">Non-Profit</option>
-                  <option value="Business">Business</option>
-                  <option value="Community">Community Initiative</option>
-                  <option value="Freelance">Freelance</option>
-                  <option value="Side Hustle">Side Hustle</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="work-description" class="required-field">Description <span style="font-weight:400;font-size:0.95em;">(max 100 words)</span></label>
-                <textarea id="work-description" name="work-description" required maxlength="800" placeholder="Describe your work and how CTRL helped you (max 100 words)..." style="min-height:80px;max-height:180px;"></textarea>
-                <div id="desc-word-count" style="font-size:0.92em;color:#888;margin-top:0.2em;">0/100 words</div>
-              </div>
-              <button type="submit" class="submit-button" style="align-self:flex-start;">Submit Impact <span class="button-icon">→</span></button>
-            </form>
-            <script>
-              document.addEventListener('DOMContentLoaded', function() {
-                var desc = document.getElementById('work-description');
-                var counter = document.getElementById('desc-word-count');
-                desc.addEventListener('input', function() {
-                  var words = desc.value.trim().split(/\s+/).filter(Boolean);
-                  counter.textContent = words.length + '/100 words';
-                  if (words.length > 100) {
-                    counter.style.color = '#ff4c61';
-                  } else {
-                    counter.style.color = '#888';
-                  }
-                  if (words.length > 100) {
-                    desc.value = words.slice(0, 100).join(' ');
-                  }
-                });
-              });
-            </script>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="dashboard-tabs">
-      <button data-tab="ctrl-tab" class="tab-btn active">CTRL</button>
-      <button data-tab="ctrl-cohort-tab" class="tab-btn">CTRL Cohort</button>
-      <button data-tab="launch-tab" class="tab-btn">Launch</button>
-      <button data-tab="thrive-tab" class="tab-btn">Thrive</button>
-      <button data-tab="resources-tab" class="tab-btn">Resources</button>
-      <button data-tab="browse-tab" class="tab-btn">Share</button>
-    </div>
-  </div>
-  <script>
-    // Dashboard Modal Tab Logic
-    document.addEventListener('DOMContentLoaded', function() {
-      const tabBtns = document.querySelectorAll('.dashboard-modal .tab-btn');
-      const tabContents = document.querySelectorAll('.dashboard-modal .tab-content');
-      tabBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-          tabBtns.forEach(b => b.classList.remove('active'));
-          this.classList.add('active');
-          tabContents.forEach(tc => tc.classList.remove('active'));
-          document.getElementById(this.dataset.tab).classList.add('active');
-        });
-      });
-      document.getElementById('closeDashboardModal').onclick = function() {
-        document.getElementById('dashboardModal').style.display = 'none';
-      };
-    });
-
-    // Render project tiles in CTRL tab
-    document.addEventListener('DOMContentLoaded', function() {
-      fetch('projects.json')
-        .then(res => res.json())
-        .then(projects => {
-          const grid = document.querySelector('.ctrl-projects-grid');
-          const template = document.getElementById('project-card-template');
-          if (!grid || !template) return;
-          grid.innerHTML = '';
-          // Add Hearts of Tomorrow placeholder first
-          const hotCard = template.content.cloneNode(true).querySelector('.project-card');
-          hotCard.querySelector('.project-title').textContent = 'Hearts of Tomorrow';
-          let subtitle = hotCard.querySelector('.project-type-subtitle');
-          if (!subtitle) {
-            subtitle = document.createElement('div');
-            subtitle.className = 'project-type-subtitle';
-            hotCard.querySelector('.project-title').after(subtitle);
-          }
-          subtitle.textContent = '';
-          const tags = hotCard.querySelector('.project-tags');
-          tags.innerHTML = '';
-          hotCard.querySelector('.project-description').textContent = '';
-          hotCard.classList.add('hearts-of-tomorrow');
-          hotCard.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const modal = document.querySelector('.dashboard-modal');
-            const overlayParent = modal || document.body;
-            overlayParent.querySelectorAll('.popup-overlay').forEach(el => el.remove());
-            const popupOverlay = document.createElement('div');
-            popupOverlay.className = 'popup-overlay';
-            const popupBox = document.createElement('div');
-            popupBox.style.background = '#fff';
-            popupBox.style.borderRadius = '18px';
-            popupBox.style.boxShadow = '0 4px 32px rgba(121,183,255,0.18)';
-            popupBox.style.padding = '2rem 2.5rem';
-            popupBox.style.maxWidth = '420px';
-            popupBox.style.width = '90vw';
-            popupBox.style.textAlign = 'center';
-            popupBox.style.position = 'relative';
-            // Close button
-            const closeBtn = document.createElement('button');
-            closeBtn.textContent = '×';
-            closeBtn.style.position = 'absolute';
-            closeBtn.style.top = '1rem';
-            closeBtn.style.right = '1.25rem';
-            closeBtn.style.background = 'none';
-            closeBtn.style.border = 'none';
-            closeBtn.style.fontSize = '2rem';
-            closeBtn.style.cursor = 'pointer';
-            closeBtn.setAttribute('aria-label', 'Close');
-            closeBtn.onclick = function() { popupOverlay.remove(); };
-            // Title
-            const title = document.createElement('h2');
-            title.textContent = 'Hearts of Tomorrow';
-            title.style.fontWeight = '700';
-            title.style.fontSize = '1.35rem';
-            title.style.marginBottom = '1.25rem';
-            title.style.marginTop = '0.25rem';
-            // Tags (type and category)
-            const tagsBox = document.createElement('div');
-            tagsBox.style.display = 'flex';
-            tagsBox.style.justifyContent = 'center';
-            tagsBox.style.gap = '0.5rem';
-            tagsBox.style.marginBottom = '1rem';
-            tagsBox.innerHTML = `<span class="tag tag-type">Non-Profit</span><span class="tag tag-category">Health</span>`;
-            // Description box
-            const descBox = document.createElement('div');
-            descBox.style.background = '#f3f8ff';
-            descBox.style.borderRadius = '12px';
-            descBox.style.padding = '1.25rem 1rem';
-            descBox.style.margin = '0 auto';
-            descBox.style.fontSize = '1rem';
-            descBox.style.color = '#315F90';
-            descBox.style.lineHeight = '1.6';
-            descBox.style.boxShadow = '0 2px 8px rgba(121,183,255,0.08)';
-            descBox.textContent = 'Striving to prevent CVD & accommodate those afflicted with practical, affordable technologies and approaches. We offer tools, projects, and programs to aid those in need. Chapter applications on the way & we are currently recruiting team members, view on IG if interested!';
-            // Add elements
-            popupBox.appendChild(closeBtn);
-            popupBox.appendChild(title);
-            popupBox.appendChild(tagsBox);
-            popupBox.appendChild(descBox);
-            popupOverlay.appendChild(popupBox);
-            overlayParent.appendChild(popupOverlay);
-            popupOverlay.onclick = function(ev) { if (ev.target === popupOverlay) popupOverlay.remove(); };
-          });
-          grid.appendChild(hotCard);
-          // Render the rest of the projects
-          projects.forEach(project => {
-            const card = template.content.cloneNode(true).querySelector('.project-card');
-            card.querySelector('.project-title').textContent = project.title;
-            // Remove subtitle and tags from tile
-            let subtitle = card.querySelector('.project-type-subtitle');
-            if (subtitle) subtitle.textContent = '';
-            const tags = card.querySelector('.project-tags');
-            tags.innerHTML = '';
-            // Remove description from tile
-            card.querySelector('.project-description').textContent = '';
-            // Minimal popup for all projects
-            card.addEventListener('click', function(e) {
-              e.stopPropagation();
-              const modal = document.querySelector('.dashboard-modal');
-              const overlayParent = modal || document.body;
-              overlayParent.querySelectorAll('.popup-overlay').forEach(el => el.remove());
-              const popupOverlay = document.createElement('div');
-              popupOverlay.className = 'popup-overlay';
-              const popupBox = document.createElement('div');
-              popupBox.style.background = '#fff';
-              popupBox.style.borderRadius = '18px';
-              popupBox.style.boxShadow = '0 4px 32px rgba(121,183,255,0.18)';
-              popupBox.style.padding = '2rem 2.5rem';
-              popupBox.style.maxWidth = '420px';
-              popupBox.style.width = '90vw';
-              popupBox.style.textAlign = 'center';
-              popupBox.style.position = 'relative';
-              // Close button
-              const closeBtn = document.createElement('button');
-              closeBtn.textContent = '×';
-              closeBtn.style.position = 'absolute';
-              closeBtn.style.top = '1rem';
-              closeBtn.style.right = '1.25rem';
-              closeBtn.style.background = 'none';
-              closeBtn.style.border = 'none';
-              closeBtn.style.fontSize = '2rem';
-              closeBtn.style.cursor = 'pointer';
-              closeBtn.setAttribute('aria-label', 'Close');
-              closeBtn.onclick = function() { popupOverlay.remove(); };
-              // Title
-              const title = document.createElement('h2');
-              title.textContent = project.title;
-              title.style.fontWeight = '700';
-              title.style.fontSize = '1.35rem';
-              title.style.marginBottom = '1.25rem';
-              title.style.marginTop = '0.25rem';
-              // Tags (type and category)
-              const tagsBox = document.createElement('div');
-              tagsBox.style.display = 'flex';
-              tagsBox.style.justifyContent = 'center';
-              tagsBox.style.gap = '0.5rem';
-              tagsBox.style.marginBottom = '1rem';
-              let tagsHTML = '';
-              if (project.type) tagsHTML += `<span class=\"tag tag-type\">${project.type}</span>`;
-              if (project.category) tagsHTML += `<span class=\"tag tag-category\">${project.category}</span>`;
-              tagsBox.innerHTML = tagsHTML;
-              // Description box
-              const descBox = document.createElement('div');
-              descBox.style.background = '#f3f8ff';
-              descBox.style.borderRadius = '12px';
-              descBox.style.padding = '1.25rem 1rem';
-              descBox.style.margin = '0 auto';
-              descBox.style.fontSize = '1rem';
-              descBox.style.color = '#315F90';
-              descBox.style.lineHeight = '1.6';
-              descBox.style.boxShadow = '0 2px 8px rgba(121,183,255,0.08)';
-              descBox.textContent = project.description || project.customPopupDescription || '';
-              // Add elements
-              popupBox.appendChild(closeBtn);
-              popupBox.appendChild(title);
-              popupBox.appendChild(tagsBox);
-              popupBox.appendChild(descBox);
-              popupOverlay.appendChild(popupBox);
-              overlayParent.appendChild(popupOverlay);
-              popupOverlay.onclick = function(ev) { if (ev.target === popupOverlay) popupOverlay.remove(); };
-            });
-            grid.appendChild(card);
-          });
-        });
-    });
-
-    // Resource popup logic for dashboard modal
-    document.addEventListener('DOMContentLoaded', function() {
-      const modal = document.querySelector('.dashboard-modal');
-      // Delegate click for resource cards in resources tab
-      modal.addEventListener('click', function(e) {
-        const card = e.target.closest('.resource-card');
-        if (card && modal.contains(card)) {
-          e.preventDefault();
-          // Get resource data from card
-          const title = card.querySelector('.resource-title').textContent;
-          const description = card.querySelector('.resource-description').textContent;
-          const icon = card.querySelector('.resource-icon').innerHTML;
-          const tags = Array.from(card.querySelectorAll('.resource-tag')).map(tag => tag.textContent);
-          const linkElem = card.querySelector('.resource-link');
-          const link = linkElem ? linkElem.getAttribute('href') : '#';
-          // Remove any existing resource popups in modal
-          modal.querySelectorAll('.resource-popup-overlay').forEach(el => el.remove());
-          // Clone template
-          const template = document.getElementById('resource-popup-template');
-          const popup = template.content.cloneNode(true);
-          popup.querySelector('.resource-icon-popup').innerHTML = icon;
-          popup.querySelector('.resource-title-popup').textContent = title;
-          popup.querySelector('.resource-description-popup').textContent = description;
-          const tagsContainer = popup.querySelector('.resource-tags-popup');
-          tagsContainer.innerHTML = '';
-          tags.forEach(tag => {
-            const span = document.createElement('span');
-            span.className = 'resource-tag';
-            span.textContent = tag;
-            tagsContainer.appendChild(span);
-          });
-          const linkBtn = popup.querySelector('.resource-link-popup');
-          linkBtn.href = link;
-          linkBtn.onclick = function(ev) { ev.stopPropagation(); };
-          // Close logic
-          popup.querySelector('.close-button').onclick = function() {
-            popup.querySelector('.popup-overlay').remove();
-            if (popup.remove) popup.remove();
-          };
-          // Also close on overlay click
-          popup.querySelector('.popup-overlay').onclick = function(ev) {
-            if (ev.target === this) this.remove();
-          };
-          // Append to modal
-          modal.appendChild(popup);
-        }
-      });
-      // Prevent default navigation for resource links in grid
-      modal.addEventListener('click', function(e) {
-        const link = e.target.closest('.resource-link');
-        if (link && modal.contains(link)) {
-          e.preventDefault();
-        }
-      });
-    });
-
-    // Browse tab unified search logic
-    document.addEventListener('DOMContentLoaded', function() {
-      const browseInput = document.getElementById('browse-search');
-      const browseResults = document.getElementById('browse-results');
-      let allProjects = [];
-      let allResources = [];
-      // Fetch both datasets
-      fetch('projects.json').then(res => res.json()).then(data => { allProjects = data; });
-      fetch('resources.json').then(res => res.json()).then(data => { allResources = data; });
-      function renderBrowseResults(query) {
-        browseResults.innerHTML = '';
-        if (!query) return;
-        const q = query.toLowerCase();
-        // Filter projects
-        const matchingProjects = allProjects.filter(p =>
-          (p.title && p.title.toLowerCase().includes(q)) ||
-          (p.description && p.description.toLowerCase().includes(q))
-        );
-        // Filter resources
-        const matchingResources = allResources.filter(r =>
-          (r.title && r.title.toLowerCase().includes(q)) ||
-          (r.description && r.description.toLowerCase().includes(q))
-        );
-        // Render projects
-        if (matchingProjects.length) {
-          const projHeader = document.createElement('h3');
-          projHeader.textContent = 'Projects';
-          projHeader.style.margin = '2rem 0 1rem 0';
-          browseResults.appendChild(projHeader);
-          matchingProjects.forEach(project => {
-            // Use the same card as in CTRL tab
-            const template = document.getElementById('project-card-template');
-            const card = template.content.cloneNode(true).querySelector('.project-card');
-            card.querySelector('.project-title').textContent = project.title;
-            let subtitle = card.querySelector('.project-type-subtitle');
-            if (!subtitle) {
-              subtitle = document.createElement('div');
-              subtitle.className = 'project-type-subtitle';
-              card.querySelector('.project-title').after(subtitle);
-            }
-            subtitle.textContent = project.subtitle || project.type || '';
-            const tags = card.querySelector('.project-tags');
-            tags.innerHTML = '';
-            if (project.type) tags.innerHTML += `<span class=\"tag tag-type\">${project.type}</span>`;
-            if (project.category) tags.innerHTML += `<span class=\"tag tag-category\">${project.category}</span>`;
-            card.querySelector('.project-description').textContent = project.description || '';
-            card.dataset.leadName = project.leadName || '';
-            card.dataset.leadRole = project.leadRole || '';
-            card.dataset.leadEmail = project.leadEmail || '';
-            card.dataset.leadPhone = project.leadPhone || '';
-            card.dataset.preferredContact = project.preferredContact || '';
-            card.dataset.title = project.title || '';
-            card.dataset.type = project.type || '';
-            card.dataset.category = project.category || '';
-            card.dataset.stage = project.stage || '';
-            card.dataset.team = project.team || '';
-            card.dataset.modality = project.modality || '';
-            card.dataset.marketReach = project.marketReach || '';
-            card.dataset.duration = project.duration || '';
-            card.dataset.status = project.status ? project.status.join(',') : '';
-            card.dataset.description = project.description || '';
-            card.dataset.ctrlPick = project.ctrlPick ? 'true' : '';
-            card.dataset.website = project.website || '';
-            card.dataset.activityLog = project.activityLog ? JSON.stringify(project.activityLog) : '';
-            card.dataset.isService = project.isService ? 'true' : '';
-            card.dataset.services = project.services ? JSON.stringify(project.services) : '';
-            card.dataset.serviceDetails = project.serviceDetails || '';
-            card.dataset.serviceNote = project.serviceNote || '';
-            card.dataset.isEvent = project.isEvent ? 'true' : '';
-            card.dataset.eventDetails = project.eventDetails ? JSON.stringify(project.eventDetails) : '';
-            card.dataset.link = project.link || '';
-            card.addEventListener('click', function(e) {
-              e.stopPropagation();
-              const modal = document.querySelector('.dashboard-modal');
-              const overlayParent = modal || document.body;
-              overlayParent.querySelectorAll('.popup-overlay').forEach(el => el.remove());
-              const popupOverlay = document.createElement('div');
-              popupOverlay.className = 'popup-overlay';
-              const popupBox = document.createElement('div');
-              popupBox.style.background = '#fff';
-              popupBox.style.borderRadius = '18px';
-              popupBox.style.boxShadow = '0 4px 32px rgba(121,183,255,0.18)';
-              popupBox.style.padding = '2rem 2.5rem';
-              popupBox.style.maxWidth = '420px';
-              popupBox.style.width = '90vw';
-              popupBox.style.textAlign = 'center';
-              popupBox.style.position = 'relative';
-              // Close button
-              const closeBtn = document.createElement('button');
-              closeBtn.textContent = '×';
-              closeBtn.style.position = 'absolute';
-              closeBtn.style.top = '1rem';
-              closeBtn.style.right = '1.25rem';
-              closeBtn.style.background = 'none';
-              closeBtn.style.border = 'none';
-              closeBtn.style.fontSize = '2rem';
-              closeBtn.style.cursor = 'pointer';
-              closeBtn.setAttribute('aria-label', 'Close');
-              closeBtn.onclick = function() { popupOverlay.remove(); };
-              // Title
-              const title = document.createElement('h2');
-              title.textContent = project.title;
-              title.style.fontWeight = '700';
-              title.style.fontSize = '1.35rem';
-              title.style.marginBottom = '1.25rem';
-              title.style.marginTop = '0.25rem';
-              // Tags (type and category)
-              const tagsBox = document.createElement('div');
-              tagsBox.style.display = 'flex';
-              tagsBox.style.justifyContent = 'center';
-              tagsBox.style.gap = '0.5rem';
-              tagsBox.style.marginBottom = '1rem';
-              let tagsHTML = '';
-              if (project.type) tagsHTML += `<span class=\"tag tag-type\">${project.type}</span>`;
-              if (project.category) tagsHTML += `<span class=\"tag tag-category\">${project.category}</span>`;
-              tagsBox.innerHTML = tagsHTML;
-              // Description box
-              const descBox = document.createElement('div');
-              descBox.style.background = '#f3f8ff';
-              descBox.style.borderRadius = '12px';
-              descBox.style.padding = '1.25rem 1rem';
-              descBox.style.margin = '0 auto';
-              descBox.style.fontSize = '1rem';
-              descBox.style.color = '#315F90';
-              descBox.style.lineHeight = '1.6';
-              descBox.style.boxShadow = '0 2px 8px rgba(121,183,255,0.08)';
-              descBox.textContent = project.description || project.customPopupDescription || '';
-              // Add elements
-              popupBox.appendChild(closeBtn);
-              popupBox.appendChild(title);
-              popupBox.appendChild(tagsBox);
-              popupBox.appendChild(descBox);
-              popupOverlay.appendChild(popupBox);
-              overlayParent.appendChild(popupOverlay);
-              popupOverlay.onclick = function(ev) { if (ev.target === popupOverlay) popupOverlay.remove(); };
-            });
-            browseResults.appendChild(card);
-          });
-        }
-        // Render resources
-        if (matchingResources.length) {
-          const resHeader = document.createElement('h3');
-          resHeader.textContent = 'Resources';
-          resHeader.style.margin = '2rem 0 1rem 0';
-          browseResults.appendChild(resHeader);
-          matchingResources.forEach(resource => {
-            // Use the same card as in resources tab
-            const card = document.createElement('div');
-            card.className = 'resource-card';
-            card.innerHTML = `
-              <div class="resource-header">
-                <div class="resource-icon">${resource.icon}</div>
-                <div class="resource-meta">
-                  <div class="resource-category">&nbsp;</div>
-                  <div class="resource-price ${resource.price > 0 ? 'price-paid' : 'price-free'}">${resource.price > 0 ? '$'+resource.price : 'Free'}</div>
-                </div>
-              </div>
-              <div class="resource-content">
-                <h3 class="resource-title">${resource.title}</h3>
-                <p class="resource-description">${resource.description}</p>
-                <div class="resource-tags">
-                  ${(resource.tags||[]).map(tag => `<span class='resource-tag'>${tag}</span>`).join('')}
-                </div>
-              </div>
-              <div class="resource-footer">
-                <a href="${resource.viewResourceLink || resource.link}" class="resource-link" target="_blank" rel="noopener noreferrer">View Resource <span class="link-icon">→</span></a>
-              </div>
-            `;
-            card.addEventListener('click', function(e) {
-              e.preventDefault();
-              // Open resource popup in modal
-              const modal = document.querySelector('.dashboard-modal');
-              modal.querySelectorAll('.resource-popup-overlay').forEach(el => el.remove());
-              const template = document.getElementById('resource-popup-template');
-              const popup = template.content.cloneNode(true);
-              popup.querySelector('.resource-icon-popup').innerHTML = resource.icon;
-              popup.querySelector('.resource-title-popup').textContent = resource.title;
-              popup.querySelector('.resource-description-popup').textContent = resource.description;
-              const tagsContainer = popup.querySelector('.resource-tags-popup');
-              tagsContainer.innerHTML = '';
-              (resource.tags||[]).forEach(tag => {
-                const span = document.createElement('span');
-                span.className = 'resource-tag';
-                span.textContent = tag;
-                tagsContainer.appendChild(span);
-              });
-              const linkBtn = popup.querySelector('.resource-link-popup');
-              linkBtn.href = resource.viewResourceLink || resource.link;
-              linkBtn.onclick = function(ev) { ev.stopPropagation(); };
-              popup.querySelector('.close-button').onclick = function() {
-                popup.querySelector('.popup-overlay').remove();
-                if (popup.remove) popup.remove();
-              };
-              popup.querySelector('.popup-overlay').onclick = function(ev) {
-                if (ev.target === this) this.remove();
-              };
-              modal.appendChild(popup);
-            });
-            browseResults.appendChild(card);
-          });
-        }
-        if (!matchingProjects.length && !matchingResources.length) {
-          const none = document.createElement('div');
-          none.textContent = 'No results found.';
-          none.style.color = '#888';
-          none.style.margin = '2rem 0';
-          browseResults.appendChild(none);
-        }
-      }
-      browseInput.addEventListener('input', function() {
-        renderBrowseResults(this.value);
-      });
-      // Also search on search button click
-      browseInput.parentElement.querySelector('.search-button').addEventListener('click', function() {
-        renderBrowseResults(browseInput.value);
-      });
-    });
-  </script>
-  <style>
-    .dashboard-modal {
-      position: fixed;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      background: #f8fafd;
-      border-radius: 32px;
-      box-shadow: 0 12px 48px rgba(0,0,0,0.16);
-      width: 90vw;
-      height: 90vh;
-      max-width: 1200px;
-      max-height: 900px;
-      padding: 2rem 2rem 0 2rem;
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      overflow: hidden;
-    }
-    .close-btn {
-      position: absolute;
-      top: 1.5rem; right: 1.5rem;
-      background: none; border: none;
-      font-size: 2.5rem; cursor: pointer;
-    }
-    .dashboard-content {
-      flex: 1 1 auto;
-      min-height: 0;
-      overflow-y: auto;
-      margin-bottom: 0;
-      padding-bottom: 0;
-    }
-    .dashboard-tabs {
-      display: flex;
-      justify-content: space-between;
-      gap: 0.75rem;
-      margin-top: 0;
-      border-top: 1px solid #e3eaf5;
-      padding: 0.5rem 0 0.5rem 0;
-      background: #f8fafd;
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: 0 0 32px 32px;
-      z-index: 2;
-    }
-    .tab-btn {
-      flex: 1;
-      background: none;
-      border: none;
-      padding: 1.25rem 0 1rem 0;
-      font-size: 1.25rem;
-      cursor: pointer;
-      border-radius: 14px 14px 0 0;
-      transition: background 0.2s;
-    }
-    .tab-btn.active {
-      background: #fff;
-      font-weight: bold;
-      box-shadow: 0 -2px 12px rgba(0,0,0,0.06);
-    }
-    .tab-content {
-      display: none;
-      height: 100%;
-      width: 100%;
-      padding: 0;
-      margin: 0;
-    }
-    .tab-content.active {
-      display: flex;
-      height: 100%;
-      width: 100%;
-      padding: 0;
-      margin: 0;
-    }
-    .tab-content-inner {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    @media (max-width: 900px) {
-      .dashboard-modal {
-        width: 98vw;
-        height: 98vh;
-        max-width: 98vw;
-        max-height: 98vh;
-        padding: 1rem 0.2rem 0 0.2rem;
-      }
-      .dashboard-tabs .tab-btn {
-        font-size: 1rem;
-        padding: 0.8rem 0.2rem;
-      }
-    }
-  </style>
   <header class="main-header">
     <div class="header-container">
-      <a href="index.html" class="logo">CTRL Initiative</a>
-    </div>
-  </header>
-  <script src="js/projects.js"></script>
-  <script src="js/resources.js"></script>
-  <!-- Project Card Template for CTRL Tab (restored) -->
-  <template id="project-card-template">
-    <div class="project-card" loading="lazy">
-      <!-- CTRL Picks badge will be injected if needed -->
-      <div class="project-header">
-        <h3 class="project-title"></h3>
-        <div class="project-tags">
-          <span class="tag tag-type"></span>
-          <span class="tag tag-category"></span>
-          <span class="tag tag-stage"></span>
-          <span class="tag tag-team"></span>
-        </div>
-      </div>
-      <p class="project-description"></p>
-      <div class="project-notes notes-disclaimer" style="display:none;"></div>
-    </div>
-  </template>
-  <!-- Project Popup Template for CTRL Tab (restored) -->
-  <template id="project-popup-template">
-    <div class="popup-overlay">
-      <div class="project-popup">
-        <button class="close-button">×</button>
-        <div class="project-popup-header">
-          <h2>Project Title Goes Here</h2>
-          <div class="project-tags">
-            <span class="tag tag-type">Business</span>
-            <span class="tag tag-category">Technology</span>
-            <span class="tag tag-modality">Website</span>
+      <a href="index.html" class="logo">CTRL</a>
+      <nav class="main-nav">
+        <a href="index.html" class="active">Dashboard</a>
+        <a href="projects.html">CTRL Corner</a>
+        <div class="dropdown">
+          <a href="resources.html" class="dropdown-trigger">Resources ▾</a>
+          <div class="dropdown-content">
+            <a href="https://stembystep.github.io/sbs/" target="_blank">STEM by Step</a>
           </div>
         </div>
-        <div class="team-visualization">
-          <div class="team-members" style="margin-bottom:0.5rem;">
-            <div class="team-member" style="font-size:0.92rem;">
-              <div class="member-avatar">
-                <span class="member-icon">👤</span>
+        <a href="https://www.instagram.com/ctrlinitiative/" target="_blank" class="social-nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17" cy="7" r="1" fill="currentColor"/>
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="dashboard-container">
+    <section class="hero-section">
+      <div class="content-wrapper">
+        <h1>Digitize and scale your<br>small business with confidence</h1>
+        <p class="hero-subtitle">A proven formula to help local businesses, startups, and community initiatives thrive in the digital age. Transform guesswork into guided success.</p>
+        
+        <div class="cta-buttons">
+          <a href="projects.html" class="primary-button">
+            Explore CTRL Corner
+            <span class="button-icon">→</span>
+          </a>
+          <a href="submit-project.html" class="secondary-button">
+            Join CTRL
+            <span class="button-icon">+</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="dashboard-grid">
+      <div class="content-wrapper">
+        <div class="bento-grid">
+          <!-- Featured Categories -->
+          <div class="bento-card categories-card">
+            <h3>Who We Help</h3>
+            <div class="categories-grid">
+              <div class="category-item">
+                <span class="category-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <rect x="3" y="3" width="18" height="18" rx="2" stroke="#000" stroke-width="2"/>
+                    <line x1="8" y1="12" x2="16" y2="12" stroke="#000" stroke-width="2"/>
+                    <line x1="12" y1="8" x2="12" y2="16" stroke="#000" stroke-width="2"/>
+                  </svg>
+                </span>
+                <span class="category-name">Digital Startups</span>
+                <span class="category-desc">Tech platforms & apps</span>
               </div>
-              <h4 class="member-name" style="font-size:1rem;font-weight:500;margin-bottom:0.1rem;">Project Lead Name</h4>
-              <p class="member-role" style="font-size:0.92rem;color:#888;margin-bottom:0.2rem;">Project Role</p>
-              <div class="team-info">
-                <div class="contact-details" style="font-size:0.9rem;color:#888;">
-                  <div class="contact-method">
-                    <span class="contact-icon">📧</span>
-                    <span class="contact-value">email@example.com</span>
-                  </div>
-                  <div class="contact-method">
-                    <span class="contact-icon">📱</span>
-                    <span class="contact-value">Phone number</span>
-                  </div>
+              <div class="category-item">
+                <span class="category-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="9" stroke="#000" stroke-width="2"/>
+                    <path d="M12 7v10M7 12h10" stroke="#000" stroke-width="2"/>
+                  </svg>
+                </span>
+                <span class="category-name">Local Businesses</span>
+                <span class="category-desc">Shops & services</span>
+              </div>
+              <div class="category-item">
+                <span class="category-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <polygon points="12,2 22,18 2,18" stroke="#000" stroke-width="2" fill="none"/>
+                  </svg>
+                </span>
+                <span class="category-name">Social Impact</span>
+                <span class="category-desc">Non-profits & causes</span>
+              </div>
+              <div class="category-item">
+                <span class="category-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <rect x="4" y="4" width="7" height="7" stroke="#000" stroke-width="2"/>
+                    <rect x="13" y="4" width="7" height="7" stroke="#000" stroke-width="2"/>
+                    <rect x="4" y="13" width="7" height="7" stroke="#000" stroke-width="2"/>
+                    <rect x="13" y="13" width="7" height="7" stroke="#000" stroke-width="2"/>
+                  </svg>
+                </span>
+                <span class="category-name">Creative Projects</span>
+                <span class="category-desc">Artists & makers</span>
+              </div>
+              <div class="category-item">
+                <span class="category-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 3L3 9l9 6l9-6l-9-6z" stroke="#000" stroke-width="2" fill="none"/>
+                    <path d="M3 14l9 6l9-6" stroke="#000" stroke-width="2"/>
+                  </svg>
+                </span>
+                <span class="category-name">Side Hustles</span>
+                <span class="category-desc">Part-time ventures</span>
+              </div>
+              <div class="category-item">
+                <span class="category-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 5h14v14H5z" stroke="#000" stroke-width="2"/>
+                    <path d="M12 5v14M5 12h14" stroke="#000" stroke-width="2"/>
+                  </svg>
+                </span>
+                <span class="category-name">Community Initiatives</span>
+                <span class="category-desc">Local impact projects</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Success Stories -->
+          <div class="bento-card stories-card">
+            <h3>Share Your Testimonials</h3>
+            <div class="contact-info">
+              <div class="contact-item">
+                <span class="contact-icon">📧</span>
+                <div class="contact-content">
+                  <h4>Email</h4>
+                  <a href="mailto:contact.projectctrl@gmail.com">contact.projectctrl@gmail.com</a>
+                </div>
+              </div>
+              <div class="contact-item">
+                <span class="contact-icon">📱</span>
+                <div class="contact-content">
+                  <h4>Instagram</h4>
+                  <a href="https://instagram.com/ctrlinitiative" target="_blank">@ctrlinitiative</a>
                 </div>
               </div>
             </div>
           </div>
-          <div class="activity-log" style="flex:1;min-height:120px;">
-            <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Activity Log</h3>
-            <div class="activity-list activity-log-scroll" style="min-height:80px;max-height:260px;overflow:auto;">
-              <!-- Activity items will be dynamically added here -->
-              <div class="empty-state">
-                <p>Share new updates!</p>
-                <a href="project-update.html" class="secondary-button">
-                  Add Update
-                  <span class="button-icon">+</span>
-                </a>
+
+          <!-- Get Started Card -->
+          <div class="bento-card get-started-card">
+            <h3>Ready to Start?</h3>
+            <div class="steps-list">
+              <div class="step-item">
+                <span class="step-number">1</span>
+                <p>Get ideas by browsing the CTRL Corner</p>
               </div>
-            </div>
-          </div>
-          <!-- Services Section (only shown for service offerings) -->
-          <div class="services-section" style="display: none; flex:1;min-height:120px;">
-            <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Services Offered</h3>
-            <div class="services-list" style="margin-bottom:1rem;">
-              <!-- Services will be dynamically added here -->
-            </div>
-            <div class="service-details" style="background: rgba(121, 183, 255, 0.05); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-              <h4 style="font-size:1rem;margin-bottom:0.5rem;">Service Details & Timelines</h4>
-              <div class="service-details-content" style="font-size:0.9rem;line-height:1.5;white-space:pre-line;max-height:200px;overflow-y:auto;">
-                <!-- Service details will be dynamically added here -->
+              <div class="step-item">
+                <span class="step-number">2</span>
+                <p>Browse templates and roadmaps</p>
               </div>
-            </div>
-            <div class="service-note" style="font-size:0.85rem;color:#888;font-style:italic;">
-              <!-- Service note will be dynamically added here -->
-            </div>
-          </div>
-          <!-- Event Details Section (only shown for events) -->
-          <div class="event-details-section" style="display: none; flex:1;min-height:120px;">
-            <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Event Details</h3>
-            <div class="event-info" style="background: rgba(0, 200, 83, 0.05); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-              <div class="event-details-content" style="font-size:0.9rem;line-height:1.6;">
-                <!-- Event details will be dynamically added here -->
+              <a href="resources.html#ctrl-formula" class="step-item highlight-step" style="text-decoration: none; color: inherit;">
+                <span class="step-number">3</span>
+                <p>Follow the 3 CTRL pillar formula for business & project development</p>
+              </a>
+              <div class="step-item">
+                <span class="step-number">4</span>
+                <p>Connect with other innovators and share your project</p>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <p>CTRL | Built by and for the people without a roadmap</p>
     </div>
-  </template>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const counters = document.querySelectorAll('.metric-value');
+      
+      const animateCounter = (counter, target) => {
+        let current = 0;
+        const duration = 2000; // 2 seconds
+        const step = (target / duration) * 16; // 16ms is roughly one frame at 60fps
+        
+        counter.classList.add('animate-count');
+        
+        const updateCounter = () => {
+          current += step;
+          if (current < target) {
+            counter.textContent = Math.round(current);
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.textContent = target;
+          }
+        };
+        
+        updateCounter();
+      };
+
+      const observerCallback = (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const counter = entry.target;
+            const target = parseInt(counter.dataset.target);
+            animateCounter(counter, target);
+            observer.unobserve(counter);
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(observerCallback, {
+        threshold: 0.5
+      });
+
+      counters.forEach(counter => observer.observe(counter));
+    });
+  </script>
 </body>
 </html>

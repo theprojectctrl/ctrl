@@ -117,6 +117,14 @@ class ProjectsPage {
     window.addEventListener('resize', () => {
       this.updateSlidesPerPage();
     });
+
+    // Event delegation for project cards
+    document.addEventListener('click', (e) => {
+      const card = e.target.closest('.slide, .project-card');
+      if (card) {
+        this.handleCardClick(card);
+      }
+    });
   }
 
   setupIntersectionObserver() {
@@ -260,8 +268,11 @@ class ProjectsPage {
         Array.from(selectedFilters.type).includes(project.type)
       );
     }
-    if (filtered.length === 1) {
-      showPopup(filtered[0]);
+    
+    if (filtered.length === 0) {
+      this.showNoResultsPopup();
+    } else if (filtered.length === 1) {
+      window.showPopup(filtered[0]);
     } else if (filtered.length > 1) {
       this.showMultipleProjectsPopupFromData(filtered);
     } else {
@@ -278,8 +289,8 @@ class ProjectsPage {
     div.className = 'popup-overlay filter-popup';
     div.innerHTML = `
       <div class="project-popup" style="max-width:900px;overflow:auto;max-height:90vh;">
-        <button class="close-button" style="font-size:2.5rem;line-height:2rem;width:2.5rem;height:2.5rem;top:1rem;right:1rem;position:absolute;z-index:10;background:none;border:none;cursor:pointer;">×</button>
-        <div style="padding:1rem 1rem 0 1rem;text-align:center;">
+        <button class="close-button">×</button>
+        <div class="project-popup-header">
           <h2>Matching Projects</h2>
         </div>
         <div class="popup-projects-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;padding:1.5rem;"></div>
@@ -330,9 +341,145 @@ class ProjectsPage {
   }
 
   showAllProjects() {
-    this.projectCards.forEach(card => card.style.display = 'block');
+    // Show all bento cards
+    document.querySelectorAll('.project-bento-card').forEach(card => card.style.display = 'block');
+    // Show all category sections
+    document.querySelectorAll('.category-bento').forEach(categoryBento => categoryBento.style.display = 'block');
     // Remove any filter popups
     document.querySelectorAll('.popup-overlay.filter-popup').forEach(el => el.remove());
+  }
+
+  handleCardClick(card) {
+    if (this.autoSlideInterval) {
+      this.stopAutoSlide();
+    }
+    
+    // Remove any existing popups first
+    document.querySelectorAll('.popup-overlay').forEach(el => el.remove());
+    
+    const template = document.querySelector('#project-popup-template');
+    const popup = template.content.cloneNode(true);
+    
+    this.populatePopupContent(popup, card);
+    document.body.appendChild(popup);
+    
+    this.setupPopupClose(popup, card);
+  }
+
+  populatePopupContent(popup, card) {
+    const title = card.querySelector('h3').textContent;
+    const tags = Array.from(card.querySelectorAll('.project-tags .tag')).map(tag => tag.cloneNode(true));
+    
+    const leadName = card.dataset.leadName || 'Project Lead Name';
+    const leadRole = card.dataset.leadRole || 'Project Role';
+    const leadEmail = card.dataset.leadEmail || '';
+    const leadPhone = card.dataset.leadPhone || '';
+    
+    popup.querySelector('h2').textContent = title;
+    popup.querySelector('.member-name').textContent = leadName;
+    popup.querySelector('.member-role').textContent = leadRole;
+    
+    const popupTags = popup.querySelector('.project-tags');
+    popupTags.innerHTML = '';
+    tags.forEach(tag => popupTags.appendChild(tag));
+    
+    // Setup contact info
+    this.setupContactInfo(popup, leadEmail, leadPhone);
+    
+    // Setup project description
+    const descriptionContent = popup.querySelector('.description-content');
+    if (card.dataset.description) {
+      descriptionContent.innerHTML = `<p>${card.dataset.description}</p>`;
+    } else {
+      descriptionContent.innerHTML = '<p>No description available for this project.</p>';
+    }
+    
+    // Setup project links
+    const projectLinks = popup.querySelector('.project-links');
+    const links = [];
+    
+    // Add website link if available
+    if (card.dataset.website) {
+      links.push({
+        url: card.dataset.website,
+        label: 'Visit Project Website',
+        icon: '🌐',
+        className: 'primary-button'
+      });
+    }
+    
+    // Add additional link if available
+    if (card.dataset.additionalLink && card.dataset.additionalLinkLabel) {
+      links.push({
+        url: card.dataset.additionalLink,
+        label: card.dataset.additionalLinkLabel,
+        icon: '📋',
+        className: 'secondary-button'
+      });
+    }
+    
+    // If no links available, show placeholder
+    if (links.length === 0) {
+      projectLinks.innerHTML = `
+        <a href="#" class="project-link secondary-button disabled">
+          <span class="link-icon">📋</span>
+          No links available
+        </a>
+      `;
+    } else {
+      projectLinks.innerHTML = links.map(link => `
+        <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="project-link ${link.className}">
+          <span class="link-icon">${link.icon}</span>
+          ${link.label}
+        </a>
+      `).join('');
+    }
+  }
+
+  setupContactInfo(popup, email, phone) {
+    const contactDetails = popup.querySelector('.contact-details');
+    const emailElement = contactDetails.querySelector('.contact-method:first-child .contact-value');
+    const phoneElement = contactDetails.querySelector('.contact-method:last-child .contact-value');
+    
+    emailElement.textContent = email;
+    phoneElement.textContent = phone;
+    
+    if (!email && !phone) {
+      phoneElement.parentElement.style.display = 'none';
+      emailElement.parentElement.style.display = 'none';
+    } else {
+      if (!email) emailElement.parentElement.style.display = 'none';
+      if (!phone) phoneElement.parentElement.style.display = 'none';
+    }
+  }
+
+  setupPopupClose(popup, card) {
+    const overlay = document.querySelector('.popup-overlay');
+    const closeButton = overlay.querySelector('.close-button');
+    
+    if (overlay) {
+      const closePopup = () => {
+        overlay.remove();
+        if (card.classList.contains('slide')) {
+          this.startAutoSlide();
+        }
+      };
+      
+      // Add click handler for overlay background
+      overlay.onclick = (e) => {
+        if (e.target === overlay) {
+          closePopup();
+        }
+      };
+      
+      // Add click handler for close button
+      if (closeButton) {
+        closeButton.onclick = (e) => {
+          e.stopPropagation(); // Prevent event from bubbling to overlay
+          closePopup();
+        };
+      }
+    }
   }
 
   checkSuccessMessage() {
@@ -427,7 +574,7 @@ class ProjectsPage {
     if (this.communityPrevButton) {
       this.communityPrevButton.disabled = this.currentProjectsPage === 1;
       if (this.currentProjectsPage === 2) {
-        this.communityPrevButton.innerHTML = '<span class="button-icon">←</span> Back to CTRL Spotlight';
+        this.communityPrevButton.innerHTML = '<span class="button-icon">←</span> Back to Project Hub';
       } else {
         this.communityPrevButton.innerHTML = '<span class="button-icon">←</span> Previous';
       }
@@ -474,21 +621,26 @@ class ProjectsPage {
     if (!this.searchInput || !this.searchResultsCount) return;
 
     const searchTerm = this.searchTerm.toLowerCase();
-    const projectCards = document.querySelectorAll('.project-card, .event-tile');
+    const projectCards = document.querySelectorAll('.project-bento-card, .event-tile');
     let visibleCount = 0;
     let totalCount = projectCards.length;
 
     projectCards.forEach(card => {
-      const title = card.querySelector('.project-title, .event-tile-title')?.textContent?.toLowerCase() || '';
-      const description = card.querySelector('.project-description, .event-tile-desc')?.textContent?.toLowerCase() || '';
-      const tags = Array.from(card.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase());
-      const category = card.querySelector('.tag-category')?.textContent?.toLowerCase() || '';
-      const type = card.querySelector('.tag-type')?.textContent?.toLowerCase() || '';
+      const title = card.querySelector('.project-bento-title, .event-tile-title')?.textContent?.toLowerCase() || '';
+      const description = card.querySelector('.project-bento-type')?.textContent?.toLowerCase() || '';
+      // For bento cards, we need to get the project data from the dataset
+      let projectData = null;
+      if (card.dataset.project) {
+        try {
+          projectData = JSON.parse(card.dataset.project);
+        } catch (e) {}
+      }
+      const category = projectData?.category?.toLowerCase() || '';
+      const type = projectData?.type?.toLowerCase() || '';
 
       const matchesSearch = !searchTerm || 
         title.includes(searchTerm) ||
         description.includes(searchTerm) ||
-        tags.some(tag => tag.includes(searchTerm)) ||
         category.includes(searchTerm) ||
         type.includes(searchTerm);
 
@@ -506,6 +658,22 @@ class ProjectsPage {
     } else {
       this.searchResultsCount.textContent = `Showing all ${totalCount} projects`;
     }
+    
+    // Update category visibility based on search
+    if (searchTerm) {
+      document.querySelectorAll('.category-bento').forEach(categoryBento => {
+        const visibleCards = categoryBento.querySelectorAll('.project-bento-card[style*="display: block"]').length;
+        if (visibleCards === 0) {
+          categoryBento.style.display = 'none';
+        } else {
+          categoryBento.style.display = 'block';
+        }
+      });
+    } else {
+      document.querySelectorAll('.category-bento').forEach(categoryBento => {
+        categoryBento.style.display = 'block';
+      });
+    }
   }
 
   showMultipleProjectsPopupFromData(projects) {
@@ -516,8 +684,8 @@ class ProjectsPage {
     div.className = 'popup-overlay filter-popup';
     div.innerHTML = `
       <div class="project-popup" style="max-width:900px;overflow:auto;max-height:90vh;">
-        <button class="close-button" style="font-size:2.5rem;line-height:2rem;width:2.5rem;height:2.5rem;top:1rem;right:1rem;position:absolute;z-index:10;background:none;border:none;cursor:pointer;">×</button>
-        <div style="padding:1rem 1rem 0 1rem;text-align:center;">
+        <button class="close-button">×</button>
+        <div class="project-popup-header">
           <h2>Matching Projects</h2>
         </div>
         <div class="popup-projects-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;padding:1.5rem;"></div>
@@ -528,20 +696,13 @@ class ProjectsPage {
     const grid = div.querySelector('.popup-projects-grid');
     projects.forEach(project => {
       const card = document.createElement('div');
-      card.className = 'project-card popup-mini-card';
+      card.className = 'project-bento-card popup-mini-card';
       card.innerHTML = `
-        <div class="project-header">
-          <h3 class="project-title">${project.title}</h3>
-          <div class="project-tags">
-            <span class="tag tag-type">${project.type || ''}</span>
-            <span class="tag tag-category">${project.category || ''}</span>
-            <span class="tag tag-stage">${project.stage || ''}</span>
-            <span class="tag tag-team">${project.team || ''}</span>
-          </div>
-        </div>
-        <p class="project-description">${project.description || ''}</p>
+        <h4 class="project-bento-title">${project.title}</h4>
+        <div class="project-bento-type">${project.type || 'Project'}</div>
+        <button class="project-bento-view-btn">View Details</button>
       `;
-      card.onclick = () => showPopup(project);
+      card.onclick = () => window.showPopup(project);
       grid.appendChild(card);
     });
     // Robust close button
@@ -560,8 +721,7 @@ class ProjectsPage {
 // Initialize the page when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   const projectsPage = new ProjectsPage();
-  const grid = document.querySelector('.projects-grid');
-  const template = document.getElementById('project-card-template');
+  const grid = document.querySelector('.bento-categories-grid');
   let allProjects = [];
   let filteredProjects = [];
 
@@ -581,189 +741,214 @@ document.addEventListener('DOMContentLoaded', () => {
     return d.toLocaleString('default', { month: 'short', day: 'numeric' });
   }
 
-  // Render projects
-  async function renderProjects(projects) {
-    grid.innerHTML = '';
+  // Popup logic - make it accessible to click handlers
+  const showPopup = (project) => {
+    console.log('showPopup called with project:', project);
     
-    // Separate events, services, and regular projects
-    const events = projects.filter(p => p.isEvent);
-    const services = projects.filter(p => p.isService);
-    const regularProjects = projects.filter(p => !p.isEvent && !p.isService);
-    // Interleave events, services, and projects
-    const maxLen = Math.max(events.length, services.length, regularProjects.length);
-    const eventTemplate = document.getElementById('event-tile-template');
-    for (let i = 0; i < maxLen; i++) {
-      if (i < regularProjects.length) {
-        const project = regularProjects[i];
-        const card = template.content.cloneNode(true).querySelector('.project-card');
-        if (project.ctrlPick) {
-          const badge = document.createElement('div');
-          badge.className = 'ctrl-pick-badge';
-          badge.innerHTML = '<span class="star-icon">⭐</span> CTRL Picks';
-          card.prepend(badge);
-        }
-        card.querySelector('.project-title').textContent = project.title;
-        const tags = card.querySelector('.project-tags');
-        tags.innerHTML = '';
-        if (project.type) tags.innerHTML += `<span class="tag tag-type">${project.type}</span>`;
-        if (project.category) tags.innerHTML += `<span class="tag tag-category">${project.category}</span>`;
-        card.dataset.leadName = project.leadName || '';
-        card.dataset.leadRole = project.leadRole || '';
-        card.dataset.leadEmail = project.leadEmail || '';
-        card.dataset.leadPhone = project.leadPhone || '';
-        card.dataset.preferredContact = project.preferredContact || '';
-        card.dataset.title = project.title || '';
-        card.dataset.type = project.type || '';
-        card.dataset.category = project.category || '';
-        card.dataset.stage = project.stage || '';
-        card.dataset.team = project.team || '';
-        card.dataset.modality = project.modality || '';
-        card.dataset.marketReach = project.marketReach || '';
-        card.dataset.duration = project.duration || '';
-        card.dataset.status = project.status ? project.status.join(',') : '';
-        card.dataset.description = project.description || '';
-        card.dataset.ctrlPick = project.ctrlPick ? 'true' : '';
-        card.dataset.website = project.website || '';
-        card.addEventListener('click', () => showPopup(project));
-        grid.appendChild(card);
-      }
-      if (i < services.length) {
-        const service = services[i];
-        const card = template.content.cloneNode(true).querySelector('.project-card');
-        card.querySelector('.project-title').textContent = service.title;
-        const tags = card.querySelector('.project-tags');
-        tags.innerHTML = '';
-        if (service.type) tags.innerHTML += `<span class="tag tag-type">${service.type}</span>`;
-        if (service.category) tags.innerHTML += `<span class="tag tag-category">${service.category}</span>`;
-        card.dataset.leadName = service.leadName || '';
-        card.dataset.leadRole = service.leadRole || '';
-        card.dataset.leadEmail = service.leadEmail || '';
-        card.dataset.leadPhone = service.leadPhone || '';
-        card.dataset.preferredContact = service.preferredContact || '';
-        card.dataset.title = service.title || '';
-        card.dataset.type = service.type || '';
-        card.dataset.category = service.category || '';
-        card.dataset.stage = service.stage || '';
-        card.dataset.team = service.team || '';
-        card.dataset.modality = service.modality || '';
-        card.dataset.marketReach = service.marketReach || '';
-        card.dataset.duration = service.duration || '';
-        card.dataset.status = service.status ? service.status.join(',') : '';
-        card.dataset.description = service.description || '';
-        card.dataset.ctrlPick = service.ctrlPick ? 'true' : '';
-        card.dataset.website = service.website || '';
-        card.dataset.activityLog = service.activityLog ? JSON.stringify(service.activityLog) : '';
-        card.dataset.isService = 'true';
-        card.dataset.services = service.services ? JSON.stringify(service.services) : '';
-        card.dataset.serviceDetails = service.serviceDetails || '';
-        card.dataset.serviceNote = service.serviceNote || '';
-        card.addEventListener('click', () => showPopup(service));
-        grid.appendChild(card);
-      }
-      if (i < events.length) {
-        const event = events[i];
-        const card = template.content.cloneNode(true).querySelector('.project-card');
-        card.querySelector('.project-title').textContent = event.title;
-        const tags = card.querySelector('.project-tags');
-        tags.innerHTML = '';
-        if (event.category) tags.innerHTML += `<span class="tag tag-category">${event.category}</span>`;
-        card.dataset.title = event.title || '';
-        card.dataset.category = event.category || '';
-        card.dataset.description = event.description || '';
-        card.dataset.isEvent = 'true';
-        card.dataset.eventDetails = event.eventDetails ? JSON.stringify(event.eventDetails) : '';
-        card.dataset.activityLog = event.activityLog ? JSON.stringify(event.activityLog) : '';
-        card.dataset.link = event.link || '';
-        card.addEventListener('click', () => showPopup(event));
-        grid.appendChild(card);
-      }
-    }
-    if (events.length === 0 && services.length === 0 && regularProjects.length === 0) {
-      const msg = document.createElement('div');
-      msg.textContent = 'No projects, services, or events found.';
-      msg.style.color = '#888';
-      msg.style.margin = '2rem 0';
-      grid.appendChild(msg);
-    }
-  }
-
-  // Popup logic
-  function showPopup(project) {
-    // Remove any existing popups
+    // Remove any existing popups first
     document.querySelectorAll('.popup-overlay').forEach(el => el.remove());
+    
+    const template = document.getElementById('project-popup-template');
+    if (!template) {
+      console.error('Template not found!');
+      return;
+    }
+    console.log('Template found:', template);
+    
+    const popup = template.content.cloneNode(true);
+    popup.querySelector('h2').textContent = project.title;
+    const tags = popup.querySelector('.project-tags');
+    tags.innerHTML = '';
+    if (project.type) tags.innerHTML += `<span class="tag tag-type">${project.type}</span>`;
+    if (project.stage) tags.innerHTML += `<span class="tag tag-stage">${project.stage}</span>`;
+    if (project.category) {
+      const categoryClass = project.category.toLowerCase().replace(/\s+/g, '-');
+      tags.innerHTML += `<span class="tag tag-category ${categoryClass}">${project.category}</span>`;
+    }
+    if (project.modality) tags.innerHTML += `<span class="tag tag-modality">${project.modality}</span>`;
+    if (project.team) tags.innerHTML += `<span class="tag tag-team">${project.team}</span>`;
+    if (project.marketReach) tags.innerHTML += `<span class="tag tag-market">${project.marketReach}</span>`;
+    if (project.duration) tags.innerHTML += `<span class="tag tag-duration">${project.duration}</span>`;
+    if (project.status && Array.isArray(project.status)) {
+      project.status.forEach(st => {
+        tags.innerHTML += `<span class="tag tag-status">${st}</span>`;
+      });
+    }
+    
+    // Setup project lead info
+    popup.querySelector('.member-name').textContent = project.leadName || 'Project Lead Name';
+    popup.querySelector('.member-role').textContent = project.leadRole || 'Project Role';
+    
+    // Setup contact info
+    const contactDetails = popup.querySelector('.contact-details');
+    contactDetails.querySelector('.contact-method:first-child .contact-value').textContent = project.leadEmail || 'email@example.com';
+    contactDetails.querySelector('.contact-method:last-child .contact-value').textContent = project.leadPhone || 'Phone number';
+    if (!project.leadEmail) contactDetails.querySelector('.contact-method:first-child').style.display = 'none';
+    if (!project.leadPhone) contactDetails.querySelector('.contact-method:last-child').style.display = 'none';
 
-    // Create overlay
-    const overlay = document.createElement('div');
-    overlay.className = 'popup-overlay custom-popup-overlay';
-    overlay.style.position = 'fixed';
-    overlay.style.top = 0;
-    overlay.style.left = 0;
-    overlay.style.width = '100vw';
-    overlay.style.height = '100vh';
-    overlay.style.background = 'rgba(0,0,0,0.5)';
-    overlay.style.display = 'flex';
-    overlay.style.alignItems = 'center';
-    overlay.style.justifyContent = 'center';
-    overlay.style.zIndex = 10000;
+    // Setup project description
+    const descriptionContent = popup.querySelector('.description-content');
+    if (project.description) {
+      descriptionContent.innerHTML = `<p>${project.description}</p>`;
+    } else {
+      descriptionContent.innerHTML = '<p>No description available for this project.</p>';
+    }
+    
+    // Setup project links
+    const projectLinks = popup.querySelector('.project-links');
+    const links = [];
+    
+    // Add website link if available
+    if (project.website) {
+      links.push({
+        url: project.website,
+        label: 'Visit Project Website',
+        icon: '🌐',
+        className: 'primary-button'
+      });
+    }
+    
+    // Add additional link if available
+    if (project.additionalLink && project.additionalLinkLabel) {
+      links.push({
+        url: project.additionalLink,
+        label: project.additionalLinkLabel,
+        icon: '📋',
+        className: 'secondary-button'
+      });
+    }
+    
+    // If no links available, show placeholder
+    if (links.length === 0) {
+      projectLinks.innerHTML = `
+        <a href="#" class="project-link secondary-button disabled">
+          <span class="link-icon">📋</span>
+          No links available
+        </a>
+      `;
+    } else {
+      projectLinks.innerHTML = links.map(link => `
+        <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="project-link ${link.className}">
+          <span class="link-icon">${link.icon}</span>
+          ${link.label}
+        </a>
+      `).join('');
+    }
 
-    // Create popup box
-    const popup = document.createElement('div');
-    popup.className = 'project-popup custom-popup-box';
-    popup.style.background = '#fff';
-    popup.style.borderRadius = '16px';
-    popup.style.boxShadow = '0 8px 32px rgba(0,0,0,0.18)';
-    popup.style.padding = '2rem 2.5rem';
-    popup.style.maxWidth = '500px';
-    popup.style.width = '90vw';
-    popup.style.position = 'relative';
-    popup.style.display = 'flex';
-    popup.style.flexDirection = 'column';
-    popup.style.justifyContent = 'center';
-    popup.style.alignItems = 'center';
-    popup.style.margin = '0'; // Ensure no margin pushes it down
-
-    // X button
-    const closeButton = document.createElement('button');
-    closeButton.className = 'close-button';
-    closeButton.innerHTML = '&times;';
-    closeButton.style.position = 'absolute';
-    closeButton.style.top = '1rem';
-    closeButton.style.right = '1rem';
-    closeButton.style.fontSize = '2rem';
-    closeButton.style.background = 'none';
-    closeButton.style.border = 'none';
-    closeButton.style.cursor = 'pointer';
-    closeButton.style.lineHeight = '1';
-    closeButton.style.color = '#333';
-    closeButton.setAttribute('aria-label', 'Close');
-
-    closeButton.onclick = (e) => {
-      e.stopPropagation();
+    document.body.appendChild(popup);
+    
+    const overlay = document.querySelector('.popup-overlay');
+    const closeButton = overlay.querySelector('.close-button');
+    
+    const closePopup = () => {
       overlay.remove();
     };
-
-    // Description text
-    const desc = document.createElement('div');
-    desc.className = 'popup-description-only';
-    desc.textContent = project.description;
-    desc.style.fontSize = '1.1rem';
-    desc.style.color = '#222';
-    desc.style.textAlign = 'left';
-    desc.style.margin = '1.5rem 0 0 0';
-    desc.style.width = '100%';
-
-    popup.appendChild(closeButton);
-    popup.appendChild(desc);
-    overlay.appendChild(popup);
-
-    // Clicking the overlay closes the popup
+    
+    // Add click handler for overlay background
     overlay.onclick = (e) => {
-      if (e.target === overlay) overlay.remove();
+      if (e.target === overlay) {
+        closePopup();
+      }
     };
+    
+    // Add click handler for close button
+    if (closeButton) {
+      closeButton.onclick = (e) => {
+        e.stopPropagation(); // Prevent event from bubbling to overlay
+        closePopup();
+      };
+    }
+  };
 
-    document.body.appendChild(overlay);
+  // Render projects
+  async function renderProjects(projects) {
+    const grid = document.querySelector('.bento-categories-grid');
+    grid.innerHTML = '';
+    
+    // Group projects by category
+    const projectsByCategory = {};
+    
+    projects.forEach(project => {
+      const category = project.category || 'Other';
+      if (!projectsByCategory[category]) {
+        projectsByCategory[category] = [];
+      }
+      projectsByCategory[category].push(project);
+    });
+    
+    // Create category sections
+    Object.entries(projectsByCategory).forEach(([category, categoryProjects]) => {
+      const categorySection = document.createElement('div');
+      categorySection.className = `category-bento category-${category.toLowerCase().replace(/\s+/g, '-').replace(/\//g, '-')}`;
+      
+      // Get category icon
+      const categoryIcon = getCategoryIcon(category);
+      
+      categorySection.innerHTML = `
+        <div class="category-header">
+          <div class="category-icon">${categoryIcon}</div>
+          <h3 class="category-title">${category}</h3>
+          <div class="category-count">${categoryProjects.length} project${categoryProjects.length !== 1 ? 's' : ''}</div>
+        </div>
+        <div class="projects-bento-grid">
+          ${categoryProjects.map(project => createProjectBentoCard(project)).join('')}
+        </div>
+      `;
+      
+      grid.appendChild(categorySection);
+    });
+    
+    // Add click handlers to bento cards directly
+    setTimeout(() => {
+      document.querySelectorAll('.project-bento-card').forEach((card, index) => {
+        card.addEventListener('click', (e) => {
+          try {
+            // Get the project data from the card
+            const projectData = JSON.parse(card.dataset.project);
+            
+            // Show popup when clicking anywhere on the card
+            showPopup(projectData);
+          } catch (error) {
+            console.error('Error parsing project data:', error);
+            console.log('Card dataset:', card.dataset);
+          }
+        });
+      });
+    }, 100);
   }
 
+  // Helper function to create a project bento card
+  function createProjectBentoCard(project) {
+    const projectType = project.type || 'Project';
+    const projectData = JSON.stringify(project);
+    return `
+      <div class="project-bento-card" data-project='${projectData}'>
+        <h4 class="project-bento-title">${project.title}</h4>
+        <div class="project-bento-type">${projectType}</div>
+        <button class="project-bento-view-btn">View Details</button>
+      </div>
+    `;
+  }
+
+  // Helper function to get category icons
+  function getCategoryIcon(category) {
+    const iconMap = {
+      'Health': '🏥',
+      'Education': '📚',
+      'Environment': '🌱',
+      'Social Impact': '🤝',
+      'Art / Design': '🎨',
+      'Technology': '💻',
+      'Food / Culture': '🍽️',
+      'Wellness / Beauty': '✨'
+    };
+    return iconMap[category] || '📋';
+  }
+
+  // Make functions globally accessible
   window.showPopup = showPopup;
   window.projectsPage = projectsPage;
+  
+  // Also make the renderProjects function accessible for debugging
+  window.renderProjects = renderProjects;
 }); 
