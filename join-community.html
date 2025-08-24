@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join Community - CTRL</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Updated minimal theme */
+    :root {
+      /* Pastel Color Scheme for Venture Categories */
+      --pastel-tech: #E3F2FD;
+      --pastel-data: #F3E5F5;
+      --pastel-writing: #FFF3E0;
+      --pastel-design: #E8F5E8;
+      --pastel-photo: #FFF8E1;
+      --pastel-arts: #FCE4EC;
+      --pastel-film: #E0F2F1;
+      --pastel-food: #FFFDE7;
+      --pastel-restaurant: #F1F8E9;
+      --pastel-truck: #FFF3E0;
+      --pastel-landscape: #E8F5E8;
+      --pastel-education: #E3F2FD;
+      --pastel-hair: #FCE4EC;
+      --pastel-crafts: #FFF8E1;
+      --pastel-health: #E8F5E8;
+      --pastel-beauty: #FCE4EC;
+      --pastel-events: #E0F2F1;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #000;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-header {
+      background: #fff;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 3.5rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .main-nav a {
+      color: #666;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: #000;
+      background: #edf4ff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .social-nav-link {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      z-index: 1;
+      border-radius: 8px;
+      border: 1px solid #f0f0f0;
+      padding: 0.5rem 0;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      color: #666;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      display: block;
+      transition: background 0.2s ease;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f8f8f8;
+      color: #000;
+    }
+
+    .main-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+
+
+    /* Form Styles */
+    .join-form-section {
+      padding: 2rem 0 4rem 0;
+    }
+
+    .form-container {
+      background: #fff;
+      border: 1px solid #f0f0f0;
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .form-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 0 2rem 0;
+      color: #000;
+      text-align: center;
+    }
+
+    .form-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #000;
+      font-size: 0.95rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.2s ease;
+      font-family: inherit;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #000;
+    }
+
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .form-group .word-count {
+      font-size: 0.8rem;
+      color: #666;
+      margin-top: 0.25rem;
+      text-align: right;
+    }
+
+    .form-group .file-upload {
+      border: 2px dashed #e0e0e0;
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-group .file-upload:hover {
+      border-color: #000;
+    }
+
+    .form-group .file-upload input[type="file"] {
+      display: none;
+    }
+
+    .form-group .file-upload .upload-text {
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group .file-upload .upload-hint {
+      font-size: 0.8rem;
+      color: #999;
+    }
+
+    .form-group .selected-files {
+      margin-top: 1rem;
+      text-align: left;
+    }
+
+    .form-group .selected-files .file-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem;
+      background: #f8f8f8;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group .selected-files .file-name {
+      font-size: 0.9rem;
+      color: #000;
+    }
+
+    .form-group .selected-files .remove-file {
+      background: #ff4444;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 0.25rem 0.5rem;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    .submit-button {
+      background: #1a1a1a;
+      color: white !important;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: block;
+      margin: 0 auto;
+      min-width: 200px;
+      position: relative;
+      overflow: visible;
+      z-index: 1;
+    }
+
+    .submit-button::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -4px;
+      background: linear-gradient(180deg, 
+        transparent 0%, 
+        transparent 40%, 
+        rgba(255, 107, 107, 0.8) 60%, 
+        rgba(255, 167, 38, 0.8) 70%, 
+        rgba(255, 235, 59, 0.8) 80%, 
+        rgba(76, 175, 80, 0.8) 90%, 
+        rgba(33, 150, 243, 0.8) 95%, 
+        rgba(156, 39, 176, 0.8) 100%);
+      border-radius: 50px;
+      z-index: -2;
+      filter: blur(2px);
+    }
+
+    .submit-button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #1a1a1a;
+      border-radius: 50px;
+      z-index: -1;
+    }
+
+    .submit-button:hover {
+      transform: scale(1.05);
+    }
+
+    .main-footer {
+      background: #f8f8f8;
+      padding: 2rem 0;
+      text-align: center;
+      border-top: 1px solid #f0f0f0;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-content p {
+      color: #666;
+      margin: 0;
+    }
+
+    /* Success Message */
+    .success-message {
+      position: fixed;
+      top: -100px;
+      right: 20px;
+      background: #10b981;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      z-index: 1000;
+      transition: top 0.5s ease;
+      max-width: 300px;
+    }
+
+    .success-message.show {
+      top: 20px;
+    }
+
+    .success-message h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .success-message p {
+      margin: 0;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .header-container,
+      .main-container {
+        padding: 0 1rem;
+      }
+
+      .form-container {
+        padding: 1.5rem;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .submit-button {
+        width: 100%;
+      }
+
+      .success-message {
+        right: 10px;
+        left: 10px;
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body class="join-community">
+  <header class="main-header" style="box-shadow: 0 4px 24px 0 rgba(58,120,255,0.06); border-radius: 2rem; margin: 2rem auto 0 auto; max-width: 1200px; background: #fff;">
+    <div class="header-container">
+              <a href="index.html" class="logo">
+          <img src="favicon.png" alt="CTRL" style="width: 32px; height: 32px; margin-right: 12px; vertical-align: middle;">
+          CTRL
+        </a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="biz-enhancer.html">Biz Enhancer</a>
+        <a href="network.html">Network</a>
+        <a href="idea-lab.html">Idea Lab</a>
+        <a href="mailto:builtwithctrl@gmail.com" class="social-nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/withctrl" target="_blank" class="social-nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17" cy="7" r="1" fill="currentColor"/>
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Success Message -->
+  <div class="success-message" id="success-message">
+    <h3>Venture Submitted!</h3>
+    <p>Will be uploaded within 1-3 business days</p>
+  </div>
+
+  <main>
+    <!-- Join Form Section -->
+    <section class="join-form-section">
+      <div class="main-container">
+        <h1 style="text-align: center; margin-bottom: 1rem;">Join Our Community</h1>
+        <p style="text-align: center; margin-bottom: 3rem; color: #666; max-width: 800px; margin-left: auto; margin-right: auto;">This goes into our weekly IG CTRL user roundups to boost your visibility. You can find inspiration from others who found their niche with our Idea Lab, and you can build partnerships — find the right partners and gain visibility that stays on our website & feeds. Your venture will be featured on our network page alongside other CTRL users.</p>
+        <div class="form-container">
+          <h2 class="form-title">Community Application</h2>
+          <form id="join-community-form" action="https://usebasin.com/f/264e81003939" method="POST">
+                          <div class="form-grid">
+                <div class="form-group">
+                  <label for="email">Email *</label>
+                  <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="venture-type">Venture Type *</label>
+                  <select id="venture-type" name="venture-type" required>
+                    <option value="">Select type...</option>
+                    <option value="small-biz">Small Business</option>
+                    <option value="startup">Startup</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label for="venture-name">Venture Name *</label>
+                  <input type="text" id="venture-name" name="venture-name" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="category">Category *</label>
+                  <select id="category" name="category" required>
+                    <option value="">Select category...</option>
+                    <option value="technology">Technology</option>
+                    <option value="data">Data</option>
+                    <option value="writing">Writing</option>
+                    <option value="graphic-design">Graphic Design</option>
+                    <option value="photography">Photography</option>
+                    <option value="performing-arts">Performing Arts</option>
+                    <option value="film">Film</option>
+                    <option value="food-drink">Food + Drink</option>
+                    <option value="restaurants">Restaurants</option>
+                    <option value="food-trucks">Food Trucks</option>
+                    <option value="landscaping">Landscaping</option>
+                    <option value="tutoring-education">Tutoring + Education</option>
+                    <option value="hairstyling-barber">Hairstyling + Barber</option>
+                    <option value="crafts-handmade">Crafts + Handmade Goods</option>
+                    <option value="health">Health</option>
+                    <option value="beauty">Beauty</option>
+                    <option value="event-planning">Event Planning</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label for="description">Description * (70 word limit)</label>
+                  <textarea id="description" name="description" maxlength="350" required placeholder="Describe your venture in detail..."></textarea>
+                  <div class="word-count"><span id="word-count">0</span>/70 words</div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="link">Link *</label>
+                  <input type="url" id="link" name="link" required placeholder="https://yourwebsite.com or social media link">
+                </div>
+                
+                <div class="form-group">
+                  <label for="niche">Your Niche *</label>
+                  <textarea id="niche" name="niche" required placeholder="What makes your venture special? What's your unique hook? (You can use our Idea Lab to craft this or describe it here)"></textarea>
+                </div>
+                
+                <div class="form-group">
+                  <label>Images (Optional)</label>
+                  <div class="file-upload" onclick="document.getElementById('image-upload').click()">
+                    <input type="file" id="image-upload" name="images[]" multiple accept=".jpg,.jpeg,.png,.gif,.svg" onchange="handleFileSelect(this)">
+                    <div class="upload-text">Click to upload images</div>
+                    <div class="upload-hint">Up to 3 images, max 5MB each (JPG, PNG, GIF, SVG)</div>
+                  </div>
+                  <div class="selected-files" id="selected-files"></div>
+                </div>
+              </div>
+            
+            <button type="submit" class="submit-button">Submit</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <p>CTRL | Built by and for the people without a roadmap</p>
+    </div>
+  </footer>
+
+  <script>
+    // Word count functionality
+    const descriptionTextarea = document.getElementById('description');
+    const wordCountSpan = document.getElementById('word-count');
+    
+    descriptionTextarea.addEventListener('input', function() {
+      const words = this.value.trim().split(/\s+/).filter(word => word.length > 0);
+      const wordCount = words.length;
+      wordCountSpan.textContent = wordCount;
+      
+      if (wordCount > 70) {
+        wordCountSpan.style.color = '#ff4444';
+      } else {
+        wordCountSpan.style.color = '#666';
+      }
+    });
+
+    // File upload handling
+    let selectedFiles = [];
+    
+    function handleFileSelect(input) {
+      const files = Array.from(input.files);
+      
+      // Validate file count
+      if (selectedFiles.length + files.length > 3) {
+        alert('Maximum 3 images allowed');
+        return;
+      }
+      
+      // Validate file sizes and types
+      const validFiles = files.filter(file => {
+        if (file.size > 5 * 1024 * 1024) { // 5MB
+          alert(`File ${file.name} is too large. Maximum size is 5MB.`);
+          return false;
+        }
+        
+        const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/svg+xml'];
+        if (!validTypes.includes(file.type)) {
+          alert(`File ${file.name} is not a valid image type.`);
+          return false;
+        }
+        
+        return true;
+      });
+      
+      selectedFiles = [...selectedFiles, ...validFiles];
+      displaySelectedFiles();
+    }
+    
+    function displaySelectedFiles() {
+      const container = document.getElementById('selected-files');
+      container.innerHTML = '';
+      
+      selectedFiles.forEach((file, index) => {
+        const fileItem = document.createElement('div');
+        fileItem.className = 'file-item';
+        fileItem.innerHTML = `
+          <span class="file-name">${file.name}</span>
+          <button type="button" class="remove-file" onclick="removeFile(${index})">Remove</button>
+        `;
+        container.appendChild(fileItem);
+      });
+    }
+    
+    function removeFile(index) {
+      selectedFiles.splice(index, 1);
+      displaySelectedFiles();
+      
+      // Update the file input
+      const input = document.getElementById('image-upload');
+      const dt = new DataTransfer();
+      selectedFiles.forEach(file => dt.items.add(file));
+      input.files = dt.files;
+    }
+
+    // Form submission
+    document.getElementById('join-community-form').addEventListener('submit', function(e) {
+      // Basic validation
+      const requiredFields = ['email', 'venture-type', 'venture-name', 'category', 'description', 'link', 'niche'];
+      let isValid = true;
+      
+      requiredFields.forEach(fieldName => {
+        const field = document.getElementById(fieldName);
+        if (!field.value.trim()) {
+          field.style.borderColor = '#ff4444';
+          isValid = false;
+        } else {
+          field.style.borderColor = '#e0e0e0';
+        }
+      });
+      
+      if (!isValid) {
+        e.preventDefault();
+        alert('Please fill in all required fields.');
+        return;
+      }
+      
+      // Check word count
+      const description = document.getElementById('description').value;
+      const wordCount = description.trim().split(/\s+/).filter(word => word.length > 0).length;
+      
+      if (wordCount > 70) {
+        e.preventDefault();
+        alert('Description must be 70 words or less.');
+        return;
+      }
+      
+      // Form will submit to Basin endpoint
+      // Show success message and redirect to network page
+      const successMessage = document.getElementById('success-message');
+      successMessage.classList.add('show');
+      
+      // Redirect to network page after 2 seconds
+      setTimeout(() => {
+        window.location.href = 'network.html';
+      }, 2000);
+    });
+  </script>
+</body>
+</html>

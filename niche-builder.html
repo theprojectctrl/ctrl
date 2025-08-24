@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Niche Builder - CTRL</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Niche Builder specific styles */
+    :root {
+      --accent-blue: #3b82f6;
+      --accent-yellow: #fbbf24;
+    }
+
+    .emphasis-blue {
+      color: var(--accent-blue);
+      font-weight: 600;
+    }
+
+    .emphasis-yellow {
+      color: var(--accent-yellow);
+      font-weight: 600;
+    }
+
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Hero boba emoji styling */
+    .hero-boba {
+      font-size: 12rem;
+      position: absolute;
+      left: -13rem;
+      top: -1rem;
+      transform: rotate(-8deg);
+      opacity: 0.8;
+      z-index: 1;
+      pointer-events: none;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+      animation: boba-pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes boba-pulse {
+      0%, 100% {
+        transform: rotate(-8deg) scale(1);
+      }
+      50% {
+        transform: rotate(-8deg) scale(1.05);
+      }
+    }
+
+    /* Ensure cards are above the emoji */
+    .card {
+      position: relative;
+      z-index: 10;
+    }
+
+    .card-input {
+      position: relative;
+      z-index: 15;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #000;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-header {
+      background: #fff;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 3.5rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .main-nav a {
+      color: #666;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: #000;
+      background: #edf4ff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .hero-section {
+      background: #f8f8f8;
+      padding: 3rem 0;
+      text-align: center;
+      border-bottom: 1px solid #f0f0f0;
+      position: relative;
+    }
+
+    .hero-section h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0 0 1.5rem 0;
+      letter-spacing: -0.03em;
+      text-transform: lowercase;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: #666;
+      margin: 0 0 3rem 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    .bento-card {
+      background: #fff;
+      border-radius: 1.5em;
+      box-shadow: 0 2px 16px 0 rgba(60, 60, 60, 0.06);
+      padding: 2rem;
+      margin: 2rem auto;
+      border: 2px solid rgba(58, 120, 255, 0.18);
+      transition: box-shadow 0.2s, border-color 0.2s;
+      max-width: 700px;
+      width: 100%;
+    }
+
+    .bento-card:hover {
+      box-shadow: 0 4px 24px 0 rgba(60, 60, 60, 0.10);
+      border-color: rgba(58, 120, 255, 0.28);
+    }
+
+    @media (max-width: 800px) {
+      .bento-card {
+        max-width: 98vw;
+        padding: 1.2rem;
+      }
+    }
+
+    .cards-container {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 4rem 0;
+      flex-wrap: wrap;
+    }
+
+    /* Override any rainbow bars that might be coming from external CSS */
+    .card::before,
+    .card::after,
+    .card-inner::before,
+    .card-inner::after,
+    .card-front::before,
+    .card-front::after {
+      display: none !important;
+      content: none !important;
+    }
+
+    .card {
+      width: 280px;
+      height: 320px;
+      perspective: 1000px;
+      cursor: pointer;
+      position: relative;
+      z-index: 10;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+
+    .card-front {
+      background: #edf4ff;
+      color: #000;
+    }
+
+    .card-back {
+      background: white;
+      color: #000;
+      transform: rotateY(180deg);
+      border: 2px solid #e2e8f0;
+    }
+
+
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-description {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+
+    .card-example {
+      font-size: 0.8rem;
+      color: #666;
+      font-style: italic;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+    }
+
+    .card-input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: inherit;
+      text-align: center;
+      margin-top: 1rem;
+      transition: border-color 0.2s ease;
+      position: relative;
+      z-index: 15;
+      background: white;
+      cursor: text;
+    }
+
+    .card-input:focus {
+      outline: none;
+      border-color: #60a5fa;
+      box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+    }
+
+    .card-input::placeholder {
+      color: #a0aec0;
+    }
+
+    .word-limit {
+      font-size: 0.8rem;
+      color: #718096;
+      margin-top: 0.5rem;
+    }
+
+    .synthesize-section {
+      text-align: center;
+      margin: 4rem 0;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+
+    .synthesize-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .synthesize-btn {
+      background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .synthesize-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(96, 165, 250, 0.3);
+    }
+
+    .synthesize-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .result-section {
+      text-align: center;
+      margin: 3rem 0;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+
+    .result-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .generated-sentence {
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem 0;
+      font-size: 1.2rem;
+      color: #000;
+      line-height: 1.6;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+
+
+    /* Share Your Niche Button - Styled like network connect buttons */
+    .submit-section {
+      text-align: center;
+      margin: 2rem 0;
+      width: 100%;
+      clear: both;
+    }
+
+    .share-niche-btn {
+      background: #1a1a1a;
+      color: white !important;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: inherit;
+      min-width: 200px;
+      justify-content: center;
+      position: relative;
+      overflow: visible;
+      z-index: 1;
+    }
+
+    .share-niche-btn::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -4px;
+      background: linear-gradient(180deg, 
+        transparent 0%, 
+        transparent 40%, 
+        rgba(255, 107, 107, 0.8) 60%, 
+        rgba(255, 167, 38, 0.8) 70%, 
+        rgba(255, 235, 59, 0.8) 80%, 
+        rgba(76, 175, 80, 0.8) 90%, 
+        rgba(33, 150, 243, 0.8) 95%, 
+        rgba(156, 39, 176, 0.8) 100%);
+      border-radius: 50px;
+      z-index: -2;
+      filter: blur(2px);
+    }
+
+    .share-niche-btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #1a1a1a;
+      border-radius: 50px;
+      z-index: -1;
+    }
+
+    .share-niche-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .disclaimer {
+      font-size: 0.9rem;
+      color: #666;
+      text-align: center;
+      margin-top: 1rem;
+      line-height: 1.5;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .main-footer {
+      background: #f8f8f8;
+      padding: 1rem 0;
+      text-align: center;
+      border-top: 1px solid #f0f0f0;
+      margin-top: 1rem;
+      width: 100%;
+      position: relative;
+      left: 0;
+      right: 0;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-content p {
+      color: #666;
+      margin: 0;
+    }
+
+    .share-niche-btn svg {
+      transition: transform 0.2s ease;
+    }
+
+    .share-niche-btn:hover svg {
+      transform: translateX(4px);
+    }
+
+    .error-message {
+      background: #fee2e2;
+      color: #991b1b;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .success-message {
+      background: #10b981;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      margin-top: 2rem;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .instructions {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 0.5rem auto;
+      max-width: 600px;
+      text-align: left;
+    }
+
+    .instructions h3 {
+      color: #000;
+      margin-bottom: 1rem;
+    }
+
+    .instructions ol {
+      color: #000;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 768px) {
+      .cards-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .card {
+        width: 100%;
+        max-width: 320px;
+      }
+      
+      .hero-title {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="logo">CTRL</a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="biz-enhancer.html">Biz Enhancer</a>
+        <a href="network.html">Network</a>
+        <a href="idea-lab.html">Idea Lab</a>
+        <a href="mailto:builtwithctrl@gmail.com" class="social-nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/withctrl" target="_blank" class="social-nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17" cy="7" r="1" fill="currentColor"/>
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero-section bento-card">
+    <div class="main-container">
+      <div class="hero-boba">👾</div>
+      <h1>niche builder</h1>
+      <p class="hero-subtitle">Discover your unique business niche by exploring your <span class="emphasis-blue">talents</span>, <span class="emphasis-yellow">struggles</span>, and <span class="emphasis-blue">x-factors</span>. Flip the cards below to start building your personalized niche statement.</p>
+    </div>
+  </section>
+
+  <div class="instructions">
+    <h3>How to use this tool:</h3>
+    <ol>
+      <li><strong>Flip each card</strong> by clicking on it</li>
+      <li><strong>Enter up to 3 words</strong> for each category (not characters)</li>
+      <li><strong>Click "Share Your Niche"</strong> to submit your results</li>
+    </ol>
+  </div>
+
+  <form id="niche-form" action="https://usebasin.com/f/6b8c21ecaf01" method="POST">
+    <div class="cards-container">
+    <div class="card" data-card="1">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="card-title">Your Talent/Approach</div>
+          <div class="card-description">What unique skills or methods do you bring?</div>
+          <div class="card-example">Example: "Data Analysis"</div>
+          <div class="flip-hint">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 17L17 7M17 7H7M17 7V17" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Click to flip</span>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="card-title">Your Talent/Approach</div>
+          <input type="text" class="card-input" placeholder="Enter up to 3 words" maxlength="50">
+          <div class="word-limit">Max 3 words</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-card="2">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="card-title">Your Struggle/Ethos</div>
+          <div class="card-description">What problem do you solve or belief drives you?</div>
+          <div class="card-example">Example: "Small Business Growth"</div>
+          <div class="flip-hint">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 17L17 7M17 7H7M17 7V17" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Click to flip</span>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="card-title">Your Struggle/Ethos</div>
+          <input type="text" class="card-input" placeholder="Enter up to 3 words" maxlength="50">
+          <div class="word-limit">Max 3 words</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-card="3">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="card-title">Your X-Factor</div>
+          <div class="card-description">What makes you truly unique or different?</div>
+          <div class="card-example">Example: "Military Background"</div>
+          <div class="flip-hint">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 17L17 7M17 7V17" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Click to flip</span>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="card-title">Your X-Factor</div>
+          <input type="text" class="card-input" placeholder="Enter up to 3 words" maxlength="50">
+          <div class="word-limit">Max 3 words</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="submit-section">
+      <button type="submit" class="share-niche-btn">
+        <span>Share Your Niche</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <p class="disclaimer">By submitting, you agree that we may use your anonymous niche statement to ornate our website or share on social media as an example (completely anonymous).</p>
+    </div>
+  </form>
+
+
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <p>Powered by cold brew @ 2:00AM</p>
+    </div>
+  </footer>
+
+  <script>
+    class NicheBuilder {
+      constructor() {
+        this.cards = document.querySelectorAll('.card');
+        this.nicheForm = document.getElementById('niche-form');
+        
+        this.responses = {
+          talent: '',
+          struggle: '',
+          xfactor: ''
+        };
+        
+        this.init();
+      }
+      
+      init() {
+        this.setupCardListeners();
+        this.setupFormListener();
+        this.setupInputListeners();
+      }
+      
+      setupCardListeners() {
+        this.cards.forEach(card => {
+          card.addEventListener('click', (e) => {
+            // Don't flip if clicking on input fields
+            if (e.target.classList.contains('card-input') || e.target.closest('.card-input')) {
+              return;
+            }
+            card.classList.toggle('flipped');
+          });
+        });
+      }
+      
+      setupInputListeners() {
+        const inputs = document.querySelectorAll('.card-input');
+        inputs.forEach((input, index) => {
+          input.addEventListener('input', (e) => {
+            const words = e.target.value.trim().split(/\s+/).filter(word => word.length > 0);
+            
+            if (words.length > 3) {
+              e.target.value = words.slice(0, 3).join(' ');
+            }
+            
+            // Store response based on card number
+            const cardNumber = index + 1;
+            if (cardNumber === 1) this.responses.talent = e.target.value;
+            else if (cardNumber === 2) this.responses.struggle = e.target.value;
+            else if (cardNumber === 3) this.responses.xfactor = e.target.value;
+            
+            this.checkAllFilled();
+          });
+        });
+      }
+      
+      checkAllFilled() {
+        // This method can be used to enable/disable submit button if needed
+        const allFilled = this.responses.talent && this.responses.struggle && this.responses.xfactor;
+        return allFilled;
+      }
+
+      
+      setupFormListener() {
+        this.nicheForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          this.submitFormResults();
+        });
+      }
+      
+      async submitFormResults() {
+        // Create form data with the card responses
+        const formData = new FormData();
+        formData.append('talent', this.responses.talent);
+        formData.append('struggle', this.responses.struggle);
+        formData.append('xfactor', this.responses.xfactor);
+        
+        // Generate the sentence
+        const sentence = `I help ${this.responses.struggle} by ${this.responses.talent}, with a unique edge in ${this.responses.xfactor}.`;
+        formData.append('sentence', sentence);
+        formData.append('timestamp', new Date().toISOString());
+        
+        try {
+          // Submit to Basin endpoint
+          const response = await fetch('https://usebasin.com/f/6b8c21ecaf01', {
+            method: 'POST',
+            body: formData
+          });
+          
+          if (response.ok) {
+            this.showSuccessMessage();
+          } else {
+            throw new Error('Submission failed');
+          }
+        } catch (error) {
+          console.error('Submission error:', error);
+          // Show error message
+          this.showErrorMessage();
+        }
+      }
+      
+      showErrorMessage() {
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.textContent = 'There was an error submitting your niche. Please try again.';
+        
+        const submitSection = document.querySelector('.submit-section');
+        submitSection.appendChild(errorDiv);
+      }
+      
+      showSuccessMessage() {
+        // Redirect to idea lab after successful submission
+        window.location.href = 'idea-lab.html';
+      }
+    }
+    
+    // Initialize the niche builder when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      new NicheBuilder();
+    });
+  </script>
+</body>
+</html>

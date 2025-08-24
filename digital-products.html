@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Products - CTRL</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Updated minimal theme */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #000;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-header {
+      background: #fff;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 3.5rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .main-nav a {
+      color: #666;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: #000;
+      background: #edf4ff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .social-nav-link {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 6rem 0 4rem 0;
+      text-align: center;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-radius: 2rem;
+      margin: 2rem 0;
+    }
+
+    .hero-section h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0 0 1.5rem 0;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: #666;
+      margin: 0 0 3rem 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 3rem 0;
+      flex-wrap: wrap;
+    }
+
+    .primary-button {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      border: none;
+      background: #1a1a1a;
+      color: white !important;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      min-width: 160px;
+      justify-content: center;
+    }
+
+    .primary-button:hover {
+      transform: scale(1.05);
+      background: #333;
+    }
+
+    /* Coffee/Matcha Theme */
+    .coffee-theme {
+      background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #F4A460 100%);
+      color: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .matcha-theme {
+      background: linear-gradient(135deg, #90EE90 0%, #98FB98 50%, #F0FFF0 100%);
+      color: #2F4F2F;
+      padding: 2rem;
+      border-radius: 1rem;
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    /* Product Type Flowchart */
+    .product-flowchart {
+      margin: 4rem 0;
+    }
+
+    .flowchart-title {
+      font-size: 2.5rem;
+      font-weight: 600;
+      text-align: center;
+      margin: 0 0 3rem 0;
+      color: #000;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .product-card {
+      background: #fff;
+      border: 2px solid #e6f3ff;
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border-color: #2196F3;
+    }
+
+    .product-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .product-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 0 1rem 0;
+      color: #000;
+    }
+
+    .product-category {
+      background: #f8f9fa;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      color: #666;
+      margin: 0.5rem 0;
+      display: inline-block;
+    }
+
+    .product-tips {
+      margin: 1rem 0;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+
+    .product-tips h4 {
+      margin: 0 0 0.5rem 0;
+      color: #333;
+    }
+
+    .product-tips ul {
+      margin: 0;
+      padding-left: 1.5rem;
+      color: #666;
+    }
+
+    /* Creation Guide Whiteboard */
+    .creation-guide {
+      background: #f8f9fa;
+      padding: 4rem 0;
+      margin: 4rem 0;
+      border-radius: 2rem;
+    }
+
+    .whiteboard-section {
+      background: #fff;
+      border: 2px dashed #ccc;
+      border-radius: 16px;
+      padding: 3rem;
+      margin: 2rem 0;
+      position: relative;
+    }
+
+    .whiteboard-section::before {
+      content: '💡';
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      background: #fff;
+      padding: 0 10px;
+      font-size: 2rem;
+    }
+
+    .creation-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .step-card {
+      background: #fff;
+      border: 1px solid #e6f3ff;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .step-card:hover {
+      border-color: #2196F3;
+      transform: translateY(-2px);
+    }
+
+    .step-number {
+      background: #edf4ff;
+      color: #000;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem auto;
+      font-weight: 600;
+    }
+
+    /* CTRL Feature Section */
+    .ctrl-feature {
+      background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+      color: white;
+      padding: 4rem 0;
+      margin: 4rem 0;
+      border-radius: 2rem;
+    }
+
+    .feature-examples {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .example-card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .example-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FF6B6B, #4CAF50);
+      margin: 0 auto 1rem auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+    }
+
+    .main-footer {
+      background: #f8f8f8;
+      padding: 2rem 0;
+      text-align: center;
+      border-top: 1px solid #f0f0f0;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-content p {
+      color: #666;
+      margin: 0;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .header-container,
+      .main-container {
+        padding: 0 1rem;
+      }
+
+      .hero-section {
+        padding: 4rem 0 2rem 0;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .primary-button {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .creation-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-examples {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="digital-products">
+  <header class="main-header" style="box-shadow: 0 4px 24px 0 rgba(58,120,255,0.06); border-radius: 2rem; margin: 2rem auto 0 auto; max-width: 1200px; background: #fff;">
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <img src="favicon.png" alt="CTRL" style="width: 32px; height: 32px; margin-right: 12px; vertical-align: middle;">
+        CTRL
+      </a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="biz-enhancer.html">Biz Enhancer</a>
+        <a href="network.html">Network</a>
+        <a href="idea-lab.html">Idea Lab</a>
+        <a href="mailto:builtwithctrl@gmail.com" class="social-nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/withctrl" target="_blank" class="social-nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17" cy="7" r="1" fill="currentColor"/>
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="main-container">
+    <h1>Digital Products</h1>
+        <p class="hero-subtitle">Learn how to create, launch, and scale digital products that generate passive income streams</p>
+        
+
+      </div>
+    </section>
+
+
+
+    <!-- Product Type Flowchart -->
+    <section class="product-flowchart">
+      <div class="main-container">
+        <h2 class="flowchart-title">Choose Your Product Type</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 3rem;">Select the right digital product for your skills and audience</p>
+        
+        <div class="product-grid" id="products">
+          <div class="product-card">
+            <h3 class="product-title">E-Books & Guides</h3>
+            <div class="product-category">Knowledge-based</div>
+            <div class="product-category">Low production cost</div>
+            
+            <div class="product-tips">
+              <h4>Best For:</h4>
+              <ul>
+                <li>Subject matter experts</li>
+                <li>Step-by-step tutorials</li>
+                <li>Industry insights</li>
+              </ul>
+            </div>
+            
+            <div class="product-tips">
+              <h4>Revenue Model:</h4>
+              <ul>
+                <li>One-time sales</li>
+                <li>Bundle packages</li>
+                <li>Subscription access</li>
+              </ul>
+            </div>
+            
+
+          </div>
+
+          <div class="product-card">
+            <h3 class="product-title">Templates & Assets</h3>
+            <div class="product-category">Design-focused</div>
+            <div class="product-category">High scalability</div>
+            
+            <div class="product-tips">
+              <h4>Best For:</h4>
+              <ul>
+                <li>Designers & creators</li>
+                <li>Quick implementation</li>
+                <li>Multiple use cases</li>
+              </ul>
+            </div>
+            
+            <div class="product-tips">
+              <h4>Revenue Model:</h4>
+              <ul>
+                <li>Marketplace sales</li>
+                <li>Licensing fees</li>
+                <li>Premium versions</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <h3 class="product-title">Online Courses</h3>
+            <div class="product-category">Educational</div>
+            <div class="product-category">High perceived value</div>
+            
+            <div class="product-tips">
+              <h4>Best For:</h4>
+              <ul>
+                <li>Teachers & trainers</li>
+                <li>Skill development</li>
+                <li>Certification programs</li>
+              </ul>
+            </div>
+            
+            <div class="product-tips">
+              <h4>Revenue Model:</h4>
+              <ul>
+                <li>Course sales</li>
+                <li>Membership sites</li>
+                <li>Live workshops</li>
+              </ul>
+            </div>
+            
+
+          </div>
+
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Creation Guide Whiteboard -->
+    <section class="creation-guide">
+      <div class="main-container">
+        <h2 class="flowchart-title">Your Creation Strategy</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 3rem;">Step-by-step guide to launching your digital product</p>
+        
+        <div class="whiteboard-section">
+          <div class="creation-steps">
+            <div class="step-card">
+              <div class="step-number">1</div>
+              <h4>Identify Your Niche</h4>
+              <p>Find the intersection of your expertise, market demand, and passion. Use CTRL's niche finder tool to validate your idea.</p>
+            </div>
+            
+            <div class="step-card">
+              <div class="step-number">2</div>
+              <h4>Create MVP</h4>
+              <p>Build a minimum viable product that solves one core problem. Don't over-engineer - start simple and iterate.</p>
+            </div>
+            
+
+            
+            <div class="step-card">
+              <div class="step-number">3</div>
+              <h4>Launch & Scale</h4>
+              <p>Release your product and use CTRL's network to promote it. Build relationships that drive sustainable growth.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <p>Powered by cold brew @ 2:00AM</p>
+  </div>
+  </footer>
+</body>
+</html>

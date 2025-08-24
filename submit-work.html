@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit Work - CTRL</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Updated minimal theme */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #000;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-header {
+      background: #fff;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 1.5rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .main-nav a {
+      color: #666;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: #000;
+    }
+
+    .social-nav-link {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      z-index: 1;
+      border-radius: 8px;
+      border: 1px solid #f0f0f0;
+      padding: 0.5rem 0;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      color: #666;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      display: block;
+      transition: background 0.2s ease;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f8f8f8;
+      color: #000;
+    }
+
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      background: #f8f8f8;
+      padding: 3rem 0;
+      text-align: center;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .hero-section h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0 0 1rem 0;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: #666;
+      margin: 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Submission Form */
+    .submission-section {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 600;
+      text-align: center;
+      margin: 0 0 3rem 0;
+      color: #000;
+    }
+
+    .submission-form {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid rgba(100, 181, 246, 0.2);
+      border-radius: 16px;
+      padding: 3rem;
+      box-shadow: 0 4px 20px rgba(100, 181, 246, 0.1);
+      position: relative;
+    }
+
+    .submission-form::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #E3F2FD, #FCE4EC, #FFF8E1, #F3E5F5);
+      border-radius: 16px 16px 0 0;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #64B5F6;
+      box-shadow: 0 0 0 3px rgba(100, 181, 246, 0.1);
+    }
+
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .submit-button {
+      background: linear-gradient(135deg, #64B5F6, #CE93D8);
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: block;
+      margin: 0 auto;
+      min-width: 200px;
+      box-shadow: 0 4px 16px rgba(100, 181, 246, 0.3);
+    }
+
+    .submit-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(100, 181, 246, 0.4);
+    }
+
+    .form-help {
+      text-align: center;
+      color: #666;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .main-footer {
+      background: #f8f8f8;
+      padding: 2rem 0;
+      text-align: center;
+      border-top: 1px solid #f0f0f0;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-content p {
+      color: #666;
+      margin: 0;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .header-container,
+      .main-container {
+        padding: 0 1rem;
+      }
+
+      .hero-section {
+        padding: 2rem 0;
+      }
+
+      .submission-form {
+        padding: 2rem;
+        margin: 0 1rem;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="submit-work">
+  <!-- Floating Background Shapes -->
+  <div class="floating-shapes">
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+  </div>
+  
+  <header class="main-header" style="box-shadow: 0 4px 24px 0 rgba(58,120,255,0.06); border-radius: 2rem; margin: 2rem auto 0 auto; max-width: 1200px; background: #fff;">
+    <div class="header-container">
+      <a href="index.html" class="logo">CTRL</a>
+      <nav class="main-nav">
+        <a href="index.html">Dashboard</a>
+        <a href="projects.html">Project Hub</a>
+        <a href="biz-enhancer.html">Biz Enhancer</a>
+        <a href="network.html">Network</a>
+        <a href="idea-lab.html">Idea Lab</a>
+        <div class="dropdown">
+          <a href="resources.html" class="dropdown-trigger">Resources ▾</a>
+          <div class="dropdown-content">
+            <a href="https://stembystep.github.io/sbs/" target="_blank">STEM by Step</a>
+          </div>
+        </div>
+        <a href="https://www.instagram.com/projectctrl.co/" target="_blank" class="social-nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17" cy="7" r="1" fill="currentColor"/>
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section bento-card">
+      <div class="main-container">
+        <h1>Submit Your Work</h1>
+        <p class="hero-subtitle">Showcase your <span class="emphasis-blue">projects</span> and <span class="emphasis-yellow">ideas</span> to the community.</p>
+      </div>
+    </section>
+
+    <!-- Submission Form -->
+    <section class="submission-section">
+      <div class="main-container">
+        <div class="submission-form">
+          <form id="business-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="business-name">Business/Startup Name *</label>
+                <input type="text" id="business-name" name="business-name" required>
+              </div>
+              <div class="form-group">
+                <label for="niche-hook">Niche/Hook/Idea *</label>
+                <input type="text" id="niche-hook" name="niche-hook" required placeholder="What makes your business unique?">
+              </div>
+              <div class="form-group full-width">
+                <label for="description">Short Description *</label>
+                <textarea id="description" name="description" required placeholder="Describe your business in 2-3 sentences..."></textarea>
+              </div>
+              <div class="form-group">
+                <label for="website">Website</label>
+                <input type="url" id="website" name="website" placeholder="https://...">
+              </div>
+              <div class="form-group">
+                <label for="social-media">Social Media</label>
+                <input type="text" id="social-media" name="social-media" placeholder="@username or link">
+              </div>
+              <div class="form-group">
+                <label for="category">Category *</label>
+                <select id="category" name="category" required>
+                  <option value="">Select category...</option>
+                  <option value="tech">Tech</option>
+                  <option value="creative">Creative</option>
+                  <option value="local-services">Local Services</option>
+                  <option value="health">Health & Wellness</option>
+                  <option value="food">Food & Beverage</option>
+                  <option value="education">Education</option>
+                  <option value="finance">Finance</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="tags">Tags (comma separated)</label>
+                <input type="text" id="tags" name="tags" placeholder="startup, saas, b2b, etc.">
+              </div>
+            </div>
+            <button type="submit" class="submit-button">Submit Business</button>
+            <p class="form-help">Your submission will be reviewed and added to our Network page within 1-3 business days.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <p>CTRL | Built by and for the people without a roadmap</p>
+    </div>
+  </footer>
+</body>
+</html>

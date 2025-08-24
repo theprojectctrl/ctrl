@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit Project - CTRL</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  
+  
+  <style>
+    /* Updated minimal theme */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #000;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-header {
+      background: #fff;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 1.5rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .main-nav a {
+      color: #666;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: #000;
+    }
+
+    .social-nav-link {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .submit-section {
+      padding: 4rem 0;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .form-card {
+      background: #fff;
+      border: 1px solid #f0f0f0;
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.2s ease;
+    }
+
+    .form-card:hover {
+      border-color: #e6f3ff;
+      box-shadow: 0 4px 20px rgba(230, 243, 255, 0.3);
+    }
+
+    .tip-banner {
+      background: #f0f8ff;
+      border: 1px solid #e6f3ff;
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .tip-banner .tip-icon {
+      font-size: 1.5rem;
+    }
+
+    .tip-banner p {
+      margin: 0;
+      color: #000;
+      font-size: 0.95rem;
+    }
+    .submit-section {
+      padding: 2rem 0;
+    }
+
+    .form-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .tip-banner {
+      background: rgba(121, 183, 255, 0.1);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .tip-banner .tip-icon {
+      font-size: 1.5rem;
+    }
+
+    .tip-banner p {
+      margin: 0;
+      color: #555;
+      font-size: 0.95rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      font-size: 0.9rem;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .required-field::after {
+      content: '*';
+      color: #ff4c61;
+      margin-left: 0.25rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.75rem;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #e6f3ff;
+      box-shadow: 0 0 0 2px rgba(230, 243, 255, 0.3);
+    }
+
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .visibility-boost-message {
+      margin: 1rem 0;
+    }
+
+    .boost-banner {
+      background: rgba(255, 149, 0, 0.1);
+      border-radius: 12px;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .boost-banner .boost-icon {
+      font-size: 1.5rem;
+    }
+
+    .boost-banner p {
+      margin: 0;
+      color: #555;
+      font-size: 0.95rem;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .checkbox-option {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+    }
+
+    .checkbox-option input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 2px solid #ddd;
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .checkbox-option input[type="checkbox"]:checked {
+      background: #79b7ff;
+      border-color: #79b7ff;
+    }
+
+    .checkbox-option input[type="checkbox"]:checked::after {
+      content: '✓';
+      color: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 12px;
+    }
+
+    .status-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .status-tag.hiring {
+      background: rgba(255, 76, 97, 0.1);
+      color: #ff4c61;
+    }
+
+    .status-tag.positions {
+      background: rgba(121, 183, 255, 0.1);
+      color: #79b7ff;
+    }
+
+    .status-tag.event {
+      background: rgba(255, 149, 0, 0.1);
+      color: #ff9500;
+    }
+
+    .checkbox-option:hover .status-tag.hiring {
+      background: rgba(255, 76, 97, 0.2);
+    }
+
+    .checkbox-option:hover .status-tag.positions {
+      background: rgba(121, 183, 255, 0.2);
+    }
+
+    .checkbox-option:hover .status-tag.event {
+      background: rgba(255, 149, 0, 0.2);
+    }
+
+    .submit-button {
+      background: #79b7ff;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 100px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 2rem;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .submit-button:hover {
+      background: #5a9eff;
+      transform: translateY(-2px);
+    }
+
+    .button-icon {
+      transition: transform 0.3s ease;
+    }
+
+    .submit-button:hover .button-icon {
+      transform: translateX(4px);
+    }
+
+    /* Social Media Notice Styles */
+    .social-media-notice {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: rgba(121, 183, 255, 0.05);
+      border-radius: 12px;
+      display: flex;
+      gap: 1rem;
+      border: 1px dashed rgba(121, 183, 255, 0.2);
+    }
+
+    .form-help-notice {
+      margin: 1rem 0;
+      padding: 1.5rem;
+      background: rgba(255, 193, 7, 0.05);
+      border-radius: 12px;
+      display: flex;
+      gap: 1rem;
+      border: 1px dashed rgba(255, 193, 7, 0.2);
+    }
+
+    .notice-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .notice-content h4 {
+      color: #333;
+      font-size: 1rem;
+      margin: 0 0 0.5rem 0;
+      font-weight: 600;
+    }
+
+    .notice-content p {
+      color: #555;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .notice-content a {
+      color: #79b7ff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .notice-content a:hover {
+      color: #5a9eff;
+      text-decoration: underline;
+    }
+
+    .form-help-notice .notice-content a {
+      color: #ff9800;
+    }
+
+    .form-help-notice .notice-content a:hover {
+      color: #f57c00;
+    }
+
+    @media (max-width: 768px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-card {
+        padding: 1.5rem;
+      }
+
+      .checkbox-group {
+        gap: 0.5rem;
+      }
+
+      .checkbox-option input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+      }
+
+      .social-media-notice {
+        padding: 1rem;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .notice-content h4 {
+        margin-bottom: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body class="submit-page">
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="logo">CTRL</a>
+      <nav class="main-nav">
+        <a href="index.html">Dashboard</a>
+        <a href="projects.html">CTRL Corner</a>
+        <a href="biz-enhancer.html">Biz Enhancer</a>
+        <a href="network.html">Network</a>
+        <a href="idea-lab.html">Idea Lab</a>
+        <a href="qrcodekit.html">QR</a>
+        <div class="dropdown">
+          <a href="resources.html" class="dropdown-trigger">Resources ▾</a>
+          <div class="dropdown-content">
+            <a href="https://stembystep.github.io/sbs/" target="_blank">STEM by Step</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <style>
+    /* Updated minimal theme */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #000;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-header {
+      background: #fff;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 1.5rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .main-nav a {
+      color: #666;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: #000;
+    }
+
+    .social-nav-link {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .resources-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section {
+      padding: 4rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-tag {
+      display: inline-block;
+      background: #f0f8ff;
+      color: #000;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      border: 1px solid #e6f3ff;
+    }
+
+    .section-header h1 {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 400;
+      line-height: 1.1;
+      margin: 0 0 1rem 0;
+      letter-spacing: -0.03em;
+      color: #000;
+    }
+
+    .section-description {
+      font-size: 1.25rem;
+      color: #666;
+      margin: 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .bento-card {
+      background: #fff;
+      border: 1px solid #f0f0f0;
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.2s ease;
+    }
+
+    .bento-card:hover {
+      border-color: #e6f3ff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(230, 243, 255, 0.3);
+    }
+
+    .formula-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+      color: #000;
+    }
+
+    .formula-card p {
+      color: #666;
+      margin: 0 0 1.5rem 0;
+      font-size: 1.125rem;
+    }
+
+    .formula-points {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .formula-points li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #f0f0f0;
+      color: #000;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .formula-points li:before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #000;
+      font-weight: bold;
+    }
+
+    .formula-points li:last-child {
+      border-bottom: none;
+    }
+
+    .search-container {
+      max-width: 600px;
+      margin: 0 auto 2rem auto;
+    }
+
+    .search-bar {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .search-bar input {
+      flex: 1;
+      padding: 1rem 1.5rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 50px;
+      font-size: 1rem;
+      background: #fff;
+      transition: border-color 0.2s ease;
+    }
+
+    .search-bar input:focus {
+      outline: none;
+      border-color: #e6f3ff;
+    }
+
+    .search-button {
+      padding: 1rem 1.5rem;
+      background: #000;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .search-button:hover {
+      background: #333;
+    }
+
+    .search-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.875rem;
+      color: #666;
+    }
+
+    .resources-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    .filter-tag {
+      padding: 0.5rem 1rem;
+      background: #f8f8f8;
+      border: 1px solid #e0e0e0;
+      border-radius: 50px;
+      color: #666;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 0.875rem;
+    }
+
+    .filter-tag:hover,
+    .filter-tag.active {
+      background: #f0f8ff;
+      border-color: #e6f3ff;
+      color: #000;
+    }
+
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .resource-item {
+      background: #fff;
+      border: 1px solid #f0f0f0;
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .resource-item:hover {
+      border-color: #e6f3ff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(230, 243, 255, 0.3);
+    }
+
+    .resource-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .resource-icon {
+      font-size: 2rem;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f0f8ff;
+      border-radius: 12px;
+      border: 1px solid #e6f3ff;
+    }
+
+    .resource-content h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem 0;
+      color: #000;
+    }
+
+    .resource-content p {
+      color: #666;
+      margin: 0 0 1rem 0;
+      line-height: 1.6;
+    }
+
+    .resource-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .resource-tag {
+      padding: 0.25rem 0.75rem;
+      background: #f0f8ff;
+      color: #000;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: 1px solid #e6f3ff;
+    }
+
+    .resource-price {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #000;
+      margin-top: 1rem;
+    }
+
+    .resource-price.free {
+      color: #00c853;
+    }
+
+    .no-results-message {
+      text-align: center;
+      padding: 3rem 0;
+    }
+
+    .no-results-content {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .no-results-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .no-results-content h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+      color: #000;
+    }
+
+    .no-results-content p {
+      color: #666;
+      margin: 0 0 1.5rem 0;
+    }
+
+    .clear-filters-btn {
+      background: #000;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+
+    .clear-filters-btn:hover {
+      background: #333;
+    }
+
+    .main-footer {
+      background: #f8f8f8;
+      padding: 2rem 0;
+      text-align: center;
+      border-top: 1px solid #f0f0f0;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-content p {
+      color: #666;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .header-container,
+      .resources-container {
+        padding: 0 1rem;
+      }
+
+      .section {
+        padding: 2rem 0;
+      }
+
+      .bento-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .resources-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .filter-tag {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+      }
+    }
+  </style>
+
+  <main class="resources-container">
+    <div class="background-elements">
+      <div class="curved-line"></div>
+      <div class="dot dot-1"></div>
+      <div class="dot dot-2"></div>
+      <div class="dot dot-3"></div>
+    </div>
+
+    <!-- CTRL Formula Section -->
+    <section id="ctrl-formula" class="section bento-section">
+      <div class="content-wrapper">
+        <div class="section-header">
+          <h1>CTRL Starter Pack</h1>
+          <p class="section-description">Your Quick Guide to Launching Your Startup Online</p>
+        </div>
+
+        <div class="bento-grid">
+          <div class="bento-card formula-card">
+            <div class="formula-content">
+              <h3>What It Means to Build a Startup or Business Today
+            </h3>
+              <p>Starting a business is about solving problems and sharing your passion.</p>
+              <ul class="formula-points">
+                <li>In today’s world, digital tools make it easier than ever to reach customers and build a community — even if you’re just starting out!</li>
+                <li>Whether you’re selling a product, offering a service, or sharing your story, having a strong digital presence helps you grow.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bento-card formula-card">
+            <div class="formula-content">
+              <h3>Why Digitalization Matters & How CTRL Helps</h3>
+              <p>Digitalization means using the internet and social media to connect with your audience — this can be:</p>
+              <ul class="formula-points">
+                <li>Creating a social media page (Instagram, Facebook, TikTok)</li>
+                <li>Curating your feed to tell your brand story visually</li>
+                <li>Building an online community around your business</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bento-card formula-card">
+            <div class="formula-content">
+              <h3>How to Use CTRL</h3>
+              <p>CTRL Corner: This is where your work will be featured on the CTRL website — a space that highlights startups like yours.</p>
+              <ul class="formula-points">
+                <li>Access templates and marketing tools</li>
+                <li>Connect with other creators and entrepreneurs</li>
+                <li>Visit the CTRL website regularly to see your tile and discover new resources.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bento-card formula-card">
+            <div class="formula-content">
+              <h3>#MadeWithCTRL</h3>
+              <p>Digitalization means using the internet and social media to connect with your audience — this can be:</p>
+              <ul class="formula-points">
+                <li>When you post on social media, use the hashtag #MadeWithCTRL and tag @withctrl.</li>
+                <li>This helps us find and promote your content, giving you extra visibility!</li>
+                <li>We maximize the tagged sections across profiles.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bento-card formula-card">
+            <div class="formula-content">
+              <h3>Resources to Help You Shine</h3>
+              <ul class="formula-points">
+                <li>Marketing and Growth Tips: How to get more eyes on your posts and attract customers.</li>
+                <li>Customizable Posters: Use our Canva templates for flyers or social media posts, designed for local or online promotion.</li>
+                <li>Content Ideas: Reels, posts, and stories ideas to keep your audience engaged.</li>
+                <li>Community Support: Connect with other small business owners through CTRL and learn from their experiences.</li>
+                <li>More to Come: We’re continuously building tools tailored to small startups like yours!</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="bento-card formula-card">
+            <div class="formula-content">
+              <h3>Your First Steps</h3>
+              <ul class="formula-points">
+                <li>Share this QR code & click “join CTRL” to access your free social media post template (customize it with your brand!)</li>
+                <li>Post it on your socials, tag @withctrl, and use #MadeWithCTRL.</li>
+                <li>Submit your work to CTRL to get featured in the CTRL Corner.</li>
+                <li>Explore resources on the CTRL site to grow your business digitally.</li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </section>
+
+    <form id="project-form" action="https://usebasin.com/f/264e81003939" method="POST" enctype="multipart/form-data">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="contact-email">Contact Email *</label>
+            <input type="email" id="contact-email" name="contact-email" required>
+          </div>
+ 
+
+    <button type="submit" class="submit-button">
+        Join CTRL
+        <span class="button-icon">→</span>
+      </button>
+
+      <script src="js/form-handler.js"></script>
+<script>
+  // Initialize the form handler with automatic fallback
+  new FormHandler('project-form', {
+    formspreeEndpoint: 'https://formspree.io/f/mblkwoqo',
+    successRedirect: 'projects.html?status=success&type=project',
+    successMessage: 'Happy growing! Redirecting to CTRL Corner...'
+  });
+</script>
+</body>
+
+
+      
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <p>CTRL | Built by and for the people without a roadmap</p>
+    </div>
+
+
+
+  </footer>
+
+</body>
+</html> 
+
+</html> 

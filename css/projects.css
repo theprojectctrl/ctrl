@@ -24,25 +24,29 @@
 }
 
 .cta-buttons .primary-button {
-  background: #79b7ff;
-  color: white;
+  background: rgba(64, 224, 208, 0.15);
+  color: #232323;
+  border: 2px dotted rgba(64, 224, 208, 0.6);
   box-shadow: 0 4px 20px rgba(121, 183, 255, 0.2);
 }
 
 .cta-buttons .secondary-button {
-  background: #EEF4FF;
-  color: #79b7ff;
+  background: rgba(64, 224, 208, 0.15);
+  color: #232323;
+  border: 2px dotted rgba(64, 224, 208, 0.6);
 }
 
 .cta-buttons .primary-button:hover {
-  background: #5a9eff;
+  background: rgba(64, 224, 208, 0.2);
   transform: translateY(-2px);
   box-shadow: 0 6px 24px rgba(121, 183, 255, 0.3);
+  border-color: rgba(64, 224, 208, 0.8);
 }
 
 .cta-buttons .secondary-button:hover {
-  background: #dce7ff;
+  background: rgba(64, 224, 208, 0.2);
   transform: translateY(-2px);
+  border-color: rgba(64, 224, 208, 0.8);
 }
 
 .button-icon {
@@ -166,6 +170,174 @@
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(121, 183, 255, 0.15);
 }
+
+
+
+/* New project card layout styles */
+.project-header {
+  margin-bottom: 1.5rem;
+}
+
+.project-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.project-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #374151;
+  margin: 0;
+  flex: 1;
+}
+
+.bookmark-icon {
+  font-size: 1.25rem;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.bookmark-icon:hover {
+  color: #6b7280;
+}
+
+.project-type-tag {
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+  border: 2px solid #000;
+}
+
+.project-type-tag.startup {
+  background: #000;
+  color: white;
+}
+
+.project-type-tag.business {
+  background: white;
+  color: #000;
+}
+
+.project-tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 0.25rem 0.5rem;
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.tag-category {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.project-description {
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.our-niche-section {
+  margin-bottom: 1.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+
+
+.niche-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  color: #374151;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.niche-icon {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.niche-content {
+  background: rgba(255, 255, 255, 0.6);
+  padding: 1rem;
+  border-radius: 12px;
+  color: #374151;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.project-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 100px;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: 1px solid #e5e7eb;
+}
+
+.instagram-button, .website-button {
+  background: white;
+  color: #374151;
+}
+
+.apply-button {
+  background: #f8f9fa;
+  color: #495057;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.apply-button:hover {
+  background: #e9ecef;
+  color: #495057;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.action-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
 
 /* Status Tags */
 .status-tag {
@@ -814,7 +986,6 @@
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  min-height: 280px;
   box-shadow: 0 4px 20px rgba(121, 183, 255, 0.15);
   transition: all 0.3s ease;
 }
@@ -877,8 +1048,8 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: #79b7ff;
-  color: white;
+  background: rgba(64, 224, 208, 0.15);
+  color: #232323;
   padding: 1rem 2rem;
   border-radius: 100px;
   text-decoration: none;
@@ -886,17 +1057,18 @@
   font-size: 1rem;
   transition: all 0.3s ease;
   margin-top: auto;
-  border: none;
+  border: 2px dotted rgba(64, 224, 208, 0.6);
   cursor: pointer;
   width: 100%;
 }
 
 .view-product-button:hover {
-  background: #5a9eff;
+  background: rgba(64, 224, 208, 0.2);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(121, 183, 255, 0.2);
   text-decoration: none;
-  color: white;
+  color: #232323;
+  border-color: rgba(64, 224, 208, 0.8);
 }
 
 .view-product-button .button-icon {
@@ -906,5 +1078,23 @@
 
 .view-product-button:hover .button-icon {
   transform: translateX(4px);
+}
+
+.bento-card, .feature-card, .mission-card, .founder-card, .project-card, .event-tile, .service-tile, .promo-ig-card, .promo-product-card, .resource-item, .story-item, .help-item, .metric-item, .category-item, .step-item, .community-item, .form-card, .info-card, .metric-card {
+    background: #ecf5ff !important;
+    color: #232323 !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.primary-button, .secondary-button, .updates-button, .pagination-button, .view-product-button, .connect-button, .search-button, .close-button, .slider-button, .load-more-button, .submit-button {
+    background: rgba(64, 224, 208, 0.15) !important;
+    color: #232323 !important;
+    border: 2px dotted rgba(64, 224, 208, 0.6) !important;
+    box-shadow: none !important;
+}
+
+.bento-card *, .feature-card *, .mission-card *, .founder-card *, .project-card *, .event-tile *, .service-tile *, .promo-ig-card *, .promo-product-card *, .resource-item *, .story-item *, .help-item *, .metric-item *, .category-item *, .step-item *, .community-item *, .form-card *, .info-card *, .metric-card * {
+    color: #232323 !important;
 }
 

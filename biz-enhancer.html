@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biz Enhancer - CTRL</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Updated minimal theme */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #000;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-header {
+      background: #fff;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 3.5rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .main-nav a {
+      color: #666;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: #000;
+      background: #edf4ff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .social-nav-link {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      z-index: 1;
+      border-radius: 8px;
+      border: 1px solid #f0f0f0;
+      padding: 0.5rem 0;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      color: #666;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      display: block;
+      transition: background 0.2s ease;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f8f8f8;
+      color: #000;
+    }
+
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 6rem 0 4rem 0;
+      text-align: center;
+      background: transparent;
+    }
+
+    .hero-section h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0 0 1.5rem 0;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: #666;
+      margin: 0 0 3rem 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 3rem 0;
+      flex-wrap: wrap;
+    }
+
+    .primary-button,
+    .secondary-button {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      min-width: 160px;
+      justify-content: center;
+    }
+
+    .primary-button {
+      background: #1a1a1a;
+      color: white !important;
+      position: relative;
+      overflow: visible;
+      z-index: 1;
+    }
+
+    .primary-button::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -4px;
+      background: linear-gradient(180deg, 
+        transparent 0%, 
+        transparent 40%, 
+        rgba(255, 107, 107, 0.8) 60%, 
+        rgba(255, 167, 38, 0.8) 70%, 
+        rgba(255, 235, 59, 0.8) 80%, 
+        rgba(76, 175, 80, 0.8) 90%, 
+        rgba(33, 150, 243, 0.8) 95%, 
+        rgba(156, 39, 176, 0.8) 100%);
+      border-radius: 50px;
+      z-index: -2;
+      filter: blur(2px);
+    }
+
+    .primary-button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #1a1a1a;
+      border-radius: 50px;
+      z-index: -1;
+    }
+
+    .primary-button:hover {
+      transform: scale(1.05);
+    }
+
+    .secondary-button {
+      background: #f0f8ff;
+      color: #000;
+      border: 1px solid #e6f3ff;
+    }
+
+    .secondary-button:hover {
+      background: #e6f3ff;
+      transform: translateY(-1px);
+    }
+
+    /* Biz Enhancer Content */
+    .biz-enhancer-content {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 600;
+      text-align: center;
+      margin: 0 0 3rem 0;
+      color: #000;
+    }
+
+    .enhancement-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .enhancement-card {
+      background: #fff;
+      border: 1px solid #f0f0f0;
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .enhancement-card:hover {
+      border-color: #e6f3ff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(230, 243, 255, 0.3);
+    }
+
+    .enhancement-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 1.5rem auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f8f8f8;
+      border-radius: 16px;
+      font-size: 2rem;
+    }
+
+    .enhancement-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 0 1rem 0;
+      color: #000;
+    }
+
+    .enhancement-description {
+      color: #666;
+      line-height: 1.6;
+      margin: 0 0 1.5rem 0;
+    }
+
+    .enhancement-cta {
+      background: #000;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s ease;
+    }
+
+    .enhancement-cta:hover {
+      background: #333;
+    }
+
+    .features-section {
+      background: #f8f8f8;
+      padding: 4rem 0;
+      margin: 4rem 0;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .feature-icon {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      margin-top: 0.25rem;
+    }
+
+    .feature-text {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .main-footer {
+      background: #f8f8f8;
+      padding: 1rem 0;
+      text-align: center;
+      border-top: 1px solid #f0f0f0;
+      margin-top: 2rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-content p {
+      color: #666;
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .header-container,
+      .main-container {
+        padding: 0 1rem;
+      }
+
+      .hero-section {
+        padding: 4rem 0 2rem 0;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .primary-button,
+      .secondary-button {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .enhancement-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="biz-enhancer">
+  <!-- Floating Background Shapes -->
+  <div class="floating-shapes">
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+  </div>
+  
+  <header class="main-header" style="box-shadow: 0 4px 24px 0 rgba(58,120,255,0.06); border-radius: 2rem; margin: 2rem auto 0 auto; max-width: 1200px; background: #fff;">
+    <div class="header-container">
+              <a href="index.html" class="logo">
+          <img src="favicon.png" alt="CTRL" style="width: 32px; height: 32px; margin-right: 12px; vertical-align: middle;">
+          CTRL
+        </a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="biz-enhancer.html" class="active">Biz Enhancer</a>
+        <a href="network.html">Network</a>
+        <a href="idea-lab.html">Idea Lab</a>
+        <a href="mailto:builtwithctrl@gmail.com" class="social-nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/withctrl" target="_blank" class="social-nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17" cy="7" r="1" fill="currentColor"/>
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section bento-card">
+      <div class="main-container">
+        <div class="hero-art-palette">🎨</div>
+        <h1>Business Enhancer</h1>
+        <p class="hero-subtitle">Boost your <span class="emphasis-blue">business</span> with <span class="emphasis-yellow">practical tools</span> and resources.</p>
+        
+        <div class="cta-buttons">
+          <a href="#enhancements" class="primary-button">
+            Explore Enhancements
+            <span class="button-icon">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="biz-enhancer-content">
+      <div class="main-container">
+        <div class="enhancement-grid" id="enhancements">
+          <div class="enhancement-card">
+            <div class="enhancement-icon">📱</div>
+            <h3 class="enhancement-title">Social Media Guide</h3>
+            <p class="enhancement-description">Master social media marketing with proven strategies for engagement, content creation, and audience growth.</p>
+            <a href="social-media-guide.html" class="enhancement-cta">Learn More</a>
+          </div>
+
+          <div class="enhancement-card">
+            <div class="enhancement-icon">💻</div>
+            <h3 class="enhancement-title">Digital Products</h3>
+            <p class="enhancement-description">Learn how to create, launch, and scale digital products that generate passive income streams.</p>
+            <a href="digital-products.html" class="enhancement-cta">Learn More</a>
+          </div>
+
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Coming Soon Section -->
+    <section class="features-section">
+      <div class="main-container">
+        <h2 class="section-title">Coming Soon: CTRL Creations Corner</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 3rem;">We're building a showcase of amazing business strategies and tools created by our community</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <p>Powered by cold brew @ 2:00AM</p>
+    </div>
+  </footer>
+</body>
+</html>

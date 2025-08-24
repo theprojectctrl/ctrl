@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Network - CTRL</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Updated minimal theme */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #000;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Remove all focus outlines */
+    *:focus {
+      outline: none !important;
+    }
+
+    .main-header {
+      background: #fff;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 3.5rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .main-nav a {
+      color: #666;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: #000;
+      background: #edf4ff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .social-nav-link {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      z-index: 1;
+      border-radius: 8px;
+      border: 1px solid #f0f0f0;
+      padding: 0.5rem 0;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      color: #666;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      display: block;
+      transition: background 0.2s ease;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f8f8f8;
+      color: #000;
+    }
+
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      background: #f8f8f8;
+      padding: 3rem 0;
+      text-align: center;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .hero-section h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0 0 1.5rem 0;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: #666;
+      margin: 0 0 3rem 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 3rem 0;
+      flex-wrap: wrap;
+    }
+
+    .primary-button,
+    .secondary-button {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      min-width: 160px;
+      justify-content: center;
+    }
+
+    .primary-button {
+      background: #000;
+      color: white;
+    }
+
+    .primary-button:hover {
+      background: #333;
+      transform: translateY(-1px);
+    }
+
+    .secondary-button {
+      background: #f0f8ff;
+      color: #000;
+      border: 1px solid #e6f3ff;
+    }
+
+    .secondary-button:hover {
+      background: #e6f3ff;
+      transform: translateY(-1px);
+    }
+
+    .explore-network-button {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      min-width: 160px;
+      justify-content: center;
+      background: #1a1a1a;
+      color: white;
+      position: relative;
+      overflow: visible;
+      z-index: 1;
+    }
+
+    .explore-network-button::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -4px;
+      background: linear-gradient(180deg, 
+        transparent 0%, 
+        transparent 40%, 
+        rgba(255, 107, 107, 0.8) 60%, 
+        rgba(255, 167, 38, 0.8) 70%, 
+        rgba(255, 235, 59, 0.8) 80%, 
+        rgba(76, 175, 80, 0.8) 90%, 
+        rgba(33, 150, 243, 0.8) 95%, 
+        rgba(156, 39, 176, 0.8) 100%);
+      border-radius: 50px;
+      z-index: -2;
+      filter: blur(2px);
+    }
+
+    .explore-network-button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #1a1a1a;
+      border-radius: 50px;
+      z-index: -1;
+    }
+
+    .explore-network-button:hover {
+      transform: scale(1.05);
+    }
+
+    /* Network Content */
+    .network-content {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 600;
+      text-align: center;
+      margin: 0 0 3rem 0;
+      color: #000;
+    }
+
+    .network-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .network-card {
+      background: #fff;
+      border: 1px solid #f0f0f0;
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .network-card:hover {
+      border-color: #e6f3ff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(230, 243, 255, 0.3);
+    }
+
+    .network-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 1.5rem auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f8f8f8;
+      border-radius: 16px;
+      font-size: 2rem;
+    }
+
+    .network-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 0 1rem 0;
+      color: #000;
+    }
+
+    .network-description {
+      color: #666;
+      line-height: 1.6;
+      margin: 0 0 1.5rem 0;
+    }
+
+    .network-cta {
+      background: #000;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s ease;
+    }
+
+    .network-cta:hover {
+      background: #333;
+    }
+
+    /* Community Projects Section */
+    .community-projects-section {
+      padding: 4rem 0;
+      background: #f8f8f8;
+      margin: 4rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin: 0 0 2rem 0;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+      font-weight: 400;
+      color: #3b82f6;
+      margin: 0;
+    }
+
+    .benefits-banner {
+      background: #e3f2fd;
+      border-radius: 1.5rem;
+      color: #3b82f6;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .benefits-banner .icon {
+      font-size: 1.5rem;
+    }
+
+    .benefits-banner .message {
+      margin: 0;
+      color: #3b82f6;
+      font-weight: 500;
+    }
+
+    .benefits-banner .highlight {
+      color: #3b82f6;
+      font-weight: 700;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .project-card {
+      background: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.2s ease;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
+      outline: none;
+    }
+
+    .project-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    }
+
+    .project-card:focus {
+      outline: none;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    }
+
+    .quote-mark {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      font-size: 2rem;
+      color: rgba(0, 0, 0, 0.1);
+      font-weight: 300;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .project-header {
+      margin-bottom: 1rem;
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0 0 0.75rem 0;
+      color: #000;
+    }
+
+    .project-type-subtitle {
+      font-size: 0.95em;
+      color: #888;
+      margin-bottom: 0.5em;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .tag {
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    /* Category-specific tag colors */
+    .projects-grid .project-card .tag.tag-category.Health {
+      background: #fecaca !important;
+      color: #991b1b !important;
+      border-color: #fca5a5 !important;
+    }
+
+    .projects-grid .project-card .tag.tag-category.Technology {
+      background: #bfdbfe !important;
+      color: #1e40af !important;
+      border-color: #93c5fd !important;
+    }
+
+    .projects-grid .project-card .tag.tag-category.Education {
+      background: #a7f3d0 !important;
+      color: #047857 !important;
+      border-color: #6ee7b7 !important;
+    }
+
+    .projects-grid .project-card .tag.tag-category.Environment {
+      background: #bbf7d0 !important;
+      color: #15803d !important;
+      border-color: #86efac !important;
+    }
+
+    .projects-grid .project-card .tag.tag-category.Social-Impact {
+      background: #ddd6fe !important;
+      color: #7c3aed !important;
+      border-color: #c4b5fd !important;
+    }
+
+    .projects-grid .project-card .tag.tag-category.Art---Design {
+      background: #fed7aa !important;
+      color: #c2410c !important;
+      border-color: #fdba74 !important;
+    }
+
+    /* Category-specific colored shadows for project cards */
+    .projects-grid .project-card[data-category="Health"] {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(254, 202, 202, 0.3);
+    }
+
+    .projects-grid .project-card[data-category="Health"]:hover {
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(254, 202, 202, 0.4);
+    }
+
+    .projects-grid .project-card[data-category="Technology"] {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(191, 219, 254, 0.3);
+    }
+
+    .projects-grid .project-card[data-category="Technology"]:hover {
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(191, 219, 254, 0.4);
+    }
+
+    .projects-grid .project-card[data-category="Education"] {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(167, 243, 208, 0.3);
+    }
+
+    .projects-grid .project-card[data-category="Education"]:hover {
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(167, 243, 208, 0.4);
+    }
+
+    .projects-grid .project-card[data-category="Environment"] {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(187, 247, 208, 0.3);
+    }
+
+    .projects-grid .project-card[data-category="Environment"]:hover {
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(187, 247, 208, 0.4);
+    }
+
+    .projects-grid .project-card[data-category="Social-Impact"] {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(221, 214, 254, 0.3);
+    }
+
+    .projects-grid .project-card[data-category="Social-Impact"]:hover {
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(221, 214, 254, 0.4);
+    }
+
+    .projects-grid .project-card[data-category="Art---Design"] {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(254, 215, 170, 0.3);
+    }
+
+    .projects-grid .project-card[data-category="Art---Design"]:hover {
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(254, 215, 170, 0.4);
+    }
+
+
+
+    .project-description {
+      color: #666;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .connect-indicator {
+      margin: 1.5rem 0;
+    }
+
+    .connect-indicator {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .contact-button {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: #3b82f6;
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 0.875rem;
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .contact-button:hover {
+      background: #2563eb;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.5em;
+      margin-bottom: 1em;
+    }
+
+    .button-accent {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.875rem;
+      transition: all 0.2s ease;
+    }
+
+    .button-accent:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .pastel-blue {
+      background: rgba(121, 183, 255, 0.1);
+      color: #79b7ff;
+      border: 1px solid rgba(121, 183, 255, 0.3);
+    }
+
+    .pastel-yellow {
+      background: rgba(255, 193, 7, 0.1);
+      color: #ffc107;
+      border: 1px solid rgba(255, 193, 7, 0.3);
+    }
+
+    .creation-tile {
+      background: #fff;
+      border: 1px solid #f0f0f0;
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .creation-tile:hover {
+      border-color: #e6f3ff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(230, 243, 255, 0.3);
+    }
+
+    .tile-image {
+      width: 100%;
+      border-radius: 1.2em;
+      margin-bottom: 1em;
+    }
+
+    .tile-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 0 1rem 0;
+      color: #000;
+    }
+
+    .symbol {
+      color: #3b82f6;
+    }
+
+    .tile-hook {
+      color: #ffc107;
+      margin-bottom: 0.5em;
+      font-weight: 500;
+    }
+
+    .tile-desc {
+      color: #666;
+      line-height: 1.6;
+      margin: 0 0 1.5rem 0;
+    }
+
+    .tile-links {
+      margin: 1em 0;
+    }
+
+    .category-tag {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: #f8f8f8;
+      color: #000;
+      border: 1px solid #f0f0f0;
+      margin-top: 1rem;
+    }
+
+    .creative-media {
+      background: rgba(255, 193, 7, 0.1);
+      color: #ffc107;
+      border-color: rgba(255, 193, 7, 0.3);
+    }
+
+    .tile-stickers {
+      margin-top: 1em;
+    }
+
+    .sticker {
+      display: inline-block;
+      margin: 0 0.25rem;
+      font-size: 1.2rem;
+    }
+
+
+
+    .features-section {
+      background: #f8f8f8;
+      padding: 4rem 0;
+      margin: 4rem 0;
+    }
+
+    .features-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 2rem 0;
+      position: relative;
+    }
+
+    .feature-item {
+      background: #fff;
+      border: 1px solid #e6f3ff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transform: rotate(-2deg);
+      transition: all 0.3s ease;
+      min-width: 280px;
+      max-width: 320px;
+      position: relative;
+    }
+
+    .feature-item:nth-child(1) {
+      background: #FFE6E6;
+      transform: rotate(-3deg);
+    }
+
+    .feature-item:nth-child(2) {
+      background: #E6F3FF;
+      transform: rotate(2deg);
+    }
+
+    .feature-item:nth-child(3) {
+      background: #FFF2E6;
+      transform: rotate(-1deg);
+    }
+
+    .feature-item:nth-child(4) {
+      background: #E6FFE6;
+      transform: rotate(1deg);
+    }
+
+    .feature-item:nth-child(5) {
+      background: #F0E6FF;
+      transform: rotate(-2deg);
+    }
+
+
+
+    .feature-item:hover {
+      transform: rotate(0deg) scale(1.05);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      z-index: 10;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .feature-icon {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      margin-top: 0.25rem;
+    }
+
+    .feature-text {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .main-footer {
+      background: #f8f8f8;
+      padding: 2rem 0;
+      text-align: center;
+      border-top: 1px solid #f0f0f0;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-content p {
+      color: #666;
+      margin: 0;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .header-container,
+      .main-container {
+        padding: 0 1rem;
+      }
+
+      .hero-section {
+        padding: 4rem 0 2rem 0;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .primary-button,
+      .secondary-button {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .network-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="network">
+  <!-- Floating Background Shapes -->
+  <div class="floating-shapes">
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+  </div>
+  
+  <header class="main-header" style="box-shadow: 0 4px 24px 0 rgba(58,120,255,0.06); border-radius: 2rem; margin: 2rem auto 0 auto; max-width: 1200px; background: #fff;">
+    <div class="header-container">
+              <a href="index.html" class="logo">
+          <img src="favicon.png" alt="CTRL" style="width: 32px; height: 32px; margin-right: 12px; vertical-align: middle;">
+          CTRL
+        </a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="biz-enhancer.html">Biz Enhancer</a>
+        <a href="network.html" class="active">Network</a>
+        <a href="idea-lab.html">Idea Lab</a>
+        <a href="mailto:builtwithctrl@gmail.com" class="social-nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/withctrl" target="_blank" class="social-nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17" cy="7" r="1" fill="currentColor"/>
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+          <section class="hero-section bento-card">
+        <div class="main-container">
+          <div class="hero-boba">🧋</div>
+          <h1>Network</h1>
+          <p class="hero-subtitle">Connect with <span class="emphasis-blue">entrepreneurs</span> and <span class="emphasis-yellow">innovators</span> to grow your network.</p>
+        
+        <div class="cta-buttons">
+          <a href="join-community.html" class="explore-network-button">
+            + Join CTRL
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="network-content">
+      <div class="main-container">
+        <div class="network-grid" id="networking">
+          <div class="network-card glassmorphism-card">
+            <div class="network-icon">📱</div>
+            <h3 class="network-title">Online Community</h3>
+            <p class="network-description">Join our digital community where you can ask questions, share updates, and connect with CTRL members worldwide.</p>
+          </div>
+
+          <div class="network-card glassmorphism-card">
+            <div class="network-icon">🔗</div>
+            <h3 class="network-title">Strategic Partnerships</h3>
+            <p class="network-description">Discover potential business partners and collaborators who can help you scale and reach new markets.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Community Projects Section -->
+    <section class="community-projects-section">
+      <div class="main-container">
+        <div class="projects-header">
+          <h2 class="projects-title">see who's building while the world sleeps</h2>
+          <p class="projects-subtitle">ctrl shows you who's digitalizing their small biz/startup, expanding while afk, and making their ideas real. explore, get inspired, and connect.</p>
+        </div>
+        <div class="projects-grid">
+          <!-- Project cards will be injected here by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Card Template -->
+    <template id="project-card-template">
+      <div class="project-card" loading="lazy">
+        <div class="project-header">
+          <div class="project-title-row">
+            <h3 class="project-title"></h3>
+            <div class="bookmark-icon">💻</div>
+          </div>
+          <div class="project-type-tag"></div>
+          <div class="project-tags">
+            <span class="tag tag-category"></span>
+          </div>
+        </div>
+        <p class="project-description"></p>
+        <div class="our-niche-section">
+          <div class="niche-header">
+            <span class="niche-icon">☕</span>
+            <span class="niche-title">Our Niche</span>
+          </div>
+          <div class="niche-content"></div>
+        </div>
+        <div class="project-actions">
+          <a href="#" class="action-button instagram-button">
+            <span class="button-icon">📱</span>
+            <span>Instagram</span>
+          </a>
+          <a href="#" class="action-button apply-button">
+            <span>Connect</span>
+            <span>→</span>
+          </a>
+        </div>
+
+      </div>
+    </template>
+
+
+
+    <!-- Features Section -->
+    <section class="features-section">
+      <div class="main-container">
+        <h2 class="section-title">Why Network with CTRL?</h2>
+        <div class="features-grid">
+          <div class="feature-item">
+            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <p class="feature-text">Free & Easy – join without any barriers and start connecting instantly.</p>
+          </div>
+          <div class="feature-item">
+            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <p class="feature-text">Grow When AFK – share your work and let it gain visibility even when you're not online.</p>
+          </div>
+          <div class="feature-item">
+            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <p class="feature-text">Meet Other Small Starters – find collaborators, share ideas, and support each other's first projects.</p>
+          </div>
+          <div class="feature-item">
+            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <p class="feature-text">Get Inspired – be part of a space where creativity is celebrated and new ideas thrive.</p>
+          </div>
+          <div class="feature-item">
+            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <p class="feature-text">Be Unique – build your brand with a niche, express your style, and stand out in the CTRL community.</p>
+          </div>
+         
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <p>Powered by cold brew @ 2:00AM</p>
+    </div>
+  </footer>
+
+  <script src="js/projects.js"></script>
+</body>
+</html>

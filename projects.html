@@ -7,6 +7,11 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/projects.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
 </head>
 <body class="dashboard">
   <header class="main-header">
@@ -15,6 +20,9 @@
       <nav class="main-nav">
         <a href="index.html">Dashboard</a>
         <a href="projects.html" class="active">Project Hub</a>
+        <a href="biz-enhancer.html">Biz Enhancer</a>
+        <a href="network.html">Network</a>
+        <a href="idea-lab.html">Idea Lab</a>
         <div class="dropdown">
           <a href="resources.html" class="dropdown-trigger">Resources ▾</a>
           <div class="dropdown-content">
@@ -196,40 +204,40 @@
             </div>
           </div>
 
-          <div class="team-visualization">
-            <div class="team-members" style="margin-bottom:0.5rem;">
-              <div class="team-member" style="font-size:0.92rem;">
-                <div class="member-avatar">
-                  <span class="member-icon">👤</span>
+          <div class="project-popup-content">
+            <div class="project-lead-info">
+              <h4 class="member-name">Project Lead Name</h4>
+              <p class="member-role">Project Role</p>
+              <div class="contact-details">
+                <div class="contact-method">
+                  <span class="contact-icon">📧</span>
+                  <span class="contact-value">email@example.com</span>
                 </div>
-                <h4 class="member-name" style="font-size:1rem;font-weight:500;margin-bottom:0.1rem;">Project Lead Name</h4>
-                <p class="member-role" style="font-size:0.92rem;color:#888;margin-bottom:0.2rem;">Project Role</p>
-                <div class="team-info">
-                  <div class="contact-details" style="font-size:0.9rem;color:#888;">
-                    <div class="contact-method">
-                      <span class="contact-icon">📧</span>
-                      <span class="contact-value">email@example.com</span>
-                    </div>
-                    <div class="contact-method">
-                      <span class="contact-icon">📱</span>
-                      <span class="contact-value">Phone number</span>
-                    </div>
-                  </div>
+                <div class="contact-method">
+                  <span class="contact-icon">📱</span>
+                  <span class="contact-value">Phone number</span>
                 </div>
               </div>
             </div>
 
-            <div class="activity-log" style="flex:1;min-height:120px;">
-              <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Activity Log</h3>
-              <div class="activity-list activity-log-scroll" style="min-height:80px;max-height:260px;overflow:auto;">
-                <!-- Activity items will be dynamically added here -->
-                <div class="empty-state">
-                  <p>Share new updates!</p>
-                  <a href="project-update.html" class="secondary-button">
-                    Add Update
-                    <span class="button-icon">+</span>
-                  </a>
-                </div>
+            <div class="project-description-section">
+              <h3>Project Description</h3>
+              <div class="description-content">
+                <p>Project description will be displayed here. This section is scrollable to maintain consistent popup sizing regardless of content length.</p>
+              </div>
+            </div>
+
+            <div class="project-links-section">
+              <h3>Project Links</h3>
+              <div class="project-links">
+                <a href="#" class="project-link primary-button">
+                  <span class="link-icon">🌐</span>
+                  Visit Project Website
+                </a>
+                <a href="#" class="project-link secondary-button">
+                  <span class="link-icon">📋</span>
+                  View Project Details
+                </a>
               </div>
             </div>
           </div>
@@ -242,15 +250,34 @@
       <div class="project-card" loading="lazy">
         <!-- CTRL Picks badge will be injected if needed -->
         <div class="project-header">
-          <h3 class="project-title"></h3>
+          <div class="project-title-row">
+            <h3 class="project-title"></h3>
+            <div class="bookmark-icon">💻</div>
+          </div>
+          <div class="project-type-tag"></div>
           <div class="project-tags">
-            <span class="tag tag-type"></span>
             <span class="tag tag-category"></span>
-            <span class="tag tag-stage"></span>
-            <span class="tag tag-team"></span>
           </div>
         </div>
         <p class="project-description"></p>
+        <div class="our-niche-section">
+          <div class="niche-header">
+            <span class="niche-icon">☕</span>
+            <span class="niche-title">Our Niche</span>
+          </div>
+          <div class="niche-content"></div>
+        </div>
+        <div class="project-actions">
+          <a href="#" class="action-button instagram-button">
+            <span class="button-icon">📱</span>
+            <span>Instagram</span>
+          </a>
+          <a href="#" class="action-button apply-button">
+            <span>Connect</span>
+            <span>→</span>
+          </a>
+        </div>
+
       </div>
     </template>
   </main>

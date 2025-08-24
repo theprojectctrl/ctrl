@@ -627,6 +627,8 @@ document.addEventListener('DOMContentLoaded', () => {
     return d.toLocaleString('default', { month: 'short', day: 'numeric' });
   }
 
+
+
   // Render projects
   async function renderProjects(projects) {
     grid.innerHTML = '';
@@ -650,30 +652,57 @@ document.addEventListener('DOMContentLoaded', () => {
           badge.innerHTML = '<span class="star-icon">⭐</span> CTRL Picks';
           card.prepend(badge);
         }
+        // Title
         card.querySelector('.project-title').textContent = project.title;
+        
+        // Project type tag (Youth-led Project, Startup, Business, etc.)
+        const typeTag = card.querySelector('.project-type-tag');
+        if (typeTag) {
+          typeTag.textContent = project.type === 'startup' ? 'Youth-led Project' : project.type.charAt(0).toUpperCase() + project.type.slice(1);
+          typeTag.className = `project-type-tag ${project.type}`;
+        }
+        
+        // Category tags
         const tags = card.querySelector('.project-tags');
         tags.innerHTML = '';
         if (project.category) {
-          tags.innerHTML += `<span class="tag tag-category">${project.category}</span>`;
+          const categoryClass = project.category.replace(/\s+/g, '-').replace(/\//g, '-');
+          tags.innerHTML += `<span class="tag tag-category ${categoryClass}">${project.category}</span>`;
+          
+
         }
-        const otherTags = [
-          { value: project.type, class: 'tag-type' },
-          { value: project.stage, class: 'tag-stage' },
-          { value: project.modality, class: 'tag-modality' },
-          { value: project.team, class: 'tag-team' },
-          { value: project.marketReach, class: 'tag-market' },
-          { value: project.duration, class: 'tag-duration' }
-        ].filter(tag => tag.value);
-        if (project.status && Array.isArray(project.status)) {
-          project.status.forEach(st => {
-            if (st) otherTags.push({ value: st, class: 'tag-status' });
-          });
+        
+        // Specialized tags (using stage or modality as specialized area)
+        const specializedTags = card.querySelector('.project-specialized-tags');
+        if (specializedTags) {
+          const specializedValue = project.stage || project.modality || project.team || 'Innovation';
+          specializedTags.innerHTML = `<span class="tag tag-specialized">${specializedValue}</span>`;
         }
-        otherTags.forEach((tag, index) => {
-          const colorClass = `tag-color-${(index % 8) + 1}`;
-          tags.innerHTML += `<span class="tag ${tag.class} ${colorClass}">${tag.value}</span>`;
-        });
+        
         card.querySelector('.project-description').textContent = project.description || '';
+        
+        // Our Niche section
+        const nicheContent = card.querySelector('.niche-content');
+        if (nicheContent) {
+          const nicheValue = project.stage || project.modality || project.team || 'Building the future';
+          nicheContent.textContent = nicheValue;
+        }
+        
+        // Action buttons
+        const instagramBtn = card.querySelector('.instagram-button');
+        const connectBtn = card.querySelector('.apply-button');
+        
+        if (instagramBtn) {
+          instagramBtn.style.display = 'none'; // Hide for now since we don't have Instagram data
+        }
+        
+        if (connectBtn) {
+          connectBtn.href = project.website || '#';
+          connectBtn.target = '_blank';
+        }
+        
+
+        
         card.dataset.leadName = project.leadName || '';
         card.dataset.leadRole = project.leadRole || '';
         card.dataset.leadEmail = project.leadEmail || '';

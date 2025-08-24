@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Form Test - CTRL</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Updated minimal theme */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #000;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-header {
+      background: #fff;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 1.5rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .main-nav a {
+      color: #666;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: #000;
+    }
+
+    .social-nav-link {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .main-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+      color: #000;
+    }
+
+    .page-header p {
+      font-size: 1.1rem;
+      color: #666;
+      margin: 0;
+    }
+
+    .test-section {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      border: 1px solid #f0f0f0;
+      border-radius: 16px;
+      background: #fff;
+      transition: all 0.2s ease;
+    }
+
+    .test-section:hover {
+      border-color: #e6f3ff;
+      box-shadow: 0 4px 20px rgba(230, 243, 255, 0.3);
+    }
+
+    .test-section h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0 0 1rem 0;
+      color: #000;
+    }
+
+    .success { 
+      background: rgba(0, 200, 83, 0.1); 
+      border-color: rgba(0, 200, 83, 0.3); 
+    }
+    
+    .error { 
+      background: rgba(255, 61, 0, 0.1); 
+      border-color: rgba(255, 61, 0, 0.3); 
+    }
+    
+    .info { 
+      background: rgba(121, 183, 255, 0.1); 
+      border-color: rgba(121, 183, 255, 0.3); 
+    }
+
+    .test-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+    }
+
+    .test-section li {
+      color: #666;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .test-section li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #79b7ff;
+      font-weight: bold;
+    }
+
+    .test-section strong {
+      color: #000;
+      font-weight: 600;
+    }
+
+    button {
+      background: #000;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      cursor: pointer;
+      margin: 0.5rem;
+      font-family: inherit;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    
+    button:hover { 
+      background: #333;
+      transform: translateY(-1px);
+    }
+
+    pre {
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 12px;
+      overflow-x: auto;
+      border: 1px solid #f0f0f0;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    .main-footer {
+      background: #f8f8f8;
+      padding: 2rem 0;
+      text-align: center;
+      border-top: 1px solid #f0f0f0;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-content p {
+      color: #666;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .header-container {
+        padding: 0 1rem;
+      }
+
+      .main-container {
+        padding: 1rem;
+      }
+
+      .page-header h1 {
+        font-size: 2rem;
+      }
+
+      .test-section {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="logo">CTRL</a>
+      <nav class="main-nav">
+        <a href="index.html">Dashboard</a>
+        <a href="projects.html">CTRL Corner</a>
+        <a href="biz-enhancer.html">Biz Enhancer</a>
+        <a href="network.html">Network</a>
+        <a href="idea-lab.html">Idea Lab</a>
+        <a href="resources.html">Resources</a>
+        <a href="submit-project.html">Submit Project</a>
+        <a href="https://www.instagram.com/ctrlinitiative/" target="_blank" class="social-nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17" cy="7" r="1" fill="currentColor"/>
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <div class="page-header">
+      <h1>Form Submission Test</h1>
+      <p>This page helps diagnose issues with the form submission endpoints.</p>
+    </div>
+
+    <div class="test-section info">
+      <h3>Current Formspree Endpoints</h3>
+      <ul>
+        <li><strong>Project Submission:</strong> https://formspree.io/f/movwvvvj</li>
+        <li><strong>Project Update:</strong> https://formspree.io/f/movwdqka</li>
+        <li><strong>Product Submission:</strong> https://formspree.io/f/mnnvvlod</li>
+      </ul>
+    </div>
+
+    <div class="test-section">
+      <h3>Test Project Submission Endpoint</h3>
+      <button onclick="testEndpoint('https://formspree.io/f/movwvvvj', 'Project Submission')">Test Project Form</button>
+      <div id="project-result"></div>
+    </div>
+
+    <div class="test-section">
+      <h3>Test Project Update Endpoint</h3>
+      <button onclick="testEndpoint('https://formspree.io/f/movwdqka', 'Project Update')">Test Update Form</button>
+      <div id="update-result"></div>
+    </div>
+
+    <div class="test-section">
+      <h3>Test Product Submission Endpoint</h3>
+      <button onclick="testEndpoint('https://formspree.io/f/mnnvvlod', 'Product Submission')">Test Product Form</button>
+      <div id="product-result"></div>
+    </div>
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <p>CTRL | Built by and for the people without a roadmap</p>
+    </div>
+  </footer>
+
+  <script>
+    async function testEndpoint(url, name) {
+      const resultDiv = document.getElementById(name.toLowerCase().replace(' ', '-') + '-result');
+      resultDiv.innerHTML = '<p>Testing...</p>';
+      
+      const testData = new FormData();
+      testData.append('test-field', 'This is a test submission');
+      testData.append('timestamp', new Date().toISOString());
+      
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          body: testData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        
+        console.log(`${name} response:`, response);
+        
+        if (response.ok) {
+          resultDiv.innerHTML = `
+            <div class="success">
+              <h4>✅ Success!</h4>
+              <p>Status: ${response.status} ${response.statusText}</p>
+              <p>Endpoint is working correctly.</p>
+            </div>
+          `;
+        } else {
+          resultDiv.innerHTML = `
+            <div class="error">
+              <h4>❌ Error</h4>
+              <p>Status: ${response.status} ${response.statusText}</p>
+              <p>Endpoint returned an error response.</p>
+            </div>
+          `;
+        }
+      } catch (error) {
+        console.error(`${name} error:`, error);
+        resultDiv.innerHTML = `
+          <div class="error">
+            <h4>❌ Network Error</h4>
+            <p>Error: ${error.message}</p>
+            <p>This could be due to:</p>
+            <ul>
+              <li>CORS policy blocking the request</li>
+              <li>Network connectivity issues</li>
+              <li>Formspree endpoint being inactive</li>
+              <li>Rate limiting</li>
+            </ul>
+          </div>
+        `;
+      }
+    }
+  </script>
+</body>
+</html> 
