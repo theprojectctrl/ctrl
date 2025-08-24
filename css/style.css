@@ -10,6 +10,8 @@
     --error-color: #ff3d00;
     --border-radius: 16px;
     --transition: all 0.3s ease;
+    --typewriter: 'Courier New', Courier, monospace;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   }
   
   * {
@@ -663,6 +665,8 @@
   .category-name {
     flex: 1;
     font-weight: 500;
+    text-transform: lowercase;
+    font-family: var(--sans);
   }
   
   .category-count {
@@ -988,6 +992,12 @@
     background: var(--background-color);
     border-radius: var(--border-radius);
     transition: var(--transition);
+  }
+
+  .step-item p {
+    text-transform: lowercase;
+    font-family: var(--sans);
+    margin: 0;
   }
   
   .step-item:hover {
@@ -1715,6 +1725,8 @@
     line-height: 1.5;
     color: var(--secondary-color);
     margin: 0;
+    text-transform: lowercase;
+    font-family: var(--sans);
   }
   
   @media (max-width: 768px) {

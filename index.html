@@ -3,365 +3,346 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CTRL</title>
-  
+  <title>Project CTRL - Your Innovation Journey Starts Here</title>
   <link rel="stylesheet" href="css/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="favicon.png" />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-REKT5H0GXW"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-REKT5H0GXW');
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
   <style>
-    /* minimal design */
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      line-height: 1.6;
-      color: #000;
-      background: #fff;
-      margin: 0;
-      padding: 0;
-    }
-
-    .main-header {
-      background: #fff;
-      border-bottom: 1px solid #f0f0f0;
-      padding: 3.5rem 0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .header-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
+    .cta-buttons {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #000;
-      text-decoration: none;
-      letter-spacing: -0.02em;
-    }
-
-    .main-nav {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    .main-nav a {
-      color: #666;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s ease;
-    }
-
-    .main-nav a:hover,
-    .main-nav a.active {
-      color: #000;
-      background: #edf4ff;
-      padding: 0.75rem 1.5rem;
-      border-radius: 1rem;
-      transition: all 0.2s ease;
-    }
-
-    .social-nav-link {
-      display: flex;
-      align-items: center;
-    }
-
-    .nav-icon {
-      width: 20px;
-      height: 20px;
-    }
-
-    .dashboard-container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      gap: 1.5rem;
       justify-content: center;
+      margin: 2rem 0;
     }
 
-    /* Rainbow Gradient Button */
-    .start-imagining-button {
-      font-size: 1rem;
+    .cta-buttons .primary-button,
+    .cta-buttons .secondary-button {
+      font-size: 1.125rem;
       font-weight: 600;
       padding: 1rem 2rem;
-      border-radius: 50px;
+      border-radius: 100px;
       border: none;
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.75rem;
       cursor: pointer;
       text-decoration: none;
       transition: all 0.3s ease;
+      min-width: 200px;
       justify-content: center;
-      background: #1a1a1a;
+    }
+
+    .cta-buttons .primary-button {
+      background: #79b7ff;
       color: white;
+      box-shadow: 0 4px 20px rgba(121, 183, 255, 0.2);
+    }
+
+    .cta-buttons .secondary-button {
+      background: #EEF4FF;
+      color: #79b7ff;
+    }
+
+    .cta-buttons .primary-button:hover {
+      background: #5a9eff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(121, 183, 255, 0.3);
+    }
+
+    .cta-buttons .secondary-button:hover {
+      background: #dce7ff;
+      transform: translateY(-2px);
+    }
+
+    .button-icon {
+      font-size: 1.25rem;
+      transition: transform 0.3s ease;
+    }
+
+    .primary-button:hover .button-icon {
+      transform: translateX(4px);
+    }
+
+    .secondary-button:hover .button-icon {
+      transform: rotate(90deg);
+    }
+
+    @media (max-width: 768px) {
+      .cta-buttons {
+        flex-direction: column;
+        padding: 0 1rem;
+      }
+
+      .cta-buttons .primary-button,
+      .cta-buttons .secondary-button {
+        width: 100%;
+      }
+    }
+
+    /* Featured Projects in Bento Card */
+    .community-card {
       position: relative;
-      overflow: visible;
-      z-index: 1;
+      overflow: hidden;
     }
 
-    .start-imagining-button::before {
-      content: '';
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -4px;
-      background: linear-gradient(180deg, 
-        transparent 0%, 
-        transparent 40%, 
-        rgba(255, 107, 107, 0.8) 60%, 
-        rgba(255, 167, 38, 0.8) 70%, 
-        rgba(255, 235, 59, 0.8) 80%, 
-        rgba(76, 175, 80, 0.8) 90%, 
-        rgba(33, 150, 243, 0.8) 95%, 
-        rgba(156, 39, 176, 0.8) 100%);
-      border-radius: 50px;
-      z-index: -2;
-      filter: blur(2px);
+    .featured-projects {
+      position: relative;
+      width: 100%;
+      min-height: 150px; /* Minimum height to prevent collapse */
+      height: calc(100% - 40px); /* Account for heading */
     }
 
-    .start-imagining-button::after {
-      content: '';
+    .featured-project {
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      bottom: 0;
-      background: #1a1a1a;
-      border-radius: 50px;
-      z-index: -1;
-    }
-
-    .start-imagining-button:hover {
-      transform: scale(1.05);
-    }
-
-    /* Search Bar Styles */
-    .search-bar-container {
-      display: inline-flex;
-      align-items: center;
-      background: #fff;
-      border: 2px solid #e5e7eb;
-      border-radius: 3rem;
-      padding: 0.5rem 1.5rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-      width: 420px;
-      height: 48px;
-    }
-
-    .search-bar-container:hover {
-      border-color: #3b82f6;
-      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
-    }
-
-    .search-icon {
-      width: 20px;
-      height: 20px;
-      color: #000;
-      margin-right: 0.75rem;
-      flex-shrink: 0;
-    }
-
-    .search-input-wrapper {
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      cursor: pointer;
+      padding: 0.5rem;
       display: flex;
-      align-items: center;
-      flex: 1;
+      flex-direction: column;
+    }
+
+    .featured-project.active {
+      opacity: 1;
+    }
+
+    .featured-project .project-header {
+      margin-bottom: 0.75rem;
+    }
+
+    .featured-project h4 {
+      font-size: clamp(1rem, 2vw, 1.1rem);
+      margin: 0 0 0.5rem 0;
+      color: #333;
       font-weight: 600;
-      color: #374151;
+      white-space: nowrap;
       overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    /* Typing Animation Styles */
-    #cursor {
-      animation: blink 1s infinite;
-      color: #3b82f6;
-      font-weight: 700;
-    }
-
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
-    }
-
-    .hero-section {
-      padding: 0;
-      text-align: center;
-      margin: auto 0;
-      background: transparent;
-    }
-
-    .hero-section h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 400;
-      line-height: 1.1;
-      margin: 0 0 1.5rem 0;
-      letter-spacing: -0.03em;
-    }
-
-    .hero-subtitle {
-      font-size: 1.25rem;
-      color: #666;
-      margin: 0 0 3rem 0;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .cta-buttons {
+    .featured-project .project-tags {
       display: flex;
-      gap: 1rem;
-      justify-content: center;
-      margin: 3rem 0;
-    }
-
-    .primary-button,
-    .secondary-button {
-      font-size: 1rem;
-      font-weight: 600;
-      padding: 1rem 2rem;
-      border-radius: 50px;
-      border: none;
-      display: flex;
-      align-items: center;
+      flex-wrap: wrap;
       gap: 0.5rem;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      min-width: 160px;
-      justify-content: center;
+      margin-bottom: 0.5rem;
     }
 
-    .primary-button {
-      background: #000;
+    .featured-project .tag {
+      font-size: clamp(0.65rem, 1.5vw, 0.75rem);
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      background: #EEF4FF;
+      color: #79b7ff;
+      white-space: nowrap;
+    }
+
+    .featured-project .project-description {
+      font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+      line-height: 1.5;
+      color: #555;
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex-grow: 1;
+    }
+
+    .featured-project:hover {
+      background: rgba(121, 183, 255, 0.05);
+      border-radius: 8px;
+    }
+
+    .featured-project:hover .tag {
+      background: #79b7ff;
       color: white;
     }
 
-    .primary-button:hover {
-      background: #333;
-      transform: translateY(-1px);
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .featured-projects {
+        min-height: 120px;
+      }
+
+      .featured-project {
+        padding: 0.25rem;
+      }
+
+      .featured-project .project-header {
+        margin-bottom: 0.5rem;
+      }
+
+      .featured-project .project-tags {
+        gap: 0.25rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .featured-project .tag {
+        padding: 0.15rem 0.5rem;
+      }
     }
 
-    .secondary-button {
-      background: #f0f8ff;
-      color: #000;
-      border: 1px solid #e6f3ff;
+    @media (max-width: 480px) {
+      .featured-projects {
+        min-height: 100px;
+      }
+
+      .featured-project .project-description {
+        -webkit-line-clamp: 1;
+      }
     }
 
-    .secondary-button:hover {
-      background: #e6f3ff;
-      transform: translateY(-1px);
+    /* How It Works Card Styles */
+    .how-it-works-card {
+      grid-column: span 2;
     }
 
-    .cta-button {
-      font-size: 1rem;
-      font-weight: 600;
-      padding: 1rem 2rem;
-      border-radius: 50px;
-      border: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      justify-content: center;
-    }
-
-    .cta-button.primary {
-      background: #000;
-      color: white;
-    }
-
-    .cta-button.primary:hover {
-      background: #333;
-      transform: translateY(-1px);
-    }
-
-    .cta-button.secondary {
-      background: #f0f8ff;
-      color: #000;
-      border: 1px solid #e6f3ff;
-    }
-
-    .cta-button.secondary:hover {
-      background: #e6f3ff;
-      transform: translateY(-1px);
-    }
-
-    .button-icon {
-      font-size: 1.1rem;
-    }
-
-    .dashboard-grid {
-      padding: 4rem 0;
-    }
-
-    .bento-grid {
+    .tiers-container {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      margin: 2rem 0;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1rem;
     }
 
-    .bento-card {
-      background: #fff;
-      border: 1px solid #f0f0f0;
+    .tier-section {
+      background: rgba(121, 183, 255, 0.03);
       border-radius: 12px;
-      padding: 2rem;
-      transition: all 0.2s ease;
+      padding: 1.25rem;
+      transition: all 0.3s ease;
     }
 
-    .bento-card:hover {
-      border-color: #e6f3ff;
+    .tier-section:hover {
+      background: rgba(121, 183, 255, 0.08);
       transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(230, 243, 255, 0.3);
     }
 
-    .bento-card h3 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin: 0 0 1rem 0;
-      color: #000;
+    .tier-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
     }
 
+    .tier-header h4 {
+      font-size: 1.1rem;
+      color: #333;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .tier-badge {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      background: #79b7ff;
+      color: white;
+      font-weight: 500;
+    }
+
+    .tier-badge.coming-soon {
+      background: #FFB17A;
+    }
+
+    .tier-features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .tier-features li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.875rem;
+      color: #555;
+    }
+
+    .feature-icon {
+      font-size: 1rem;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .tier-note {
+      margin: 1rem 0 0;
+      font-size: 0.8125rem;
+      color: #666;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    /* Mobile Responsive Adjustments */
+    @media (max-width: 768px) {
+      .how-it-works-card {
+        grid-column: span 1;
+      }
+
+      .tiers-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .tier-section {
+        padding: 1rem;
+      }
+
+      .tier-header h4 {
+        font-size: 1rem;
+      }
+
+      .tier-features li {
+        font-size: 0.8125rem;
+      }
+
+      .feature-icon {
+        width: 20px;
+        height: 20px;
+        font-size: 0.875rem;
+      }
+    }
+
+    /* Update category styles */
     .categories-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 1rem;
-      margin-top: 1.5rem;
+      margin-top: 1rem;
     }
 
     .category-item {
-      background: #f8f8f8;
-      border-radius: 8px;
-      padding: 1.5rem;
+      background: rgba(121, 183, 255, 0.03);
+      border-radius: 12px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
-      transition: all 0.2s ease;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
       cursor: pointer;
-      border: 1px solid transparent;
     }
 
     .category-item:hover {
-      background: #f0f8ff;
-      border-color: #e6f3ff;
-      transform: translateY(-1px);
+      background: rgba(121, 183, 255, 0.08);
+      transform: translateY(-2px);
     }
 
     .category-icon {
@@ -370,418 +351,289 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #fff;
-      border-radius: 8px;
-      margin: 0 auto 1rem auto;
-      box-shadow: 0 2px 8px rgba(230, 243, 255, 0.3);
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(121, 183, 255, 0.1);
+      margin-bottom: 0.5rem;
+    }
+
+    .category-icon svg {
+      transition: transform 0.3s ease;
+    }
+
+    .category-item:hover .category-icon svg {
+      transform: scale(1.1);
     }
 
     .category-name {
       font-weight: 600;
-      color: #000;
-      font-size: 1rem;
-      margin-bottom: 0.25rem;
+      color: #333;
+      font-size: 0.9rem;
     }
 
     .category-desc {
-      font-size: 0.875rem;
+      font-size: 0.8rem;
       color: #666;
-    }
-
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem;
-      background: #f8f8f8;
-      border-radius: 8px;
-      transition: background 0.2s ease;
-    }
-
-    .contact-item:hover {
-      background: #f0f8ff;
-    }
-
-    .contact-icon {
-      font-size: 1.25rem;
-      width: 24px;
-      text-align: center;
-    }
-
-    .contact-content h4 {
-      margin: 0 0 0.25rem 0;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: #666;
-    }
-
-    .contact-content a {
-      color: #000;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .contact-content a:hover {
-      text-decoration: underline;
-    }
-
-    .highlights-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .highlight-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1rem;
-      background: #f8f8f8;
-      border-radius: 8px;
-      transition: background 0.2s ease;
-    }
-
-    .highlight-item:hover {
-      background: #f0f8ff;
-    }
-
-    .highlight-icon {
-      font-size: 1.25rem;
-      width: 24px;
-      text-align: center;
-      flex-shrink: 0;
-      margin-top: 0.125rem;
-    }
-
-    .highlight-content h4 {
-      margin: 0 0 0.5rem 0;
-      font-size: 1rem;
-      font-weight: 600;
-      color: #000;
-    }
-
-    .highlight-content p {
-      margin: 0;
-      font-size: 0.875rem;
-      color: #666;
-      line-height: 1.5;
-    }
-
-
-
-    .laptop-highlights-container {
-      display: flex;
-      align-items: center;
-      gap: 4rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
-    }
-
-    .laptop-emoji-container {
-      flex-shrink: 0;
-      position: relative;
-    }
-
-    .laptop-emoji {
-      font-size: 10rem;
-      color: #666;
-      animation: laptop-pulse 3s ease-in-out infinite;
-    }
-
-    @keyframes laptop-pulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.05);
-      }
-    }
-
-    .floating-highlights {
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
-      flex: 1;
-      align-items: flex-end;
-      text-align: right;
-    }
-
-    .floating-highlight {
-      padding: 0;
-      background: transparent;
-      border: none;
-      box-shadow: none;
-      transition: none;
-      animation: none;
-      opacity: 1;
-      transform: none;
-    }
-
-    .floating-highlight:hover {
-      transform: none;
-      box-shadow: none;
-      border-color: transparent;
-    }
-
-    .floating-highlight .highlight-content h4 {
-      margin: 0 0 0.75rem 0;
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #000;
-      text-transform: lowercase;
-      font-family: var(--sans);
-    }
-
-    .floating-highlight .highlight-content p {
-      margin: 0;
-      font-size: 1rem;
-      color: #666;
-      line-height: 1.6;
-      text-transform: lowercase;
-      font-family: var(--sans);
-    }
-
-    .why-ctrl-cta {
-      margin-top: 2rem;
-      text-align: right;
-    }
-
-    /* Coffee & Connections Section */
-    .coffee-connections-container {
-      display: flex;
-      align-items: center;
-      gap: 4rem;
-      position: relative;
-    }
-
-    .coffee-connections-content {
-      flex: 1;
-    }
-
-    .coffee-connections-content h2 {
-      font-family: var(--typewriter);
-      text-transform: lowercase;
-      letter-spacing: -0.02em;
-    }
-
-    .coffee-connections-content p {
-      font-family: var(--sans);
-      text-transform: lowercase;
-    }
-
-    .coffee-cta-button {
-      display: inline-block;
-      background: #000;
-      color: white;
-      padding: 1rem 2rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      font-family: var(--sans);
-      text-transform: lowercase;
-      transition: all 0.2s ease;
-    }
-
-    .coffee-cta-button:hover {
-      background: #333;
-      transform: translateY(-1px);
-    }
-
-    .coffee-connections-images {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .coffee-cup {
-      animation: coffee-pulse 2.5s ease-in-out infinite;
-    }
-
-    .coffee-cup img {
-      width: 120px;
-      height: auto;
-    }
-
-    @keyframes coffee-pulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.15);
-      }
-    }
-
-    /* Responsive design for smaller screens */
-    @media (max-width: 768px) {
-      .laptop-highlights-container {
-        flex-direction: column;
-        gap: 3rem;
-        text-align: center;
-      }
-      
-      .laptop-emoji {
-        font-size: 8rem;
-      }
-      
-      .floating-highlights {
-        gap: 2rem;
-      }
-
-      .coffee-connections-container {
-        flex-direction: column;
-        gap: 2rem;
-        text-align: center;
-      }
-
-      .coffee-cup img {
-        width: 80px;
-      }
-    }
-
-    .steps-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .step-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem;
-      background: #f8f8f8;
-      border-radius: 8px;
-      transition: background 0.2s ease;
-    }
-
-    .step-item:hover {
-      background: #f0f8ff;
-    }
-
-    .step-number {
-      background: #000;
-      color: white;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.875rem;
-      font-weight: 600;
-      flex-shrink: 0;
-    }
-
-    .step-item p {
-      margin: 0;
-      font-weight: 500;
-      color: #000;
-    }
-
-    .highlight-step {
-      background: #f0f8ff;
-      border: 1px solid #e6f3ff;
-    }
-
-    .highlight-step:hover {
-      background: #e6f3ff;
-    }
-
-    .about-section {
-      padding: 4rem 0;
-      border-top: 1px solid #f0f0f0;
-    }
-
-    .main-footer {
-      background: #f8f8f8;
-      padding: 2rem 0;
-      text-align: center;
-      border-top: 1px solid #f0f0f0;
-    }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    .footer-content p {
-      color: #666;
-      margin: 0;
+      margin-top: -0.25rem;
     }
 
     @media (max-width: 768px) {
-      .header-container {
-        padding: 0 1rem;
-      }
-
-      .dashboard-container {
-        padding: 0 1rem;
-        min-height: 80vh;
-      }
-
-      .hero-section {
-        padding: 2rem 0;
-      }
-
-      .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .primary-button,
-      .secondary-button {
-        width: 100%;
-        max-width: 300px;
-      }
-
       .categories-grid {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .bento-card {
-        padding: 1.5rem;
+      .category-item {
+        padding: 0.75rem;
+      }
+
+      .category-icon {
+        width: 40px;
+        height: 40px;
+      }
+
+      .category-name {
+        font-size: 0.85rem;
+      }
+
+      .category-desc {
+        font-size: 0.75rem;
       }
     }
 
-    @media (max-width: 480px) {
-      .categories-grid {
-        grid-template-columns: 1fr;
+    /* Updated Bento Grid Layout */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    /* Adjust specific bento card sizes */
+    .resources-card {
+      grid-column: span 2;
+      max-height: 280px;
+      overflow: hidden;
+    }
+
+    .community-card {
+      grid-column: span 2;
+      max-height: 280px;
+      overflow: hidden;
+    }
+
+    .categories-card {
+      grid-column: span 4;
+    }
+
+    .stories-card,
+    .get-started-card {
+      grid-column: span 2;
+    }
+
+    .how-it-works-card {
+      grid-column: span 4;
+    }
+
+    /* Adjust resource items for smaller container */
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+
+    .resource-item {
+      padding: 0.75rem;
+    }
+
+    .resource-icon {
+      font-size: 1.25rem;
+      width: 36px;
+      height: 36px;
+    }
+
+    .resource-content h4 {
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .resource-content p {
+      font-size: 0.8rem;
+    }
+
+    /* Adjust featured projects for smaller container */
+    .featured-projects {
+      min-height: 120px;
+    }
+
+    .featured-project {
+      padding: 0.75rem;
+    }
+
+    .featured-project h4 {
+      font-size: 1rem;
+    }
+
+    .featured-project .project-tags {
+      gap: 0.375rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .featured-project .tag {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+    }
+
+    .featured-project .project-description {
+      font-size: 0.8rem;
+      -webkit-line-clamp: 2;
+    }
+
+    /* Mobile Responsive Adjustments */
+    @media (max-width: 1024px) {
+      .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      .main-nav {
+      .categories-card,
+      .how-it-works-card {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .bento-grid {
+        grid-template-columns: 1fr;
         gap: 1rem;
       }
+
+      .resources-card,
+      .community-card,
+      .categories-card,
+      .stories-card,
+      .get-started-card,
+      .how-it-works-card {
+        grid-column: span 1;
+        max-height: none;
+      }
+    }
+
+    /* Add styles for shop resource item */
+    .resource-item.shop-item {
+      background: rgba(121, 183, 255, 0.05);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .resource-item.shop-item:hover {
+      background: rgba(121, 183, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .resource-item.shop-item .resource-content {
+      padding-right: 24px;
+    }
+
+    .resource-item.shop-item::after {
+      content: "→";
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      font-size: 1.1rem;
+      color: #79b7ff;
+      transition: transform 0.3s ease;
+    }
+
+    .resource-item.shop-item:hover::after {
+      transform: translateX(4px);
+    }
+
+    .highlight-step {
+      background: rgba(121, 183, 255, 0.15);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin: 0.75rem 0;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid rgba(121, 183, 255, 0.3);
+      box-shadow: 0 4px 12px rgba(121, 183, 255, 0.15);
+    }
+
+    .highlight-step::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(121, 183, 255, 0.1);
+      border-radius: 12px;
+      z-index: -1;
+      transition: all 0.3s ease;
+    }
+
+    .highlight-step:hover {
+      transform: translateY(-2px);
+      background: rgba(121, 183, 255, 0.2);
+      border-color: rgba(121, 183, 255, 0.5);
+      box-shadow: 0 6px 20px rgba(121, 183, 255, 0.25);
+    }
+
+    .highlight-step:hover::before {
+      background: rgba(121, 183, 255, 0.15);
+    }
+
+    .highlight-step .step-number {
+      background: #79b7ff;
+      color: white;
+      box-shadow: 0 2px 8px rgba(121, 183, 255, 0.3);
+    }
+
+    .highlight-step p {
+      margin: 0;
+      font-weight: 600;
+      color: #1f2937;
+    }
+
+    .highlight-step::after {
+      content: '→';
+      margin-left: auto;
+      font-size: 1.25rem;
+      color: #79b7ff;
+      opacity: 0.8;
+      transition: transform 0.3s ease;
+    }
+
+    .highlight-step:hover::after {
+      transform: translateX(4px);
+      opacity: 1;
     }
   </style>
 </head>
 <body class="dashboard">
-  <header class="main-header" style="box-shadow: 0 4px 24px 0 rgba(58,120,255,0.06); border-radius: 2rem; margin: 2rem auto 0 auto; max-width: 1200px; background: #fff;">
+  <header class="main-header">
     <div class="header-container">
-              <a href="index.html" class="logo">
-          <img src="favicon.png" alt="CTRL" style="width: 32px; height: 32px; margin-right: 12px; vertical-align: middle;">
-          CTRL
-        </a>
+      <a href="index.html" class="logo">Project CTRL</a>
       <nav class="main-nav">
-        <a href="index.html" class="active">Home</a>
+        <a href="index.html" class="active">Dashboard</a>
+        <a href="projects.html">Project Hub</a>
         <a href="biz-enhancer.html">Biz Enhancer</a>
         <a href="network.html">Network</a>
         <a href="idea-lab.html">Idea Lab</a>
-        <a href="mailto:builtwithctrl@gmail.com" class="social-nav-link">
-          <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-        <a href="https://www.instagram.com/withctrl" target="_blank" class="social-nav-link">
+        <div class="dropdown">
+          <a href="resources.html" class="dropdown-trigger">Resources ▾</a>
+          <div class="dropdown-content">
+            <a href="https://stembystep.github.io/sbs/" target="_blank">STEM by Step</a>
+          </div>
+        </div>
+        <a href="https://www.instagram.com/projectctrl.co/" target="_blank" class="social-nav-link">
           <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
             <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
@@ -793,92 +645,367 @@
   </header>
 
   <main class="dashboard-container">
-    <section class="hero-section" style="background: linear-gradient(135deg, #e3f2fd 0%, #fafdff 100%); min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative;">
-      <div class="content-wrapper" style="position: relative; z-index: 2;">
-        <div style="margin-bottom: 1.5rem;">
-          <div class="search-bar-container">
-            <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
-              <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            <div class="search-input-wrapper">
-              <span id="changing-text">empowering small founders</span>
-              <span id="cursor">|</span>
-            </div>
+    <section class="hero-section">
+      <div class="content-wrapper">
+        <h1>Digitize and scale your<br>small business with confidence</h1>
+        <p class="hero-subtitle">A proven formula to help local businesses, startups, and community initiatives thrive in the digital age. Transform guesswork into guided success.</p>
+        
+        <div class="impact-metrics">
+          <div class="metric-card">
+            <div class="metric-icon">👥</div>
+            <div class="metric-value" data-target="40">0</div>
+            <div class="metric-label">Local Businesses Growing</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon">📑</div>
+            <div class="metric-value" data-target="0">0</div>
+            <div class="metric-label">Free Business Tools</div>
           </div>
         </div>
-        <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; color: #000;">
-          closing the digital<br><span>gap for starters who</span> can't clock out
-        </h1>
-        <p class="hero-subtitle" style="font-size: 1.25rem; color: #000; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-          ctrl digitalizes the grind so local businesses, startups, and community initiatives can thrive without guesswork.
-        </p>
-        <a href="network.html" class="start-imagining-button" style="font-size: 1.15rem; padding: 1.1rem 2.5rem; border-radius: 2rem;">start imagining</a>
+
+        <div class="cta-buttons">
+          <a href="projects.html" class="primary-button">
+            Explore Project Hub
+            <span class="button-icon">→</span>
+          </a>
+          <a href="submit-project.html" class="secondary-button">
+            Submit Project
+            <span class="button-icon">+</span>
+          </a>
+        </div>
       </div>
     </section>
 
-    <section class="dashboard-grid" style="margin-top: -3rem;">
-      <div class="content-wrapper" style="max-width: 900px; margin: 0 auto;">
-        <div class="bento-card" style="display: flex; justify-content: space-between; align-items: center; gap: 2rem; background: #fff; box-shadow: 0 4px 24px 0 rgba(58,120,255,0.06); border-radius: 2rem; padding: 2.5rem 2rem; margin-bottom: 2.5rem;">
-        
-          <div style="flex: 1; text-align: center;">
-            <div style="font-size: 2.2rem; font-weight: 800; color: #000;">200+</div>
-            <div style="color: #000; font-size: 1rem;">users</div>
-          </div>
-          <div style="flex: 1; text-align: center;">
-            <div style="font-size: 2.2rem; font-weight: 800; color: #000;">35k+</div>
-            <div style="color: #000; font-size: 1rem;">founders with ctrl</div>
-          </div>
-          <div style="flex: 1; text-align: center;">
-            <div style="font-size: 2.2rem; font-weight: 800; color: #000;">10+</div>
-            <div style="color: #000; font-size: 1rem;">categories</div>
-          </div>
-        </div>
-        <!-- Coffee & Connections Section -->
-        <div class="bento-card coffee-connections-card" style="margin-bottom: 2.5rem;">
-          <div class="coffee-connections-container">
-            <div class="coffee-connections-content">
-              <h2 style="color: #000; font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem;">have conversations with collaborators over coffee + ctrl</h2>
-              <p style="color: #666; font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.6;">visit the network page to grow connections with other small starters who also emphasize creativity and niche thinking.</p>
-              <a href="network.html" class="coffee-cta-button">visit network →</a>
+    <section class="dashboard-grid">
+      <div class="content-wrapper">
+        <div class="bento-grid">
+          <!-- Resources Card -->
+          <div class="bento-card resources-card">
+            <h3>Essential Resources</h3>
+            <div class="resources-grid">
+              <div class="resource-item">
+                <span class="resource-icon">📋</span>
+                <div class="resource-content">
+                  <h4>Project Roadmaps</h4>
+                  <p>Step-by-step guides for your journey</p>
+                </div>
+              </div>
+              <div class="resource-item">
+                <span class="resource-icon">📑</span>
+                <div class="resource-content">
+                  <h4>Templates</h4>
+                  <p>Ready-to-use planning tools</p>
+                </div>
+              </div>
+              <div class="resource-item">
+                <span class="resource-icon">👤</span>
+                <div class="resource-content">
+                  <h4>Mentorship</h4>
+                  <p>Connect with experienced guides</p>
+                </div>
+              </div>
+              <a href="https://ko-fi.com/projectctrl" target="_blank" class="resource-item shop-item" style="text-decoration: none; color: inherit;">
+                <span class="resource-icon">✨</span>
+                <div class="resource-content">
+                  <h4>CTRL Boosted</h4>
+                  <p>Custom toolkits & 1:1 support</p>
+                </div>
+              </a>
             </div>
-            <div class="coffee-connections-images">
-              <div class="coffee-cup">
-                <img src="coffee-cup.png" alt="Iced coffee cup" />
+          </div>
+
+          <!-- Community Highlights -->
+          <div class="bento-card community-card">
+            <h3>Featured Projects</h3>
+            <div class="featured-projects">
+              <div class="featured-project active" data-project-id="1">
+                <div class="project-header">
+                  <h4>STEM by Step</h4>
+                  <div class="project-tags">
+                    <span class="tag tag-type">Non-Profit</span>
+                    <span class="tag tag-category">Education</span>
+                  </div>
+                </div>
+                <p class="project-description">A free STEM education platform providing hands-on learning experiences for underserved communities.</p>
+              </div>
+              <div class="featured-project" data-project-id="2">
+                <div class="project-header">
+                  <h4>Hearts of Tomorrow</h4>
+                  <div class="project-tags">
+                    <span class="tag tag-type">Non-Profit</span>
+                    <span class="tag tag-category">Social Impact</span>
+                  </div>
+                </div>
+                <p class="project-description">Empowering youth through mentorship and leadership development opportunities.</p>
+              </div>
+              <div class="featured-project" data-project-id="3">
+                <div class="project-header">
+                  <h4>Local Business Directory</h4>
+                  <div class="project-tags">
+                    <span class="tag tag-type">Business</span>
+                    <span class="tag tag-category">Technology</span>
+                  </div>
+                </div>
+                <p class="project-description">A digital platform connecting local businesses with their community.</p>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- What Makes CTRL Special Section -->
-        <div class="bento-card why-ctrl-card" style="margin-bottom: 2.5rem;">
-          <h2 style="color: #000; font-size: 2rem; font-weight: 800; margin-bottom: 2rem; font-family: var(--typewriter); text-transform: lowercase; text-align: right;">late-night lab</h2>
-          <div class="laptop-highlights-container">
-            <div class="laptop-emoji-container">
-              <div class="laptop-emoji">💻</div>
+          <!-- Featured Categories -->
+          <div class="bento-card categories-card">
+            <h3>Who We Help</h3>
+            <div class="categories-grid">
+              <div class="category-item">
+                <span class="category-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <rect x="3" y="3" width="18" height="18" rx="2" stroke="#79b7ff" stroke-width="2"/>
+                    <line x1="8" y1="12" x2="16" y2="12" stroke="#79b7ff" stroke-width="2"/>
+                    <line x1="12" y1="8" x2="12" y2="16" stroke="#79b7ff" stroke-width="2"/>
+                  </svg>
+                </span>
+                <span class="category-name">Digital Startups</span>
+                <span class="category-desc">Tech platforms & apps</span>
+              </div>
+              <div class="category-item">
+                <span class="category-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="9" stroke="#79b7ff" stroke-width="2"/>
+                    <path d="M12 7v10M7 12h10" stroke="#79b7ff" stroke-width="2"/>
+                  </svg>
+                </span>
+                <span class="category-name">Local Businesses</span>
+                <span class="category-desc">Shops & services</span>
+              </div>
+              <div class="category-item">
+                <span class="category-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <polygon points="12,2 22,18 2,18" stroke="#79b7ff" stroke-width="2" fill="none"/>
+                  </svg>
+                </span>
+                <span class="category-name">Social Impact</span>
+                <span class="category-desc">Non-profits & causes</span>
+              </div>
+              <div class="category-item">
+                <span class="category-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <rect x="4" y="4" width="7" height="7" stroke="#79b7ff" stroke-width="2"/>
+                    <rect x="13" y="4" width="7" height="7" stroke="#79b7ff" stroke-width="2"/>
+                    <rect x="4" y="13" width="7" height="7" stroke="#79b7ff" stroke-width="2"/>
+                    <rect x="13" y="13" width="7" height="7" stroke="#79b7ff" stroke-width="2"/>
+                  </svg>
+                </span>
+                <span class="category-name">Creative Projects</span>
+                <span class="category-desc">Artists & makers</span>
+              </div>
+              <div class="category-item">
+                <span class="category-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 3L3 9l9 6l9-6l-9-6z" stroke="#79b7ff" stroke-width="2" fill="none"/>
+                    <path d="M3 14l9 6l9-6" stroke="#79b7ff" stroke-width="2"/>
+                  </svg>
+                </span>
+                <span class="category-name">Side Hustles</span>
+                <span class="category-desc">Part-time ventures</span>
+              </div>
+              <div class="category-item">
+                <span class="category-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 5h14v14H5z" stroke="#79b7ff" stroke-width="2"/>
+                    <path d="M12 5v14M5 12h14" stroke="#79b7ff" stroke-width="2"/>
+                  </svg>
+                </span>
+                <span class="category-name">Community Initiatives</span>
+                <span class="category-desc">Local impact projects</span>
+              </div>
             </div>
-            <div class="floating-highlights">
-              <div class="floating-highlight">
-                <div class="highlight-content">
-                  <p>discover your niche and figure out your unique strengths to build something truly yours. grow while afk as your work keeps moving even when you're offline.</p>
+          </div>
+
+          <!-- Success Stories -->
+          <div class="bento-card stories-card">
+            <h3>Share Your Testimonials</h3>
+            <div class="contact-info">
+              <div class="contact-item">
+                <span class="contact-icon">📧</span>
+                <div class="contact-content">
+                  <h4>Email</h4>
+                  <a href="mailto:contact.projectctrl@gmail.com">contact.projectctrl@gmail.com</a>
+                </div>
+              </div>
+              <div class="contact-item">
+                <span class="contact-icon">📱</span>
+                <div class="contact-content">
+                  <h4>Instagram</h4>
+                  <a href="https://instagram.com/projectctrl.co" target="_blank">@projectctrl.co</a>
                 </div>
               </div>
             </div>
           </div>
-          <div class="why-ctrl-cta">
-            <a href="idea-lab.html" class="cta-button secondary">Find Your Niche →</a>
+
+          <!-- Get Started Card -->
+          <div class="bento-card get-started-card">
+            <h3>Ready to Start?</h3>
+            <div class="steps-list">
+              <div class="step-item">
+                <span class="step-number">1</span>
+                <p>Get ideas by browsing Project Hub</p>
+              </div>
+              <div class="step-item">
+                <span class="step-number">2</span>
+                <p>Browse templates and roadmaps</p>
+              </div>
+              <a href="resources.html#ctrl-formula" class="step-item highlight-step">
+                <span class="step-number">3</span>
+                <p>Follow the 3 CTRL pillar formula for business & project development</p>
+              </a>
+              <div class="step-item">
+                <span class="step-number">4</span>
+                <p>Connect with other innovators and share your project</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- How It Works Card -->
+          <div class="bento-card how-it-works-card">
+            <h3>How It Works</h3>
+            <div class="tiers-container">
+              <div class="tier-section free-tier">
+                <div class="tier-header">
+                  <h4>Free Experience</h4>
+                  <span class="tier-badge">Available Now</span>
+                </div>
+                <ul class="tier-features">
+                  <li>
+                    <span class="feature-icon">📌</span>
+                    Permanent project listing on the CTRL Hub
+                  </li>
+                  <li>
+                    <span class="feature-icon">📱</span>
+                    Interactive project tile with tags, filters, contact info, and update popups
+                  </li>
+                  <li>
+                    <span class="feature-icon">💭</span>
+                    One social media spotlight post during early-access
+                  </li>
+                  <li>
+                    <span class="feature-icon">📚</span>
+                    Access to free resources, toolkits, and guides
+                  </li>
+                  <li>
+                    <span class="feature-icon">⭐</span>
+                    Eligibility for the CTRL Picks Badge based on merit or upgrades
+                  </li>
+                </ul>
+                <p class="tier-note">CTRL is currently in its early-access stage — your submission helps us build the future.</p>
+              </div>
+
+              <div class="tier-section spotlight-tier">
+                <div class="tier-header">
+                  <h4>CTRL Boosted Experience</h4>
+                  <span class="tier-badge coming-soon">Coming Soon</span>
+                </div>
+                <ul class="tier-features">
+                  <li>
+                    <span class="feature-icon">⭐</span>
+                    Everything you need to build, grow, and showcase your project
+                  </li>
+                  <li>
+                    <span class="feature-icon">📢</span>
+                    Up to 3 custom social media promo posts monthly
+                  </li>
+                  <li>
+                    <span class="feature-icon">🎁</span>
+                    Full Project Review & Custom Roadmap
+                  </li>
+                  <li>
+                    <span class="feature-icon">📋</span>
+                    Project Starter & Growth Tracker Kits
+                  </li>
+                  <li>
+                    <span class="feature-icon">🏆</span>
+                    MVP Builder & Event Outreach Tools
+                  </li>
+                </ul>
+                <p class="tier-note">Launching once we reach 100–500 community submissions.</p>
+                <a href="https://ko-fi.com/projectctrl" target="_blank" class="primary-button" style="margin-top: 1rem; display: inline-block;">
+                  Get CTRL Boosted
+                  <span class="button-icon">→</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="about-section">
+      <div class="content-wrapper">
+        <div class="bento-grid">
+          <div class="bento-card mission-card">
+            <div class="feature-icon">📋</div>
+            <h3>Our Mission</h3>
+            <p class="mission-tagline">Regain control. Empower agency. Simplify life.</p>
+            <p class="mission-description">Built for the caretakers, the strivers, the kids without a map. Project CTRL helps you take control of your time, your ideas, and your next move.</p>
+            <div class="mission-points">
+              <div class="mission-point">
+                <span class="point-icon">📊</span>
+                <p>Through our formulaic approach, we provide structured pathways to upgrade and scale growing businesses and projects.</p>
+              </div>
+              <div class="mission-point">
+                <span class="point-icon">📑</span>
+                <p>Access templates, roadmaps, and guides to bring your ideas to life.</p>
+              </div>
+              <div class="mission-point">
+                <span class="point-icon">👥</span>
+                <p>Join our growing community and get your project seen by the right people.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bento-card founder-card">
+            <div class="feature-icon">👤</div>
+            <h3>Our Story</h3>
+            <p>Founded by Genavive Ramirez, Project CTRL emerged from a personal mission to streamline success for small businesses and innovators. After helping her mother's business and launching two successful initiatives (STEM by Step and Hearts of Tomorrow), she developed a formula to replace guesswork with guided pathways — giving entrepreneurs and creators their time back while maximizing impact.</p>
+            <div class="founder-social">
+              <a href="https://www.linkedin.com/in/genavive-r-a033b4315/" target="_blank" class="social-link">
+                <span class="social-icon">📋</span>
+                Connect on LinkedIn
+              </a>
+            </div>
+          </div>
         </div>
 
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🗒</div>
+            <h3>Clear Direction</h3>
+            <p>Step-by-step roadmaps and guidance for your unique journey.</p>
+          </div>
 
+          <div class="feature-card">
+            <div class="feature-icon">🌐</div>
+            <h3>Community Support</h3>
+            <p>Connect with mentors and fellow innovators who understand your path.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📂</div>
+            <h3>Growth Tools</h3>
+            <p>Free templates and resources to help you plan, track, and succeed.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🌟</div>
+            <h3>Recognition</h3>
+            <p>Get featured and celebrate your milestones with our supportive community.</p>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="main-footer">
     <div class="footer-content">
-      <p>Powered by cold brew @ 2:00AM</p>
+      <p>© 2025 Project CTRL | Built by and for the people without a roadmap</p>
     </div>
   </footer>
 
@@ -922,55 +1049,49 @@
       });
 
       counters.forEach(counter => observer.observe(counter));
+    });
 
-      // Typing Animation
-      const changingText = document.getElementById('changing-text');
-      const phrases = [
-        'empowering small founders',
-        'scaling while afk',
-        'stirring ideas',
-        'dream chasers',
-        'late-night innovators',
-        'brewing growth'
-      ];
-      
-      let currentPhraseIndex = 0;
-      let currentCharIndex = 0;
-      let isDeleting = false;
-      let typingSpeed = 100;
+    // Featured Projects Rotation
+    document.addEventListener('DOMContentLoaded', () => {
+      const featuredProjects = document.querySelectorAll('.featured-project');
+      let currentProject = 0;
+      let rotationInterval;
 
-      function typeText() {
-        const currentPhrase = phrases[currentPhraseIndex];
-        
-        if (isDeleting) {
-          // Backspace effect - completely clear the text
-          changingText.textContent = currentPhrase.substring(0, currentCharIndex - 1);
-          currentCharIndex--;
-          typingSpeed = 50;
-        } else {
-          // Type effect
-          changingText.textContent = currentPhrase.substring(0, currentCharIndex + 1);
-          currentCharIndex++;
-          typingSpeed = 100;
-        }
-
-        // Handle transitions between phrases
-        if (!isDeleting && currentCharIndex === currentPhrase.length) {
-          // Finished typing, wait then start deleting
-          typingSpeed = 1500; // Wait 1.5 seconds
-          isDeleting = true;
-        } else if (isDeleting && currentCharIndex === 0) {
-          // Finished deleting, move to next phrase
-          isDeleting = false;
-          currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
-          typingSpeed = 300; // Wait before starting next phrase
-        }
-
-        setTimeout(typeText, typingSpeed);
+      function showProject(index) {
+        featuredProjects.forEach(project => project.classList.remove('active'));
+        featuredProjects[index].classList.add('active');
       }
 
-      // Start the typing animation
-      setTimeout(typeText, 1000);
+      function nextProject() {
+        currentProject = (currentProject + 1) % featuredProjects.length;
+        showProject(currentProject);
+      }
+
+      function startRotation() {
+        if (rotationInterval) clearInterval(rotationInterval);
+        rotationInterval = setInterval(nextProject, 7000);
+      }
+
+      // Initialize rotation
+      showProject(0);
+      startRotation();
+
+      // Add click handlers to featured projects
+      featuredProjects.forEach(project => {
+        project.addEventListener('click', () => {
+          const projectId = project.dataset.projectId;
+          window.location.href = `projects.html#featured-${projectId}`;
+        });
+
+        // Pause rotation on hover
+        project.addEventListener('mouseenter', () => {
+          clearInterval(rotationInterval);
+        });
+
+        project.addEventListener('mouseleave', () => {
+          startRotation();
+        });
+      });
     });
   </script>
 </body>
