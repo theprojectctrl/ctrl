@@ -478,7 +478,9 @@
     .laptop-highlights-container {
       display: flex;
       align-items: center;
-      gap: 3rem;
+      gap: 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
       position: relative;
     }
 
@@ -505,7 +507,7 @@
     .floating-highlights {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 2.5rem;
       flex: 1;
       align-items: flex-end;
       text-align: right;
@@ -850,15 +852,21 @@
 
         <!-- What Makes CTRL Special Section -->
         <div class="bento-card why-ctrl-card" style="margin-bottom: 2.5rem;">
+          <h2 style="color: #000; font-size: 2rem; font-weight: 800; margin-bottom: 2rem; font-family: var(--typewriter); text-transform: lowercase; text-align: right;">late-night lab</h2>
           <div class="laptop-highlights-container">
             <div class="laptop-emoji-container">
               <div class="laptop-emoji">💻</div>
             </div>
             <div class="floating-highlights">
-              <h2 style="color: #000; font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem; font-family: var(--typewriter); text-transform: lowercase;">late-night lab</h2>
-              <p style="color: #666; font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.6;">discover your niche and figure out your unique strengths to build something truly yours. grow while afk as your work keeps moving even when you're offline.</p>
-              <a href="idea-lab.html" class="cta-button secondary">Find Your Niche →</a>
+              <div class="floating-highlight">
+                <div class="highlight-content">
+                  <p>discover your niche and figure out your unique strengths to build something truly yours. grow while afk as your work keeps moving even when you're offline.</p>
+                </div>
+              </div>
             </div>
+          </div>
+          <div class="why-ctrl-cta">
+            <a href="idea-lab.html" class="cta-button secondary">Find Your Niche →</a>
           </div>
         </div>
         </div>
